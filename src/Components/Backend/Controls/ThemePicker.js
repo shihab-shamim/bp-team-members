@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import { SelectControl } from '@wordpress/components';
+import { Button, Modal, SelectControl } from '@wordpress/components';
 
 import ThemeThumb from './ThemeThumb';
 import { getThemesByFamily, FAMILY_LABELS } from '../../../utils/editorData';
@@ -22,76 +22,137 @@ export const themeBadges = ( theme ) => {
 	return badges;
 };
 
+const familyLabel = ( f ) => f.label || FAMILY_LABELS[ f.key ];
+
+const FamilyChips = ( { families, family, setFamily } ) => (
+	<div className="bptm-ed-themes__families" role="tablist" aria-label={ __( 'Theme families', 'bp-team-member' ) }>
+		{ [ { key: 'all', label: __( 'All', 'bp-team-member' ) } ].concat( families ).map( ( f ) => (
+			<button
+				key={ f.key }
+				type="button"
+				role="tab"
+				aria-selected={ family === f.key }
+				className={ `bptm-ed-chip${ family === f.key ? ' is-active' : '' }` }
+				onClick={ () => setFamily( f.key ) }
+			>
+				{ familyLabel( f ) }
+			</button>
+		) ) }
+	</div>
+);
+
+const ThemeSelect = ( { shown, value, onChange } ) => (
+	<SelectControl
+		__nextHasNoMarginBottom
+		__next40pxDefaultSize
+		label={ __( 'Select theme', 'bp-team-member' ) }
+		hideLabelFromVision
+		value={ shown.some( ( f ) => f.themes.some( ( t ) => t.id === value ) ) ? value : '' }
+		onChange={ ( v ) => v && onChange( v ) }
+	>
+		<option value="" disabled>{ __( '— Select theme —', 'bp-team-member' ) }</option>
+		{ shown.map( ( f ) => (
+			<optgroup key={ f.key } label={ familyLabel( f ) }>
+				{ f.themes.map( ( t ) => (
+					<option key={ t.id } value={ t.id }>{ t.label }</option>
+				) ) }
+			</optgroup>
+		) ) }
+	</SelectControl>
+);
+
+const ThemeGrid = ( { shown, value, onChange } ) => shown.map( ( f ) => (
+	<div className="bptm-ed-themes__family" key={ f.key }>
+		<div className="bptm-ed-themes__family-title">{ familyLabel( f ) }</div>
+		<div className="bptm-ed-themes__grid">
+			{ f.themes.map( ( t ) => {
+				const badges = themeBadges( t );
+				const active = t.id === value;
+				return (
+					<button
+						key={ t.id }
+						type="button"
+						className={ `bptm-ed-theme${ active ? ' is-active' : '' }` }
+						aria-pressed={ active }
+						title={ badges.length ? sprintf(
+							/* translators: 1: theme name, 2: forced features. */
+							__( '%1$s (%2$s)', 'bp-team-member' ),
+							t.label,
+							badges.join( ', ' )
+						) : t.label }
+						onClick={ () => onChange( t.id ) }
+					>
+						<ThemeThumb theme={ t } />
+						<span className="bptm-ed-theme__label">{ t.label }</span>
+						{ badges.length > 0 && <span className="bptm-ed-theme__badge">{ badges.join( ' · ' ) }</span> }
+					</button>
+				);
+			} ) }
+		</div>
+	</div>
+) );
+
+const filterFamilies = ( families, family ) => families
+	.filter( ( f ) => 'all' === family || f.key === family )
+	.filter( ( f ) => f.themes.length );
+
+/**
+ * compact = toolbar dropdown (chips + dropdown + thumbnail grid inline).
+ * default = sidebar (chips + dropdown + "Browse themes" button that opens the thumbnail grid in a popup).
+ */
 const ThemePicker = ( { value, onChange, compact = false } ) => {
 	const families = getThemesByFamily();
 	const [ family, setFamily ] = useState( 'all' );
-	const shown = families
-		.filter( ( f ) => 'all' === family || f.key === family )
-		.filter( ( f ) => f.themes.length );
+	const [ isOpen, setIsOpen ] = useState( false );
+	const [ modalFamily, setModalFamily ] = useState( 'all' );
+	const shown = filterFamilies( families, family );
+
+	if ( compact ) {
+		return (
+			<div className="bptm-ed-themes is-compact">
+				<FamilyChips families={ families } family={ family } setFamily={ setFamily } />
+				<ThemeSelect shown={ shown } value={ value } onChange={ onChange } />
+				<ThemeGrid shown={ shown } value={ value } onChange={ onChange } />
+			</div>
+		);
+	}
 
 	return (
-		<div className={ `bptm-ed-themes${ compact ? ' is-compact' : '' }` }>
-			<div className="bptm-ed-themes__families" role="tablist" aria-label={ __( 'Theme families', 'bp-team-member' ) }>
-				{ [ { key: 'all', label: __( 'All', 'bp-team-member' ) } ].concat( families ).map( ( f ) => (
-					<button
-						key={ f.key }
-						type="button"
-						role="tab"
-						aria-selected={ family === f.key }
-						className={ `bptm-ed-chip${ family === f.key ? ' is-active' : '' }` }
-						onClick={ () => setFamily( f.key ) }
-					>
-						{ f.label || FAMILY_LABELS[ f.key ] }
-					</button>
-				) ) }
-			</div>
-			<SelectControl
-				__nextHasNoMarginBottom
-				__next40pxDefaultSize
-				label={ __( 'Select theme', 'bp-team-member' ) }
-				hideLabelFromVision
-				value={ shown.some( ( f ) => f.themes.some( ( t ) => t.id === value ) ) ? value : '' }
-				onChange={ ( v ) => v && onChange( v ) }
+		<div className="bptm-ed-themes">
+			<FamilyChips families={ families } family={ family } setFamily={ setFamily } />
+			<ThemeSelect shown={ shown } value={ value } onChange={ onChange } />
+			<Button
+				variant="secondary"
+				icon="screenoptions"
+				className="bptm-ed-themes__browse"
+				onClick={ () => {
+					setModalFamily( family );
+					setIsOpen( true );
+				} }
 			>
-				<option value="" disabled>{ __( '— Select theme —', 'bp-team-member' ) }</option>
-				{ shown.map( ( f ) => (
-					<optgroup key={ f.key } label={ f.label || FAMILY_LABELS[ f.key ] }>
-						{ f.themes.map( ( t ) => (
-							<option key={ t.id } value={ t.id }>{ t.label }</option>
-						) ) }
-					</optgroup>
-				) ) }
-			</SelectControl>
-			{ shown.map( ( f ) => (
-				<div className="bptm-ed-themes__family" key={ f.key }>
-					<div className="bptm-ed-themes__family-title">{ f.label }</div>
-					<div className="bptm-ed-themes__grid">
-						{ f.themes.map( ( t ) => {
-							const badges = themeBadges( t );
-							const active = t.id === value;
-							return (
-								<button
-									key={ t.id }
-									type="button"
-									className={ `bptm-ed-theme${ active ? ' is-active' : '' }` }
-									aria-pressed={ active }
-									title={ badges.length ? sprintf(
-										/* translators: 1: theme name, 2: forced features. */
-										__( '%1$s (%2$s)', 'bp-team-member' ),
-										t.label,
-										badges.join( ', ' )
-									) : t.label }
-									onClick={ () => onChange( t.id ) }
-								>
-									<ThemeThumb theme={ t } />
-									<span className="bptm-ed-theme__label">{ t.label }</span>
-									{ badges.length > 0 && <span className="bptm-ed-theme__badge">{ badges.join( ' · ' ) }</span> }
-								</button>
-							);
-						} ) }
+				{ __( 'Browse themes', 'bp-team-member' ) }
+			</Button>
+
+			{ isOpen && (
+				<Modal
+					title={ __( 'Choose a theme', 'bp-team-member' ) }
+					className="bptm-ed-themes-modal"
+					size="large"
+					onRequestClose={ () => setIsOpen( false ) }
+				>
+					<div className="bptm-ed-themes is-modal">
+						<FamilyChips families={ families } family={ modalFamily } setFamily={ setModalFamily } />
+						<ThemeGrid
+							shown={ filterFamilies( families, modalFamily ) }
+							value={ value }
+							onChange={ ( id ) => {
+								onChange( id );
+								setIsOpen( false );
+							} }
+						/>
 					</div>
-				</div>
-			) ) }
+				</Modal>
+			) }
 		</div>
 	);
 };

@@ -361,3 +361,32 @@ $bptm-border: #e0e0e0;
 	background: #f6f7f7;
 	border-radius: 2px;
 }
+
+/* Theme picker: "Browse themes" button + popup */
+.bptm-ed-themes__browse {
+	width: 100%;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+.bptm-ed-themes-modal {
+	.bptm-ed-themes.is-modal {
+		.bptm-ed-themes__families {
+			position: sticky;
+			top: 0;
+			z-index: 1;
+			background: #fff;
+			padding: 4px 0 10px;
+			margin-bottom: 0;
+		}
+
+		.bptm-ed-themes__grid {
+			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+			gap: 12px;
+		}
+
+		.bptm-ed-theme__label {
+			font-size: 12px;
+		}
+	}
+}
