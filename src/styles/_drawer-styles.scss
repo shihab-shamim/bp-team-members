@@ -1,0 +1,269 @@
+// Drawer detail styles (owner: themes-b): templates/drawers/*.php inside the
+// render area's inline drawer shell (.bptm-drawer, expands below a grid row).
+// Shared .bptm-dv base is in _popup-styles.scss.
+
+$bptm-dv-drawer-sm: 767px;
+
+.bptm-dv-drawer {
+	--bptm-dv-accent: var(--bptm-accent, #4527a4);
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 24px 40px;
+	align-items: start;
+	padding: 8px 0;
+
+	.bptm-dv-body,
+	.bptm-dv-aside,
+	.bptm-dv-side {
+		min-width: 0;
+	}
+
+	> .bptm-dv-side:empty {
+		display: none;
+	}
+
+	.bptm-dv-name {
+		font-size: 26px;
+	}
+
+	// Photo + content.
+	&:has(> .bptm-dv-side .bptm-dv-media) {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+	}
+
+	// Text + aside column.
+	&:has(> .bptm-dv-aside) {
+		grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+	}
+
+	@media (max-width: $bptm-dv-drawer-sm) {
+		&,
+		&:has(> .bptm-dv-side .bptm-dv-media),
+		&:has(> .bptm-dv-aside) {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 18px;
+		}
+
+		.bptm-dv-side .bptm-dv-media {
+			max-width: 240px;
+		}
+
+		.bptm-dv-name {
+			font-size: 22px;
+		}
+	}
+}
+
+// Default: description left, social + skills right.
+.bptm-dv-drawer--default {
+	.bptm-dv-aside {
+		padding-left: 32px;
+		border-left: 1px solid var(--bptm-dv-line);
+	}
+
+	@media (max-width: $bptm-dv-drawer-sm) {
+		.bptm-dv-aside {
+			padding: 18px 0 0;
+			border-top: 1px solid var(--bptm-dv-line);
+			border-left: 0;
+		}
+	}
+}
+
+// Style one: white elevated card, rounded square photo left; name, role with an
+// accent rule, a short scrolling description, round social buttons and
+// accent-iconed contact rows right.
+.bptm-wrap .bptm-drawer--style-one {
+	--bptm-drawer-bg: var(--bptm-info-bg, #fff);
+
+	.bptm-drawer-inner {
+		border-block-start-width: 0;
+		box-shadow: 0 5px 50px rgba(12, 21, 41, 0.12);
+	}
+
+	.bptm-modal-content {
+		padding: 24px;
+	}
+
+	.bptm-modal-nav {
+		padding-inline: 24px;
+	}
+
+	@media (max-width: $bptm-dv-drawer-sm) {
+		.bptm-modal-content {
+			padding: 48px 18px 18px;
+		}
+	}
+}
+
+.bptm-dv-drawer--style-one {
+	--bptm-dv-accent: var(--bptm-accent, #7948ff);
+	gap: 20px 36px;
+	align-items: start;
+	padding: 0;
+
+	&:has(> .bptm-dv-side .bptm-dv-media) {
+		grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+	}
+
+	.bptm-img-wrap {
+		border-radius: var(--bptm-img-radius, 10px);
+		box-shadow: 0 10px 30px rgba(12, 21, 41, 0.1);
+	}
+
+	.bptm-dv-body {
+		padding: 12px 0;
+	}
+
+	.bptm-dv-name {
+		margin-bottom: 7px;
+		font-size: 28px;
+	}
+
+	.bptm-dv-role {
+		position: relative;
+		margin-bottom: 28px;
+		padding-bottom: 16px;
+
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 44px;
+			height: 3px;
+			border-radius: 3px;
+			background: linear-gradient(-92deg, var(--bptm-dv-accent), #b71cea);
+		}
+	}
+
+	.bptm-dv-desc {
+		margin-bottom: 0;
+
+		.bptm-details.bptm-scroll {
+			max-height: var(--bptm-desc-max-h, 116px);
+		}
+
+		.bptm-details::-webkit-scrollbar {
+			width: 5px;
+		}
+
+		.bptm-details::-webkit-scrollbar-thumb {
+			border-radius: 5px;
+			background-image: linear-gradient(-92deg, #b71cea, var(--bptm-dv-accent));
+		}
+	}
+
+	.bptm-dv-social {
+		margin: 28px 0 0;
+
+		.bptm-dv-heading {
+			font-size: 18px;
+		}
+
+		.bptm-social {
+			justify-content: flex-start;
+		}
+
+		.bptm-social a {
+			border-color: #f3f3f3;
+			color: #1d2534;
+		}
+	}
+
+	.bptm-dv-meta {
+		margin: 28px 0 0;
+		padding-top: 22px;
+		border-top: 1px solid var(--bptm-dv-line);
+
+		.bptm-meta > li {
+			padding: 6px 0;
+			border-bottom: 0;
+		}
+
+		.bptm-meta-icon {
+			color: var(--bptm-info-icon-color, var(--bptm-dv-accent));
+		}
+	}
+
+	.bptm-dv-tail {
+		margin-top: 24px;
+	}
+
+	@media (max-width: $bptm-dv-drawer-sm) {
+		&:has(> .bptm-dv-side .bptm-dv-media) {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.bptm-dv-body {
+			padding: 0;
+		}
+	}
+}
+
+// Style two: square photo, contact block shown as a soft card.
+.bptm-dv-drawer--style-two {
+	--bptm-dv-accent: var(--bptm-accent, #33cccc);
+
+	.bptm-img-wrap {
+		border-radius: var(--bptm-img-radius, 0);
+	}
+
+	.bptm-dv-meta {
+		padding: 16px 20px;
+		border-radius: 6px;
+		background: var(--bptm-info-bg, #f4fbfb);
+	}
+}
+
+// Style three: text left, divider, contact / social / skills right.
+.bptm-dv-drawer--style-three {
+	--bptm-dv-accent: var(--bptm-accent, #fd5a80);
+
+	.bptm-dv-body {
+		padding-right: 30px;
+		border-right: 1px solid #f2f2f2;
+	}
+
+	@media (max-width: $bptm-dv-drawer-sm) {
+		.bptm-dv-body {
+			padding-right: 0;
+			border-right: 0;
+		}
+	}
+}
+
+// Style four: circular photo, info only.
+.bptm-dv-drawer--style-four {
+	--bptm-dv-accent: var(--bptm-accent, #1d2534);
+	align-items: start;
+
+	.bptm-img-wrap {
+		border-radius: 50%;
+	}
+
+	.bptm-meta > li {
+		border-bottom-style: dashed;
+	}
+}
+
+// Style five: photo left; intro on top, then contact and skills split by a rule.
+.bptm-dv-drawer--style-five {
+	--bptm-dv-accent: var(--bptm-accent, #7948ff);
+
+	.bptm-dv-top {
+		margin: 0 0 24px;
+	}
+
+	.bptm-dv-split {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 24px 40px;
+		padding-top: 28px;
+		border-top: 1px solid #f2f2f2;
+	}
+
+	.bptm-dv-split-col > :last-child {
+		margin-bottom: 0;
+	}
+}

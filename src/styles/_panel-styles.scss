@@ -1,0 +1,231 @@
+// Panel detail styles (owner: themes-b): templates/panels/*.php inside the
+// render area's slide-in panel shell. Shared .bptm-dv base is in _popup-styles.scss.
+// Panels are one narrow column (≈ 500px), so every style stacks vertically.
+
+.bptm-dv-panel {
+	--bptm-dv-accent: var(--bptm-accent, #4527a4);
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+
+	.bptm-dv-media {
+		margin: 0;
+	}
+
+	.bptm-dv-body {
+		padding: 28px 32px 32px;
+	}
+
+	.bptm-dv-name {
+		font-size: 26px;
+	}
+
+	@media (max-width: 480px) {
+		.bptm-dv-body {
+			padding: 22px 18px 26px;
+		}
+
+		.bptm-dv-name {
+			font-size: 22px;
+		}
+	}
+}
+
+// Default: dark social strip on the left edge, dark title / role bars, photo, body.
+.bptm-dv-panel--default {
+	--bptm-dv-accent: var(--bptm-accent, #212121);
+	position: relative;
+	flex-direction: row;
+	align-items: stretch;
+	background: #fff;
+
+	.bptm-panel-strip {
+		flex: 0 0 48px;
+		width: 48px;
+		padding: 14px 0;
+		background: #212121;
+
+		.bptm-dv-social {
+			margin: 0;
+		}
+
+		.bptm-social {
+			flex-direction: column;
+			align-items: center;
+			gap: 6px;
+
+			a {
+				width: 34px;
+				height: 34px;
+				border: 0;
+				border-radius: 4px;
+				background: transparent;
+				color: #fff;
+				font-size: 14px;
+
+				&:hover,
+				&:focus-visible {
+					background: var(--bptm-hover-icon-bg, rgba(255, 255, 255, 0.16));
+					transform: none;
+				}
+			}
+		}
+	}
+
+	.bptm-panel-main {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.bptm-panel-titlebar {
+		padding: 18px 60px 16px 28px;
+		background: var(--bptm-name-bg, #fff);
+
+		.bptm-dv-name {
+			margin: 0;
+		}
+	}
+
+	.bptm-panel-rolebar {
+		padding: 12px 28px;
+		background: #414141;
+
+		.bptm-dv-role {
+			margin: 0;
+			color: var(--bptm-role-color, #fff);
+			font-size: 17px;
+		}
+	}
+
+	.bptm-img-wrap {
+		border-radius: 0;
+		aspect-ratio: 4 / 3;
+	}
+
+	.bptm-dv-body {
+		padding: 24px 28px 30px;
+	}
+
+	.bptm-skill-fill {
+		background: var(--bptm-accent, #414141);
+	}
+}
+
+// Style one: square photo on top, centred heading, outlined social icons.
+.bptm-dv-panel--style-one {
+	--bptm-dv-accent: var(--bptm-accent, #7948ff);
+
+	.bptm-img-wrap {
+		border-radius: 0;
+	}
+
+	.bptm-dv-body {
+		padding-top: 32px;
+	}
+}
+
+// Style two: coloured name band above the photo.
+.bptm-dv-panel--style-two,
+.bptm-dv-panel--style-four {
+	.bptm-panel-band {
+		padding: 22px 60px 20px 32px;
+		background: var(--bptm-name-bg, var(--bptm-dv-accent));
+
+		.bptm-dv-name {
+			margin: 0 0 4px;
+			color: var(--bptm-name-color, #fff);
+		}
+
+		.bptm-dv-role {
+			margin: 0;
+			color: var(--bptm-role-color, rgba(255, 255, 255, 0.85));
+		}
+	}
+
+	.bptm-img-wrap {
+		border-radius: 0;
+	}
+}
+
+.bptm-dv-panel--style-two {
+	--bptm-dv-accent: var(--bptm-accent, #33cccc);
+}
+
+// Style three: photo inset with rounded corners, info below on a soft background.
+.bptm-dv-panel--style-three {
+	--bptm-dv-accent: var(--bptm-accent, #fd5a80);
+	background: var(--bptm-info-bg, #fbf7f6);
+
+	.bptm-dv-media {
+		padding: 28px 32px 0;
+	}
+
+	.bptm-img-wrap {
+		border-radius: var(--bptm-img-radius, 14px);
+		box-shadow: 0 14px 34px rgba(12, 21, 41, 0.14);
+	}
+
+	.bptm-social a {
+		border: 0;
+		border-radius: 10px;
+		box-shadow: 0 5px 20px rgba(12, 21, 41, 0.1);
+	}
+
+	@media (max-width: 480px) {
+		.bptm-dv-media {
+			padding: 18px 18px 0;
+		}
+	}
+}
+
+// Style four: photo, then a dark name band, then body.
+.bptm-dv-panel--style-four {
+	--bptm-dv-accent: var(--bptm-accent, #1d2534);
+
+	.bptm-panel-band {
+		padding-right: 32px;
+	}
+
+	.bptm-skill-fill {
+		background: var(--bptm-accent, #7948ff);
+	}
+}
+
+// Style five: round photo centred, header row with social icons.
+.bptm-dv-panel--style-five {
+	--bptm-dv-accent: var(--bptm-accent, #7948ff);
+	padding-top: 40px;
+
+	.bptm-dv-media {
+		width: 180px;
+		margin: 0 auto;
+	}
+
+	.bptm-img-wrap {
+		border-radius: 50%;
+		box-shadow: 0 0 0 8px rgba(121, 72, 255, 0.1);
+	}
+
+	.bptm-dv-head {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 14px;
+		margin: 0 0 24px;
+		padding: 0 0 20px;
+		border-bottom: 1px solid var(--bptm-dv-line);
+		text-align: center;
+
+		.bptm-dv-role {
+			margin: 0;
+		}
+
+		.bptm-dv-social {
+			margin: 0;
+		}
+
+		.bptm-social {
+			justify-content: center;
+		}
+	}
+}

@@ -1,0 +1,559 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "icb/fold-out-reveal",
+  "version": "1.0.0",
+  "title": "BP Team Member",
+  "category": "widgets",
+  "description": "BP Team Member is a WordPress plugin that allows you to showcase your team members beautifully on your website.",
+  "keywords": [
+    "BP Team Member",
+    "team",
+    "member",
+    "staff"
+  ],
+  "textdomain": "bp-team-member",
+  "attributes": {
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "purposeType": {
+      "type": "string",
+      "default": "test"
+    },
+    "colors": {
+      "type": "object",
+      "default": {
+        "color": "black",
+        "bg": "#B1C5A4"
+      }
+    },
+    "theme": {
+      "type": "string",
+      "default": "grid-5"
+    },
+    "carouselEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "filterEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "filterType": {
+      "type": "string",
+      "default": "normal-filter"
+    },
+    "columns": {
+      "type": "object",
+      "default": {
+        "desktop": 4,
+        "tablet": 3,
+        "mobilePortrait": 2,
+        "mobile": 1
+      }
+    },
+    "columnGap": {
+      "type": "number",
+      "default": 30
+    },
+    "rowGap": {
+      "type": "number",
+      "default": 30
+    },
+    "linkType": {
+      "type": "string",
+      "default": "default"
+    },
+    "nameIsLinked": {
+      "type": "boolean",
+      "default": true
+    },
+    "linkPreviewImage": {
+      "type": "boolean",
+      "default": false
+    },
+    "linkTarget": {
+      "type": "string",
+      "default": "_self"
+    },
+    "popupStyle": {
+      "type": "string",
+      "default": "default"
+    },
+    "popupColumns": {
+      "type": "string",
+      "default": "two"
+    },
+    "panelStyle": {
+      "type": "string",
+      "default": "default"
+    },
+    "panelPosition": {
+      "type": "string",
+      "default": "right"
+    },
+    "drawerStyle": {
+      "type": "string",
+      "default": "default"
+    },
+    "thumbnailSize": {
+      "type": "string",
+      "default": "large"
+    },
+    "imageFilter": {
+      "type": "string",
+      "default": "none"
+    },
+    "hoverImageFilter": {
+      "type": "string",
+      "default": "none"
+    },
+    "visibility": {
+      "type": "object",
+      "default": {}
+    },
+    "detailsLength": {
+      "type": "number",
+      "default": 100
+    },
+    "allowHtmlDetails": {
+      "type": "boolean",
+      "default": false
+    },
+    "descScrollControl": {
+      "type": "boolean",
+      "default": true
+    },
+    "maxScrollHeight": {
+      "type": "string",
+      "default": ""
+    },
+    "detailsAreaHeight": {
+      "type": "boolean",
+      "default": false
+    },
+    "enableScrollAnimation": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableFeaturing": {
+      "type": "boolean",
+      "default": false
+    },
+    "showAcfFields": {
+      "type": "boolean",
+      "default": false
+    },
+    "acfFieldsPosition": {
+      "type": "string",
+      "default": "after_skills"
+    },
+    "numberOfMembers": {
+      "type": "number",
+      "default": -1
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "date"
+    },
+    "order": {
+      "type": "string",
+      "default": "DESC"
+    },
+    "taxonomyOrderBy": {
+      "type": "string",
+      "default": "name"
+    },
+    "taxonomyOrder": {
+      "type": "string",
+      "default": "ASC"
+    },
+    "taxonomyHideEmpty": {
+      "type": "boolean",
+      "default": false
+    },
+    "includeGroups": {
+      "type": "array",
+      "default": []
+    },
+    "excludeGroups": {
+      "type": "array",
+      "default": []
+    },
+    "includeTags": {
+      "type": "array",
+      "default": []
+    },
+    "includeLocations": {
+      "type": "array",
+      "default": []
+    },
+    "includeLanguages": {
+      "type": "array",
+      "default": []
+    },
+    "includeSpecialties": {
+      "type": "array",
+      "default": []
+    },
+    "includeGenders": {
+      "type": "array",
+      "default": []
+    },
+    "includeExtraOne": {
+      "type": "array",
+      "default": []
+    },
+    "includeExtraTwo": {
+      "type": "array",
+      "default": []
+    },
+    "includeExtraThree": {
+      "type": "array",
+      "default": []
+    },
+    "includeExtraFour": {
+      "type": "array",
+      "default": []
+    },
+    "includeExtraFive": {
+      "type": "array",
+      "default": []
+    },
+    "searchByName": {
+      "type": "boolean",
+      "default": true
+    },
+    "searchByZip": {
+      "type": "boolean",
+      "default": true
+    },
+    "searchByTag": {
+      "type": "boolean",
+      "default": false
+    },
+    "searchByCompany": {
+      "type": "boolean",
+      "default": false
+    },
+    "filterByDesignation": {
+      "type": "boolean",
+      "default": true
+    },
+    "filterByLocation": {
+      "type": "boolean",
+      "default": true
+    },
+    "filterByLanguage": {
+      "type": "boolean",
+      "default": true
+    },
+    "filterByGender": {
+      "type": "boolean",
+      "default": true
+    },
+    "filterBySpecialty": {
+      "type": "boolean",
+      "default": true
+    },
+    "filterByExtraOne": {
+      "type": "boolean",
+      "default": false
+    },
+    "filterByExtraTwo": {
+      "type": "boolean",
+      "default": false
+    },
+    "filterByExtraThree": {
+      "type": "boolean",
+      "default": false
+    },
+    "filterByExtraFour": {
+      "type": "boolean",
+      "default": false
+    },
+    "filterByExtraFive": {
+      "type": "boolean",
+      "default": false
+    },
+    "enableClearFilters": {
+      "type": "boolean",
+      "default": false
+    },
+    "enableMultiSelect": {
+      "type": "boolean",
+      "default": false
+    },
+    "multiSelectEllipsis": {
+      "type": "boolean",
+      "default": false
+    },
+    "filterAllEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableChildCats": {
+      "type": "boolean",
+      "default": false
+    },
+    "filterAllText": {
+      "type": "string",
+      "default": "All"
+    },
+    "filterColumns": {
+      "type": "string",
+      "default": "two"
+    },
+    "filterCatPosition": {
+      "type": "string",
+      "default": "center"
+    },
+    "filterStyle": {
+      "type": "string",
+      "default": "default"
+    },
+    "paginationEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "paginationType": {
+      "type": "string",
+      "default": "normal-pagination"
+    },
+    "initialItems": {
+      "type": "number",
+      "default": 6
+    },
+    "perPage": {
+      "type": "number",
+      "default": 6
+    },
+    "loadPerClick": {
+      "type": "number",
+      "default": 3
+    },
+    "perLoad": {
+      "type": "number",
+      "default": 3
+    },
+    "loadButtonText": {
+      "type": "string",
+      "default": "Load More"
+    },
+    "carouselAutoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "carouselAutoplayHoverPause": {
+      "type": "boolean",
+      "default": true
+    },
+    "carouselLoop": {
+      "type": "boolean",
+      "default": true
+    },
+    "carouselSpeed": {
+      "type": "number",
+      "default": 1000
+    },
+    "carouselAutoplayTimeout": {
+      "type": "number",
+      "default": 2500
+    },
+    "carouselItemsToScroll": {
+      "type": "number",
+      "default": 1
+    },
+    "carouselNavsEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "carouselDotsEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "carouselNavsStyle": {
+      "type": "string",
+      "default": "default"
+    },
+    "carouselDotsStyle": {
+      "type": "string",
+      "default": "default"
+    },
+    "nameColor": {
+      "type": "string",
+      "default": ""
+    },
+    "nameBg": {
+      "type": "string",
+      "default": ""
+    },
+    "roleColor": {
+      "type": "string",
+      "default": ""
+    },
+    "descriptionColor": {
+      "type": "string",
+      "default": ""
+    },
+    "descriptionLinkColor": {
+      "type": "string",
+      "default": ""
+    },
+    "infoColor": {
+      "type": "string",
+      "default": ""
+    },
+    "infoIconColor": {
+      "type": "string",
+      "default": ""
+    },
+    "infoBg": {
+      "type": "string",
+      "default": ""
+    },
+    "itemBg": {
+      "type": "string",
+      "default": ""
+    },
+    "itemBgHover": {
+      "type": "string",
+      "default": ""
+    },
+    "tooltipBg": {
+      "type": "string",
+      "default": ""
+    },
+    "hoverIconBg": {
+      "type": "string",
+      "default": ""
+    },
+    "ribbonBg": {
+      "type": "string",
+      "default": ""
+    },
+    "popupArrowColor": {
+      "type": "string",
+      "default": ""
+    },
+    "accentColor": {
+      "type": "string",
+      "default": ""
+    },
+    "sliderNavColor": {
+      "type": "string",
+      "default": ""
+    },
+    "sliderNavBg": {
+      "type": "string",
+      "default": ""
+    },
+    "sliderNavHoverColor": {
+      "type": "string",
+      "default": ""
+    },
+    "sliderNavHoverBg": {
+      "type": "string",
+      "default": ""
+    },
+    "sliderDotColor": {
+      "type": "string",
+      "default": ""
+    },
+    "sliderDotHoverColor": {
+      "type": "string",
+      "default": ""
+    },
+    "filterTextColor": {
+      "type": "string",
+      "default": ""
+    },
+    "filterActiveTextColor": {
+      "type": "string",
+      "default": ""
+    },
+    "filterBgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "filterActiveBgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "filterBorderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "filterActiveBorderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "nameTypography": {
+      "type": "object",
+      "default": {}
+    },
+    "roleTypography": {
+      "type": "object",
+      "default": {}
+    },
+    "detailsTypography": {
+      "type": "object",
+      "default": {}
+    },
+    "infoTypography": {
+      "type": "object",
+      "default": {}
+    },
+    "ribbonTypography": {
+      "type": "object",
+      "default": {}
+    },
+    "readmoreTypography": {
+      "type": "object",
+      "default": {}
+    },
+    "itemPadding": {
+      "type": "object",
+      "default": {}
+    },
+    "itemBorderRadius": {
+      "type": "string",
+      "default": ""
+    },
+    "itemShadow": {
+      "type": "string",
+      "default": ""
+    },
+    "itemBorderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "itemBorderWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "imageBorderRadius": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "anchor": true,
+    "customClassName": true
+  },
+  "example": {
+    "attributes": {}
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./view.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

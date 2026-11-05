@@ -1,0 +1,296 @@
+// Carousel: track, 4 nav styles (default, style-one … style-three), 4 dot styles.
+
+.bptm-wrap {
+	--bptm-nav-color-d: var(--bptm-nav-color, var(--bptm-text, #2a2f3a));
+	--bptm-nav-bg-d: var(--bptm-nav-bg, #fff);
+	--bptm-nav-hover-color-d: var(--bptm-nav-hover-color, #fff);
+	--bptm-nav-hover-bg-d: var(--bptm-nav-hover-bg, var(--bptm-accent));
+	--bptm-dot-color-d: var(--bptm-dot-color, #d3d6de);
+	--bptm-dot-active-color-d: var(--bptm-dot-active-color, var(--bptm-accent));
+
+	.bptm-carousel {
+		--bptm-per-view: var(--bptm-cols);
+		position: relative;
+	}
+
+	.bptm-carousel-viewport {
+		position: relative;
+		// Clip horizontally only, so card shadows / hover lifts are not cut at the top and bottom.
+		overflow: hidden;
+		touch-action: pan-y;
+
+		@supports (overflow-x: clip) {
+			overflow-x: clip;
+			overflow-y: visible;
+		}
+	}
+
+	div.bptm-carousel-track {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: stretch;
+		gap: var(--bptm-gap);
+		column-gap: var(--bptm-gap);
+		row-gap: 0;
+		transition-property: transform;
+		transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+		will-change: transform;
+
+		> .bptm-item {
+			flex: 0 0 calc((100% - (var(--bptm-per-view) - 1) * var(--bptm-gap)) / var(--bptm-per-view));
+			max-width: calc((100% - (var(--bptm-per-view) - 1) * var(--bptm-gap)) / var(--bptm-per-view));
+		}
+	}
+
+	.bptm-carousel.is-static div.bptm-carousel-track {
+		justify-content: center;
+		transform: none !important;
+	}
+
+	.bptm-carousel.is-dragging {
+		cursor: grabbing;
+		user-select: none;
+
+		a {
+			pointer-events: none;
+		}
+	}
+
+	// ------------------------------------------------------------------
+	// Navs
+	// ------------------------------------------------------------------
+	.bptm-nav {
+		appearance: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		margin: 0;
+		padding: 0;
+		border: 1px solid var(--bptm-line, #e4e6eb);
+		border-radius: 50%;
+		background: var(--bptm-nav-bg-d);
+		color: var(--bptm-nav-color-d);
+		font-size: 18px;
+		line-height: 1;
+		box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
+		cursor: pointer;
+		transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+
+		&:hover,
+		&:focus-visible {
+			border-color: var(--bptm-nav-hover-bg-d);
+			background: var(--bptm-nav-hover-bg-d);
+			color: var(--bptm-nav-hover-color-d);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bptm-accent);
+			outline-offset: 2px;
+		}
+	}
+
+	// Default: round arrows on the sides, vertically centred.
+	.bptm-navs-default .bptm-nav {
+		position: absolute;
+		inset-block-start: 50%;
+		z-index: 3;
+		transform: translateY(-50%);
+	}
+
+	.bptm-navs-default .bptm-nav-prev {
+		inset-inline-start: -22px;
+	}
+
+	.bptm-navs-default .bptm-nav-next {
+		inset-inline-end: -22px;
+	}
+
+	.bptm-navs-default.bptm-has-dots .bptm-nav {
+		inset-block-start: calc(50% - 25px);
+	}
+
+	@media (max-width: 1240px) {
+		.bptm-navs-default .bptm-nav-prev {
+			inset-inline-start: 6px;
+		}
+
+		.bptm-navs-default .bptm-nav-next {
+			inset-inline-end: 6px;
+		}
+	}
+
+	// Style one: square buttons centred below the slides.
+	.bptm-navs-style-one .bptm-carousel-navs {
+		display: flex;
+		justify-content: center;
+		gap: 12px;
+		margin-block-start: 28px;
+	}
+
+	.bptm-navs-style-one .bptm-nav {
+		border-radius: 6px;
+		box-shadow: none;
+	}
+
+	.bptm-navs-style-one.bptm-has-dots .bptm-carousel-dots {
+		margin-block-start: 18px;
+	}
+
+	// Style two: long arrows, top end corner above the slides.
+	.bptm-navs-style-two {
+		padding-block-start: 64px;
+	}
+
+	.bptm-navs-style-two .bptm-carousel-navs {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-end: 0;
+		display: flex;
+		gap: 10px;
+	}
+
+	.bptm-navs-style-two .bptm-nav {
+		width: 54px;
+		height: 40px;
+		border-radius: 999px;
+		box-shadow: none;
+	}
+
+	// Style three: tabs attached to the sides, accent filled.
+	.bptm-navs-style-three .bptm-nav {
+		position: absolute;
+		inset-block-start: 50%;
+		z-index: 3;
+		width: 38px;
+		height: 64px;
+		border: 0;
+		background: var(--bptm-nav-bg, var(--bptm-accent));
+		color: var(--bptm-nav-color, #fff);
+		box-shadow: none;
+		opacity: 0.85;
+		transform: translateY(-50%);
+
+		&:hover,
+		&:focus-visible {
+			background: var(--bptm-nav-hover-bg, var(--bptm-text, #2a2f3a));
+			color: var(--bptm-nav-hover-color-d);
+			opacity: 1;
+		}
+	}
+
+	.bptm-navs-style-three .bptm-nav-prev {
+		inset-inline-start: 0;
+		border-start-start-radius: 0;
+		border-end-start-radius: 0;
+		border-start-end-radius: 8px;
+		border-end-end-radius: 8px;
+	}
+
+	.bptm-navs-style-three .bptm-nav-next {
+		inset-inline-end: 0;
+		border-start-start-radius: 8px;
+		border-end-start-radius: 8px;
+		border-start-end-radius: 0;
+		border-end-end-radius: 0;
+	}
+
+	.bptm-navs-style-three.bptm-has-dots .bptm-nav {
+		inset-block-start: calc(50% - 25px);
+	}
+
+	// Arrow glyphs point the other way in RTL.
+	&[dir="rtl"] .bptm-nav i,
+	[dir="rtl"] & .bptm-nav i {
+		transform: scaleX(-1);
+	}
+
+	// ------------------------------------------------------------------
+	// Dots
+	// ------------------------------------------------------------------
+	.bptm-carousel-dots {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		margin-block-start: 30px;
+	}
+
+	.bptm-dot {
+		appearance: none;
+		display: block;
+		width: 10px;
+		height: 10px;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		background: var(--bptm-dot-color-d);
+		box-shadow: none;
+		cursor: pointer;
+		transition: background-color 0.25s ease, width 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+
+		&:hover {
+			background: color-mix(in srgb, var(--bptm-dot-active-color-d) 60%, var(--bptm-dot-color-d));
+		}
+
+		&.is-active {
+			background: var(--bptm-dot-active-color-d);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bptm-accent);
+			outline-offset: 3px;
+		}
+	}
+
+	.bptm-dots-default .bptm-dot.is-active {
+		transform: scale(1.3);
+	}
+
+	// Style one: active dot becomes a pill.
+	.bptm-dots-style-one .bptm-dot {
+		border-radius: 999px;
+
+		&.is-active {
+			width: 28px;
+		}
+	}
+
+	// Style two: outlined rings.
+	.bptm-dots-style-two .bptm-dot {
+		width: 12px;
+		height: 12px;
+		border: 2px solid var(--bptm-dot-color-d);
+		background: transparent;
+
+		&.is-active {
+			border-color: var(--bptm-dot-active-color-d);
+			background: var(--bptm-dot-active-color-d);
+			box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--bptm-dot-active-color-d);
+		}
+	}
+
+	// Style three: thin bars.
+	.bptm-dots-style-three .bptm-carousel-dots {
+		gap: 6px;
+	}
+
+	.bptm-dots-style-three .bptm-dot {
+		width: 26px;
+		height: 4px;
+		border-radius: 2px;
+
+		&.is-active {
+			width: 40px;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bptm-wrap div.bptm-carousel-track {
+		transition-duration: 0ms !important;
+	}
+}

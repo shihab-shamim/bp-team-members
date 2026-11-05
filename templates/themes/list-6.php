@@ -1,0 +1,39 @@
+<?php
+/**
+ * Item theme: List 6 — classic list: photo in the left third (zoom on hover), info on the right.
+ *
+ * @package BPTM
+ * @var array                $m   Member data (bptm_get_member()).
+ * @var \BPTM\Render\Context $ctx Render context.
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- every fragment is escaped by the bptm_tb_* helpers / Context.
+$bptm_contact_fields = array();
+$bptm_img            = bptm_tb_image( $ctx, $m, true, true );
+$bptm_badges         = bptm_tb_badges( $ctx, $m );
+$bptm_contacts       = bptm_tb_contacts( $ctx, $m, $bptm_contact_fields, 'bptm-contacts bptm-tb-contacts' );
+?>
+<div <?php echo $ctx->item_attrs( $m, bptm_tb_classes( $ctx, $m, 'list-6', 'list' ) ); ?>>
+	<div class="bptm-tb-card">
+		<?php if ( $bptm_img ) : ?>
+			<div class="bptm-img-wrap bptm-tb-media">
+				<?php echo $bptm_img . $bptm_badges; ?>
+			</div>
+		<?php endif; ?>
+		<div class="bptm-tb-info">
+			<?php
+			if ( ! $bptm_img ) {
+				echo $bptm_badges;
+			}
+			echo bptm_tb_part( $ctx, $m, 'name', 'h3' );
+			echo bptm_tb_part( $ctx, $m, 'designation' );
+			echo bptm_tb_part( $ctx, $m, 'details' );
+			echo $bptm_contacts;
+			echo bptm_tb_part( $ctx, $m, 'social' );
+			echo bptm_tb_extras( $ctx, $m, $bptm_contact_fields );
+			?>
+		</div>
+	</div>
+</div>

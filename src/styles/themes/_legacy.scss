@@ -1,0 +1,765 @@
+// Item themes (owner: themes-b): legacy grids — Grid 7-12, Grid Popup / Single /
+// Filter Single / Filter Popup / Slider / Filter Selected / Filter vCard / Panel /
+// Drawer 1-2 and Group Filter 1. Shared base lives in _table.scss (.bptm-tb).
+
+$bptm-tg-hover: ":is(:hover, :focus-within)";
+
+.bptm-tb-legacy {
+	text-align: var(--bptm-align, center);
+
+	.bptm-tb-info {
+		padding-top: 14px;
+	}
+
+	.bptm-social {
+		justify-content: var(--bptm-tb-justify, center);
+	}
+}
+
+.bptm-align-left .bptm-tb-legacy {
+	--bptm-tb-justify: flex-start;
+}
+
+.bptm-align-right .bptm-tb-legacy {
+	--bptm-tb-justify: flex-end;
+}
+
+/* ---------------------------------------------------------------------------
+ * Grid 7 + Grid Slider — sliding dark overlay with details + social.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-hovercard {
+	.bptm-tb-hover {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 20px 8%;
+		background: var(--bptm-info-bg, rgba(20, 20, 18, 0.62));
+		color: #fff;
+		opacity: 0;
+		transform: translateY(80px);
+		transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+		pointer-events: none;
+		overflow-y: auto;
+	}
+
+	.bptm-tb-hover-inner {
+		width: 100%;
+		pointer-events: auto;
+	}
+
+	.bptm-tb-hover .bptm-details,
+	.bptm-tb-hover .bptm-details p {
+		margin-top: 0;
+		color: #fff;
+		font-size: 0.95em;
+		line-height: 1.4;
+	}
+
+	.bptm-tb-hover .bptm-details a {
+		color: #fff;
+		font-style: italic;
+		font-weight: 700;
+	}
+
+	.bptm-tb-hover .bptm-social a {
+		border-color: rgba(255, 255, 255, 0.55);
+		color: #fff;
+	}
+
+	.bptm-tb-media#{$bptm-tg-hover} .bptm-tb-hover,
+	.bptm-tb-card:focus-within .bptm-tb-hover {
+		opacity: 1;
+		transform: none;
+	}
+
+	.bptm-name {
+		margin-top: 2px;
+	}
+}
+
+@media (hover: none) {
+	.bptm-tb-hovercard .bptm-tb-hover {
+		position: static;
+		padding: 14px 0 0;
+		background: none;
+		color: inherit;
+		opacity: 1;
+		transform: none;
+
+		.bptm-details,
+		.bptm-details p,
+		.bptm-details a {
+			color: var(--bptm-desc-color, #6b7280);
+		}
+
+		.bptm-social a {
+			border-color: var(--bptm-tb-line);
+			color: #6b7280;
+		}
+	}
+
+	.bptm-tb-hovercard .bptm-tb-media {
+		overflow: visible;
+		aspect-ratio: auto;
+	}
+
+	.bptm-tb-hovercard .bptm-tb-media > :is(img, .bptm-vis, .bptm-img-link) {
+		position: relative;
+		display: block;
+		aspect-ratio: 1 / 1;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Grid 8 — framed photo, tooltip bubble with name + designation.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-grid-8 {
+	.bptm-tb-media {
+		padding: 4px;
+		border: 1px solid #ddd;
+		background: var(--bptm-item-bg, #fff);
+	}
+
+	.bptm-tb-media img,
+	.bptm-tb-media .bptm-img-empty {
+		inset: 4px;
+		width: calc(100% - 8px);
+		height: calc(100% - 8px);
+	}
+
+	.bptm-tb-tip {
+		position: absolute;
+		bottom: calc(100% - 30px);
+		left: 50%;
+		z-index: 5;
+		width: max-content;
+		max-width: min(280px, 92%);
+		padding: 10px 14px;
+		border-radius: 4px;
+		background: var(--bptm-tooltip-bg, #2196f3);
+		box-shadow: 0 0 7px rgba(0, 0, 0, 0.35);
+		color: #fff;
+		text-align: center;
+		opacity: 0;
+		visibility: hidden;
+		transform: translate(-50%, -12px);
+		transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -9px;
+			border: 9px solid transparent;
+			border-top-color: var(--bptm-tooltip-bg, #2196f3);
+			border-bottom: 0;
+		}
+
+		.bptm-name,
+		.bptm-name a,
+		.bptm-designation {
+			color: #fff;
+		}
+
+		.bptm-name {
+			font-size: 1.05em;
+		}
+
+		.bptm-designation {
+			margin-top: 2px;
+			font-size: 0.85em;
+			opacity: 0.9;
+		}
+	}
+
+	.bptm-tb-card {
+		padding-top: 0;
+	}
+
+	&#{$bptm-tg-hover} .bptm-tb-tip {
+		opacity: 1;
+		visibility: visible;
+		transform: translate(-50%, -24px);
+	}
+}
+
+@media (hover: none) {
+	.bptm-tb-grid-8 .bptm-tb-tip {
+		position: relative;
+		bottom: auto;
+		left: auto;
+		width: auto;
+		max-width: none;
+		margin-top: 14px;
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+
+		&::after {
+			top: auto;
+			bottom: 100%;
+			border-top-color: transparent;
+			border-bottom: 9px solid var(--bptm-tooltip-bg, #2196f3);
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Grid 9 — translucent info card floating over the photo bottom.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-grid-9 {
+	.bptm-tb-media {
+		aspect-ratio: 4 / 5;
+	}
+
+	.bptm-tb-infocard {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		margin: 4%;
+		padding: 12px 10px;
+		background: var(--bptm-info-bg, rgba(255, 255, 255, 0.92));
+		letter-spacing: 0.03em;
+		line-height: 1.3;
+		transition: background-color 0.4s ease, transform 0.4s ease;
+	}
+
+	.bptm-name {
+		font-size: 1.05em;
+	}
+
+	&#{$bptm-tg-hover} {
+		.bptm-tb-infocard {
+			background: var(--bptm-tb-accent);
+			transform: translateY(-6px);
+		}
+
+		.bptm-name,
+		.bptm-name a,
+		.bptm-designation {
+			color: #fff;
+		}
+
+		.bptm-tb-media img {
+			transform: scale(1.06);
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Grid 10 — greyscale photos turning colour on hover.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-grid-10 {
+	.bptm-tb-media img {
+		filter: grayscale(100%);
+	}
+
+	&#{$bptm-tg-hover} .bptm-tb-media img {
+		filter: grayscale(0);
+	}
+
+	.bptm-tb-info {
+		padding-top: 18px;
+	}
+
+	.bptm-details {
+		font-size: 0.95em;
+		line-height: 1.35;
+	}
+
+	.bptm-social a:hover,
+	.bptm-social a:focus-visible {
+		border-color: var(--bptm-hover-icon-bg, #1988be);
+		background: var(--bptm-hover-icon-bg, #1988be);
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Grid 11 — rounded photo + elevated overlapping name card.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-grid-11 {
+	.bptm-tb-media {
+		border-radius: var(--bptm-img-radius, 14px);
+	}
+
+	.bptm-tb-info {
+		position: relative;
+		z-index: 2;
+		margin: -36px 8% 0;
+		padding: 16px 14px;
+		border-radius: var(--bptm-radius, 10px);
+		background: var(--bptm-item-bg, #fff);
+		box-shadow: var(--bptm-shadow, 0 10px 30px rgba(12, 21, 41, 0.12));
+		transition: background-color 0.35s ease, transform 0.35s ease;
+	}
+
+	&.bptm-tb-no-thumb .bptm-tb-info {
+		margin: 0;
+	}
+
+	&#{$bptm-tg-hover} {
+		.bptm-tb-info {
+			background: var(--bptm-item-bg-hover, var(--bptm-tb-accent));
+			transform: translateY(-4px);
+		}
+
+		.bptm-tb-info :is(.bptm-name, .bptm-name a, .bptm-designation, .bptm-details, .bptm-contacts, .bptm-contact > i) {
+			color: #fff;
+		}
+
+		.bptm-tb-info .bptm-social a {
+			border-color: rgba(255, 255, 255, 0.6);
+			color: #fff;
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Grid 12 — padded card, footer row with read-more + compact social.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-grid-12 {
+	text-align: start;
+
+	.bptm-tb-card {
+		display: flex;
+		flex-direction: column;
+		padding: var(--bptm-item-padding, 16px);
+		border-radius: var(--bptm-radius, 0);
+		background: var(--bptm-item-bg, transparent);
+		isolation: isolate;
+		overflow: hidden;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: -1;
+			background: var(--bptm-item-bg-hover, #8ec6ff);
+			opacity: 0;
+			transition: opacity 0.5s ease;
+		}
+	}
+
+	&#{$bptm-tg-hover} .bptm-tb-card::before {
+		opacity: 1;
+	}
+
+	.bptm-tb-info {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: space-between;
+		padding-top: 24px;
+	}
+
+	.bptm-name {
+		margin-bottom: 8px;
+		color: var(--bptm-name-color, #002145);
+		font-weight: 600;
+	}
+
+	.bptm-designation {
+		font-weight: 300;
+	}
+
+	.bptm-tb-foot {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		margin-top: 28px;
+	}
+
+	.bptm-readmore {
+		margin: 0;
+	}
+
+	.bptm-readmore a,
+	.bptm-readmore-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		white-space: nowrap;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: var(--bptm-name-color, #002145);
+		font-weight: 600;
+		text-decoration: none;
+
+		&::after {
+			content: "\2192";
+			transition: transform 0.25s ease;
+		}
+
+		&:hover::after {
+			transform: translateX(4px);
+		}
+	}
+
+	.bptm-tb-foot .bptm-social {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		margin: 0;
+		gap: 10px;
+
+		a {
+			width: auto;
+			height: auto;
+			border: 0;
+			border-radius: 0;
+			background: transparent !important;
+			color: var(--bptm-name-color, #002145);
+		}
+
+		a:hover {
+			color: var(--bptm-tb-accent);
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Overlay cards — Grid Popup / Single / Filter Popup / Filter Selected / Panel / Drawer 2.
+ * Whole photo is the trigger; captions on the photo; dark overlay + icon on hover.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-overlay-card {
+	text-align: start;
+
+	.bptm-tb-cover-link {
+		display: block;
+		color: inherit;
+		text-decoration: none;
+		box-shadow: none;
+		outline-offset: 3px;
+	}
+
+	.bptm-tb-media {
+		aspect-ratio: 4 / 5;
+	}
+
+	.bptm-tb-media::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		background: var(--bptm-info-bg, rgba(0, 0, 0, 0.6));
+		opacity: 0;
+		transition: opacity 0.4s linear;
+	}
+
+	.bptm-tb-indicator {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 3;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 52px;
+		height: 52px;
+		margin: -26px 0 0 -26px;
+		border-radius: 50%;
+		background: var(--bptm-hover-icon-bg, var(--bptm-tb-accent));
+		color: #fff;
+		font-size: 20px;
+		opacity: 0;
+		transform: translateX(-40px);
+		transition: opacity 0.5s ease, transform 0.5s ease;
+	}
+
+	.bptm-tb-caption {
+		position: absolute;
+		bottom: 20px;
+		left: 0;
+		z-index: 2;
+		max-width: calc(100% - 20px);
+		transition: transform 0.5s ease;
+	}
+
+	.bptm-tb-caption .bptm-name {
+		display: inline-block;
+		padding: 6px 12px;
+		background: var(--bptm-name-bg, rgba(0, 185, 235, 0.85));
+		color: var(--bptm-name-color, #fff);
+		font-size: 1.05em;
+		line-height: 1.25;
+	}
+
+	.bptm-tb-caption .bptm-designation {
+		display: table;
+		margin: 0;
+		padding: 5px 12px;
+		background: #141412;
+		color: var(--bptm-role-color, #fff);
+		font-size: 0.85em;
+	}
+
+	&#{$bptm-tg-hover} {
+		.bptm-tb-media::after,
+		.bptm-tb-indicator {
+			opacity: 1;
+		}
+
+		.bptm-tb-indicator {
+			transform: none;
+		}
+
+		.bptm-tb-media img {
+			transform: scale(1.05);
+		}
+	}
+
+	// Badges stay readable above the overlay.
+	.bptm-tb-card {
+		position: relative;
+	}
+
+	> .bptm-tb-card > :is(.bptm-ribbon, .bptm-featured) {
+		position: absolute;
+		z-index: 4;
+	}
+
+	> .bptm-tb-card > .bptm-ribbon {
+		inset-block-start: 14px;
+		inset-inline-end: 0;
+		border-radius: 3px 0 0 3px;
+	}
+
+	> .bptm-tb-card > .bptm-featured {
+		inset-block-start: 12px;
+		inset-inline-start: 12px;
+	}
+
+	.bptm-tb-extras {
+		padding: 0 2px;
+	}
+}
+
+// Drawer 2: edge-to-edge tiles, caption slides up on hover.
+.bptm-theme-grid-drawer-2 .bptm-items {
+	--bptm-gap: 0px;
+	column-gap: 0 !important;
+	row-gap: 0 !important;
+}
+
+.bptm-tb-grid-drawer-2 {
+	.bptm-tb-media {
+		aspect-ratio: 1 / 1;
+	}
+
+	.bptm-tb-caption {
+		right: 0;
+		bottom: 0;
+		max-width: none;
+		padding: 14px 16px;
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+		transform: translateY(100%);
+	}
+
+	.bptm-tb-caption .bptm-name,
+	.bptm-tb-caption .bptm-designation {
+		display: block;
+		padding: 0;
+		background: none;
+		color: #fff;
+	}
+
+	.bptm-tb-caption .bptm-designation {
+		margin-top: 2px;
+		opacity: 0.85;
+	}
+
+	.bptm-tb-indicator {
+		top: 18px;
+		left: auto;
+		right: 18px;
+		width: 36px;
+		height: 36px;
+		margin: 0;
+		font-size: 14px;
+		transform: translateY(-10px);
+	}
+
+	&#{$bptm-tg-hover} .bptm-tb-caption {
+		transform: none;
+	}
+}
+
+@media (hover: none) {
+	.bptm-tb-grid-drawer-2 .bptm-tb-caption {
+		transform: none;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Grid Drawer 1 — photo grid, details expand in an inline drawer.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-grid-drawer-1 {
+	.bptm-tb-media {
+		border-radius: var(--bptm-img-radius, 6px);
+		cursor: pointer;
+	}
+
+	&#{$bptm-tg-hover} .bptm-tb-media img {
+		transform: scale(1.05);
+	}
+
+	// The render JS marks the open item; dim the photo slightly.
+	&:is(.is-active, .is-open, .bptm-active, [aria-expanded="true"]) .bptm-tb-media {
+		box-shadow: 0 0 0 3px var(--bptm-tb-accent);
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Grid Filter Single + Group Filter 1 — banner card + contact strip.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-banner-card {
+	text-align: start;
+
+	.bptm-tb-card {
+		overflow: hidden;
+		border-radius: var(--bptm-radius, 0);
+		background: var(--bptm-item-bg, #fff);
+	}
+
+	.bptm-tb-media {
+		aspect-ratio: 4 / 5;
+	}
+
+	.bptm-tb-media img {
+		object-position: top center;
+	}
+
+	.bptm-tb-caption {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		padding: 14px 20px;
+		background: var(--bptm-info-bg, rgba(76, 35, 13, 0.55));
+		color: #fff;
+
+		.bptm-name,
+		.bptm-name a,
+		.bptm-designation {
+			color: #fff;
+		}
+
+		.bptm-name {
+			font-size: 1.05em;
+		}
+
+		.bptm-designation {
+			opacity: 0.9;
+		}
+	}
+
+	.bptm-tb-contact-box {
+		gap: 0;
+		margin: 0;
+		background: #ece8e5;
+		color: var(--bptm-info-color, #4c230d);
+		font-size: 0.9em;
+
+		.bptm-contact {
+			padding: 9px 20px;
+
+			+ .bptm-contact {
+				border-top: 1px solid rgba(76, 35, 13, 0.08);
+			}
+		}
+
+		.bptm-contact > i {
+			color: var(--bptm-info-icon-color, #3f98e1);
+		}
+	}
+
+	.bptm-tb-card > :is(.bptm-details, .bptm-social, .bptm-tb-extras) {
+		margin-inline: 20px;
+	}
+
+	.bptm-tb-card > :last-child:not(.bptm-tb-media, .bptm-tb-contact-box) {
+		margin-bottom: 18px;
+	}
+
+	&#{$bptm-tg-hover} .bptm-tb-media img {
+		transform: scale(1.05);
+	}
+}
+
+// Group headings (rendered by the render area for grouped themes).
+.bptm-theme-group-filter-1 {
+	.bptm-group-title {
+		grid-column: 1 / -1;
+		margin: 18px 0 0;
+		padding: 0 0 10px;
+		border-bottom: 2px solid #ece8e5;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		h3 {
+			margin: 0;
+			color: var(--bptm-name-color, #4c230d);
+			font-size: 1.3em;
+			font-weight: 700;
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Grid Filter with vCard.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-grid-filter-vcard {
+	text-align: start;
+
+	.bptm-tb-info {
+		padding-top: 20px;
+	}
+
+	.bptm-name {
+		margin-bottom: 8px;
+		font-size: 1.2em;
+	}
+
+	.bptm-designation {
+		margin-bottom: 10px;
+	}
+
+	.bptm-tb-contacts {
+		gap: 8px;
+	}
+
+	.bptm-tb-vcard {
+		margin-top: 20px;
+
+		.bptm-vcard {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			padding: 16px;
+			border: 1px solid #9b9b9b;
+			border-radius: 2px;
+			color: var(--bptm-name-color, #333);
+			line-height: 1;
+			transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+
+			&:hover,
+			&:focus-visible {
+				border-color: var(--bptm-tb-accent);
+				background: var(--bptm-tb-accent);
+				color: #fff;
+			}
+		}
+	}
+}

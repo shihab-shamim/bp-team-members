@@ -1,0 +1,969 @@
+// Item themes (owner: themes-b): shared base for every registry-B item theme
+// (.bptm-tb = Table, List and legacy Grid families) + Table 1-10.
+//
+// Colours use the render contract custom properties with per-theme fallbacks,
+// so the block's Style controls always win over the theme defaults.
+
+$bptm-tb-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+$bptm-tb-hover: ":is(:hover, :focus-within)";
+$bptm-tb-mobile: 767px; // tables stack into cards at and below this width.
+
+/* ---------------------------------------------------------------------------
+ * Shared base (all registry-B item themes)
+ * ------------------------------------------------------------------------- */
+.bptm-tb {
+	--bptm-tb-accent: var(--bptm-accent, #4527a4);
+	--bptm-tb-hot: #f77674;
+	--bptm-tb-ink: var(--bptm-name-color, #030d1e);
+	--bptm-tb-muted: var(--bptm-desc-color, #6b7280);
+	--bptm-tb-line: #e5e7eb;
+
+	position: relative;
+	min-width: 0;
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	.bptm-tb-card {
+		position: relative;
+		height: 100%;
+		transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+	}
+
+	// Image: square by default, photo always covers its wrapper.
+	.bptm-img-wrap {
+		position: relative;
+		overflow: hidden;
+		margin: 0;
+		isolation: isolate;
+		border-radius: var(--bptm-img-radius, 0);
+	}
+
+	.bptm-tb-media {
+		aspect-ratio: 1 / 1;
+		width: 100%;
+	}
+
+	.bptm-img-link,
+	.bptm-img-wrap > .bptm-vis {
+		display: block;
+		width: 100%;
+		height: 100%;
+		border: 0;
+		box-shadow: none;
+		text-decoration: none;
+	}
+
+	.bptm-img-wrap img,
+	.bptm-img-wrap .bptm-img-empty {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		margin: 0;
+		object-fit: cover;
+		border-radius: inherit;
+		transition: transform 0.6s $bptm-tb-ease, filter 0.4s ease;
+	}
+
+	.bptm-img-wrap .bptm-img-empty {
+		background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
+	}
+
+	// Ribbon / featured badge sit on the photo corner.
+	.bptm-img-wrap .bptm-ribbon,
+	.bptm-img-wrap .bptm-featured {
+		z-index: 3;
+	}
+
+	// Text.
+	.bptm-name {
+		margin: 0;
+		color: var(--bptm-name-color, var(--bptm-tb-ink));
+		font-size: 1.15em;
+		font-weight: 700;
+		line-height: 1.3;
+
+		a {
+			color: inherit;
+			text-decoration: none;
+			box-shadow: none;
+		}
+
+		a:hover,
+		a:focus-visible {
+			color: var(--bptm-tb-accent);
+		}
+	}
+
+	.bptm-designation {
+		margin: 0.25em 0 0;
+		color: var(--bptm-role-color, #6b7280);
+		font-size: 0.92em;
+		line-height: 1.4;
+	}
+
+	.bptm-details {
+		margin: 0.75em 0 0;
+		color: var(--bptm-desc-color, #6b7280);
+		font-size: 0.95em;
+		line-height: 1.65;
+
+		p {
+			margin: 0 0 0.5em;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		a {
+			color: var(--bptm-desc-link-color, var(--bptm-tb-accent));
+		}
+	}
+
+	// Social icons.
+	.bptm-social {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin: 0.9em 0 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 34px;
+			height: 34px;
+			border: 1px solid var(--bptm-tb-line);
+			border-radius: 50%;
+			background: transparent;
+			color: #6b7280;
+			font-size: 14px;
+			text-decoration: none;
+			box-shadow: none;
+			transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+
+			&:hover,
+			&:focus-visible {
+				border-color: var(--bptm-hover-icon-bg, var(--bptm-tb-accent));
+				background: var(--bptm-hover-icon-bg, var(--bptm-tb-accent));
+				color: #fff;
+			}
+		}
+	}
+
+	// Contact lines (phone / email / meta).
+	.bptm-contacts {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		margin: 0.8em 0 0;
+		color: var(--bptm-info-color, #374151);
+		font-size: 0.92em;
+		line-height: 1.45;
+	}
+
+	.bptm-contact {
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+		min-width: 0;
+		overflow-wrap: anywhere;
+
+		> i {
+			flex: 0 0 1.1em;
+			color: var(--bptm-info-icon-color, var(--bptm-tb-accent));
+			text-align: center;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: none;
+			box-shadow: none;
+
+			&:hover,
+			&:focus-visible {
+				color: var(--bptm-tb-accent);
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.bptm-contact-label {
+		font-weight: 600;
+	}
+
+	.bptm-tb-extras {
+		margin-top: 0.9em;
+
+		> * + * {
+			margin-top: 0.75em;
+		}
+
+		.bptm-contacts {
+			margin-top: 0;
+		}
+	}
+
+	.bptm-vcard {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		color: var(--bptm-tb-accent);
+		font-weight: 600;
+		text-decoration: none;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Tables (shared)
+ * ------------------------------------------------------------------------- */
+.bptm-layout-table {
+	.bptm-table-wrap {
+		width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.bptm-table {
+		width: 100%;
+		margin: 0;
+		border: 0;
+		border-collapse: separate;
+		border-spacing: 0;
+		background: transparent;
+		table-layout: auto;
+		font-size: inherit;
+
+		th,
+		td {
+			border: 0;
+			background: transparent;
+			text-align: start;
+			vertical-align: middle;
+		}
+
+		th {
+			padding: 14px 16px;
+			color: var(--bptm-name-color, #374151);
+			font-size: 0.9em;
+			font-weight: 600;
+			letter-spacing: 0.02em;
+			white-space: nowrap;
+		}
+
+		td {
+			padding: 16px;
+		}
+	}
+}
+
+.bptm-tb-table {
+	&.bptm-trow {
+		transition: background-color 0.3s ease;
+	}
+
+	.bptm-td {
+		position: relative;
+	}
+
+	.bptm-col-thumbnail {
+		width: 1%;
+	}
+
+	.bptm-col-thumbnail .bptm-img-wrap {
+		width: 90px;
+		height: 90px;
+	}
+
+	.bptm-col-name {
+		min-width: 140px;
+
+		.bptm-name {
+			font-size: 1.05em;
+		}
+
+		.bptm-tb-extras {
+			font-size: 0.9em;
+		}
+	}
+
+	.bptm-col-designation .bptm-designation {
+		margin: 0;
+	}
+
+	.bptm-col-details {
+		min-width: 220px;
+
+		.bptm-details {
+			margin: 0;
+		}
+	}
+
+	.bptm-col-social .bptm-social {
+		flex-wrap: nowrap;
+		margin: 0;
+	}
+
+	.bptm-ribbon,
+	.bptm-featured {
+		position: static;
+		display: inline-flex;
+		margin-top: 6px;
+		transform: none;
+	}
+
+	.bptm-contact {
+		white-space: nowrap;
+	}
+}
+
+// The items container of tables is a <tbody>: keep real table semantics even
+// though the generic .bptm-items rule lays items out as a CSS grid.
+@media (min-width: #{$bptm-tb-mobile + 1}) {
+	.bptm-layout-table .bptm-table {
+		display: table;
+		width: 100%;
+		border-collapse: collapse;
+
+		> tbody.bptm-items {
+			display: table-row-group;
+			gap: 0;
+		}
+
+		> thead {
+			display: table-header-group;
+		}
+
+		tr.bptm-item {
+			display: table-row;
+		}
+	}
+}
+
+// Stacked cards on phones: every row becomes a card, every cell a labelled line.
+@media (max-width: $bptm-tb-mobile) {
+	.bptm-layout-table {
+		.bptm-table-wrap {
+			overflow: visible;
+		}
+
+		.bptm-table,
+		.bptm-table tbody {
+			display: block;
+			width: 100%;
+		}
+
+		.bptm-table thead {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip: rect(0 0 0 0);
+			white-space: nowrap;
+		}
+	}
+
+	.bptm-tb-table {
+		&.bptm-trow {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			column-gap: 16px;
+			align-items: center;
+			margin: 0 0 18px;
+			padding: 16px;
+			border: 1px solid var(--bptm-tb-line);
+			border-radius: var(--bptm-radius, 12px);
+			background: var(--bptm-item-bg, #fff);
+			box-shadow: var(--bptm-shadow, 0 6px 24px rgba(12, 21, 41, 0.06));
+		}
+
+		.bptm-td {
+			display: block;
+			grid-column: 1 / -1;
+			width: auto !important;
+			min-width: 0 !important;
+			padding: 6px 0 !important;
+			border: 0 !important;
+			background: transparent !important;
+
+			&.bptm-td-empty {
+				display: none;
+			}
+
+			&::before {
+				content: attr(data-label);
+				display: block;
+				margin-bottom: 2px;
+				color: #9ca3af;
+				font-size: 0.75em;
+				font-weight: 600;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+		}
+
+		// Photo + name share the card header.
+		.bptm-col-thumbnail {
+			grid-column: 1;
+			grid-row: 1 / span 2;
+
+			&::before {
+				display: none;
+			}
+
+			.bptm-img-wrap {
+				width: 72px;
+				height: 72px;
+			}
+		}
+
+		.bptm-col-name,
+		.bptm-col-designation {
+			grid-column: 2;
+
+			&::before {
+				display: none;
+			}
+		}
+
+		&.bptm-tb-no-thumb .bptm-col-name,
+		&.bptm-tb-no-thumb .bptm-col-designation {
+			grid-column: 1 / -1;
+		}
+
+		.bptm-contact {
+			white-space: normal;
+		}
+
+		.bptm-col-social .bptm-social {
+			flex-wrap: wrap;
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Table 1 — underlined rows, rounded-corner photos, outlined social icons.
+ * ------------------------------------------------------------------------- */
+.bptm-theme-table-1 {
+	.bptm-table th {
+		padding: 10px 16px;
+		border-bottom: 2px solid var(--bptm-tb-ink, #030d1e);
+	}
+
+	.bptm-table th:first-child,
+	.bptm-tb-table .bptm-td:first-child {
+		padding-inline-start: 0;
+	}
+
+	.bptm-tb-table {
+		.bptm-td {
+			border-top: 1px solid #e5e5e5;
+		}
+
+		&:last-child .bptm-td {
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		.bptm-col-thumbnail .bptm-img-wrap {
+			width: 100px;
+			height: 100px;
+			border-radius: var(--bptm-img-radius, 20px 0);
+		}
+
+		.bptm-social a:hover,
+		.bptm-social a:focus-visible {
+			border-color: var(--bptm-hover-icon-bg, var(--bptm-tb-hot));
+			background: var(--bptm-hover-icon-bg, var(--bptm-tb-hot));
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Table 2 — solid accent header, bordered body, round photos.
+ * ------------------------------------------------------------------------- */
+.bptm-theme-table-2 {
+	.bptm-table thead th {
+		padding: 14px 18px;
+		background: var(--bptm-tb-head, var(--bptm-accent, #15b7b9));
+		color: #fff;
+	}
+
+	.bptm-table thead th:first-child {
+		border-start-start-radius: 8px;
+	}
+
+	.bptm-table thead th:last-child {
+		border-start-end-radius: 8px;
+	}
+
+	.bptm-tb-table {
+		background: var(--bptm-item-bg, #fff);
+
+		.bptm-td {
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		.bptm-td:first-child {
+			border-inline-start: 1px solid #e5e5e5;
+		}
+
+		.bptm-td:last-child {
+			border-inline-end: 1px solid #e5e5e5;
+		}
+
+		.bptm-col-thumbnail .bptm-img-wrap {
+			width: 90px;
+			height: 90px;
+			border-radius: var(--bptm-img-radius, 50%);
+		}
+
+		.bptm-social a:hover,
+		.bptm-social a:focus-visible {
+			border-color: var(--bptm-hover-icon-bg, var(--bptm-tb-hot));
+			background: var(--bptm-hover-icon-bg, var(--bptm-tb-hot));
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Table 3 — boxed, accent header text, tinted hover rows.
+ * ------------------------------------------------------------------------- */
+.bptm-theme-table-3 {
+	.bptm-table thead th {
+		border-top: 1px solid #e5e5e5;
+		border-bottom: 1px solid #e5e5e5;
+		color: var(--bptm-tb-accent, #15b7b9);
+	}
+
+	.bptm-table thead th:first-child {
+		border-inline-start: 1px solid #e5e5e5;
+	}
+
+	.bptm-table thead th:last-child {
+		border-inline-end: 1px solid #e5e5e5;
+	}
+
+	.bptm-tb-table {
+		.bptm-td {
+			border-bottom: 1px solid #e5e5e5;
+			background: var(--bptm-item-bg, #fff);
+			transition: background-color 0.4s ease;
+		}
+
+		.bptm-td:first-child {
+			border-inline-start: 1px solid #e5e5e5;
+		}
+
+		.bptm-td:last-child {
+			border-inline-end: 1px solid #e5e5e5;
+		}
+
+		&#{$bptm-tb-hover} .bptm-td {
+			background: var(--bptm-item-bg-hover, #f5fafa);
+		}
+
+		.bptm-col-thumbnail .bptm-img-wrap {
+			width: 90px;
+			height: 90px;
+			border-radius: var(--bptm-img-radius, 8px);
+		}
+
+		.bptm-social a {
+			border-radius: 6px;
+		}
+
+		.bptm-social a:hover,
+		.bptm-social a:focus-visible {
+			border-color: var(--bptm-hover-icon-bg, var(--bptm-tb-hot));
+			background: var(--bptm-hover-icon-bg, var(--bptm-tb-hot));
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Table 4 — accent header; every row a floating card tinting on hover.
+ * ------------------------------------------------------------------------- */
+.bptm-theme-table-4 {
+	.bptm-table {
+		border-spacing: 0 10px;
+	}
+
+	.bptm-table thead th {
+		padding: 16px 14px;
+		background: var(--bptm-accent, #15b7b9);
+		color: #fff;
+	}
+
+	.bptm-table thead th:first-child {
+		border-start-start-radius: 8px;
+		border-end-start-radius: 8px;
+	}
+
+	.bptm-table thead th:last-child {
+		border-start-end-radius: 8px;
+		border-end-end-radius: 8px;
+	}
+
+	.bptm-tb-table {
+		.bptm-td {
+			padding-top: 22px;
+			padding-bottom: 22px;
+			background: var(--bptm-item-bg, #fff);
+			box-shadow: 0 1px 0 rgba(12, 21, 41, 0.08), 0 -1px 0 rgba(12, 21, 41, 0.08);
+			transition: background-color 0.4s ease;
+		}
+
+		.bptm-td:first-child {
+			padding-inline-start: 20px;
+			border-start-start-radius: 8px;
+			border-end-start-radius: 8px;
+			box-shadow: 0 1px 0 rgba(12, 21, 41, 0.08), 0 -1px 0 rgba(12, 21, 41, 0.08), -1px 0 0 rgba(12, 21, 41, 0.08);
+		}
+
+		.bptm-td:last-child {
+			border-start-end-radius: 8px;
+			border-end-end-radius: 8px;
+			box-shadow: 0 1px 0 rgba(12, 21, 41, 0.08), 0 -1px 0 rgba(12, 21, 41, 0.08), 1px 0 0 rgba(12, 21, 41, 0.08);
+		}
+
+		&#{$bptm-tb-hover} .bptm-td {
+			background: var(--bptm-item-bg-hover, #f7efef);
+		}
+
+		&#{$bptm-tb-hover} .bptm-name {
+			color: var(--bptm-tb-hot);
+		}
+
+		.bptm-col-thumbnail .bptm-img-wrap {
+			width: 80px;
+			height: 80px;
+			border-radius: var(--bptm-img-radius, 50%);
+		}
+
+		.bptm-social a {
+			border: 0;
+			border-radius: 6px;
+			background: #edf2f2;
+		}
+
+		&#{$bptm-tb-hover} .bptm-social a {
+			background: #fff;
+		}
+
+		.bptm-social a:hover,
+		.bptm-social a:focus-visible {
+			background: var(--bptm-hover-icon-bg, var(--bptm-tb-hot));
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Table 5 — soft-shadow row cards that fill with the accent on hover.
+ * ------------------------------------------------------------------------- */
+.bptm-theme-table-5 {
+	.bptm-table {
+		border-spacing: 0 14px;
+	}
+
+	.bptm-table thead th {
+		padding: 12px 18px 4px;
+		color: #808080;
+		font-weight: 500;
+	}
+
+	.bptm-tb-table {
+		.bptm-td {
+			padding: 22px 16px;
+			background: var(--bptm-item-bg, #fff);
+			transition: background-color 0.4s ease, color 0.4s ease;
+		}
+
+		.bptm-td:first-child {
+			padding-inline-start: 22px;
+			border-start-start-radius: 10px;
+			border-end-start-radius: 10px;
+		}
+
+		.bptm-td:last-child {
+			border-start-end-radius: 10px;
+			border-end-end-radius: 10px;
+		}
+
+		& {
+			filter: drop-shadow(0 10px 25px rgba(12, 21, 41, 0.08));
+		}
+
+		.bptm-col-thumbnail .bptm-img-wrap {
+			width: 80px;
+			height: 80px;
+			border-radius: var(--bptm-img-radius, 8px);
+		}
+
+		.bptm-social a {
+			border-color: transparent;
+			border-radius: 6px;
+			background: #edf2f2;
+		}
+
+		&#{$bptm-tb-hover} {
+			.bptm-td {
+				background: var(--bptm-item-bg-hover, var(--bptm-tb-hot));
+			}
+
+			.bptm-name,
+			.bptm-name a {
+				color: #fff;
+			}
+
+			.bptm-designation,
+			.bptm-details,
+			.bptm-details a,
+			.bptm-contacts,
+			.bptm-contact > i {
+				color: rgba(255, 255, 255, 0.8);
+			}
+
+			.bptm-social a {
+				background: rgba(255, 255, 255, 0.18);
+				color: #fff;
+			}
+
+			.bptm-social a:hover {
+				background: #fff;
+				color: var(--bptm-tb-hot);
+			}
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Table 6 — Underline: minimal, every cell underlined.
+ * ------------------------------------------------------------------------- */
+.bptm-theme-table-6 {
+	.bptm-table th {
+		border-bottom: 1px solid #e1e4e8;
+		color: #24292e;
+	}
+
+	.bptm-tb-table {
+		.bptm-td {
+			padding: 12px 10px;
+			border-bottom: 1px solid #e1e4e8;
+		}
+
+		.bptm-col-thumbnail .bptm-img-wrap {
+			width: 64px;
+			height: 64px;
+		}
+
+		.bptm-social a {
+			width: 30px;
+			height: 30px;
+			font-size: 13px;
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Table 7 — Box Border: boxed with solid accent header.
+ * ------------------------------------------------------------------------- */
+.bptm-theme-table-7 {
+	.bptm-table {
+		border: 1px solid #e1e4e8;
+	}
+
+	.bptm-table thead th {
+		padding: 12px 10px;
+		background: var(--bptm-accent, #03a9f4);
+		color: #fff;
+		font-weight: 500;
+	}
+
+	.bptm-tb-table {
+		.bptm-td {
+			padding: 10px;
+			border-bottom: 1px solid #e1e4e8;
+		}
+
+		.bptm-td + .bptm-td {
+			border-inline-start: 1px solid #e1e4e8;
+		}
+
+		&:last-child .bptm-td {
+			border-bottom: 0;
+		}
+
+		.bptm-col-thumbnail .bptm-img-wrap {
+			width: 64px;
+			height: 64px;
+		}
+
+		.bptm-social a {
+			width: 30px;
+			height: 30px;
+			border-radius: 4px;
+			font-size: 13px;
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Table 8 — Odd Even: zebra rows.
+ * ------------------------------------------------------------------------- */
+.bptm-theme-table-8 {
+	.bptm-table thead th {
+		padding: 12px 10px;
+		background: rgba(204, 204, 204, 0.6);
+	}
+
+	.bptm-tb-table {
+		.bptm-td {
+			padding: 10px;
+		}
+
+		&:nth-child(odd) .bptm-td {
+			background: var(--bptm-item-bg, #f5f5f5);
+		}
+
+		&:nth-child(even) .bptm-td {
+			background: #fff;
+		}
+
+		&#{$bptm-tb-hover} .bptm-td {
+			background: var(--bptm-item-bg-hover, rgba(204, 204, 204, 0.6));
+		}
+
+		.bptm-col-thumbnail .bptm-img-wrap {
+			width: 64px;
+			height: 64px;
+		}
+
+		.bptm-social a {
+			width: 30px;
+			height: 30px;
+			font-size: 13px;
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Table 9 / 10 — Filter directory, 10 = dense.
+ * ------------------------------------------------------------------------- */
+.bptm-theme-table-9,
+.bptm-theme-table-10 {
+	.bptm-table thead th {
+		border-bottom: 2px solid #dee2e6;
+		text-transform: uppercase;
+	}
+
+	.bptm-tb-table {
+		.bptm-td {
+			border-bottom: 1px solid #dee2e6;
+		}
+
+		&#{$bptm-tb-hover} .bptm-td {
+			background: var(--bptm-item-bg-hover, rgba(0, 0, 0, 0.03));
+		}
+
+		.bptm-col-name .bptm-name {
+			font-size: 1em;
+			text-transform: capitalize;
+		}
+
+		.bptm-col-designation {
+			text-transform: uppercase;
+			font-size: 0.85em;
+			letter-spacing: 0.03em;
+		}
+
+		.bptm-col-thumbnail .bptm-img-wrap {
+			width: 48px;
+			height: 48px;
+			border-radius: var(--bptm-img-radius, 50%);
+		}
+	}
+}
+
+.bptm-theme-table-10 {
+	.bptm-table thead th {
+		padding: 8px 10px;
+		font-size: 0.8em;
+	}
+
+	.bptm-tb-table {
+		font-size: 0.92em;
+
+		.bptm-td {
+			padding: 6px 10px;
+		}
+
+		.bptm-col-name .bptm-name {
+			font-size: 0.95em;
+			font-weight: 600;
+		}
+
+		.bptm-col-thumbnail .bptm-img-wrap {
+			width: 34px;
+			height: 34px;
+		}
+
+		.bptm-social a {
+			width: 26px;
+			height: 26px;
+			font-size: 11px;
+		}
+	}
+}
+
+// Stacked-card refinements for the boxed / card table styles.
+@media (max-width: $bptm-tb-mobile) {
+	.bptm-theme-table-4,
+	.bptm-theme-table-5 {
+		.bptm-table {
+			border-spacing: 0;
+		}
+
+		.bptm-tb-table .bptm-td {
+			box-shadow: none !important;
+			border-radius: 0 !important;
+		}
+	}
+
+	.bptm-theme-table-5 .bptm-tb-table {
+		filter: none;
+		transition: background-color 0.4s ease;
+
+		&#{$bptm-tb-hover} {
+			background: var(--bptm-item-bg-hover, var(--bptm-tb-hot));
+		}
+	}
+
+	.bptm-theme-table-7 .bptm-table {
+		border: 0;
+	}
+
+	.bptm-theme-table-8 .bptm-tb-table:nth-child(odd) {
+		background: var(--bptm-item-bg, #f5f5f5);
+	}
+
+	.bptm-theme-table-10 .bptm-tb-table.bptm-trow {
+		margin-bottom: 10px;
+		padding: 10px 12px;
+	}
+}

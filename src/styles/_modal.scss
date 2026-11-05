@@ -1,0 +1,417 @@
+// Detail shells (owner: render): popup (centred dialog), panel (off-canvas, left/right) and the inline drawer.
+// Popup/panel shells are moved by JS into a `.bptm-wrap.bptm-portal` div at the end of <body>.
+// Detail content styles (.bptm-dv*) belong to themes-b.
+
+html.bptm-scroll-lock {
+	overflow: hidden !important;
+
+	body {
+		overflow: hidden !important;
+		padding-inline-end: var(--bptm-scrollbar, 0);
+	}
+}
+
+.bptm-wrap.bptm-portal {
+	position: static;
+	margin: 0;
+	padding: 0;
+	max-width: none;
+	border: 0;
+}
+
+.bptm-modal {
+	--bptm-modal-speed: 280;
+	--bptm-modal-bg: #fff;
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	color: #1f2430;
+	text-align: start;
+
+	&[hidden] {
+		display: none !important;
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+}
+
+.bptm-modal-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(9, 13, 24, 0.72);
+	backdrop-filter: blur(2px);
+	opacity: 0;
+	transition: opacity 0.28s ease;
+	cursor: zoom-out;
+}
+
+.bptm-modal-dialog {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: min(980px, 100%);
+	max-height: calc(100vh - 48px);
+	max-height: calc(100dvh - 48px);
+	border-radius: 14px;
+	background: var(--bptm-modal-bg);
+	box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+	opacity: 0;
+	transform: translate3d(0, 24px, 0) scale(0.98);
+	transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+	overflow: hidden;
+}
+
+.bptm-modal-dialog:has(.bptm-popup-cols-one),
+.bptm-modal-dialog:has(.bptm-dv--cols-one) {
+	width: min(680px, 100%);
+}
+
+.bptm-modal.is-open {
+	.bptm-modal-overlay {
+		opacity: 1;
+	}
+
+	.bptm-modal-dialog {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.bptm-modal-content {
+	flex: 1 1 auto;
+	min-height: 0;
+	padding: 48px 44px 32px;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	-webkit-overflow-scrolling: touch;
+
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--bptm-accent, #4527a4);
+		outline-offset: -4px;
+	}
+
+	> .bptm-detail {
+		animation: bptm-modal-swap 0.3s ease;
+	}
+}
+
+@keyframes bptm-modal-swap {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.bptm-modal-close {
+	appearance: none;
+	position: absolute;
+	inset-block-start: 12px;
+	inset-inline-end: 12px;
+	z-index: 5;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(17, 24, 39, 0.06);
+	color: #1f2430;
+	line-height: 1;
+	box-shadow: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+	&:hover,
+	&:focus-visible {
+		background: var(--bptm-accent, #4527a4);
+		color: #fff;
+		transform: rotate(90deg);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--bptm-accent, #4527a4);
+		outline-offset: 2px;
+	}
+
+	svg {
+		display: block;
+	}
+}
+
+.bptm-modal-nav {
+	display: flex;
+	flex: 0 0 auto;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 14px 44px;
+	border-block-start: 1px solid #eceef2;
+	background: var(--bptm-modal-bg);
+
+	button {
+		appearance: none;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin: 0;
+		padding: 8px 16px;
+		border: 1px solid #e4e6eb;
+		border-radius: 999px;
+		background: transparent;
+		color: #1f2430;
+		font: inherit;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.3;
+		box-shadow: none;
+		cursor: pointer;
+		transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			border-color: var(--bptm-accent, #4527a4);
+			background: var(--bptm-accent, #4527a4);
+			color: #fff;
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bptm-accent, #4527a4);
+			outline-offset: 2px;
+		}
+	}
+}
+
+.bptm-modal[dir="rtl"] .bptm-modal-nav i,
+[dir="rtl"] .bptm-modal-nav i {
+	transform: scaleX(-1);
+}
+
+@media (max-width: 767px) {
+	.bptm-modal {
+		padding: 12px;
+	}
+
+	.bptm-modal-dialog {
+		max-height: calc(100vh - 24px);
+		max-height: calc(100dvh - 24px);
+		border-radius: 10px;
+	}
+
+	.bptm-modal-content {
+		padding: 52px 20px 24px;
+	}
+
+	.bptm-modal-nav {
+		padding: 10px 16px;
+	}
+}
+
+// ----------------------------------------------------------------------
+// Panel (off-canvas)
+// ----------------------------------------------------------------------
+.bptm-modal--panel {
+	justify-content: flex-end;
+	padding: 0;
+
+	.bptm-modal-dialog {
+		width: min(520px, 100%);
+		height: 100%;
+		max-height: none;
+		border-radius: 0;
+		transform: translate3d(100%, 0, 0);
+		opacity: 1;
+		transition: transform 0.32s cubic-bezier(0.22, 0.61, 0.36, 1);
+	}
+
+	.bptm-modal-content {
+		padding: 56px 36px 28px;
+	}
+
+	.bptm-modal-nav {
+		padding-inline: 36px;
+	}
+
+	&.bptm-panel-left {
+		justify-content: flex-start;
+
+		.bptm-modal-dialog {
+			transform: translate3d(-100%, 0, 0);
+		}
+	}
+
+	&.is-open .bptm-modal-dialog {
+		transform: none;
+	}
+
+	@media (max-width: 575px) {
+		.bptm-modal-content {
+			padding: 56px 20px 24px;
+		}
+
+		.bptm-modal-nav {
+			padding-inline: 20px;
+		}
+	}
+}
+
+// ----------------------------------------------------------------------
+// Drawer (inline, full grid row under the clicked item)
+// ----------------------------------------------------------------------
+.bptm-wrap .bptm-drawer {
+	--bptm-modal-speed: 0;
+	--bptm-drawer-bg: var(--bptm-info-bg, #f6f7fb);
+	position: relative;
+	grid-column: 1 / -1;
+	margin-block: 4px;
+	text-align: start;
+
+	&[hidden] {
+		display: none !important;
+	}
+
+	.bptm-drawer-arrow {
+		position: absolute;
+		inset-block-start: -11px;
+		left: var(--bptm-drawer-arrow, 50%);
+		width: 0;
+		height: 0;
+		border-inline: 12px solid transparent;
+		border-block-end: 12px solid var(--bptm-popup-arrow-color, var(--bptm-drawer-bg));
+		transform: translateX(-50%);
+		transition: left 0.3s ease;
+	}
+
+	.bptm-drawer-inner {
+		position: relative;
+		border-block-start: 3px solid var(--bptm-popup-arrow-color, var(--bptm-accent));
+		border-radius: 10px;
+		background: var(--bptm-drawer-bg);
+		box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+		animation: bptm-drawer-in 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+	}
+
+	.bptm-drawer-arrow + .bptm-drawer-inner {
+		border-block-start-width: 0;
+	}
+
+	.bptm-modal-content {
+		padding: 40px 44px 28px;
+	}
+
+	.bptm-modal-nav {
+		padding: 12px 44px;
+		border-block-start: 1px solid rgba(15, 23, 42, 0.07);
+		border-end-start-radius: 10px;
+		border-end-end-radius: 10px;
+		background: transparent;
+	}
+
+	.bptm-modal-close {
+		background: rgba(255, 255, 255, 0.85);
+	}
+
+	@media (max-width: 767px) {
+		.bptm-modal-content {
+			padding: 48px 20px 20px;
+		}
+
+		.bptm-modal-nav {
+			padding-inline: 20px;
+		}
+	}
+}
+
+@keyframes bptm-drawer-in {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -10px, 0);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+// Item whose detail is open.
+.bptm-wrap.bptm-link-drawer .bptm-item.is-current {
+	outline: 2px solid var(--bptm-popup-arrow-color, var(--bptm-accent));
+	outline-offset: 4px;
+	border-radius: var(--bptm-radius, 4px);
+}
+
+// ----------------------------------------------------------------------
+// Generic fallback detail layout (templates/partials/detail-fallback.php)
+// ----------------------------------------------------------------------
+.bptm-detail-inner {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+	gap: 32px;
+	align-items: start;
+
+	&.bptm-detail-inner--noimg {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.bptm-popup-cols-one &,
+	.bptm-detail--panel & {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.bptm-img-wrap {
+		overflow: hidden;
+		border-radius: 10px;
+	}
+
+	.bptm-img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.bptm-name {
+		margin: 0 0 4px;
+		font-size: 28px;
+		line-height: 1.25;
+	}
+
+	.bptm-designation {
+		margin-block-end: 14px;
+		color: var(--bptm-role-color, var(--bptm-accent, #4527a4));
+		font-weight: 600;
+	}
+
+	@media (max-width: 767px) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bptm-modal {
+		--bptm-modal-speed: 0;
+	}
+
+	.bptm-modal-overlay,
+	.bptm-modal-dialog,
+	.bptm-modal--panel .bptm-modal-dialog,
+	.bptm-modal-content > .bptm-detail,
+	.bptm-wrap .bptm-drawer .bptm-drawer-inner {
+		transition: none;
+		animation: none;
+	}
+}

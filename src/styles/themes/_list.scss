@@ -1,0 +1,362 @@
+// Item themes (owner: themes-b): List 1-7. Shared base lives in _table.scss (.bptm-tb).
+// Every list item is a horizontal card (photo + info) that stacks on phones.
+
+$bptm-tl-hover: ":is(:hover, :focus-within)";
+
+/* ---------------------------------------------------------------------------
+ * Shared list layout
+ * ------------------------------------------------------------------------- */
+.bptm-tb-list {
+	width: 100%;
+	text-align: start;
+
+	.bptm-tb-card {
+		display: flex;
+		align-items: center;
+		gap: 30px;
+		padding: var(--bptm-item-padding, 30px);
+		border: var(--bptm-item-border-width, 1px) solid var(--bptm-item-border-color, #eaeaea);
+		border-radius: var(--bptm-radius, 0);
+		background: var(--bptm-item-bg, #fff);
+		box-shadow: var(--bptm-shadow, none);
+	}
+
+	.bptm-tb-media {
+		flex: 0 0 200px;
+		width: 200px;
+		height: 200px;
+		aspect-ratio: auto;
+	}
+
+	.bptm-tb-info {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.bptm-name {
+		font-size: 1.45em;
+		font-weight: 600;
+	}
+
+	.bptm-designation {
+		margin-top: 5px;
+	}
+
+	.bptm-details {
+		margin-top: 14px;
+	}
+
+	&#{$bptm-tl-hover} .bptm-tb-card {
+		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, #fff));
+	}
+}
+
+// Phones / small tablets: stack photo above info.
+@media (max-width: 767px) {
+	.bptm-tb-list .bptm-tb-card {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 20px;
+		padding: var(--bptm-item-padding, 20px);
+	}
+
+	.bptm-tb-list .bptm-tb-media {
+		flex: 0 0 auto;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1 / 1;
+		order: 0 !important;
+		margin: 0 !important;
+	}
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+	.bptm-tb-list .bptm-tb-media {
+		aspect-ratio: 16 / 10;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * List 1 — bordered card, 20px/0 corners, round social; tints on hover.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-list-1 {
+	.bptm-tb-card {
+		border-radius: var(--bptm-radius, 20px 0);
+		transition: background-color 0.25s ease, border-color 0.25s ease;
+	}
+
+	.bptm-tb-media {
+		border-radius: var(--bptm-img-radius, 20px 0);
+	}
+
+	.bptm-social a {
+		width: 40px;
+		height: 40px;
+		border-color: transparent;
+		background: #edf2f2;
+	}
+
+	&#{$bptm-tl-hover} {
+		.bptm-tb-card {
+			border-color: var(--bptm-item-bg-hover, #e6f2f2);
+			background: var(--bptm-item-bg-hover, #e6f2f2);
+		}
+
+		.bptm-social a {
+			background: #fff;
+		}
+	}
+
+	.bptm-social a:hover,
+	.bptm-social a:focus-visible {
+		background: var(--bptm-hover-icon-bg, var(--bptm-tb-hot));
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * List 2 — rounded card, photo left, cell phone line.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-list-2 {
+	.bptm-tb-card {
+		border-color: var(--bptm-item-border-color, rgba(0, 0, 0, 0.1));
+		border-radius: var(--bptm-radius, 20px);
+	}
+
+	.bptm-tb-media {
+		border-radius: var(--bptm-img-radius, 20px);
+	}
+
+	.bptm-tb-contacts {
+		color: var(--bptm-info-color, var(--bptm-tb-ink));
+		font-weight: 600;
+
+		.bptm-contact > i {
+			color: var(--bptm-info-icon-color, #c4c4c4);
+		}
+	}
+
+	&#{$bptm-tl-hover} .bptm-tb-card {
+		border-color: transparent;
+		background: var(--bptm-item-bg-hover, #e6f2f2);
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * List 3 — square card, round photo on the right, email line, accent fill on hover.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-list-3 {
+	.bptm-tb-card {
+		border-color: var(--bptm-item-border-color, #e5e5e5);
+	}
+
+	.bptm-tb-media {
+		order: 2;
+		border-radius: var(--bptm-img-radius, 50%);
+	}
+
+	.bptm-tb-contacts {
+		color: var(--bptm-info-color, var(--bptm-tb-ink));
+		font-weight: 600;
+
+		.bptm-contact > i {
+			color: var(--bptm-info-icon-color, var(--bptm-tb-hot));
+		}
+	}
+
+	&#{$bptm-tl-hover} {
+		.bptm-tb-card {
+			border-color: transparent;
+			background: var(--bptm-item-bg-hover, var(--bptm-tb-hot));
+		}
+
+		.bptm-name,
+		.bptm-name a,
+		.bptm-designation,
+		.bptm-details,
+		.bptm-details a,
+		.bptm-contacts,
+		.bptm-contact > i,
+		.bptm-contact a {
+			color: #fff;
+		}
+
+		.bptm-social a {
+			border-color: rgba(255, 255, 255, 0.6);
+			color: #fff;
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * List 4 — open rows split by rules, large photo, inline email | address.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-list-4 {
+	.bptm-tb-card {
+		padding: 0 0 30px;
+		border: 0;
+		border-bottom: 1px solid #e6e9eb;
+		border-radius: 0;
+		background: transparent;
+		box-shadow: none;
+	}
+
+	&:last-child .bptm-tb-card {
+		padding-bottom: 0;
+		border-bottom: 0;
+	}
+
+	.bptm-tb-media {
+		flex-basis: 250px;
+		width: 250px;
+		height: 250px;
+		border-radius: var(--bptm-img-radius, 20px);
+	}
+
+	.bptm-name {
+		font-family: Georgia, "Times New Roman", serif;
+	}
+
+	.bptm-tb-contacts {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 8px 0;
+		color: var(--bptm-info-color, #182338);
+		font-weight: 600;
+
+		.bptm-contact:not(:last-child) {
+			margin-inline-end: 20px;
+			padding-inline-end: 20px;
+			border-inline-end: 1px solid #ddd;
+		}
+
+		.bptm-contact > i {
+			color: var(--bptm-info-icon-color, var(--bptm-tb-accent));
+		}
+	}
+
+	&#{$bptm-tl-hover} .bptm-tb-media img {
+		transform: scale(1.05);
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * List 5 — bordered row with a flush full-height photo.
+ * ------------------------------------------------------------------------- */
+.bptm-tb-list-5 {
+	.bptm-tb-card {
+		align-items: stretch;
+		gap: 0;
+		padding: 0;
+		border-color: var(--bptm-item-border-color, #ededed);
+		overflow: hidden;
+	}
+
+	.bptm-tb-media {
+		flex-basis: 260px;
+		width: 260px;
+		height: auto;
+		min-height: 260px;
+	}
+
+	.bptm-tb-info {
+		align-self: center;
+		padding: var(--bptm-item-padding, 30px);
+	}
+
+	.bptm-social a {
+		width: 40px;
+		height: 40px;
+		border-color: #e0dddd;
+	}
+
+	.bptm-social a:hover,
+	.bptm-social a:focus-visible {
+		border-color: var(--bptm-hover-icon-bg, var(--bptm-tb-hot));
+		background: var(--bptm-hover-icon-bg, var(--bptm-tb-hot));
+	}
+
+	&#{$bptm-tl-hover} .bptm-tb-media img {
+		transform: scale(1.06);
+	}
+}
+
+@media (max-width: 767px) {
+	.bptm-tb-list-4 .bptm-tb-media,
+	.bptm-tb-list-5 .bptm-tb-media {
+		width: 100%;
+		height: auto;
+		min-height: 0;
+	}
+
+	.bptm-tb-list-5 .bptm-tb-info {
+		padding-top: 0;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * List 6 / 7 — classic: photo in one third, info in two thirds (7 mirrored).
+ * ------------------------------------------------------------------------- */
+.bptm-tb-list-6,
+.bptm-tb-list-7 {
+	.bptm-tb-card {
+		align-items: flex-start;
+		padding: 0 0 30px;
+		border: 0;
+		border-bottom: 1px solid var(--bptm-item-border-color, #eee);
+		border-radius: 0;
+		background: var(--bptm-item-bg, transparent);
+	}
+
+	.bptm-tb-media {
+		flex: 0 0 calc(33.333% - 20px);
+		width: calc(33.333% - 20px);
+		height: auto;
+		aspect-ratio: 1 / 1;
+		overflow: hidden;
+	}
+
+	.bptm-tb-media img {
+		transition: transform 0.8s ease;
+	}
+
+	&#{$bptm-tl-hover} .bptm-tb-media img {
+		transform: scale(1.12);
+	}
+
+	.bptm-name {
+		font-size: 1.35em;
+	}
+
+	.bptm-designation {
+		color: var(--bptm-role-color, var(--bptm-tb-accent));
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		font-size: 0.85em;
+	}
+
+	.bptm-details {
+		text-align: inherit;
+	}
+
+	.bptm-tb-info {
+		padding-inline: 4px 12px;
+	}
+}
+
+.bptm-tb-list-7 .bptm-tb-media {
+	order: 2;
+}
+
+@media (max-width: 767px) {
+	.bptm-tb-list-6 .bptm-tb-media,
+	.bptm-tb-list-7 .bptm-tb-media {
+		flex: 0 0 auto;
+		width: 100%;
+	}
+}
+
+// List layouts are single column whatever the column settings say (GS behaviour).
+.bptm-layout-list.bptm-group-list .bptm-items:not(.bptm-carousel-track) {
+	grid-template-columns: minmax(0, 1fr) !important;
+}

@@ -1,0 +1,701 @@
+// Detail views (owner: themes-b).
+// Shared base for every popup / panel / drawer detail template (.bptm-dv) and the
+// seven popup styles (templates/popups/*.php). Panel and drawer variations live in
+// _panel-styles.scss and _drawer-styles.scss.
+//
+// The modal / drawer shells themselves (.bptm-modal, .bptm-drawer) belong to the
+// render area (_modal.scss); everything here is scoped to .bptm-dv so it never
+// fights with the shell. Colours use the render contract custom properties with
+// per-style fallbacks, so the block's Style controls always win.
+
+$bptm-dv-sm: 767px;
+
+/* ---------------------------------------------------------------------------
+ * Shared base
+ * ------------------------------------------------------------------------- */
+.bptm-dv {
+	--bptm-dv-accent: var(--bptm-accent, #4527a4);
+	--bptm-dv-ink: var(--bptm-name-color, #030d1e);
+	--bptm-dv-text: var(--bptm-desc-color, #6b6f76);
+	--bptm-dv-info: var(--bptm-info-color, #182338);
+	--bptm-dv-line: #e9eaee;
+	--bptm-dv-radius: 10px;
+
+	position: relative;
+	color: var(--bptm-dv-text);
+	font-size: 16px;
+	line-height: 1.65;
+	text-align: left;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	// Media: square photo that always covers its frame.
+	.bptm-dv-media {
+		position: relative;
+		width: 100%;
+	}
+
+	.bptm-img-wrap {
+		position: relative;
+		overflow: hidden;
+		margin: 0;
+		border-radius: var(--bptm-img-radius, var(--bptm-dv-radius));
+		aspect-ratio: 1 / 1;
+		background: #f1f2f4;
+	}
+
+	.bptm-img-wrap img,
+	.bptm-img-wrap .bptm-img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		margin: 0;
+		object-fit: cover;
+		object-position: center top;
+	}
+
+	.bptm-img-empty {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	// Name / designation.
+	.bptm-dv-name {
+		margin: 0 0 6px;
+		padding: 0;
+		color: var(--bptm-dv-ink);
+		font-size: 28px;
+		font-weight: 700;
+		line-height: 1.25;
+		letter-spacing: -0.01em;
+		background: var(--bptm-name-bg, transparent);
+	}
+
+	.bptm-dv-role {
+		margin: 0 0 20px;
+		color: var(--bptm-role-color, #808080);
+		font-size: 16px;
+		line-height: 1.5;
+	}
+
+	// Description (full HTML in detail views).
+	.bptm-dv-desc {
+		margin: 0 0 24px;
+
+		.bptm-details {
+			color: var(--bptm-dv-text);
+			line-height: 1.75;
+
+			> :first-child {
+				margin-top: 0;
+			}
+
+			> :last-child {
+				margin-bottom: 0;
+			}
+
+			p {
+				margin: 0 0 1em;
+			}
+
+			a {
+				color: var(--bptm-desc-link-color, var(--bptm-dv-accent));
+				text-decoration: underline;
+				text-underline-offset: 2px;
+			}
+		}
+
+		.bptm-details.bptm-scroll {
+			max-height: var(--bptm-desc-max-h, 260px);
+			overflow-y: auto;
+			padding-right: 6px;
+			scrollbar-width: thin;
+			scrollbar-color: var(--bptm-dv-accent) transparent;
+		}
+	}
+
+	// Section headings ("Follow Me On", "Skills", "Contact Info").
+	.bptm-dv-heading,
+	.bptm-skills-title {
+		margin: 0 0 12px;
+		color: var(--bptm-dv-ink);
+		font-size: 20px;
+		font-weight: 700;
+		line-height: 1.3;
+	}
+
+	// Social icons.
+	.bptm-dv-social {
+		margin: 0 0 24px;
+	}
+
+	.bptm-social {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			&::before {
+				display: none;
+			}
+		}
+
+		a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 44px;
+			height: 44px;
+			border: 1px solid var(--bptm-dv-line);
+			border-radius: 50%;
+			background: #fff;
+			color: #1d2534;
+			font-size: 16px;
+			line-height: 1;
+			text-decoration: none;
+			box-shadow: none;
+			transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+
+			&:hover,
+			&:focus-visible {
+				border-color: var(--bptm-hover-icon-bg, var(--bptm-dv-accent));
+				background: var(--bptm-hover-icon-bg, var(--bptm-dv-accent));
+				color: #fff;
+				transform: translateY(-2px);
+			}
+		}
+	}
+
+	// Meta details (company, phones, email, taxonomies, …).
+	.bptm-dv-meta {
+		margin: 0 0 24px;
+		padding: 0;
+		background: var(--bptm-info-bg, transparent);
+	}
+
+	.bptm-meta {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		> li {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 2px 8px;
+			margin: 0;
+			padding: 9px 0;
+			border-bottom: 1px solid var(--bptm-dv-line);
+			color: var(--bptm-dv-info);
+			font-size: 15px;
+			line-height: 1.5;
+			list-style: none;
+
+			&::before {
+				display: none;
+			}
+
+			&:first-child {
+				padding-top: 0;
+			}
+
+			&:last-child {
+				border-bottom: 0;
+				padding-bottom: 0;
+			}
+		}
+
+		.bptm-meta-icon {
+			width: 18px;
+			color: var(--bptm-info-icon-color, var(--bptm-dv-accent));
+			text-align: center;
+		}
+
+		.bptm-meta-label {
+			min-width: 110px;
+			color: var(--bptm-dv-ink);
+			font-weight: 600;
+
+			&::after {
+				content: ":";
+			}
+		}
+
+		.bptm-meta-value {
+			flex: 1 1 160px;
+			min-width: 0;
+			overflow-wrap: anywhere;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: none;
+
+			&:hover,
+			&:focus-visible {
+				color: var(--bptm-dv-accent);
+				text-decoration: underline;
+			}
+		}
+	}
+
+	// Skill bars.
+	.bptm-dv-skills {
+		margin: 0 0 24px;
+	}
+
+	.bptm-skill {
+		margin: 0 0 16px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.bptm-skill-head {
+		display: flex;
+		justify-content: space-between;
+		gap: 12px;
+		margin: 0 0 6px;
+		color: #222;
+		font-size: 15px;
+		line-height: 1.4;
+	}
+
+	.bptm-skill-value {
+		color: var(--bptm-dv-ink);
+		font-weight: 600;
+	}
+
+	.bptm-skill-bar {
+		position: relative;
+		height: 6px;
+		overflow: hidden;
+		border-radius: 6px;
+		background: #f0f1f3;
+	}
+
+	.bptm-skill-fill {
+		position: absolute;
+		inset: 0 auto 0 0;
+		width: var(--bptm-skill, 0%);
+		border-radius: inherit;
+		background: var(--bptm-dv-accent);
+		animation: bptm-dv-skill 0.9s ease-out both;
+	}
+
+	// ACF fields / vCard etc.
+	.bptm-dv-tail {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin: 0 0 8px;
+
+		&:empty {
+			display: none;
+		}
+	}
+
+	.bptm-vcard {
+		display: inline-flex;
+		align-items: center;
+		align-self: flex-start;
+		gap: 8px;
+		padding: 10px 18px;
+		border: 1px solid var(--bptm-dv-accent);
+		border-radius: 6px;
+		color: var(--bptm-dv-accent);
+		font-weight: 600;
+		line-height: 1.2;
+		text-decoration: none;
+		transition: background-color 0.25s ease, color 0.25s ease;
+
+		&:hover,
+		&:focus-visible {
+			background: var(--bptm-dv-accent);
+			color: #fff;
+		}
+	}
+
+	// Ribbon / featured badge over the photo.
+	.bptm-dv-media .bptm-ribbon {
+		z-index: 2;
+	}
+
+	.bptm-dv-media .bptm-featured {
+		position: absolute;
+		z-index: 2;
+		top: 12px;
+		left: 12px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 34px;
+		height: 34px;
+		border-radius: 50%;
+		background: #f5b700;
+		color: #fff;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+	}
+
+	> :last-child,
+	.bptm-dv-body > :last-child,
+	.bptm-dv-side > :last-child {
+		margin-bottom: 0;
+	}
+}
+
+@keyframes bptm-dv-skill {
+	from {
+		width: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bptm-dv .bptm-skill-fill {
+		animation: none;
+	}
+
+	.bptm-dv .bptm-social a {
+		transition: none;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Popups: shared two-column layout (photo side 30% / content 70%).
+ * ------------------------------------------------------------------------- */
+.bptm-dv-popup {
+	display: grid;
+	grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+	gap: 24px 36px;
+	align-items: start;
+	padding: 8px 4px 4px;
+
+	&.bptm-dv--no-img {
+		grid-template-columns: minmax(0, 1fr);
+
+		> .bptm-dv-side:empty {
+			display: none;
+		}
+	}
+
+	> .bptm-dv-side:empty {
+		display: none;
+	}
+
+	.bptm-dv-body {
+		min-width: 0;
+	}
+
+	@media (max-width: $bptm-dv-sm) {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 20px;
+
+		.bptm-dv-side .bptm-dv-media {
+			max-width: 320px;
+		}
+
+		.bptm-dv-name {
+			font-size: 24px;
+		}
+	}
+}
+
+// Default: photo + contact info left, text right; optional single column.
+.bptm-dv-popup--default {
+	--bptm-dv-accent: var(--bptm-accent, #4527a4);
+	grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+
+	.bptm-dv-side .bptm-dv-media {
+		margin: 0 0 20px;
+	}
+
+	.bptm-dv-side .bptm-dv-meta {
+		padding: 18px 20px;
+		border-radius: 8px;
+		background: var(--bptm-info-bg, #f6f6f9);
+	}
+
+	.bptm-dv-name {
+		padding-bottom: 12px;
+		border-bottom: 2px solid var(--bptm-dv-accent);
+		display: inline-block;
+	}
+
+	.bptm-dv-role {
+		margin-top: 8px;
+	}
+
+	.bptm-dv-social {
+		margin-bottom: 20px;
+	}
+
+	&.bptm-dv--cols-one {
+		grid-template-columns: minmax(0, 1fr);
+		max-width: 640px;
+		margin: 0 auto;
+		text-align: center;
+
+		.bptm-dv-media {
+			max-width: 260px;
+			margin: 0 auto;
+		}
+
+		.bptm-img-wrap {
+			border-radius: 50%;
+		}
+
+		.bptm-social {
+			justify-content: center;
+		}
+
+		.bptm-meta {
+			text-align: left;
+		}
+	}
+}
+
+// Style one: rounded photo, purple accents, outlined round social icons.
+.bptm-dv-popup--style-one {
+	--bptm-dv-accent: var(--bptm-accent, #7948ff);
+
+	.bptm-img-wrap {
+		border-radius: var(--bptm-img-radius, 10px);
+	}
+
+	.bptm-dv-role {
+		margin-bottom: 25px;
+	}
+
+	.bptm-dv-meta {
+		margin-top: 32px;
+	}
+}
+
+// Style two: teal accents, scrolling body next to a fixed photo.
+.bptm-dv-popup--style-two {
+	--bptm-dv-accent: var(--bptm-accent, #33cccc);
+
+	.bptm-dv-side {
+		position: sticky;
+		top: 0;
+	}
+
+	.bptm-dv-body--scroll {
+		max-height: min(70vh, 640px);
+		overflow-y: auto;
+		padding-right: 10px;
+		scrollbar-width: thin;
+		scrollbar-color: var(--bptm-dv-accent) transparent;
+	}
+
+	.bptm-meta .bptm-meta-label {
+		color: var(--bptm-dv-accent);
+	}
+
+	@media (max-width: $bptm-dv-sm) {
+		.bptm-dv-side {
+			position: static;
+		}
+
+		.bptm-dv-body--scroll {
+			max-height: none;
+			overflow: visible;
+			padding-right: 0;
+		}
+	}
+}
+
+// Style three: square photo, intro under the photo, contact card + gradient accents right.
+.bptm-dv-popup--style-three {
+	--bptm-dv-accent: var(--bptm-accent, #fd5a80);
+	--bptm-dv-gradient: linear-gradient(-101deg, #fca564 0%, #fd8072 38%, var(--bptm-dv-accent) 100%);
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 32px 48px;
+
+	.bptm-img-wrap {
+		margin-bottom: 22px;
+		border-radius: var(--bptm-img-radius, 0);
+	}
+
+	.bptm-dv-body {
+		padding: 28px 30px;
+		border-radius: 4px;
+		background: var(--bptm-info-bg, #fff7f5);
+	}
+
+	.bptm-social a {
+		border: 0;
+		border-radius: 10px;
+		box-shadow: 0 5px 30px rgba(12, 21, 41, 0.12);
+
+		&:hover,
+		&:focus-visible {
+			background: var(--bptm-hover-icon-bg, var(--bptm-dv-gradient));
+		}
+	}
+
+	.bptm-skill-fill {
+		background: var(--bptm-dv-gradient);
+	}
+
+	.bptm-dv-meta {
+		margin-bottom: 28px;
+	}
+
+	@media (max-width: $bptm-dv-sm) {
+		grid-template-columns: minmax(0, 1fr);
+
+		.bptm-dv-body {
+			padding: 22px 18px;
+		}
+	}
+}
+
+// Style four: circular photo, purple accents.
+.bptm-dv-popup--style-four {
+	--bptm-dv-accent: var(--bptm-accent, #7948ff);
+	align-items: start;
+
+	.bptm-img-wrap {
+		border-radius: 50%;
+		box-shadow: 0 0 0 8px rgba(121, 72, 255, 0.08);
+	}
+
+	.bptm-dv-media .bptm-ribbon {
+		top: 12%;
+	}
+
+	.bptm-dv-name {
+		font-size: 30px;
+	}
+}
+
+// Style five: circular photo, details split into two columns below the intro.
+.bptm-dv-popup--style-five {
+	--bptm-dv-accent: var(--bptm-accent, #7948ff);
+
+	.bptm-img-wrap {
+		border-radius: 50%;
+	}
+
+	.bptm-dv-top {
+		margin: 0 0 24px;
+		padding: 0 0 8px;
+		border-bottom: 1px solid var(--bptm-dv-line);
+	}
+
+	.bptm-dv-split {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 24px 32px;
+	}
+
+	.bptm-dv-split-col > :last-child {
+		margin-bottom: 0;
+	}
+
+	.bptm-meta .bptm-meta-label {
+		min-width: 0;
+	}
+}
+
+// Style six: compact card — big photo, header with a round "flip" avatar.
+.bptm-dv-popup--style-six {
+	--bptm-dv-accent: var(--bptm-accent, #1e88e5);
+	grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+
+	.bptm-img-wrap {
+		border-radius: var(--bptm-img-radius, 4px);
+		aspect-ratio: 4 / 5;
+	}
+
+	.bptm-dv-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		margin: 0 0 20px;
+		padding: 0 0 16px;
+		border-bottom: 1px solid var(--bptm-dv-line);
+	}
+
+	.bptm-dv-head-text {
+		min-width: 0;
+
+		.bptm-dv-role {
+			margin-bottom: 0;
+		}
+	}
+
+	.bptm-dv-avatar {
+		flex: 0 0 72px;
+		width: 72px;
+		height: 72px;
+		overflow: hidden;
+		border: 3px solid #fff;
+		border-radius: 50%;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+
+		img,
+		.bptm-img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.bptm-social a {
+		width: 38px;
+		height: 38px;
+		border-radius: 4px;
+		font-size: 14px;
+	}
+
+	&.bptm-dv--cols-one {
+		grid-template-columns: minmax(0, 1fr);
+		max-width: 640px;
+		margin: 0 auto;
+		text-align: center;
+
+		.bptm-dv-media {
+			max-width: 300px;
+			margin: 0 auto;
+		}
+
+		.bptm-social {
+			justify-content: center;
+		}
+
+		.bptm-meta {
+			text-align: left;
+		}
+	}
+}
+
+// Two-column popup styles stack on small screens (declared last so it wins over
+// the per-style column definitions above).
+@media (max-width: $bptm-dv-sm) {
+	.bptm-dv-popup--default,
+	.bptm-dv-popup--style-six {
+		grid-template-columns: minmax(0, 1fr);
+
+		.bptm-dv-side .bptm-dv-media,
+		> .bptm-dv-media {
+			max-width: 320px;
+		}
+	}
+}

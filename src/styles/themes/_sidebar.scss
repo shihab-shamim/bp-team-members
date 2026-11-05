@@ -1,0 +1,188 @@
+// Item themes: Sidebar 1-3 (compact rows for widget areas / narrow columns).
+// Template: templates/themes/sidebar.php. Registry: includes/render/themes/registry-c.php.
+
+.bptm-wrap.bptm-group-sidebar {
+	--bptm-row-gap: 20px;
+
+	.bptm-items {
+		row-gap: var(--bptm-row-gap, 20px);
+	}
+}
+
+.bptm-sb {
+	min-width: 0;
+	text-align: start;
+
+	.bptm-sb-card {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 16px;
+		padding: var(--bptm-item-padding, 0);
+		border-radius: var(--bptm-radius, 0);
+		background: var(--bptm-item-bg, transparent);
+		box-shadow: var(--bptm-shadow, none);
+		transition: background-color 0.25s ease;
+	}
+
+	&:is(:hover, :focus-within) .bptm-sb-card {
+		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, transparent));
+	}
+
+	.bptm-sb-media {
+		position: relative;
+		flex: 0 0 auto;
+		width: 130px;
+		max-width: 30%;
+		margin: 0;
+	}
+
+	.bptm-sb-media .bptm-img,
+	.bptm-sb-media img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1 / 1;
+		object-fit: cover;
+		border-radius: var(--bptm-img-radius, 0);
+	}
+
+	.bptm-sb-info {
+		flex: 1 1 100px;
+		min-width: 0;
+	}
+
+	.bptm-name {
+		margin: 0;
+		font-size: 1.05em;
+		font-weight: 400;
+		line-height: 1.35;
+		overflow-wrap: anywhere;
+	}
+
+	.bptm-designation {
+		margin: 4px 0 0;
+		font-size: 0.95em;
+		font-style: italic;
+	}
+
+	.bptm-details {
+		margin-top: 6px;
+		font-size: 0.9em;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.bptm-meta,
+	.bptm-skills,
+	.bptm-vcard,
+	.bptm-readmore {
+		margin-top: 8px;
+		font-size: 0.9em;
+	}
+
+	.bptm-social {
+		--bptm-social-size: 24px;
+		margin: 8px 0 0;
+		justify-content: flex-start;
+
+		.bptm-social-link {
+			font-size: 11px;
+		}
+	}
+
+	.bptm-ribbon,
+	.bptm-featured {
+		margin: 0 6px 6px 0;
+		vertical-align: middle;
+	}
+
+	.bptm-featured {
+		width: 24px;
+		height: 24px;
+		font-size: 11px;
+	}
+}
+
+// 1: framed square photo (thin border + inner padding).
+.bptm-sb-sidebar-1 .bptm-sb-media {
+	padding: 4px;
+	border: 1px solid #d0d0d0;
+	background: #fff;
+}
+
+// 2: round avatar, card with soft background.
+.bptm-sb-sidebar-2 {
+	.bptm-sb-card {
+		padding: var(--bptm-item-padding, 12px);
+		border-radius: var(--bptm-radius, 10px);
+		background: var(--bptm-item-bg, #f6f7f9);
+	}
+
+	.bptm-sb-media {
+		width: 64px;
+
+		.bptm-img,
+		img {
+			border-radius: 50%;
+			box-shadow: 0 0 0 3px #fff, 0 0 0 4px color-mix(in srgb, var(--bptm-accent) 35%, transparent);
+		}
+	}
+
+	.bptm-name {
+		font-weight: 600;
+	}
+
+	.bptm-designation {
+		font-style: normal;
+		color: var(--bptm-role-color, var(--bptm-accent));
+	}
+}
+
+// 3: compact rows divided by lines, small square thumbs.
+.bptm-wrap.bptm-theme-sidebar-3 {
+	--bptm-row-gap: 0px;
+}
+
+.bptm-sb-sidebar-3 {
+	.bptm-sb-card {
+		gap: 12px;
+		padding: var(--bptm-item-padding, 10px 0);
+		border-block-end: 1px solid var(--bptm-line, #e4e6eb);
+		flex-wrap: nowrap;
+	}
+
+	.bptm-sb-media {
+		width: 48px;
+		max-width: none;
+
+		.bptm-img,
+		img {
+			border-radius: var(--bptm-img-radius, 4px);
+		}
+	}
+
+	.bptm-name {
+		font-size: 0.98em;
+		font-weight: 600;
+	}
+
+	.bptm-designation {
+		margin-top: 2px;
+		font-size: 0.85em;
+		font-style: normal;
+		opacity: 0.85;
+	}
+
+	.bptm-social {
+		margin-top: 4px;
+	}
+}
+
+@media (max-width: 575px) {
+	.bptm-sb .bptm-sb-media {
+		max-width: 35%;
+	}
+}

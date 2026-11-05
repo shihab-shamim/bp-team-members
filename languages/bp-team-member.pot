@@ -1,0 +1,3198 @@
+# Copyright (C) 2026 bPlugins
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: BP Team Member 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bp-team-member\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-05 02:25:45+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: bptm-pot-script\n"
+"X-Domain: bp-team-member\n"
+
+#. Plugin Name of the plugin
+#: test-purpose.php includes/class-widget.php:26
+#: includes/integrations/builders.php:166 includes/integrations/builders.php:288
+#: includes/integrations/builders/beaver/class-beaver-module.php:26
+#: includes/integrations/builders/beaver/class-beaver-module.php:28
+#: includes/integrations/builders/class-divi-module.php:40
+#: includes/integrations/builders/class-oxygen-element.php:42
+#: includes/integrations/elementor/class-elementor-widget.php:34
+#: src/Components/Backend/Preview.js:101 src/Components/Backend/Preview.js:108
+#: src/Components/Backend/Preview.js:116 build/index.js
+msgid "BP Team Member"
+msgstr ""
+
+#. Description of the plugin
+#: test-purpose.php
+msgid "BP Team Member is a WordPress plugin that allows you to showcase your team members beautifully on your website."
+msgstr ""
+
+#. Author URI of the plugin
+#: test-purpose.php
+msgid "https://bplugins.com"
+msgstr ""
+
+#. Author of the plugin
+#: test-purpose.php
+msgid "bPlugins"
+msgstr ""
+
+#: src/block.json
+msgctxt "block title"
+msgid "BP Team Member"
+msgstr ""
+
+#: src/block.json
+msgctxt "block description"
+msgid "BP Team Member is a WordPress plugin that allows you to showcase your team members beautifully on your website."
+msgstr ""
+
+#: src/block.json
+msgctxt "block keyword"
+msgid "BP Team Member"
+msgstr ""
+
+#: src/block.json
+msgctxt "block keyword"
+msgid "team"
+msgstr ""
+
+#: src/block.json
+msgctxt "block keyword"
+msgid "member"
+msgstr ""
+
+#: src/block.json
+msgctxt "block keyword"
+msgid "staff"
+msgstr ""
+
+#: includes/class-acf.php:172
+msgid "Yes"
+msgstr ""
+
+#: includes/class-acf.php:172
+msgid "No"
+msgstr ""
+
+#: includes/class-admin-columns.php:54
+msgid "Photo"
+msgstr ""
+
+#: includes/class-admin-columns.php:55 includes/render/class-editor-data.php:181
+#: src/utils/options.js:69 build/index.js
+msgid "Member Name"
+msgstr ""
+
+#: includes/class-admin-columns.php:56 includes/class-meta-boxes.php:38
+#: includes/render/class-visibility.php:46
+#: src/Components/Backend/Settings/Tabs/Style.js:15
+#: src/Components/Backend/Settings/Tabs/Style.js:62 src/utils/editorData.js:151
+#: build/index.js
+msgid "Designation"
+msgstr ""
+
+#: includes/class-admin-columns.php:57 includes/class-admin-columns.php:57
+#: includes/render/class-context.php:848 includes/render/class-context.php:848
+msgid "Featured"
+msgstr ""
+
+#: includes/class-admin-columns.php:72 includes/class-meta-boxes.php:235
+#: includes/class-meta-boxes.php:293 includes/class-ordering.php:631
+#: includes/class-ordering.php:668 includes/class-ordering.php:683
+#: includes/integrations/builders.php:70
+#: src/Components/Backend/Settings/Tabs/Query.js:22 build/index.js
+msgid "Order"
+msgstr ""
+
+#: includes/class-admin-columns.php:121
+msgid "Toggle featured"
+msgstr ""
+
+#. translators: %s: taxonomy plural label
+#: includes/class-admin-columns.php:250 includes/class-cpt.php:204
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: includes/class-admin-columns.php:271
+msgid "Invalid member."
+msgstr ""
+
+#: includes/class-admin-columns.php:275
+msgid "You are not allowed to edit this member."
+msgstr ""
+
+#: includes/class-cpt.php:135 includes/class-template-loader.php:218
+#: includes/integrations/elementor/class-elementor-widget.php:94
+msgid "Team Members"
+msgstr ""
+
+#: includes/class-cpt.php:139
+msgid "Team Member"
+msgstr ""
+
+#: includes/class-cpt.php:140
+msgctxt "admin menu"
+msgid "BP Team"
+msgstr ""
+
+#: includes/class-cpt.php:141
+msgctxt "add new on admin bar"
+msgid "Team Member"
+msgstr ""
+
+#: includes/class-cpt.php:142 includes/class-cpt.php:143
+msgid "Add New Member"
+msgstr ""
+
+#: includes/class-cpt.php:144
+msgid "New Member"
+msgstr ""
+
+#: includes/class-cpt.php:145
+msgid "Edit Member"
+msgstr ""
+
+#: includes/class-cpt.php:146
+msgid "View Member"
+msgstr ""
+
+#: includes/class-cpt.php:147
+msgid "View Members"
+msgstr ""
+
+#: includes/class-cpt.php:148
+msgid "All Members"
+msgstr ""
+
+#: includes/class-cpt.php:149
+msgid "Search Members"
+msgstr ""
+
+#: includes/class-cpt.php:150
+msgid "No members found."
+msgstr ""
+
+#: includes/class-cpt.php:151
+msgid "No members found in Trash."
+msgstr ""
+
+#: includes/class-cpt.php:152
+msgid "Member Photo"
+msgstr ""
+
+#: includes/class-cpt.php:153
+msgid "Set member photo"
+msgstr ""
+
+#: includes/class-cpt.php:154
+msgid "Remove member photo"
+msgstr ""
+
+#: includes/class-cpt.php:155
+msgid "Use as member photo"
+msgstr ""
+
+#: includes/class-cpt.php:156
+msgid "Member Archives"
+msgstr ""
+
+#: includes/class-cpt.php:157
+msgid "Member Attributes"
+msgstr ""
+
+#: includes/class-cpt.php:158
+msgid "Members list"
+msgstr ""
+
+#. translators: %s: taxonomy singular label
+#: includes/class-cpt.php:206
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#. translators: %s: taxonomy singular label
+#: includes/class-cpt.php:208
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#. translators: %s: taxonomy singular label
+#: includes/class-cpt.php:210
+#, php-format
+msgid "New %s Name"
+msgstr ""
+
+#. translators: %s: taxonomy singular label
+#: includes/class-cpt.php:212
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#. translators: %s: taxonomy singular label
+#: includes/class-cpt.php:214
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#. translators: %s: taxonomy singular label
+#: includes/class-cpt.php:216
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#. translators: %s: taxonomy singular label
+#: includes/class-cpt.php:218
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#. translators: %s: taxonomy plural label
+#: includes/class-cpt.php:220
+#, php-format
+msgid "Separate %s with commas"
+msgstr ""
+
+#. translators: %s: taxonomy plural label
+#: includes/class-cpt.php:222
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#. translators: %s: taxonomy plural label
+#: includes/class-cpt.php:224
+#, php-format
+msgid "Add or remove %s"
+msgstr ""
+
+#. translators: %s: taxonomy plural label
+#: includes/class-cpt.php:226
+#, php-format
+msgid "Choose from the most used %s"
+msgstr ""
+
+#. translators: %s: taxonomy plural label
+#: includes/class-cpt.php:228
+#, php-format
+msgid "Popular %s"
+msgstr ""
+
+#. translators: %s: taxonomy plural label
+#: includes/class-cpt.php:229
+msgid "Not found."
+msgstr ""
+
+#. translators: %s: taxonomy singular label
+#: includes/class-cpt.php:231
+#, php-format
+msgid "&larr; Back to %s"
+msgstr ""
+
+#: includes/class-cpt.php:390
+msgid "Member name"
+msgstr ""
+
+#: includes/class-cpt.php:404 includes/class-cpt.php:407
+msgid "Member updated."
+msgstr ""
+
+#: includes/class-cpt.php:405
+msgid "Custom field updated."
+msgstr ""
+
+#: includes/class-cpt.php:406
+msgid "Custom field deleted."
+msgstr ""
+
+#: includes/class-cpt.php:408
+msgid "Member restored from revision."
+msgstr ""
+
+#: includes/class-cpt.php:409
+msgid "Member published."
+msgstr ""
+
+#: includes/class-cpt.php:410
+msgid "Member saved."
+msgstr ""
+
+#: includes/class-cpt.php:411
+msgid "Member submitted."
+msgstr ""
+
+#: includes/class-cpt.php:412
+msgid "Member scheduled."
+msgstr ""
+
+#: includes/class-cpt.php:413
+msgid "Member draft updated."
+msgstr ""
+
+#: includes/class-demo-data.php:36 includes/class-demo-data.php:36
+#: includes/class-demo-data.php:83 includes/class-settings.php:726
+msgid "Demo Data"
+msgstr ""
+
+#: includes/class-demo-data.php:85
+msgid "Demo data imported."
+msgstr ""
+
+#: includes/class-demo-data.php:85
+msgid "Demo data deleted."
+msgstr ""
+
+#: includes/class-demo-data.php:90
+msgid "Demo team members & showcases"
+msgstr ""
+
+#: includes/class-demo-data.php:91
+msgid "Imports 10 sample members with designation, contact details, social links, skills, ribbons and terms in every taxonomy, generated avatar images, and ready-made showcases. Only content created by the demo importer is removed by \"Delete demo data\"."
+msgstr ""
+
+#. translators: 1: members, 2: showcases, 3: images
+#: includes/class-demo-data.php:95
+#, php-format
+msgid "Currently installed: %1$d demo members, %2$d demo showcases, %3$d demo images."
+msgstr ""
+
+#: includes/class-demo-data.php:101
+msgid "Re-import demo data"
+msgstr ""
+
+#: includes/class-demo-data.php:101 src/Components/Backend/Preview.js:124
+#: build/index.js
+msgid "Import demo data"
+msgstr ""
+
+#: includes/class-demo-data.php:107
+msgid "Delete demo data"
+msgstr ""
+
+#: includes/class-demo-data.php:120 includes/class-demo-data.php:134
+#: includes/class-import-export.php:241 includes/class-import-export.php:266
+#: includes/class-importer.php:679 includes/class-settings.php:683
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: includes/class-demo-data.php:248
+msgid "Demo: Team Grid"
+msgstr ""
+
+#: includes/class-demo-data.php:249
+msgid "Demo: Team Carousel"
+msgstr ""
+
+#: includes/class-demo-data.php:253
+msgid "Demo: Filterable Team"
+msgstr ""
+
+#: includes/class-demo-data.php:257
+msgid "Demo: Team with Popup"
+msgstr ""
+
+#: includes/class-demo-data.php:261
+msgid "Demo: Horizontal List"
+msgstr ""
+
+#: includes/class-import-export.php:35 includes/class-import-export.php:35
+#: includes/class-import-export.php:56 includes/class-settings.php:725
+msgid "Import / Export"
+msgstr ""
+
+#: includes/class-import-export.php:66
+msgid "Export"
+msgstr ""
+
+#: includes/class-import-export.php:70
+msgid "Team members (with images, social links, skills and terms)"
+msgstr ""
+
+#: includes/class-import-export.php:71 includes/class-showcase.php:45
+#: includes/class-showcase.php:55 includes/class-showcase.php:56
+msgid "Showcases"
+msgstr ""
+
+#: includes/class-import-export.php:72
+msgid "Preferences, translations and taxonomy settings"
+msgstr ""
+
+#: includes/class-import-export.php:73
+msgid "Download export file"
+msgstr ""
+
+#: includes/class-import-export.php:77 includes/class-import-export.php:86
+msgid "Import"
+msgstr ""
+
+#: includes/class-import-export.php:82 includes/class-importer.php:657
+msgid "Import members"
+msgstr ""
+
+#: includes/class-import-export.php:83
+msgid "Import showcases"
+msgstr ""
+
+#: includes/class-import-export.php:84
+msgid "Import settings (overwrites current settings)"
+msgstr ""
+
+#: includes/class-import-export.php:85
+msgid "Update members that already exist (matched by slug) instead of skipping them"
+msgstr ""
+
+#: includes/class-import-export.php:247
+msgid "Nothing selected to export."
+msgstr ""
+
+#: includes/class-import-export.php:272
+msgid "Import failed: invalid file."
+msgstr ""
+
+#. translators: 1: members created, 2: members updated, 3: members skipped, 4: showcases, 5: settings yes/no
+#: includes/class-import-export.php:284
+#, php-format
+msgid "Import complete. Members: %1$d created, %2$d updated, %3$d skipped. Showcases: %4$d created. Settings imported: %5$s."
+msgstr ""
+
+#. translators: 1: members created, 2: members updated, 3: members skipped, 4: showcases, 5: settings yes/no
+#: includes/class-import-export.php:284
+msgid "yes"
+msgstr ""
+
+#. translators: 1: members created, 2: members updated, 3: members skipped, 4: showcases, 5: settings yes/no
+#: includes/class-import-export.php:284
+msgid "no"
+msgstr ""
+
+#: includes/class-import-export.php:395
+msgid "Imported showcase"
+msgstr ""
+
+#: includes/class-importer.php:159
+msgid "Member name is required."
+msgstr ""
+
+#: includes/class-importer.php:390
+msgid "Member name (required)"
+msgstr ""
+
+#: includes/class-importer.php:391
+msgid "Biography, HTML allowed"
+msgstr ""
+
+#: includes/class-importer.php:392
+msgid "Short description"
+msgstr ""
+
+#: includes/class-importer.php:404 includes/class-importer.php:405
+msgid "URL"
+msgstr ""
+
+#: includes/class-importer.php:406
+msgid "1 / yes"
+msgstr ""
+
+#: includes/class-importer.php:407 includes/class-importer.php:408
+msgid "Image URL or attachment ID"
+msgstr ""
+
+#: includes/class-importer.php:409
+msgid "Number"
+msgstr ""
+
+#: includes/class-importer.php:410
+msgid "publish / draft / pending / private"
+msgstr ""
+
+#: includes/class-importer.php:411
+msgid "icon|link pairs separated by \";\" e.g. fab fa-linkedin-in|https://linkedin.com/in/x"
+msgstr ""
+
+#: includes/class-importer.php:412
+msgid "skill|percent pairs separated by \";\" e.g. PHP|90;Design|70"
+msgstr ""
+
+#: includes/class-importer.php:415
+msgid "Comma separated terms; \"Parent > Child\" for groups"
+msgstr ""
+
+#: includes/class-importer.php:477
+msgid "Could not read the file."
+msgstr ""
+
+#: includes/class-importer.php:482
+msgid "The file is empty."
+msgstr ""
+
+#: includes/class-importer.php:499
+msgid "The CSV must have a \"name\" column header. Download the sample file for the expected format."
+msgstr ""
+
+#: includes/class-importer.php:522
+msgid "No data rows found."
+msgstr ""
+
+#: includes/class-importer.php:600 includes/class-importer.php:600
+#: includes/class-settings.php:724
+msgid "Bulk Import"
+msgstr ""
+
+#: includes/class-importer.php:621
+msgid "Reading file…"
+msgstr ""
+
+#: includes/class-importer.php:622
+#, php-format
+msgid "Importing %1$d of %2$d…"
+msgstr ""
+
+#: includes/class-importer.php:623
+#, php-format
+msgid "Import finished: %1$d created, %2$d updated, %3$d skipped, %4$d failed."
+msgstr ""
+
+#: includes/class-importer.php:624
+msgid "Something went wrong."
+msgstr ""
+
+#: includes/class-importer.php:625
+msgid "Please choose a CSV file."
+msgstr ""
+
+#: includes/class-importer.php:626 includes/class-showcase.php:312
+msgid "Are you sure?"
+msgstr ""
+
+#: includes/class-importer.php:627 includes/class-showcase.php:311
+msgid "Copied!"
+msgstr ""
+
+#: includes/class-importer.php:642
+msgid "Bulk Import Members (CSV)"
+msgstr ""
+
+#: includes/class-importer.php:645
+msgid "1. Upload CSV"
+msgstr ""
+
+#: includes/class-importer.php:646
+msgid "Import many team members at once. The first row must contain column headers; columns may be in any order and unknown columns are ignored."
+msgstr ""
+
+#: includes/class-importer.php:647
+msgid "Download sample CSV"
+msgstr ""
+
+#: includes/class-importer.php:650
+msgid "Update existing members with the same name instead of creating duplicates"
+msgstr ""
+
+#: includes/class-importer.php:651
+msgid "Upload & Preview"
+msgstr ""
+
+#: includes/class-importer.php:655
+msgid "2. Preview & Import"
+msgstr ""
+
+#: includes/class-importer.php:663 src/Components/Backend/Controls/Fields.js:164
+#: src/Components/Backend/Controls/Fields.js:170 build/index.js
+msgid "Columns"
+msgstr ""
+
+#: includes/class-importer.php:759 includes/class-importer.php:808
+#: includes/class-ordering.php:405 includes/class-ordering.php:418
+#: includes/class-ordering.php:426
+msgid "Permission denied."
+msgstr ""
+
+#: includes/class-importer.php:762 includes/class-importer.php:770
+msgid "Upload failed."
+msgstr ""
+
+#: includes/class-importer.php:766
+msgid "Please upload a .csv file."
+msgstr ""
+
+#: includes/class-importer.php:812
+msgid "Upload the file again, the import session expired."
+msgstr ""
+
+#. translators: %d: CSV line number
+#: includes/class-importer.php:832
+#, php-format
+msgid "Line %d: skipped (no name)."
+msgstr ""
+
+#: includes/class-importer.php:851
+msgid "Line"
+msgstr ""
+
+#: includes/class-meta-boxes.php:38
+msgid "e.g. Lead Designer"
+msgstr ""
+
+#: includes/class-meta-boxes.php:39 includes/class-settings.php:63
+#: includes/functions.php:55 includes/render/class-context.php:138
+#: includes/render/class-visibility.php:52
+#: includes/render/themes/registry-b.php:493 src/utils/editorData.js:157
+#: build/index.js
+msgid "Company"
+msgstr ""
+
+#: includes/class-meta-boxes.php:40
+msgid "Company Website"
+msgstr ""
+
+#: includes/class-meta-boxes.php:41 includes/class-settings.php:65
+#: includes/functions.php:57 includes/render/class-context.php:140
+#: includes/render/class-visibility.php:54
+#: includes/render/themes/registry-b.php:496
+msgid "Land Phone"
+msgstr ""
+
+#: includes/class-meta-boxes.php:42 includes/class-settings.php:66
+#: includes/functions.php:58 includes/render/class-context.php:141
+#: includes/render/class-visibility.php:55
+#: includes/render/themes/registry-b.php:495
+msgid "Cell Phone"
+msgstr ""
+
+#: includes/class-meta-boxes.php:43 includes/class-settings.php:67
+#: includes/functions.php:59 includes/render/class-context.php:142
+#: includes/render/class-visibility.php:56
+#: includes/render/themes/registry-b.php:494 src/utils/editorData.js:161
+#: build/index.js
+msgid "Email"
+msgstr ""
+
+#: includes/class-meta-boxes.php:44
+msgid "Email CC"
+msgstr ""
+
+#: includes/class-meta-boxes.php:44
+msgid "Added as CC to the email link. Separate multiple addresses with ; or ,"
+msgstr ""
+
+#: includes/class-meta-boxes.php:45
+msgid "Email BCC"
+msgstr ""
+
+#: includes/class-meta-boxes.php:45
+msgid "Added as BCC to the email link. Separate multiple addresses with ; or ,"
+msgstr ""
+
+#: includes/class-meta-boxes.php:46 includes/class-settings.php:64
+#: includes/functions.php:56 includes/render/class-context.php:139
+#: includes/render/class-visibility.php:53
+#: includes/render/themes/registry-b.php:497 src/utils/editorData.js:158
+#: build/index.js
+msgid "Address"
+msgstr ""
+
+#: includes/class-meta-boxes.php:47 includes/class-settings.php:68
+#: includes/functions.php:60 includes/render/class-context.php:143
+#: includes/render/class-visibility.php:61
+msgid "Zip Code"
+msgstr ""
+
+#: includes/class-meta-boxes.php:48 includes/render/class-visibility.php:49
+#: src/Components/Backend/Settings/Tabs/Style.js:18 src/utils/editorData.js:154
+#: build/index.js
+msgid "Ribbon"
+msgstr ""
+
+#: includes/class-meta-boxes.php:48
+msgid "e.g. New"
+msgstr ""
+
+#: includes/class-meta-boxes.php:48
+msgid "Short label shown as a ribbon on themes that support it."
+msgstr ""
+
+#: includes/class-meta-boxes.php:49
+msgid "vCard Link"
+msgstr ""
+
+#: includes/class-meta-boxes.php:49
+msgid "Link to a .vcf file (internal or external)."
+msgstr ""
+
+#: includes/class-meta-boxes.php:50
+msgid "Custom Page Link"
+msgstr ""
+
+#: includes/class-meta-boxes.php:50
+msgid "Used when the block link type is \"Custom link\"."
+msgstr ""
+
+#: includes/class-meta-boxes.php:58
+msgid "Member Details"
+msgstr ""
+
+#: includes/class-meta-boxes.php:59 includes/render/class-visibility.php:48
+msgid "Social Links"
+msgstr ""
+
+#: includes/class-meta-boxes.php:60 includes/class-settings.php:74
+#: includes/functions.php:66 includes/render/class-context.php:149
+#: includes/render/class-visibility.php:51 src/utils/editorData.js:156
+#: build/index.js
+msgid "Skills"
+msgstr ""
+
+#: includes/class-meta-boxes.php:61
+msgid "Flip Image"
+msgstr ""
+
+#: includes/class-meta-boxes.php:99 includes/class-meta-boxes.php:210
+#: includes/class-meta-boxes.php:212
+msgid "Choose icon"
+msgstr ""
+
+#: includes/class-meta-boxes.php:100
+msgid "Search icons…"
+msgstr ""
+
+#: includes/class-meta-boxes.php:101
+msgid "No icons match your search."
+msgstr ""
+
+#: includes/class-meta-boxes.php:102 includes/render/class-renderer.php:832
+#: templates/partials/modal.php:22 templates/partials/modal.php:39
+msgid "Close"
+msgstr ""
+
+#: includes/class-meta-boxes.php:103
+msgid "Select flip image"
+msgstr ""
+
+#: includes/class-meta-boxes.php:104
+msgid "Use this image"
+msgstr ""
+
+#: includes/class-meta-boxes.php:105
+msgid "Remove this row?"
+msgstr ""
+
+#: includes/class-meta-boxes.php:160
+msgid "Featured member"
+msgstr ""
+
+#: includes/class-meta-boxes.php:162
+msgid "Featured members can be highlighted / listed first when \"Enable featuring\" is on in the block."
+msgstr ""
+
+#: includes/class-meta-boxes.php:187
+msgid "Change image"
+msgstr ""
+
+#: includes/class-meta-boxes.php:187
+msgid "Select image"
+msgstr ""
+
+#: includes/class-meta-boxes.php:188 includes/class-meta-boxes.php:238
+#: includes/class-meta-boxes.php:296
+msgid "Remove"
+msgstr ""
+
+#: includes/class-meta-boxes.php:190
+msgid "Back side image for the flip themes."
+msgstr ""
+
+#: includes/class-meta-boxes.php:207 includes/class-meta-boxes.php:267
+msgid "Drag to reorder"
+msgstr ""
+
+#: includes/class-meta-boxes.php:217
+msgid "https://… , email or phone"
+msgstr ""
+
+#: includes/class-meta-boxes.php:218 includes/class-meta-boxes.php:276
+msgid "Remove row"
+msgstr ""
+
+#: includes/class-meta-boxes.php:236
+msgid "Icon"
+msgstr ""
+
+#: includes/class-meta-boxes.php:237
+msgid "Link"
+msgstr ""
+
+#: includes/class-meta-boxes.php:250
+msgid "No social links yet."
+msgstr ""
+
+#: includes/class-meta-boxes.php:251
+msgid "Add Social Link"
+msgstr ""
+
+#: includes/class-meta-boxes.php:268
+msgid "e.g. WordPress"
+msgstr ""
+
+#: includes/class-meta-boxes.php:294
+msgid "Skill"
+msgstr ""
+
+#: includes/class-meta-boxes.php:295
+msgid "Percent"
+msgstr ""
+
+#: includes/class-meta-boxes.php:308
+msgid "No skills yet."
+msgstr ""
+
+#: includes/class-meta-boxes.php:309
+msgid "Add Skill"
+msgstr ""
+
+#: includes/class-ordering.php:56 includes/class-ordering.php:57
+#: includes/class-ordering.php:141
+msgid "Sort Order"
+msgstr ""
+
+#: includes/class-ordering.php:122
+msgid "Saving…"
+msgstr ""
+
+#: includes/class-ordering.php:123
+msgid "Order saved."
+msgstr ""
+
+#: includes/class-ordering.php:124
+msgid "Could not save the order. Please reload and try again."
+msgstr ""
+
+#: includes/class-ordering.php:135
+msgid "You are not allowed to access this page."
+msgstr ""
+
+#: includes/class-ordering.php:143
+msgid "Sort order sections"
+msgstr ""
+
+#: includes/class-ordering.php:144
+#: src/Components/Backend/Settings/Tabs/Query.js:18 build/index.js
+msgid "Members"
+msgstr ""
+
+#: includes/class-ordering.php:154
+msgid "Filters"
+msgstr ""
+
+#: includes/class-ordering.php:172
+msgid "How it works"
+msgstr ""
+
+#: includes/class-ordering.php:175
+msgid "Drag the members into the order you want. The order is saved automatically."
+msgstr ""
+
+#: includes/class-ordering.php:176
+msgid "In the BP Team Member block, open the Query tab and set \"Order by\" to \"Custom order\" (menu order) and \"Order\" to ascending."
+msgstr ""
+
+#: includes/class-ordering.php:179
+msgid "Drag the search fields and filter dropdowns into the order they should appear above the members in the filter view."
+msgstr ""
+
+#: includes/class-ordering.php:182
+msgid "Drag the terms into the order you want. Child terms are ordered within their parent."
+msgstr ""
+
+#: includes/class-ordering.php:183
+msgid "In the block, set \"Taxonomy order by\" to \"Custom order\" to use this order for filter tabs and term lists."
+msgstr ""
+
+#: includes/class-ordering.php:214
+msgid "No team members yet. Add some members to sort them."
+msgstr ""
+
+#: includes/class-ordering.php:215
+msgid "Add Member"
+msgstr ""
+
+#: includes/class-ordering.php:224
+msgid "Quick sort:"
+msgstr ""
+
+#: includes/class-ordering.php:225
+msgid "Name A–Z"
+msgstr ""
+
+#: includes/class-ordering.php:226
+msgid "Newest first"
+msgstr ""
+
+#: includes/class-ordering.php:227
+msgid "Reverse"
+msgstr ""
+
+#: includes/class-ordering.php:242
+msgid "(no title)"
+msgstr ""
+
+#: includes/class-ordering.php:260 includes/class-ordering.php:351
+#: includes/class-ordering.php:385
+msgid "Move up"
+msgstr ""
+
+#: includes/class-ordering.php:261 includes/class-ordering.php:352
+#: includes/class-ordering.php:386
+msgid "Move down"
+msgstr ""
+
+#: includes/class-ordering.php:279
+msgid "This taxonomy is not registered."
+msgstr ""
+
+#: includes/class-ordering.php:283
+msgid "You are not allowed to reorder these terms."
+msgstr ""
+
+#. translators: %s: taxonomy plural label
+#: includes/class-ordering.php:300
+#, php-format
+msgid "No %s yet."
+msgstr ""
+
+#. translators: %d: number of members
+#: includes/class-ordering.php:347
+#, php-format
+msgid "%d member"
+msgid_plural "%d members"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-ordering.php:367
+msgid "You are not allowed to change the filter order."
+msgstr ""
+
+#: includes/class-ordering.php:381
+msgid "Taxonomy disabled"
+msgstr ""
+
+#: includes/class-ordering.php:415
+msgid "Invalid taxonomy."
+msgstr ""
+
+#: includes/class-ordering.php:434
+msgid "Unknown order type."
+msgstr ""
+
+#: includes/class-ordering.php:670
+msgid "Position used when terms are sorted by \"Custom order\". Leave empty to add at the end."
+msgstr ""
+
+#: includes/class-ordering.php:687
+msgid "Position used when terms are sorted by \"Custom order\"."
+msgstr ""
+
+#: includes/class-ordering.php:701
+msgid "Drag & drop to reorder"
+msgstr ""
+
+#: includes/class-quick.php:353 includes/render/class-editor-data.php:182
+#: src/utils/options.js:70 build/index.js
+msgid "Date"
+msgstr ""
+
+#: includes/class-quick.php:354 includes/render/class-visibility.php:45
+#: includes/render/themes/registry-b.php:490
+#: src/Components/Backend/Settings/Tabs/Style.js:14
+#: src/Components/Backend/Settings/Tabs/Style.js:60 src/utils/editorData.js:150
+#: build/index.js
+msgid "Name"
+msgstr ""
+
+#: includes/class-quick.php:355
+msgid "Custom order"
+msgstr ""
+
+#: includes/class-quick.php:356
+msgid "ID"
+msgstr ""
+
+#: includes/class-quick.php:357
+msgid "Last modified"
+msgstr ""
+
+#: includes/class-quick.php:358 includes/render/class-editor-data.php:183
+#: src/utils/options.js:71 build/index.js
+msgid "Random"
+msgstr ""
+
+#: includes/class-quick.php:369
+msgid "Default (Preferences)"
+msgstr ""
+
+#: includes/class-quick.php:370 includes/class-settings.php:303
+msgid "Single page"
+msgstr ""
+
+#: includes/class-quick.php:371 includes/render/class-editor-data.php:136
+#: src/Components/Backend/Controls/VisibilityControl.js:20
+#: src/utils/options.js:21 build/index.js
+msgid "Popup"
+msgstr ""
+
+#: includes/class-quick.php:372
+msgid "Side panel"
+msgstr ""
+
+#: includes/class-quick.php:373 includes/render/class-editor-data.php:138
+#: src/Components/Backend/Controls/VisibilityControl.js:22
+#: src/utils/options.js:23 build/index.js
+msgid "Drawer"
+msgstr ""
+
+#: includes/class-quick.php:374
+msgid "No link"
+msgstr ""
+
+#: includes/class-settings.php:58 includes/functions.php:50
+#: includes/render/class-context.php:133
+msgid "Show All Designation"
+msgstr ""
+
+#: includes/class-settings.php:59 includes/functions.php:51
+#: includes/render/class-context.php:134
+msgid "Search By Name"
+msgstr ""
+
+#: includes/class-settings.php:60 includes/functions.php:52
+#: includes/render/class-context.php:135
+msgid "Search By Company"
+msgstr ""
+
+#: includes/class-settings.php:61 includes/functions.php:53
+#: includes/render/class-context.php:136
+msgid "Search By Zip"
+msgstr ""
+
+#: includes/class-settings.php:62 includes/functions.php:54
+#: includes/render/class-context.php:137
+msgid "Search By Tag"
+msgstr ""
+
+#: includes/class-settings.php:69 includes/class-settings.php:134
+#: includes/functions.php:61 includes/functions.php:147
+#: includes/render/class-context.php:144 includes/render/class-visibility.php:57
+#: includes/render/themes/registry-b.php:487 src/utils/editorData.js:162
+#: src/utils/editorData.js:208 build/index.js
+msgid "Location"
+msgstr ""
+
+#: includes/class-settings.php:70 includes/class-settings.php:133
+#: includes/functions.php:62 includes/functions.php:146
+#: includes/render/class-context.php:145 includes/render/class-visibility.php:58
+#: src/utils/editorData.js:163 src/utils/editorData.js:209 build/index.js
+msgid "Language"
+msgstr ""
+
+#: includes/class-settings.php:71 includes/class-settings.php:136
+#: includes/functions.php:63 includes/functions.php:149
+#: includes/render/class-context.php:146 includes/render/class-visibility.php:59
+#: src/utils/editorData.js:164 src/utils/editorData.js:210 build/index.js
+msgid "Specialty"
+msgstr ""
+
+#: includes/class-settings.php:72 includes/class-settings.php:135
+#: includes/functions.php:64 includes/functions.php:148
+#: includes/render/class-context.php:147 includes/render/class-visibility.php:60
+#: src/utils/editorData.js:165 src/utils/editorData.js:211 build/index.js
+msgid "Gender"
+msgstr ""
+
+#: includes/class-settings.php:73 includes/functions.php:65
+#: includes/render/class-context.php:148
+#: includes/render/themes/registry-b.php:653
+msgid "Follow Me On"
+msgstr ""
+
+#: includes/class-settings.php:75 includes/functions.php:67
+#: includes/render/class-context.php:150
+msgid "Read On"
+msgstr ""
+
+#: includes/class-settings.php:76 includes/functions.php:68
+#: includes/render/class-context.php:151
+msgid "More"
+msgstr ""
+
+#: includes/class-settings.php:77 includes/functions.php:69
+#: includes/render/class-context.php:152
+msgid "Download vCard"
+msgstr ""
+
+#: includes/class-settings.php:78 includes/functions.php:70
+#: includes/render/class-context.php:153
+msgid "Reset Filters"
+msgstr ""
+
+#: includes/class-settings.php:79 includes/functions.php:71
+#: includes/render/class-context.php:154
+msgid "Prev"
+msgstr ""
+
+#: includes/class-settings.php:80 includes/functions.php:72
+#: includes/render/class-context.php:155
+msgid "Next"
+msgstr ""
+
+#: includes/class-settings.php:81 includes/functions.php:73
+#: includes/render/class-context.php:156
+msgid "Load More"
+msgstr ""
+
+#: includes/class-settings.php:82 includes/functions.php:74
+#: includes/render/class-context.php:157
+msgid "No team member found."
+msgstr ""
+
+#: includes/class-settings.php:131 includes/functions.php:144
+#: includes/integrations/builders.php:43
+msgid "Group"
+msgstr ""
+
+#: includes/class-settings.php:131 includes/functions.php:144
+#: src/utils/editorData.js:206 build/index.js
+msgid "Groups"
+msgstr ""
+
+#: includes/class-settings.php:132 includes/functions.php:145
+msgid "Tag"
+msgstr ""
+
+#: includes/class-settings.php:132 includes/functions.php:145
+#: src/utils/editorData.js:207 build/index.js
+msgid "Tags"
+msgstr ""
+
+#: includes/class-settings.php:133 includes/functions.php:146
+msgid "Languages"
+msgstr ""
+
+#: includes/class-settings.php:134 includes/functions.php:147
+msgid "Locations"
+msgstr ""
+
+#: includes/class-settings.php:135 includes/functions.php:148
+msgid "Genders"
+msgstr ""
+
+#: includes/class-settings.php:136 includes/functions.php:149
+msgid "Specialties"
+msgstr ""
+
+#: includes/class-settings.php:137 includes/class-settings.php:137
+#: includes/functions.php:150 includes/functions.php:150
+#: includes/render/class-visibility.php:62 src/utils/editorData.js:167
+#: src/utils/editorData.js:212 build/index.js
+msgid "Extra One"
+msgstr ""
+
+#: includes/class-settings.php:138 includes/class-settings.php:138
+#: includes/functions.php:151 includes/functions.php:151
+#: includes/render/class-visibility.php:63 src/utils/editorData.js:168
+#: src/utils/editorData.js:213 build/index.js
+msgid "Extra Two"
+msgstr ""
+
+#: includes/class-settings.php:139 includes/class-settings.php:139
+#: includes/functions.php:152 includes/functions.php:152
+#: includes/render/class-visibility.php:64 src/utils/editorData.js:169
+#: src/utils/editorData.js:214 build/index.js
+msgid "Extra Three"
+msgstr ""
+
+#: includes/class-settings.php:140 includes/class-settings.php:140
+#: includes/functions.php:153 includes/functions.php:153
+#: includes/render/class-visibility.php:65 src/utils/editorData.js:170
+#: src/utils/editorData.js:215 build/index.js
+msgid "Extra Four"
+msgstr ""
+
+#: includes/class-settings.php:141 includes/class-settings.php:141
+#: includes/functions.php:154 includes/functions.php:154
+#: includes/render/class-visibility.php:66 src/utils/editorData.js:171
+#: src/utils/editorData.js:216 build/index.js
+msgid "Extra Five"
+msgstr ""
+
+#: includes/class-settings.php:249
+msgid "Default (photo + details side by side)"
+msgstr ""
+
+#: includes/class-settings.php:250
+msgid "Style One (profile card sidebar)"
+msgstr ""
+
+#: includes/class-settings.php:251
+msgid "Style Two (centered hero)"
+msgstr ""
+
+#: includes/class-settings.php:252
+msgid "Style Three (colored banner)"
+msgstr ""
+
+#: includes/class-settings.php:253
+msgid "Style Four (dark split card)"
+msgstr ""
+
+#: includes/class-settings.php:254
+msgid "Style Five (minimal editorial)"
+msgstr ""
+
+#: includes/class-settings.php:266
+msgid "Permalinks & Archive"
+msgstr ""
+
+#: includes/class-settings.php:270
+msgid "Member slug"
+msgstr ""
+
+#: includes/class-settings.php:271
+msgid "URL base of single member pages, e.g. example.com/team-members/jane-doe. Permalinks are flushed automatically after saving."
+msgstr ""
+
+#: includes/class-settings.php:275
+msgid "Ignore permalink front base"
+msgstr ""
+
+#: includes/class-settings.php:276
+msgid "Do not prepend the front base of a custom permalink structure (e.g. /blog/) to member URLs."
+msgstr ""
+
+#: includes/class-settings.php:280
+msgid "Archive page slug"
+msgstr ""
+
+#: includes/class-settings.php:281
+msgid "Optional. A slug (e.g. \"our-team\") moves the built-in members archive to example.com/our-team/. A full URL makes every members-archive link point to that page instead. Leave empty to use the member slug."
+msgstr ""
+
+#: includes/class-settings.php:285
+msgid "Archive page title"
+msgstr ""
+
+#: includes/class-settings.php:286
+msgid "Title shown on the built-in members archive. Defaults to \"Team Members\"."
+msgstr ""
+
+#: includes/class-settings.php:291
+msgid "Single Member Page"
+msgstr ""
+
+#: includes/class-settings.php:295
+msgid "Single page style"
+msgstr ""
+
+#: includes/class-settings.php:300
+msgid "Default link type"
+msgstr ""
+
+#: includes/class-settings.php:301
+msgid "Default link behaviour of members (used by blocks whose link type is \"Default\" and by archives)."
+msgstr ""
+
+#: includes/class-settings.php:304 includes/render/class-editor-data.php:140
+#: includes/render/class-editor-data.php:165
+#: includes/render/class-editor-data.php:204 src/utils/options.js:48
+#: src/utils/options.js:108 src/utils/options.js:123 src/utils/options.js:131
+#: build/index.js
+msgid "None"
+msgstr ""
+
+#: includes/class-settings.php:309
+msgid "Next / previous member links"
+msgstr ""
+
+#: includes/class-settings.php:313 includes/class-template-loader.php:878
+msgid "Breadcrumb"
+msgstr ""
+
+#: includes/class-settings.php:318
+msgid "Contact Links"
+msgstr ""
+
+#: includes/class-settings.php:322
+msgid "Link land phone (tel:)"
+msgstr ""
+
+#: includes/class-settings.php:326
+msgid "Link cell phone (tel:)"
+msgstr ""
+
+#: includes/class-settings.php:330
+msgid "Link email (mailto:)"
+msgstr ""
+
+#: includes/class-settings.php:335
+msgid "Behaviour"
+msgstr ""
+
+#: includes/class-settings.php:339
+msgid "Search in all fields"
+msgstr ""
+
+#: includes/class-settings.php:340
+msgid "Name search also matches designation, company, description and other meta fields."
+msgstr ""
+
+#: includes/class-settings.php:344
+msgid "Enable multilingual mode"
+msgstr ""
+
+#: includes/class-settings.php:345
+msgid "Ignore the strings of the Translations page and taxonomy labels and use the translatable defaults instead (for WPML, Polylang, Loco Translate…)."
+msgstr ""
+
+#: includes/class-settings.php:349
+msgid "Disable Google fonts"
+msgstr ""
+
+#: includes/class-settings.php:350
+msgid "Never load fonts from Google, even when chosen in block typography."
+msgstr ""
+
+#: includes/class-settings.php:354
+#: src/Components/Backend/Settings/Tabs/Layout.js:146 build/index.js
+msgid "Show ACF fields"
+msgstr ""
+
+#: includes/class-settings.php:355
+msgid "Display Advanced Custom Fields assigned to members."
+msgstr ""
+
+#: includes/class-settings.php:359
+#: src/Components/Backend/Settings/Tabs/Layout.js:148 build/index.js
+msgid "ACF fields position"
+msgstr ""
+
+#: includes/class-settings.php:361
+msgid "After skills"
+msgstr ""
+
+#: includes/class-settings.php:362
+msgid "After description"
+msgstr ""
+
+#: includes/class-settings.php:363
+msgid "After meta details"
+msgstr ""
+
+#: includes/class-settings.php:369
+msgid "Disable lazy load"
+msgstr ""
+
+#: includes/class-settings.php:370
+msgid "Add an exclusion class to member images so lazy-load plugins skip them and drop the native loading=\"lazy\"."
+msgstr ""
+
+#: includes/class-settings.php:374
+msgid "Lazy load exclusion class"
+msgstr ""
+
+#: includes/class-settings.php:380 includes/class-settings.php:384
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/class-settings.php:385
+msgid "Printed on every front-end page."
+msgstr ""
+
+#: includes/class-settings.php:586 includes/class-settings.php:586
+#: includes/class-settings.php:721 includes/class-settings.php:751
+msgid "Preferences"
+msgstr ""
+
+#: includes/class-settings.php:587 includes/class-settings.php:587
+#: includes/class-settings.php:840
+msgid "Taxonomy Settings"
+msgstr ""
+
+#: includes/class-settings.php:588 includes/class-settings.php:588
+#: includes/class-settings.php:723 includes/class-settings.php:876
+msgid "Translations"
+msgstr ""
+
+#: includes/class-settings.php:591 includes/class-settings.php:591
+msgid "Settings"
+msgstr ""
+
+#: includes/class-settings.php:722
+msgid "Taxonomies"
+msgstr ""
+
+#: includes/class-settings.php:754
+msgid "Permalinks flushed."
+msgstr ""
+
+#: includes/class-settings.php:771
+msgid "Members archive:"
+msgstr ""
+
+#: includes/class-settings.php:777
+msgid "Save Preferences"
+msgstr ""
+
+#: includes/class-settings.php:783
+msgid "Permalinks"
+msgstr ""
+
+#: includes/class-settings.php:784
+msgid "Seeing 404 errors on member pages? Flush the rewrite rules."
+msgstr ""
+
+#: includes/class-settings.php:785
+msgid "Flush Permalinks"
+msgstr ""
+
+#: includes/class-settings.php:845
+msgid "Enable or disable each member taxonomy, rename it, and control its public archive. Disabled taxonomies are hidden everywhere (admin, block filters, front end)."
+msgstr ""
+
+#: includes/class-settings.php:854
+msgid "Enable"
+msgstr ""
+
+#: includes/class-settings.php:855
+msgid "Singular label"
+msgstr ""
+
+#: includes/class-settings.php:856
+msgid "Plural label"
+msgstr ""
+
+#: includes/class-settings.php:857
+msgid "Public archive"
+msgstr ""
+
+#: includes/class-settings.php:858
+msgid "Archive slug"
+msgstr ""
+
+#: includes/class-settings.php:862
+msgid "Save Taxonomy Settings"
+msgstr ""
+
+#: includes/class-settings.php:879
+msgid "Multilingual mode is enabled in Preferences: these strings are ignored and the translatable defaults are used instead."
+msgstr ""
+
+#: includes/class-settings.php:898
+msgid "Save Translations"
+msgstr ""
+
+#: includes/class-showcase.php:46 includes/integrations/builders.php:40
+#: includes/integrations/elementor/class-elementor-widget.php:112
+msgid "Showcase"
+msgstr ""
+
+#: includes/class-showcase.php:47 includes/class-showcase.php:48
+msgid "Add New Showcase"
+msgstr ""
+
+#: includes/class-showcase.php:49
+msgid "Edit Showcase"
+msgstr ""
+
+#: includes/class-showcase.php:50
+msgid "New Showcase"
+msgstr ""
+
+#: includes/class-showcase.php:51
+msgid "View Showcase"
+msgstr ""
+
+#: includes/class-showcase.php:52
+msgid "Search Showcases"
+msgstr ""
+
+#: includes/class-showcase.php:53
+msgid "No showcases found."
+msgstr ""
+
+#: includes/class-showcase.php:54
+msgid "No showcases found in Trash."
+msgstr ""
+
+#: includes/class-showcase.php:190
+msgid "BP Team Member: please provide a showcase id, e.g. [bp_team id=\"123\"]."
+msgstr ""
+
+#. translators: %d: showcase id
+#: includes/class-showcase.php:195
+#, php-format
+msgid "BP Team Member: showcase #%d was not found or contains no team block."
+msgstr ""
+
+#: includes/class-showcase.php:211
+msgid "Shortcode"
+msgstr ""
+
+#: includes/class-showcase.php:212 includes/integrations/builders.php:41
+#: src/Components/Backend/Settings/Tabs/Layout.js:35 build/index.js
+msgid "Theme"
+msgstr ""
+
+#: includes/class-showcase.php:227
+msgid "Copy"
+msgstr ""
+
+#: includes/class-showcase.php:257
+msgid "Duplicate"
+msgstr ""
+
+#: includes/class-showcase.php:269
+msgid "You are not allowed to duplicate this showcase."
+msgstr ""
+
+#. translators: %s: original title
+#: includes/class-showcase.php:276
+#, php-format
+msgid "%s (Copy)"
+msgstr ""
+
+#: includes/class-showcase.php:328
+msgid "Showcase duplicated as draft."
+msgstr ""
+
+#: includes/class-showcase.php:331
+msgid "A showcase holds one BP Team Member block. Paste its shortcode into any page builder, classic editor, widget or template, e.g. [bp_team id=\"123\"]."
+msgstr ""
+
+#: includes/class-showcase.php:331
+msgid "Without a showcase: [bp_team theme=\"grid-1\" number=\"6\" group=\"group-slug\" columns=\"3\" orderby=\"title\" order=\"ASC\" link=\"popup\" view=\"carousel\"] or the compact list [bp_team_sidebar total_mem=\"3\" group_mem=\"group-slug\"]. Attributes given together with id override the showcase."
+msgstr ""
+
+#. translators: %d: post id
+#: includes/class-showcase.php:353
+#, php-format
+msgid "Showcase #%d"
+msgstr ""
+
+#: includes/class-template-loader.php:868
+msgid "Home"
+msgstr ""
+
+#: includes/class-template-loader.php:918
+msgid "Team member navigation"
+msgstr ""
+
+#: includes/class-widget.php:28
+msgid "Display team members: a quick list or a saved showcase."
+msgstr ""
+
+#: includes/class-widget.php:50
+msgid "Meet Our Team"
+msgstr ""
+
+#: includes/class-widget.php:175
+msgid "Title:"
+msgstr ""
+
+#: includes/class-widget.php:179
+msgid "Show:"
+msgstr ""
+
+#: includes/class-widget.php:180 includes/class-widget.php:184
+#: includes/integrations/elementor/class-elementor-widget.php:104
+msgid "Team members list"
+msgstr ""
+
+#: includes/class-widget.php:181 includes/integrations/builders.php:36
+#: includes/integrations/elementor/class-elementor-widget.php:103
+msgid "A saved showcase"
+msgstr ""
+
+#: includes/class-widget.php:186
+msgid "Total members to display:"
+msgstr ""
+
+#: includes/class-widget.php:188
+#: src/Components/Backend/Settings/Tabs/Query.js:19 build/index.js
+msgid "-1 shows all members."
+msgstr ""
+
+#: includes/class-widget.php:191
+msgid "Team group:"
+msgstr ""
+
+#: includes/class-widget.php:191 includes/integrations/builders.php:43
+msgid "All groups"
+msgstr ""
+
+#: includes/class-widget.php:192
+msgid "Theme:"
+msgstr ""
+
+#: includes/class-widget.php:195
+msgid "Columns:"
+msgstr ""
+
+#: includes/class-widget.php:204
+msgid "Order by:"
+msgstr ""
+
+#: includes/class-widget.php:207
+msgid "Order:"
+msgstr ""
+
+#: includes/class-widget.php:209 includes/integrations/builders.php:72
+#: src/utils/options.js:80 build/index.js
+msgid "Descending"
+msgstr ""
+
+#: includes/class-widget.php:210 includes/integrations/builders.php:73
+#: src/utils/options.js:80 build/index.js
+msgid "Ascending"
+msgstr ""
+
+#: includes/class-widget.php:214
+msgid "Member link:"
+msgstr ""
+
+#: includes/class-widget.php:218
+msgid "Saved showcase"
+msgstr ""
+
+#: includes/class-widget.php:219
+msgid "Showcase:"
+msgstr ""
+
+#: includes/class-widget.php:219
+#: includes/integrations/elementor/class-elementor-widget.php:87
+msgid "— Select —"
+msgstr ""
+
+#: includes/class-widget.php:221
+msgid "Create a showcase first."
+msgstr ""
+
+#: includes/integrations/builders.php:26
+msgid "— None (use the options below) —"
+msgstr ""
+
+#: includes/integrations/builders.php:33 includes/integrations/builders.php:169
+#: includes/integrations/elementor/class-elementor-widget.php:100
+#: src/Components/Backend/Settings/Tabs/Layout.js:130 build/index.js
+msgid "Content"
+msgstr ""
+
+#: includes/integrations/builders.php:35
+msgid "Team members list (options below)"
+msgstr ""
+
+#: includes/integrations/builders.php:42
+msgid "Number of members (-1 = all)"
+msgstr ""
+
+#: includes/integrations/builders.php:46
+msgid "Columns (desktop)"
+msgstr ""
+
+#: includes/integrations/builders.php:59
+msgid "View"
+msgstr ""
+
+#: includes/integrations/builders.php:61 src/utils/editorData.js:11
+#: src/utils/options.js:13 build/index.js
+msgid "Grid"
+msgstr ""
+
+#: includes/integrations/builders.php:62
+#: src/Components/Backend/Controls/ThemePicker.js:14
+#: src/Components/Backend/Settings/Settings.js:31
+#: src/Components/Backend/Settings/Tabs/Carousel.js:11 src/utils/options.js:14
+#: build/index.js
+msgid "Carousel"
+msgstr ""
+
+#: includes/integrations/builders.php:63
+#: src/Components/Backend/Controls/ThemePicker.js:17
+#: src/Components/Backend/Settings/Settings.js:28
+#: src/Components/Backend/Settings/Tabs/Filter.js:27 src/utils/options.js:15
+#: build/index.js
+msgid "Filter"
+msgstr ""
+
+#: includes/integrations/builders.php:67
+#: src/Components/Backend/Settings/Tabs/Query.js:21 build/index.js
+msgid "Order by"
+msgstr ""
+
+#: includes/integrations/builders.php:77
+msgid "Member link"
+msgstr ""
+
+#: includes/integrations/builders.php:100
+msgid "BP Team Member: choose a showcase or switch Content to \"Team members list\"."
+msgstr ""
+
+#: includes/integrations/builders.php:139
+#: includes/integrations/elementor/class-elementor-widget.php:146
+msgid "Create a new showcase"
+msgstr ""
+
+#: includes/integrations/builders.php:150 includes/integrations/builders.php:161
+msgid "Team list"
+msgstr ""
+
+#: includes/integrations/builders.php:151
+msgid "Leave empty to keep the showcase setting."
+msgstr ""
+
+#: includes/integrations/builders.php:159
+msgid "— Default —"
+msgstr ""
+
+#: includes/integrations/builders.php:168
+#: includes/integrations/builders/beaver/class-beaver-module.php:27
+msgid "Team members showcase or list"
+msgstr ""
+
+#: includes/integrations/builders.php:226
+msgid "Team"
+msgstr ""
+
+#: includes/integrations/builders.php:229
+#: includes/integrations/builders/class-divi-module.php:46
+#: includes/render/class-renderer.php:585
+msgid "Team members"
+msgstr ""
+
+#: includes/integrations/builders/beaver/class-beaver-module.php:29
+msgid "Basic"
+msgstr ""
+
+#: includes/integrations/elementor/class-elementor-widget.php:165
+msgid "Select a showcase in the widget settings."
+msgstr ""
+
+#: includes/render/class-editor-data.php:72
+#: includes/render/class-visibility.php:44 src/utils/editorData.js:132
+#: src/utils/editorData.js:149 build/index.js
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/render/class-editor-data.php:73
+#: includes/render/class-editor-data.php:206 src/utils/editorData.js:133
+#: src/utils/options.js:134 build/index.js
+msgid "Medium"
+msgstr ""
+
+#: includes/render/class-editor-data.php:74
+#: includes/render/class-editor-data.php:207 src/utils/editorData.js:135
+#: src/utils/options.js:135 build/index.js
+msgid "Large"
+msgstr ""
+
+#: includes/render/class-editor-data.php:75
+#: includes/render/class-editor-data.php:81
+msgid "Full Size"
+msgstr ""
+
+#: includes/render/class-editor-data.php:107
+#: src/Components/Backend/Controls/TypographyControl.js:65
+#: src/utils/options.js:7 src/utils/options.js:19 src/utils/options.js:102
+#: src/utils/options.js:107 src/utils/options.js:115 src/utils/options.js:122
+#: build/index.js
+msgid "Default"
+msgstr ""
+
+#: includes/render/class-editor-data.php:108
+msgid "Style One"
+msgstr ""
+
+#: includes/render/class-editor-data.php:109
+msgid "Style Two"
+msgstr ""
+
+#: includes/render/class-editor-data.php:110
+msgid "Style Three"
+msgstr ""
+
+#: includes/render/class-editor-data.php:111
+msgid "Style Four"
+msgstr ""
+
+#: includes/render/class-editor-data.php:112
+msgid "Style Five"
+msgstr ""
+
+#: includes/render/class-editor-data.php:134
+msgid "Default (from settings)"
+msgstr ""
+
+#: includes/render/class-editor-data.php:135 src/utils/options.js:20
+#: build/index.js
+msgid "Single Page"
+msgstr ""
+
+#: includes/render/class-editor-data.php:137
+#: src/Components/Backend/Controls/VisibilityControl.js:21
+#: src/utils/options.js:22 build/index.js
+msgid "Panel"
+msgstr ""
+
+#: includes/render/class-editor-data.php:139 src/utils/options.js:24
+#: build/index.js
+msgid "Custom URL"
+msgstr ""
+
+#: includes/render/class-editor-data.php:143
+msgid "Style Six"
+msgstr ""
+
+#: includes/render/class-editor-data.php:151 src/utils/options.js:96
+#: build/index.js
+msgid "Normal Pagination"
+msgstr ""
+
+#: includes/render/class-editor-data.php:152 src/utils/options.js:97
+#: build/index.js
+msgid "Ajax Pagination"
+msgstr ""
+
+#: includes/render/class-editor-data.php:153 src/utils/options.js:98
+#: build/index.js
+msgid "Load More Button"
+msgstr ""
+
+#: includes/render/class-editor-data.php:154 src/utils/options.js:99
+#: build/index.js
+msgid "Load More on Scroll"
+msgstr ""
+
+#: includes/render/class-editor-data.php:159 src/utils/options.js:83
+#: build/index.js
+msgid "Normal Filter"
+msgstr ""
+
+#: includes/render/class-editor-data.php:160 src/utils/options.js:84
+#: build/index.js
+msgid "Ajax Filter"
+msgstr ""
+
+#: includes/render/class-editor-data.php:166 src/utils/options.js:49
+#: build/index.js
+msgid "Blur"
+msgstr ""
+
+#: includes/render/class-editor-data.php:167 src/utils/options.js:50
+#: build/index.js
+msgid "Brightness"
+msgstr ""
+
+#: includes/render/class-editor-data.php:168 src/utils/options.js:51
+#: build/index.js
+msgid "Contrast"
+msgstr ""
+
+#: includes/render/class-editor-data.php:169 src/utils/options.js:52
+#: build/index.js
+msgid "Grayscale"
+msgstr ""
+
+#: includes/render/class-editor-data.php:170 src/utils/options.js:53
+#: build/index.js
+msgid "Hue Rotate"
+msgstr ""
+
+#: includes/render/class-editor-data.php:171 src/utils/options.js:54
+#: build/index.js
+msgid "Invert"
+msgstr ""
+
+#: includes/render/class-editor-data.php:172 src/utils/options.js:55
+#: build/index.js
+msgid "Opacity"
+msgstr ""
+
+#: includes/render/class-editor-data.php:173 src/utils/options.js:56
+#: build/index.js
+msgid "Saturate"
+msgstr ""
+
+#: includes/render/class-editor-data.php:174 src/utils/options.js:57
+#: build/index.js
+msgid "Sepia"
+msgstr ""
+
+#: includes/render/class-editor-data.php:179
+#: includes/render/class-editor-data.php:188 src/utils/options.js:67
+#: src/utils/options.js:75 build/index.js
+msgid "Custom Order"
+msgstr ""
+
+#: includes/render/class-editor-data.php:180 src/utils/options.js:68
+#: build/index.js
+msgid "Member ID"
+msgstr ""
+
+#: includes/render/class-editor-data.php:189
+msgid "Term ID"
+msgstr ""
+
+#: includes/render/class-editor-data.php:190
+msgid "Term Name"
+msgstr ""
+
+#: includes/render/class-editor-data.php:195 src/utils/options.js:61
+#: build/index.js
+msgid "After Skills"
+msgstr ""
+
+#: includes/render/class-editor-data.php:196 src/utils/options.js:62
+#: build/index.js
+msgid "After Description"
+msgstr ""
+
+#: includes/render/class-editor-data.php:197 src/utils/options.js:63
+#: build/index.js
+msgid "After Meta Details"
+msgstr ""
+
+#: includes/render/class-editor-data.php:198
+msgid "Theme Defined"
+msgstr ""
+
+#: includes/render/class-editor-data.php:203
+msgid "Theme Default"
+msgstr ""
+
+#: includes/render/class-editor-data.php:205 src/utils/options.js:133
+#: build/index.js
+msgid "Small"
+msgstr ""
+
+#: includes/render/class-editor-data.php:208
+msgid "Extra Large"
+msgstr ""
+
+#: includes/render/class-renderer.php:597
+msgid "Choose slide"
+msgstr ""
+
+#: includes/render/class-renderer.php:717
+msgid "Others"
+msgstr ""
+
+#: includes/render/class-renderer.php:834
+msgid "Loading…"
+msgstr ""
+
+#: includes/render/class-renderer.php:837
+#, php-format
+msgid "Go to slide %d"
+msgstr ""
+
+#: includes/render/class-renderer.php:838
+#, php-format
+msgid "%d selected"
+msgstr ""
+
+#: includes/render/class-rest.php:98
+msgid "Attributes must be an object."
+msgstr ""
+
+#. translators: %s: attribute name
+#: includes/render/class-rest.php:107
+#, php-format
+msgid "Unknown attribute: %s"
+msgstr ""
+
+#: includes/render/class-visibility.php:47
+#: src/Components/Backend/Settings/Tabs/Style.js:16 src/utils/editorData.js:152
+#: build/index.js
+msgid "Details"
+msgstr ""
+
+#: includes/render/class-visibility.php:50
+msgid "Featured Badge"
+msgstr ""
+
+#: includes/render/class-visibility.php:67
+msgid "ACF Fields"
+msgstr ""
+
+#: includes/render/class-visibility.php:68 src/utils/editorData.js:173
+#: build/index.js
+msgid "vCard"
+msgstr ""
+
+#: includes/render/class-visibility.php:69
+msgid "Read More"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:76
+msgid "Grid 1"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:77
+msgid "Grid 2"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:78
+msgid "Grid 3"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:79
+msgid "Grid 4"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:80
+msgid "Grid 5"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:81
+msgid "Grid 6"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:82
+msgid "Circle 1"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:83
+msgid "Circle 2"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:84
+msgid "Circle 3"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:85
+msgid "Circle 4"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:86
+msgid "Circle 5"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:87
+msgid "Circle 6"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:88
+msgid "Horizontal 1"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:89
+msgid "Horizontal 2"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:90
+msgid "Horizontal 3"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:91
+msgid "Horizontal 4"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:92
+msgid "Horizontal 5"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:93
+msgid "Horizontal 6"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:94
+msgid "Horizontal 7"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:95
+msgid "Horizontal 8"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:96
+msgid "Horizontal 9"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:97
+msgid "Flip 1"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:98
+msgid "Flip 2"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:99
+msgid "Flip 3"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:100
+msgid "Flip 4"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:101
+msgid "Flip 5"
+msgstr ""
+
+#: includes/render/themes/registry-a.php:102
+msgid "Flip 6"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:80
+msgid "Table 1"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:81
+msgid "Table 2"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:82
+msgid "Table 3"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:83
+msgid "Table 4"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:84
+msgid "Table 5"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:86
+msgid "List 1"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:87
+msgid "List 2"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:88
+msgid "List 3"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:89
+msgid "List 4"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:90
+msgid "List 5"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:92
+msgid "Grid 7"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:93
+msgid "Grid 8"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:94
+msgid "Grid 9"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:95
+msgid "Grid 10 (Greyscale)"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:96
+msgid "Grid 11"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:97
+msgid "Grid 12"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:98
+msgid "Grid Popup"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:99
+msgid "Grid Single"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:100
+msgid "Grid Filter Single"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:101
+msgid "Grid Filter Popup"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:102
+msgid "Grid Slider"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:103
+msgid "Grid Filter - Selected Groups"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:104
+msgid "Grid Filter with vCard"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:105
+msgid "Grid Panel Slide"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:106
+msgid "Grid Drawer 1"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:107
+msgid "Grid Drawer 2"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:109
+msgid "Table 6 - Underline"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:110
+msgid "Table 7 - Box Border"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:111
+msgid "Table 8 - Odd Even"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:112
+msgid "Table 9 - Filter"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:113
+msgid "Table 10 - Filter Dense"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:115
+msgid "List 6"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:116
+msgid "List 7"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:118
+msgid "Group Filter 1"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:489
+#: src/Components/Backend/Settings/Tabs/Layout.js:119 build/index.js
+msgid "Image"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:491
+msgid "Position"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:492
+#: src/Components/Backend/Settings/Tabs/Style.js:63 build/index.js
+msgid "Description"
+msgstr ""
+
+#: includes/render/themes/registry-b.php:499
+msgid "Social"
+msgstr ""
+
+#: includes/render/themes/registry-c.php:38
+msgid "Sidebar 1 - Framed Photo"
+msgstr ""
+
+#: includes/render/themes/registry-c.php:39
+msgid "Sidebar 2 - Round Avatar"
+msgstr ""
+
+#: includes/render/themes/registry-c.php:40
+msgid "Sidebar 3 - Compact Rows"
+msgstr ""
+
+#: templates/partials/cat-filters.php:25
+#: src/Components/Backend/Controls/ThemePicker.js:39 build/index.js
+msgid "All"
+msgstr ""
+
+#: templates/partials/cat-filters.php:49
+msgid "Filter by group"
+msgstr ""
+
+#: templates/partials/modal.php:19 templates/partials/modal.php:38
+msgid "Member details"
+msgstr ""
+
+#: templates/partials/pagination.php:49
+msgid "Team members pages"
+msgstr ""
+
+#: templates/partials/pagination.php:93
+msgid "Loading more members"
+msgstr ""
+
+#: templates/popups/style-three.php:30
+msgid "Contact Info"
+msgstr ""
+
+#: templates/single/style-one.php:32 templates/single/style-three.php:29
+msgid "About"
+msgstr ""
+
+#: templates/single/style-one.php:37 templates/single/style-three.php:34
+msgid "Contact Information"
+msgstr ""
+
+#: src/Components/Backend/Controls/Fields.js:139 build/index.js
+msgid "Device"
+msgstr ""
+
+#: src/Components/Backend/Controls/TermSelect.js:59 build/index.js
+msgid "All — type to choose"
+msgstr ""
+
+#: src/Components/Backend/Controls/TermSelect.js:59 build/index.js
+msgid "No terms yet"
+msgstr ""
+
+#. translators: %s: taxonomy label
+#: src/Components/Backend/Controls/TermSelect.js:82 build/index.js
+#, php-format
+msgid "No %s terms found."
+msgstr ""
+
+#: src/Components/Backend/Controls/ThemePicker.js:38 build/index.js
+msgid "Theme families"
+msgstr ""
+
+#: src/Components/Backend/Controls/ThemePicker.js:56 build/index.js
+msgid "Search themes"
+msgstr ""
+
+#. translators: 1: theme name, 2: forced features.
+#: src/Components/Backend/Controls/ThemePicker.js:73 build/index.js
+#, php-format
+msgid "%1$s (%2$s)"
+msgstr ""
+
+#: src/Components/Backend/Controls/ThemePicker.js:88 build/index.js
+msgid "No themes match your search."
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:134 build/index.js
+msgid "Font family"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:136
+#: src/utils/options.js:130 build/index.js
+msgid "Theme default"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:142
+#: src/Components/Backend/Controls/TypographyControl.js:149 build/index.js
+msgid "Font size (px)"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:159 build/index.js
+msgid "Weight"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:160 build/index.js
+msgid "Transform"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:163
+#: src/Components/Backend/Settings/Settings.js:35 src/utils/options.js:8
+#: build/index.js
+msgid "Style"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:164 build/index.js
+msgid "Decoration"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:168 build/index.js
+msgid "Line height"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:179 build/index.js
+msgid "Letter spacing (px)"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:188 build/index.js
+msgid "Color"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:191 build/index.js
+msgid "Hover color"
+msgstr ""
+
+#: src/Components/Backend/Controls/TypographyControl.js:196 build/index.js
+msgid "Reset typography"
+msgstr ""
+
+#: src/Components/Backend/Controls/VisibilityControl.js:19 build/index.js
+msgid "Card"
+msgstr ""
+
+#: src/Components/Backend/Controls/VisibilityControl.js:56 build/index.js
+msgid "Per device"
+msgstr ""
+
+#: src/Components/Backend/Controls/VisibilityControl.js:65 build/index.js
+msgid "Reset to theme default"
+msgstr ""
+
+#: src/Components/Backend/Controls/VisibilityControl.js:92 build/index.js
+msgid "Fields shown in"
+msgstr ""
+
+#: src/Components/Backend/Controls/VisibilityControl.js:101 build/index.js
+msgid "More fields (hidden by this theme by default)"
+msgstr ""
+
+#: src/Components/Backend/Controls/VisibilityControl.js:105 build/index.js
+msgid "* differs per device."
+msgstr ""
+
+#: src/Components/Backend/Controls/VisibilityControl.js:108 build/index.js
+msgid "Reset all to theme defaults"
+msgstr ""
+
+#: src/Components/Backend/Preview.js:102 build/index.js
+msgid "The preview could not be rendered."
+msgstr ""
+
+#: src/Components/Backend/Preview.js:109 build/index.js
+msgid "No team members match the current query settings."
+msgstr ""
+
+#: src/Components/Backend/Preview.js:117 build/index.js
+msgid "You have not added any team members yet. Add your first member, or import the demo data to try every theme."
+msgstr ""
+
+#: src/Components/Backend/Preview.js:121 build/index.js
+msgid "Add team member"
+msgstr ""
+
+#: src/Components/Backend/Settings/Settings.js:26 build/index.js
+msgid "Layout"
+msgstr ""
+
+#: src/Components/Backend/Settings/Settings.js:26 build/index.js
+msgid "Query"
+msgstr ""
+
+#: src/Components/Backend/Settings/Settings.js:33
+#: src/Components/Backend/Settings/Tabs/Pagination.js:14
+#: src/Components/Backend/Settings/Tabs/Pagination.js:25 build/index.js
+msgid "Pagination"
+msgstr ""
+
+#: src/Components/Backend/Settings/Settings.js:66 build/index.js
+msgid "Change theme"
+msgstr ""
+
+#: src/Components/Backend/Settings/Settings.js:83
+#: src/Components/Backend/Settings/Tabs/Layout.js:44 build/index.js
+msgid "View type"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:12 build/index.js
+msgid "Autoplay"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:15 build/index.js
+msgid "Pause on hover"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:16 build/index.js
+msgid "Autoplay delay (ms)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:19 build/index.js
+msgid "Slide speed (ms)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:20 build/index.js
+msgid "Loop"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:21 build/index.js
+msgid "Items to scroll"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:22 build/index.js
+msgid "Visible slides follow the column settings per device (Layout tab)."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:24 build/index.js
+msgid "Navigation"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:25 build/index.js
+msgid "Show arrows"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:26 build/index.js
+msgid "Arrow style"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:27 build/index.js
+msgid "Show dots"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:28 build/index.js
+msgid "Dot style"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Carousel.js:29 build/index.js
+msgid "Arrow and dot colors are in the Style tab."
+msgstr ""
+
+#. translators: %s: taxonomy label
+#: src/Components/Backend/Settings/Tabs/Filter.js:9 build/index.js
+#, php-format
+msgid "Filter by %s"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:28 build/index.js
+msgid "Filter type"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:28 build/index.js
+msgid "Normal filters in the browser; Ajax queries the server for each filter change (works with pagination)."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:29 build/index.js
+msgid "Filter style"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:30 build/index.js
+msgid "Category tabs position"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:31 build/index.js
+msgid "Filter columns"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:34 build/index.js
+msgid "Category tabs"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:35 build/index.js
+msgid "Show “All” tab"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:36 build/index.js
+msgid "“All” text"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:37 build/index.js
+msgid "Include child groups"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:40 build/index.js
+msgid "Search"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:41 build/index.js
+msgid "Search by name"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:42 build/index.js
+msgid "Search by company"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:43 build/index.js
+msgid "Search by zip"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:44 build/index.js
+msgid "Search by tag"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:47 build/index.js
+msgid "Dropdown filters"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:48 build/index.js
+msgid "Filter by designation"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:52 build/index.js
+msgid "Multi-select dropdowns"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:53 build/index.js
+msgid "Ellipsis for long selections"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Filter.js:54 build/index.js
+msgid "Reset filters button"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:37 build/index.js
+msgid "Current:"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:42 build/index.js
+msgid "View & Columns"
+msgstr ""
+
+#. translators: 1: theme, 2: view
+#: src/Components/Backend/Settings/Tabs/Layout.js:53 build/index.js
+#, php-format
+msgid "%1$s always uses the %2$s view."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:60 build/index.js
+msgid "This theme does not support the selected view; it renders as a grid."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:63 build/index.js
+msgid "Table and list themes use one row per member; columns do not apply."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:67 build/index.js
+msgid "Column gap (px)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:68 build/index.js
+msgid "Row gap (px)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:71 build/index.js
+msgid "Linking"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:72 build/index.js
+msgid "Link members"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:72 build/index.js
+msgid "Make the name (and image) open the member detail."
+msgstr ""
+
+#. translators: 1: theme, 2: link type
+#: src/Components/Backend/Settings/Tabs/Layout.js:77 build/index.js
+#, php-format
+msgid "%1$s always opens members as: %2$s."
+msgstr ""
+
+#. translators: 1: theme, 2: link type
+#: src/Components/Backend/Settings/Tabs/Layout.js:77 build/index.js
+#, php-format
+msgid "%1$s opens members as %2$s unless you choose another link type."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:85 build/index.js
+msgid "Link type"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:87 build/index.js
+msgid "Default follows the “Default link type” in BP Team → Preferences, which is currently set to None (members are not linked). Choose a link type here to override it."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:87 build/index.js
+msgid "Default follows the “Default link type” in BP Team → Preferences (currently: single page). Choose a link type here to configure its style."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:90 build/index.js
+msgid "Drawers cannot open inside carousels or tables; the popup is used instead."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:93 build/index.js
+msgid "Open in"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:97 build/index.js
+msgid "Popup style"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:99 build/index.js
+msgid "Popup columns"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:105 build/index.js
+msgid "Panel style"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:106 build/index.js
+msgid "Panel side"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:110 build/index.js
+msgid "Drawer style"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:113 build/index.js
+msgid "Uses each member's “Custom page URL” field."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:120 build/index.js
+msgid "Thumbnail size"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:121 build/index.js
+msgid "Link image"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:121 build/index.js
+msgid "Clicking the image opens the member like the name does."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:122 build/index.js
+msgid "Image filter"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:123 build/index.js
+msgid "Hover image filter"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:126 build/index.js
+msgid "Visibility"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:131 build/index.js
+msgid "Show featured members first"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:132 build/index.js
+msgid "Scroll animation"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:133 build/index.js
+msgid "Allow HTML in details"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:133 build/index.js
+msgid "Show the full formatted description instead of a trimmed text."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:135 build/index.js
+msgid "Details length (characters)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:137 build/index.js
+msgid "Scrollable description"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:139 build/index.js
+msgid "Max scroll height"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:139 build/index.js
+msgid "CSS length, e.g. 200px. Empty = theme default."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:141 build/index.js
+msgid "Equal details area height"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:144
+#: src/utils/editorData.js:172 build/index.js
+msgid "ACF fields"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:145 build/index.js
+msgid "Requires Advanced Custom Fields with field groups assigned to team members."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Pagination.js:17 build/index.js
+msgid "Pagination is not available for carousels."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Pagination.js:18 build/index.js
+msgid "Normal filters work on the loaded members only. Switch the filter type to “Ajax Filter” to use pagination."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Pagination.js:26 build/index.js
+msgid "Enable pagination"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Pagination.js:29 build/index.js
+msgid "Pagination type"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Pagination.js:31 build/index.js
+msgid "Members per page"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Pagination.js:34 build/index.js
+msgid "Initial members"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Pagination.js:38 build/index.js
+msgid "Members per click"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Pagination.js:39 build/index.js
+msgid "Button text"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Pagination.js:43 build/index.js
+msgid "Members per load"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:19 build/index.js
+msgid "Number of members"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:20 build/index.js
+msgid "Pagination is on: the per-page settings control how many members load at a time."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:25
+#: src/Components/Backend/Settings/Tabs/Query.js:28 build/index.js
+msgid "Taxonomy order"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:26 build/index.js
+msgid "Order of terms in filters and grouped layouts."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:27 build/index.js
+msgid "Taxonomy order by"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:29 build/index.js
+msgid "Hide empty terms"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:32 build/index.js
+msgid "Include terms"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:33 build/index.js
+msgid "All taxonomies are disabled in the taxonomy settings."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:43 build/index.js
+msgid "Leave a taxonomy empty to include all of its terms."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:47 build/index.js
+msgid "Exclude terms"
+msgstr ""
+
+#. translators: %s: group taxonomy label
+#: src/Components/Backend/Settings/Tabs/Query.js:52 build/index.js
+#, php-format
+msgid "Exclude %s"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:17 build/index.js
+msgid "Info / meta"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:19 build/index.js
+msgid "Read more"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:29 build/index.js
+msgid "Box shadow"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:44 build/index.js
+msgid "Custom box-shadow"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:59 build/index.js
+msgid "Accent"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:61 build/index.js
+msgid "Name background"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:64 build/index.js
+msgid "Description links"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:65 build/index.js
+msgid "Info text"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:66 build/index.js
+msgid "Info icons"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:67 build/index.js
+msgid "Info background"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:70 build/index.js
+msgid "Item background"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:71 build/index.js
+msgid "Item background (hover)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:72 build/index.js
+msgid "Item border"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:73 build/index.js
+msgid "Tooltip background"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:74 build/index.js
+msgid "Hover icon background"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:75 build/index.js
+msgid "Ribbon background"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:78 build/index.js
+msgid "Popup arrows"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:83 build/index.js
+msgid "Text colors"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:84 build/index.js
+msgid "Item colors"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:86 build/index.js
+msgid "Typography"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:92 build/index.js
+msgid "Box"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:97 build/index.js
+msgid "Item padding"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:111 build/index.js
+msgid "Item border radius"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:112 build/index.js
+msgid "Item border width"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:114 build/index.js
+msgid "Image border radius"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:118 build/index.js
+msgid "Carousel colors"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:119 build/index.js
+msgid "Arrow"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:120 build/index.js
+msgid "Arrow background"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:121 build/index.js
+msgid "Arrow (hover)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:122 build/index.js
+msgid "Arrow background (hover)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:123 build/index.js
+msgid "Dot"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:124 build/index.js
+msgid "Dot (hover / active)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:129 build/index.js
+msgid "Filter colors"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:130 build/index.js
+msgid "Text"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:131 build/index.js
+msgid "Active text"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:132 build/index.js
+msgid "Background"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:133 build/index.js
+msgid "Active background"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:134 build/index.js
+msgid "Border"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:135 build/index.js
+msgid "Active border"
+msgstr ""
+
+#: src/utils/editorData.js:12 build/index.js
+msgid "Circle"
+msgstr ""
+
+#: src/utils/editorData.js:13 build/index.js
+msgid "Horizontal"
+msgstr ""
+
+#: src/utils/editorData.js:14 build/index.js
+msgid "Flip"
+msgstr ""
+
+#: src/utils/editorData.js:15 build/index.js
+msgid "Table"
+msgstr ""
+
+#: src/utils/editorData.js:16 build/index.js
+msgid "List"
+msgstr ""
+
+#: src/utils/editorData.js:17 build/index.js
+msgid "Special layouts"
+msgstr ""
+
+#: src/utils/editorData.js:18 build/index.js
+msgid "Sidebar / Widget"
+msgstr ""
+
+#: src/utils/editorData.js:134 build/index.js
+msgid "Medium Large"
+msgstr ""
+
+#: src/utils/editorData.js:136 build/index.js
+msgid "Full"
+msgstr ""
+
+#: src/utils/editorData.js:153 build/index.js
+msgid "Social links"
+msgstr ""
+
+#: src/utils/editorData.js:155 build/index.js
+msgid "Featured badge"
+msgstr ""
+
+#: src/utils/editorData.js:159 build/index.js
+msgid "Land phone"
+msgstr ""
+
+#: src/utils/editorData.js:160 build/index.js
+msgid "Cell phone"
+msgstr ""
+
+#: src/utils/editorData.js:166 build/index.js
+msgid "Zip code"
+msgstr ""
+
+#: src/utils/editorData.js:174 build/index.js
+msgid "Read more link"
+msgstr ""
+
+#: src/utils/options.js:28 build/index.js
+msgid "Same tab"
+msgstr ""
+
+#: src/utils/options.js:29 build/index.js
+msgid "New tab"
+msgstr ""
+
+#: src/utils/options.js:39 build/index.js
+msgid "One"
+msgstr ""
+
+#: src/utils/options.js:39 src/utils/options.js:87 build/index.js
+msgid "Two"
+msgstr ""
+
+#: src/utils/options.js:42 src/utils/options.js:90 build/index.js
+msgid "Left"
+msgstr ""
+
+#: src/utils/options.js:43 src/utils/options.js:91 build/index.js
+msgid "Center"
+msgstr ""
+
+#: src/utils/options.js:44 src/utils/options.js:92 build/index.js
+msgid "Right"
+msgstr ""
+
+#: src/utils/options.js:76 build/index.js
+msgid "Taxonomy ID"
+msgstr ""
+
+#: src/utils/options.js:77 build/index.js
+msgid "Taxonomy Name"
+msgstr ""
+
+#: src/utils/options.js:87 build/index.js
+msgid "Three"
+msgstr ""
+
+#: src/utils/options.js:109 build/index.js
+msgid "Uppercase"
+msgstr ""
+
+#: src/utils/options.js:110 build/index.js
+msgid "Lowercase"
+msgstr ""
+
+#: src/utils/options.js:111 build/index.js
+msgid "Capitalize"
+msgstr ""
+
+#: src/utils/options.js:116 build/index.js
+msgid "Normal"
+msgstr ""
+
+#: src/utils/options.js:117 build/index.js
+msgid "Italic"
+msgstr ""
+
+#: src/utils/options.js:118 build/index.js
+msgid "Oblique"
+msgstr ""
+
+#: src/utils/options.js:124 build/index.js
+msgid "Underline"
+msgstr ""
+
+#: src/utils/options.js:125 build/index.js
+msgid "Overline"
+msgstr ""
+
+#: src/utils/options.js:126 build/index.js
+msgid "Line Through"
+msgstr ""
+
+#: src/utils/options.js:136 build/index.js
+msgid "Extra large"
+msgstr ""
+
+#: src/utils/options.js:137 build/index.js
+msgid "Custom…"
+msgstr ""
+
+#: src/utils/options.js:141 build/index.js
+msgid "Desktop"
+msgstr ""
+
+#: src/utils/options.js:142 build/index.js
+msgid "Tablet"
+msgstr ""
+
+#: src/utils/options.js:143 build/index.js
+msgid "Mobile landscape"
+msgstr ""
+
+#: src/utils/options.js:144 build/index.js
+msgid "Mobile"
+msgstr ""

@@ -1,0 +1,648 @@
+// Item themes: Horizontal 1-9 (owner: themes-a). Shared .bptm-ta base lives in _grid.scss.
+//
+// Cards lay out photo + info side by side and stack automatically when the
+// card itself is narrow (container query), so they work with any column count
+// and in carousels. A viewport media query is the fallback for old browsers.
+
+$bptm-th-hover: ":is(:hover, :focus-within, .is-flipped, .is-active)";
+$bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+.bptm-ta-horizontal {
+	container-type: inline-size;
+	container-name: bptm-ta-h;
+	text-align: left;
+
+	.bptm-ta-card {
+		display: flex;
+		align-items: center;
+		gap: 0;
+	}
+
+	.bptm-ta-media {
+		position: relative;
+		flex: 0 0 auto;
+		min-width: 0;
+	}
+
+	.bptm-ta-info {
+		position: relative;
+		flex: 1 1 auto;
+		min-width: 0;
+		// Designed start-aligned; set on the info itself so the wrapper's default
+		// centre alignment (inherited from .bptm-item) does not override it.
+		text-align: left;
+	}
+
+	.bptm-social {
+		justify-content: flex-start;
+	}
+
+	.bptm-name {
+		font-size: 1.3rem;
+		font-weight: 700;
+	}
+
+	&#{$bptm-th-hover} .bptm-img-wrap img {
+		transform: scale(1.12);
+	}
+
+	&.bptm-ta-no-thumb .bptm-ta-info {
+		width: 100%;
+		margin: 0;
+	}
+}
+
+// Stacked layout (narrow card) — shared rules.
+@mixin bptm-th-stacked {
+	.bptm-ta-horizontal {
+		.bptm-ta-card {
+			flex-direction: column;
+			text-align: center;
+			align-items: stretch;
+		}
+
+		.bptm-ta-media {
+			width: 100%;
+			max-width: none;
+			margin: 0;
+		}
+
+		.bptm-ta-info {
+			width: 100%;
+			margin: 0;
+			text-align: center;
+		}
+
+		.bptm-social {
+			justify-content: center;
+		}
+	}
+
+	.bptm-ta-horizontal-1 {
+		.bptm-img-wrap {
+			aspect-ratio: 4 / 3;
+		}
+
+		.bptm-ta-info {
+			width: auto;
+			margin: -36px 16px 0;
+		}
+	}
+
+	.bptm-ta-horizontal-2 {
+		.bptm-ta-card {
+			align-items: center;
+			padding: 28px 22px;
+			border-radius: var(--bptm-radius, 22px);
+		}
+
+		.bptm-ta-media {
+			width: 140px;
+		}
+
+		.bptm-ta-info {
+			padding: 20px 0 0;
+		}
+	}
+
+	.bptm-ta-horizontal-3 {
+		.bptm-ta-media {
+			min-height: 0;
+		}
+
+		.bptm-img-wrap {
+			aspect-ratio: 4 / 3;
+			height: auto;
+			border-radius: var(--bptm-radius, 10px) var(--bptm-radius, 10px) 0 0;
+		}
+
+		.bptm-ta-info {
+			border-width: 0 1px 1px;
+			border-radius: 0 0 var(--bptm-radius, 10px) var(--bptm-radius, 10px);
+		}
+	}
+
+	.bptm-ta-horizontal-4 {
+		.bptm-ta-card {
+			margin: 64px 0 0;
+			padding: 84px 24px 30px;
+		}
+
+		.bptm-ta-media {
+			top: 0;
+			left: 50%;
+			width: 128px;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	.bptm-ta-horizontal-5 {
+		.bptm-ta-card {
+			align-items: center;
+			border-radius: var(--bptm-radius, 22px);
+		}
+
+		.bptm-ta-media {
+			width: 150px;
+		}
+
+		.bptm-img-wrap {
+			height: 190px;
+		}
+
+		.bptm-ta-info {
+			padding: 18px 4px 4px;
+		}
+	}
+
+	.bptm-ta-horizontal-6,
+	.bptm-ta-horizontal-7 {
+		.bptm-img-wrap {
+			aspect-ratio: 4 / 3;
+		}
+	}
+
+	.bptm-ta-horizontal-8,
+	.bptm-ta-horizontal-9 {
+		.bptm-ta-card {
+			align-items: center;
+		}
+
+		.bptm-ta-media {
+			width: 62%;
+			max-width: 220px;
+			padding: 18px 0 0;
+		}
+
+		.bptm-ta-info {
+			padding: 18px 20px 24px;
+		}
+	}
+}
+
+
+/* Horizontal 1 — tall leaf photo + overlapping info card ----------------- */
+.bptm-ta-horizontal-1 {
+	.bptm-ta-media {
+		width: 46%;
+		max-width: 340px;
+	}
+
+	.bptm-img-wrap {
+		aspect-ratio: 10 / 13;
+		border-radius: 30px 0 30px 0;
+	}
+
+	.bptm-ta-info {
+		z-index: 2;
+		width: 64%;
+		margin-left: -10%;
+		padding: var(--bptm-item-padding, 30px 30px);
+		border-radius: var(--bptm-radius, 18px 0 18px 0);
+		background: var(--bptm-item-bg, #fff);
+		box-shadow: var(--bptm-shadow, 0 20px 50px rgba(12, 21, 41, 0.12));
+		transition: background-color 0.35s ease, transform 0.4s $bptm-th-ease;
+	}
+
+	.bptm-designation {
+		color: var(--bptm-role-color, var(--bptm-accent, #4527a4));
+		font-weight: 500;
+	}
+
+	&#{$bptm-th-hover} .bptm-ta-info {
+		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, #fff));
+		transform: translateX(-6px);
+	}
+}
+
+/* Horizontal 2 — pill card with round photo ------------------------------ */
+.bptm-ta-horizontal-2 {
+	.bptm-ta-card {
+		padding: var(--bptm-item-padding, 26px 40px 26px 26px);
+		border-radius: var(--bptm-radius, 999px);
+		background: var(--bptm-item-bg, #fff);
+		box-shadow: var(--bptm-shadow, 0 20px 50px rgba(12, 21, 41, 0.1));
+	}
+
+	.bptm-ta-media {
+		width: 34%;
+		max-width: 170px;
+	}
+
+	.bptm-img-wrap {
+		aspect-ratio: 1 / 1;
+		border-radius: 50%;
+
+		img {
+			transform: scale(1.15);
+		}
+	}
+
+	.bptm-ta-info {
+		padding-left: 26px;
+	}
+
+	.bptm-social a {
+		width: 34px;
+		height: 34px;
+		font-size: 13px;
+	}
+
+	&#{$bptm-th-hover} {
+		.bptm-ta-card {
+			background: var(--bptm-item-bg-hover, var(--bptm-item-bg, #fff));
+		}
+
+		.bptm-img-wrap img {
+			transform: scale(1);
+		}
+	}
+}
+
+/* Horizontal 3 — split card, bordered info panel ------------------------- */
+.bptm-ta-horizontal-3 {
+	.bptm-ta-card {
+		align-items: stretch;
+		border-radius: var(--bptm-radius, 10px);
+		background: var(--bptm-item-bg, #fff);
+		box-shadow: var(--bptm-shadow, none);
+	}
+
+	.bptm-ta-media {
+		display: flex;
+		width: 40%;
+		max-width: 320px;
+		min-height: 230px;
+	}
+
+	.bptm-img-wrap {
+		height: 100%;
+		border-radius: var(--bptm-radius, 10px) 0 0 var(--bptm-radius, 10px);
+	}
+
+	.bptm-ta-info {
+		align-self: stretch;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: var(--bptm-item-padding, 32px 28px);
+		border: 1px solid #e5e7eb;
+		border-left-width: 0;
+		border-radius: 0 var(--bptm-radius, 10px) var(--bptm-radius, 10px) 0;
+		transition: border-color 0.3s ease;
+	}
+
+	.bptm-meta i,
+	.bptm-meta svg {
+		color: var(--bptm-info-icon-color, #20bbbc);
+	}
+
+	&#{$bptm-th-hover} {
+		.bptm-ta-card {
+			background: var(--bptm-item-bg-hover, var(--bptm-item-bg, #fff));
+			box-shadow: var(--bptm-shadow, 0 20px 50px rgba(12, 21, 41, 0.12));
+		}
+
+		.bptm-ta-info {
+			border-color: transparent;
+		}
+	}
+}
+
+/* Horizontal 4 — gradient card with breakout round photo ----------------- */
+.bptm-ta-horizontal-4 {
+	.bptm-ta-card {
+		position: relative;
+		margin-left: 70px;
+		padding: var(--bptm-item-padding, 38px 30px 40px 100px);
+		overflow: visible;
+		border-radius: var(--bptm-radius, 28px);
+		background: var(--bptm-item-bg, linear-gradient(45deg, #fca564 15%, #fd5a80 85%));
+		box-shadow: var(--bptm-shadow, 0 20px 45px rgba(253, 90, 128, 0.25));
+		isolation: isolate;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: -1;
+			border-radius: inherit;
+			background: var(--bptm-item-bg-hover, linear-gradient(55deg, #2dd09c 0%, #23c4ac 40%, #18b8bb 100%));
+			opacity: 0;
+			transition: opacity 0.5s ease;
+		}
+	}
+
+	.bptm-ta-media {
+		position: absolute;
+		top: 50%;
+		left: -70px;
+		z-index: 2;
+		width: 140px;
+		transform: translateY(-50%);
+	}
+
+	.bptm-img-wrap {
+		aspect-ratio: 1 / 1;
+		border: 7px solid #fff;
+		border-radius: 50%;
+		background: #fff;
+		box-shadow: 0 14px 30px rgba(12, 21, 41, 0.18);
+	}
+
+	.bptm-name,
+	.bptm-name a {
+		color: var(--bptm-name-color, #fff);
+	}
+
+	.bptm-designation {
+		color: var(--bptm-role-color, rgba(255, 255, 255, 0.9));
+	}
+
+	.bptm-details {
+		color: var(--bptm-desc-color, rgba(255, 255, 255, 0.92));
+
+		a {
+			color: var(--bptm-desc-link-color, #fff);
+		}
+	}
+
+	.bptm-meta,
+	.bptm-meta i,
+	.bptm-meta svg {
+		color: var(--bptm-info-color, #fff);
+	}
+
+	.bptm-social a {
+		width: 34px;
+		height: 34px;
+		border-color: rgba(255, 255, 255, 0.5);
+		background: transparent;
+		color: #fff;
+		font-size: 14px;
+
+		&:hover,
+		&:focus-visible {
+			background: #fff;
+			color: #fd5a80;
+		}
+	}
+
+	&#{$bptm-th-hover} {
+		.bptm-ta-card::before {
+			opacity: 1;
+		}
+
+		.bptm-img-wrap img {
+			transform: scale(1.08);
+		}
+	}
+
+	&.bptm-ta-no-thumb .bptm-ta-card {
+		margin-left: 0;
+		padding-left: 30px;
+	}
+}
+
+/* Horizontal 5 — outlined capsule card, tall capsule photo --------------- */
+.bptm-ta-horizontal-5 {
+	.bptm-ta-card {
+		padding: var(--bptm-item-padding, 22px 34px 22px 22px);
+		border: 1px solid #e5e7eb;
+		border-radius: var(--bptm-radius, 120px);
+		background: var(--bptm-item-bg, #fff);
+	}
+
+	.bptm-ta-media {
+		width: 32%;
+		max-width: 160px;
+	}
+
+	.bptm-img-wrap {
+		aspect-ratio: 10 / 13;
+		border-radius: 200px;
+	}
+
+	.bptm-ta-info {
+		padding-left: 26px;
+	}
+
+	.bptm-designation {
+		color: var(--bptm-role-color, #15b7b9);
+		font-weight: 600;
+	}
+
+	.bptm-social a {
+		width: 34px;
+		height: 34px;
+		font-size: 13px;
+	}
+
+	&#{$bptm-th-hover} .bptm-ta-card {
+		border-color: transparent;
+		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, #fff));
+		box-shadow: var(--bptm-shadow, 0 20px 50px rgba(12, 21, 41, 0.12));
+	}
+}
+
+/* Horizontal 6 / 7 — square photo, square outlined icons ----------------- */
+.bptm-ta-horizontal-6,
+.bptm-ta-horizontal-7 {
+	.bptm-ta-card {
+		align-items: stretch;
+		border-radius: var(--bptm-radius, 0);
+		background: var(--bptm-item-bg, #fff);
+		box-shadow: var(--bptm-shadow, 0 6px 24px rgba(17, 24, 39, 0.07));
+		overflow: hidden;
+	}
+
+	.bptm-ta-media {
+		width: 42%;
+		max-width: 300px;
+	}
+
+	.bptm-img-wrap {
+		min-height: 100%;
+		aspect-ratio: 1 / 1;
+	}
+
+	.bptm-ta-info {
+		align-self: center;
+		padding: var(--bptm-item-padding, 26px 28px);
+	}
+
+	.bptm-name {
+		font-size: 1.2rem;
+	}
+
+	.bptm-designation {
+		margin-bottom: 4px;
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.bptm-social a {
+		width: 34px;
+		height: 34px;
+		border-color: #141414;
+		border-radius: 0;
+		background: transparent;
+		color: #141414;
+		font-size: 13px;
+
+		&:hover,
+		&:focus-visible {
+			border-color: var(--bptm-hover-icon-bg, #141414);
+			background: var(--bptm-hover-icon-bg, #141414);
+		}
+	}
+
+	&#{$bptm-th-hover} .bptm-ta-card {
+		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, #fff));
+	}
+}
+
+.bptm-ta-horizontal-6 .bptm-ta-info {
+	border-left: 3px solid var(--bptm-accent, #4527a4);
+}
+
+.bptm-ta-horizontal-7 {
+	.bptm-ta-card {
+		flex-direction: row-reverse;
+	}
+
+	.bptm-ta-info {
+		border-right: 3px solid var(--bptm-accent, #4527a4);
+	}
+}
+
+/* Horizontal 8 / 9 — round tilting photo -------------------------------- */
+.bptm-ta-horizontal-8,
+.bptm-ta-horizontal-9 {
+	.bptm-ta-card {
+		gap: 0;
+		padding: var(--bptm-item-padding, 0);
+		border-radius: var(--bptm-radius, 0);
+		background: var(--bptm-item-bg, transparent);
+	}
+
+	.bptm-ta-media {
+		width: 38%;
+		max-width: 240px;
+	}
+
+	.bptm-img-wrap {
+		aspect-ratio: 1 / 1;
+		border-radius: 50%;
+		box-shadow: 0 0 0 6px #fff, 0 0 0 7px #e5e7eb;
+		transition: transform 0.5s ease;
+	}
+
+	.bptm-ta-info {
+		padding: 10px 0 10px 28px;
+	}
+
+	&#{$bptm-th-hover} .bptm-img-wrap img {
+		transform: none;
+	}
+}
+
+.bptm-ta-horizontal-8 {
+	.bptm-social {
+		gap: 14px;
+		padding: 6px 4px;
+
+		li {
+			transform: rotate(45deg);
+		}
+
+		a {
+			width: 30px;
+			height: 30px;
+			border-color: #d1d5db;
+			border-radius: 4px;
+			color: #141414;
+			font-size: 12px;
+
+			i,
+			svg {
+				transform: rotate(-45deg);
+			}
+		}
+	}
+
+	&#{$bptm-th-hover} .bptm-img-wrap {
+		transform: rotate(-8deg);
+	}
+}
+
+.bptm-ta-horizontal-9 {
+	.bptm-ta-card {
+		flex-direction: row-reverse;
+	}
+
+	.bptm-ta-info {
+		padding: 10px 28px 10px 0;
+		text-align: right;
+	}
+
+	.bptm-social {
+		justify-content: flex-end;
+	}
+
+	.bptm-social a {
+		border-color: #141414;
+		background: transparent;
+		color: #141414;
+		font-size: 13px;
+	}
+
+	&#{$bptm-th-hover} .bptm-img-wrap {
+		transform: rotate(8deg);
+	}
+}
+
+/* Info-left themes: badges sit on the photo (right) instead of over the name. */
+.bptm-ta-horizontal-7,
+.bptm-ta-horizontal-9 {
+	.bptm-ta-badges {
+		right: 14px;
+		left: auto;
+		align-items: flex-end;
+	}
+}
+
+/* Stacked (narrow card) overrides: must come after the theme rules. */
+@container bptm-ta-h (max-width: 479px) {
+	@include bptm-th-stacked;
+}
+
+@supports not (container-type: inline-size) {
+	@media (max-width: 767px) {
+		@include bptm-th-stacked;
+	}
+}
+
+@container bptm-ta-h (max-width: 479px) {
+	.bptm-ta-horizontal-9 .bptm-ta-info {
+		text-align: center;
+	}
+
+	.bptm-ta-horizontal-9 .bptm-social {
+		justify-content: center;
+	}
+
+	.bptm-ta-horizontal-6 .bptm-ta-info,
+	.bptm-ta-horizontal-7 .bptm-ta-info {
+		border-right: 0;
+		border-left: 0;
+		border-top: 3px solid var(--bptm-accent, #4527a4);
+	}
+
+	.bptm-ta-horizontal-8 .bptm-ta-media,
+	.bptm-ta-horizontal-9 .bptm-ta-media {
+		margin: 0 auto;
+	}
+}

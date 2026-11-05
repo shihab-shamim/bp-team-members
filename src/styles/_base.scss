@@ -1,0 +1,633 @@
+// Base layout + shared member elements (owner: render). Everything is scoped under .bptm-wrap.
+// Breakpoints: desktop ≥1025 · tablet 768–1024 · mobile-portrait 576–767 · mobile <576.
+
+$bptm-bp-tablet: 1024px;
+$bptm-bp-mp: 767px;
+$bptm-bp-mobile: 575px;
+
+@keyframes bptm-fade-up {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 28px, 0);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes bptm-zoom-in {
+	from {
+		opacity: 0;
+		transform: scale(0.94);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes bptm-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.bptm-wrap {
+	--bptm-accent: #4527a4;
+	--bptm-cols-d: 4;
+	--bptm-cols-t: 3;
+	--bptm-cols-mp: 2;
+	--bptm-cols-m: 1;
+	--bptm-cols: var(--bptm-cols-d);
+	--bptm-gap: 30px;
+	--bptm-row-gap: var(--bptm-gap);
+	--bptm-text: #2a2f3a;
+	--bptm-muted: #6b7280;
+	--bptm-line: #e4e6eb;
+	--bptm-surface: #fff;
+	position: relative;
+	box-sizing: border-box;
+	color: inherit;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	[hidden] {
+		display: none !important;
+	}
+
+	@media (max-width: $bptm-bp-tablet) {
+		--bptm-cols: var(--bptm-cols-t);
+	}
+
+	@media (max-width: $bptm-bp-mp) {
+		--bptm-cols: var(--bptm-cols-mp);
+	}
+
+	@media (max-width: $bptm-bp-mobile) {
+		--bptm-cols: var(--bptm-cols-m);
+	}
+
+	.screen-reader-text {
+		position: absolute !important;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border: 0;
+		word-wrap: normal !important;
+	}
+
+	// ------------------------------------------------------------------
+	// Items container
+	// ------------------------------------------------------------------
+	.bptm-stage {
+		position: relative;
+	}
+
+	div.bptm-items {
+		display: grid;
+		// At most --bptm-cols columns; fewer when the block sits in a narrow container
+		// (e.g. a 645px content column) so cards never shrink below --bptm-min-col.
+		grid-template-columns: repeat(var(--bptm-cols), minmax(0, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, max(var(--bptm-min-col, 150px), calc((100% - (var(--bptm-cols) - 1) * var(--bptm-gap)) / var(--bptm-cols) - 0.1px))), 1fr));
+		column-gap: var(--bptm-gap);
+		row-gap: var(--bptm-row-gap);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		transition: opacity 0.25s ease;
+	}
+
+	&.bptm-layout-list div.bptm-items,
+	div.bptm-items--list {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.bptm-group-title {
+		grid-column: 1 / -1;
+		margin: 10px 0 0;
+		padding-block-end: 10px;
+		border-block-end: 1px solid var(--bptm-line);
+
+		h3 {
+			margin: 0;
+			font-size: 1.25em;
+			line-height: 1.3;
+		}
+
+		&:first-child {
+			margin-block-start: 0;
+		}
+	}
+
+	.bptm-table-wrap {
+		width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.bptm-table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	// ------------------------------------------------------------------
+	// Item
+	// ------------------------------------------------------------------
+	.bptm-item {
+		position: relative;
+		min-width: 0;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+
+	&.bptm-align-center .bptm-item {
+		text-align: center;
+	}
+
+	&.bptm-align-left .bptm-item {
+		text-align: start;
+	}
+
+	&.bptm-align-right .bptm-item {
+		text-align: end;
+	}
+
+	.bptm-img-wrap {
+		position: relative;
+		overflow: hidden;
+		line-height: 0;
+	}
+
+	.bptm-img {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+		transition: filter 0.35s ease, transform 0.45s ease;
+	}
+
+	.bptm-img-empty {
+		display: block;
+		width: 100%;
+		aspect-ratio: 1;
+		background: linear-gradient(135deg, #eef0f4, #dfe3ea);
+	}
+
+	.bptm-img-link {
+		display: block;
+	}
+
+	.bptm-vis {
+		display: contents;
+	}
+
+	.bptm-name {
+		margin: 0;
+		color: var(--bptm-name-color, inherit);
+		line-height: 1.3;
+
+		a {
+			color: inherit;
+			text-decoration: none;
+			box-shadow: none;
+		}
+
+		a:hover,
+		a:focus-visible {
+			text-decoration: underline;
+			text-underline-offset: 3px;
+		}
+	}
+
+	.bptm-designation {
+		color: var(--bptm-role-color, var(--bptm-muted));
+		line-height: 1.45;
+	}
+
+	.bptm-details {
+		color: var(--bptm-desc-color, inherit);
+		line-height: 1.65;
+
+		p {
+			margin: 0 0 0.75em;
+		}
+
+		p:last-child {
+			margin-block-end: 0;
+		}
+
+		a {
+			color: var(--bptm-desc-link-color, var(--bptm-accent));
+		}
+	}
+
+	.bptm-details.bptm-scroll {
+		max-height: var(--bptm-desc-max-h, none);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		scrollbar-width: thin;
+		scrollbar-color: color-mix(in srgb, var(--bptm-accent) 45%, transparent) transparent;
+
+		&.is-scrollable {
+			padding-inline-end: 6px;
+		}
+
+		&.is-scrollable:not(.is-end) {
+			mask-image: linear-gradient(to bottom, #000 calc(100% - 22px), transparent);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bptm-accent);
+			outline-offset: 2px;
+		}
+	}
+
+	.bptm-more {
+		color: var(--bptm-desc-link-color, var(--bptm-accent));
+		font-weight: 600;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	// Ribbon + featured badge.
+	.bptm-ribbon {
+		display: inline-block;
+		padding: 4px 12px;
+		background: var(--bptm-ribbon-bg, var(--bptm-accent));
+		color: #fff;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1.5;
+		letter-spacing: 0.02em;
+		border-radius: 3px;
+		z-index: 2;
+	}
+
+	.bptm-img-wrap > .bptm-ribbon {
+		position: absolute;
+		inset-block-start: 14px;
+		inset-inline-end: 0;
+		border-radius: 3px 0 0 3px;
+	}
+
+	.bptm-featured {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: #f5b301;
+		color: #fff;
+		font-size: 14px;
+		line-height: 1;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		z-index: 2;
+	}
+
+	.bptm-img-wrap > .bptm-featured {
+		position: absolute;
+		inset-block-start: 12px;
+		inset-inline-start: 12px;
+	}
+
+	// Skills.
+	.bptm-skills {
+		margin-block: 12px 0;
+		text-align: start;
+	}
+
+	.bptm-skills-title {
+		margin: 0 0 10px;
+		font-size: 1.05em;
+	}
+
+	.bptm-skill + .bptm-skill {
+		margin-block-start: 10px;
+	}
+
+	.bptm-skill-head {
+		display: flex;
+		justify-content: space-between;
+		gap: 10px;
+		margin-block-end: 5px;
+		font-size: 0.875em;
+		line-height: 1.4;
+	}
+
+	.bptm-skill-bar {
+		position: relative;
+		height: 6px;
+		border-radius: 6px;
+		background: color-mix(in srgb, var(--bptm-accent) 14%, #eef0f4);
+		overflow: hidden;
+	}
+
+	.bptm-skill-fill {
+		display: block;
+		width: var(--bptm-skill, 0%);
+		height: 100%;
+		border-radius: inherit;
+		background: var(--bptm-accent);
+		transition: width 1s ease;
+	}
+
+	// Meta details.
+	.bptm-meta {
+		margin: 12px 0 0;
+		padding: 0;
+		list-style: none;
+		color: var(--bptm-info-color, inherit);
+		background: var(--bptm-info-bg, transparent);
+		font-size: 0.9375em;
+		line-height: 1.5;
+
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: var(--bptm-accent);
+		}
+	}
+
+	.bptm-meta-item {
+		margin: 0;
+		padding: 0;
+	}
+
+	.bptm-meta--list {
+		text-align: start;
+
+		.bptm-meta-item {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4px 8px;
+			padding-block: 6px;
+			border-block-end: 1px dashed var(--bptm-line);
+		}
+
+		.bptm-meta-item:last-child {
+			border-block-end: 0;
+		}
+
+		.bptm-meta-label {
+			font-weight: 600;
+			min-width: 110px;
+
+			&::after {
+				content: ":";
+			}
+		}
+	}
+
+	.bptm-meta--icons {
+		.bptm-meta-item {
+			display: flex;
+			align-items: baseline;
+			justify-content: inherit;
+			gap: 10px;
+			padding-block: 3px;
+		}
+	}
+
+	.bptm-meta--inline {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px 16px;
+		justify-content: center;
+
+		.bptm-meta-item {
+			display: inline-flex;
+			gap: 6px;
+			align-items: baseline;
+		}
+	}
+
+	.bptm-meta--table {
+		width: 100%;
+		border-collapse: collapse;
+
+		th,
+		td {
+			padding: 8px 10px;
+			border-block-end: 1px solid var(--bptm-line);
+			text-align: start;
+			vertical-align: top;
+		}
+
+		th {
+			width: 38%;
+			font-weight: 600;
+		}
+	}
+
+	.bptm-meta-icon {
+		flex: 0 0 auto;
+		width: 1.1em;
+		color: var(--bptm-info-icon-color, var(--bptm-accent));
+		text-align: center;
+	}
+
+	// vCard + read more.
+	.bptm-vcard {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin-block-start: 12px;
+		color: var(--bptm-accent);
+		font-weight: 600;
+		font-size: 0.9375em;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.bptm-readmore {
+		margin-block-start: 14px;
+	}
+
+	.bptm-readmore-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 8px 20px;
+		border: 1px solid var(--bptm-accent);
+		border-radius: 4px;
+		color: var(--bptm-accent);
+		font-size: 0.875em;
+		font-weight: 600;
+		line-height: 1.4;
+		text-decoration: none;
+		transition: background-color 0.25s ease, color 0.25s ease;
+
+		&:hover,
+		&:focus-visible {
+			background: var(--bptm-accent);
+			color: #fff;
+		}
+	}
+
+	// ACF block.
+	.bptm-acf {
+		margin-block-start: 14px;
+		text-align: start;
+	}
+
+	.bptm-acf-title {
+		margin: 0 0 6px;
+		font-size: 1em;
+	}
+
+	// Empty state.
+	.bptm-no-members {
+		grid-column: 1 / -1;
+		padding: 40px 20px;
+		border: 1px dashed var(--bptm-line);
+		border-radius: 8px;
+		color: var(--bptm-muted);
+		text-align: center;
+	}
+
+	.bptm-stage > .bptm-no-results {
+		margin-block-start: 10px;
+	}
+
+	// Current item (open in popup / drawer).
+	.bptm-item.is-current {
+		z-index: 1;
+	}
+
+	// Loading state (ajax pagination / filter).
+	&.is-loading .bptm-stage .bptm-items {
+		opacity: 0.45;
+		pointer-events: none;
+	}
+
+	&.is-loading .bptm-stage::after {
+		content: "";
+		position: absolute;
+		inset-block-start: 80px;
+		inset-inline-start: 50%;
+		width: 34px;
+		height: 34px;
+		margin-inline-start: -17px;
+		border: 3px solid color-mix(in srgb, var(--bptm-accent) 25%, transparent);
+		border-block-start-color: var(--bptm-accent);
+		border-radius: 50%;
+		animation: bptm-spin 0.8s linear infinite;
+	}
+
+	&.bptm-view-carousel.is-loading .bptm-stage::after,
+	&.is-loading .bptm-stage:has(+ .bptm-loadmore-wrap)::after,
+	&.is-loading .bptm-stage:has(+ .bptm-infinite)::after {
+		display: none;
+	}
+
+	&.is-loading .bptm-stage:has(+ .bptm-loadmore-wrap) .bptm-items,
+	&.is-loading .bptm-stage:has(+ .bptm-infinite) .bptm-items {
+		opacity: 1;
+	}
+}
+
+// ----------------------------------------------------------------------
+// Scroll-in animation (only once JS runs, so content is never hidden without JS)
+// ----------------------------------------------------------------------
+.bptm-wrap.bptm-js.bptm-has-anim .bptm-anim:not(.bptm-in) {
+	opacity: 0;
+}
+
+.bptm-wrap.bptm-has-anim .bptm-anim.bptm-in {
+	animation: bptm-fade-up 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) var(--bptm-anim-delay, 0ms) backwards;
+}
+
+.bptm-wrap .bptm-item.bptm-filter-in {
+	animation: bptm-zoom-in 0.35s ease backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bptm-wrap.bptm-js.bptm-has-anim .bptm-anim:not(.bptm-in) {
+		opacity: 1;
+	}
+
+	.bptm-wrap .bptm-anim.bptm-in,
+	.bptm-wrap .bptm-item.bptm-filter-in {
+		animation: none;
+	}
+
+	.bptm-wrap .bptm-img,
+	.bptm-wrap .bptm-skill-fill {
+		transition: none;
+	}
+}
+
+// ----------------------------------------------------------------------
+// Image filters (normal + hover)
+// ----------------------------------------------------------------------
+$bptm-img-filters: (
+	blur: blur(3px),
+	brightness: brightness(1.35),
+	contrast: contrast(1.5),
+	grayscale: grayscale(1),
+	hue_rotate: hue-rotate(90deg),
+	invert: invert(0.85),
+	opacity: opacity(0.6),
+	saturate: saturate(2),
+	sepia: sepia(0.9),
+);
+
+@each $name, $fx in $bptm-img-filters {
+	.bptm-wrap.bptm-imgfx-#{$name} .bptm-item .bptm-img {
+		filter: $fx;
+	}
+
+	.bptm-wrap.bptm-imghfx-#{$name} .bptm-item:hover .bptm-img,
+	.bptm-wrap.bptm-imghfx-#{$name} .bptm-item:focus-within .bptm-img {
+		filter: $fx;
+	}
+}
+
+// When a base filter is set but no hover filter, hovering restores the original image (GS behaviour).
+.bptm-wrap[class*="bptm-imgfx-"]:not([class*="bptm-imghfx-"]) .bptm-item:hover .bptm-img {
+	filter: none;
+}
+
+// ----------------------------------------------------------------------
+// Per-device visibility classes (Visibility::classes())
+// ----------------------------------------------------------------------
+@media (min-width: 1025px) {
+	.bptm-hide-desktop {
+		display: none !important;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	.bptm-hide-tablet {
+		display: none !important;
+	}
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+	.bptm-hide-mobile-portrait {
+		display: none !important;
+	}
+}
+
+@media (max-width: 575px) {
+	.bptm-hide-mobile {
+		display: none !important;
+	}
+}

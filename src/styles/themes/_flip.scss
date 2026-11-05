@@ -1,0 +1,518 @@
+// Item themes: Flip 1-6 (owner: themes-a). Shared .bptm-ta base lives in _grid.scss.
+//
+// Flip trigger: hover, keyboard focus inside the item, or an `is-flipped` /
+// `is-active` class (frontend JS may toggle it on tap).
+
+$bptm-tf-flip: ":is(:hover, :focus-within, .is-flipped, .is-active)";
+$bptm-tf-ease: cubic-bezier(0.45, 0.05, 0.25, 1);
+
+.bptm-ta-flip {
+	.bptm-ta-flipbox {
+		position: relative;
+		perspective: 1400px;
+	}
+
+	.bptm-ta-face {
+		border-radius: inherit;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		overflow: hidden;
+		transition: transform 0.75s $bptm-tf-ease, opacity 0.75s ease, visibility 0.75s;
+	}
+
+	.bptm-ta-front {
+		position: relative;
+		z-index: 2;
+		transform: rotateY(0deg);
+	}
+
+	.bptm-ta-back {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		visibility: hidden;
+		transform: rotateY(180deg);
+		color: #fff;
+	}
+
+	.bptm-ta-back-inner {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 26px 22px;
+		overflow: auto;
+		text-align: center;
+
+		> :first-child {
+			margin-top: 0;
+		}
+
+		.bptm-name,
+		.bptm-name a {
+			color: var(--bptm-name-color, #fff);
+		}
+
+		.bptm-designation {
+			color: var(--bptm-role-color, rgba(255, 255, 255, 0.85));
+		}
+
+		.bptm-details {
+			color: var(--bptm-desc-color, rgba(255, 255, 255, 0.88));
+			font-size: 0.9rem;
+
+			a {
+				color: var(--bptm-desc-link-color, #fff);
+			}
+		}
+
+		.bptm-meta,
+		.bptm-meta a {
+			color: var(--bptm-info-color, rgba(255, 255, 255, 0.92));
+		}
+
+		.bptm-meta i,
+		.bptm-meta svg {
+			color: var(--bptm-info-icon-color, #fff);
+		}
+
+		.bptm-social a {
+			border-color: rgba(255, 255, 255, 0.55);
+			background: transparent;
+			color: #fff;
+
+			&:hover,
+			&:focus-visible {
+				border-color: transparent;
+				background: var(--bptm-hover-icon-bg, #fff);
+				color: #111827;
+			}
+		}
+	}
+
+	.bptm-ta-info {
+		padding: var(--bptm-item-padding, 20px 6px 0);
+	}
+
+	.bptm-name {
+		font-weight: 700;
+	}
+
+	&.bptm-ta-has-flip .bptm-ta-flipbox#{$bptm-tf-flip},
+	&.bptm-ta-has-flip#{$bptm-tf-flip} .bptm-ta-flipbox {
+		.bptm-ta-front {
+			transform: rotateY(-180deg);
+			visibility: hidden;
+		}
+
+		.bptm-ta-back {
+			visibility: visible;
+			transform: rotateY(0deg);
+		}
+	}
+
+	// No back content: plain (non-flipping) photo with a gentle zoom.
+	&:not(.bptm-ta-has-flip) .bptm-ta-flipbox:hover .bptm-img-wrap img {
+		transform: scale(1.06);
+	}
+
+	.bptm-ta-static {
+		text-align: center;
+	}
+}
+
+/* Flip 1 — leaf shape, navy back ----------------------------------------- */
+.bptm-ta-flip-1 {
+	.bptm-ta-flipbox {
+		border-radius: var(--bptm-radius, 0 36px 0 36px);
+	}
+
+	.bptm-img-wrap {
+		aspect-ratio: 10 / 13;
+	}
+
+	.bptm-ta-back {
+		background: var(--bptm-info-bg, rgba(13, 39, 88, 0.96));
+		box-shadow: 0 20px 45px rgba(13, 39, 88, 0.25);
+	}
+
+	.bptm-ta-back-inner .bptm-meta i,
+	.bptm-ta-back-inner .bptm-meta svg {
+		color: var(--bptm-info-icon-color, #2dd4bf);
+	}
+}
+
+/* Flip 2 — round, warm gradient back ------------------------------------- */
+.bptm-ta-flip-2 {
+	.bptm-ta-flipbox {
+		width: 84%;
+		max-width: 320px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+
+	.bptm-img-wrap {
+		aspect-ratio: 1 / 1;
+		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+	}
+
+	.bptm-ta-back {
+		background: var(--bptm-info-bg, linear-gradient(105deg, rgba(252, 165, 100, 0.95) 10%, #fd5a80 90%));
+	}
+
+	.bptm-ta-back-inner {
+		padding: 14% 13%;
+		overflow: hidden;
+
+		.bptm-details {
+			flex: 0 1 auto;
+			min-height: 0;
+			overflow: hidden;
+			font-size: 0.84rem;
+			line-height: 1.5;
+
+			p {
+				display: -webkit-box;
+				overflow: hidden;
+				-webkit-line-clamp: 3;
+				-webkit-box-orient: vertical;
+			}
+		}
+
+		ul.bptm-meta {
+			gap: 3px;
+			font-size: 0.8rem;
+
+			li {
+				min-width: 0;
+				word-break: normal;
+			}
+
+			.bptm-meta-value {
+				min-width: 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
+
+		.bptm-ta-extras {
+			max-width: 100%;
+			margin-top: 8px;
+		}
+
+		.bptm-social {
+			flex: 0 0 auto;
+			flex-wrap: nowrap;
+			gap: 5px;
+			margin-top: 10px;
+		}
+
+		.bptm-social a {
+			width: 30px;
+			height: 30px;
+			font-size: 12px;
+		}
+	}
+}
+
+// Small discs: drop the description so contact details and icons still fit.
+.bptm-ta-flip-2 .bptm-ta-flipbox {
+	container-type: inline-size;
+}
+
+@container (max-width: 210px) {
+	.bptm-ta-flip-2 .bptm-ta-back-inner .bptm-details {
+		display: none;
+	}
+}
+
+/* Flip 3 — square card, vertical flip, white footer ---------------------- */
+.bptm-ta-flip-3 {
+	.bptm-ta-card {
+		overflow: hidden;
+		border-radius: var(--bptm-radius, 4px);
+		background: var(--bptm-item-bg, #fff);
+		box-shadow: var(--bptm-shadow, 0 18px 45px rgba(12, 21, 41, 0.1));
+	}
+
+	.bptm-img-wrap {
+		aspect-ratio: 1 / 1;
+	}
+
+	.bptm-ta-front {
+		transform: rotateX(0deg);
+	}
+
+	.bptm-ta-back {
+		transform: rotateX(180deg);
+		background: var(--bptm-info-bg, rgba(13, 39, 88, 0.95));
+	}
+
+	&.bptm-ta-has-flip .bptm-ta-flipbox#{$bptm-tf-flip},
+	&.bptm-ta-has-flip#{$bptm-tf-flip} .bptm-ta-flipbox {
+		.bptm-ta-front {
+			transform: rotateX(180deg);
+		}
+
+		.bptm-ta-back {
+			transform: rotateX(0deg);
+		}
+	}
+
+	.bptm-ta-info {
+		position: relative;
+		padding: var(--bptm-item-padding, 20px 24px 22px);
+		text-align: left;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 22px;
+			bottom: 22px;
+			left: 0;
+			width: 4px;
+			background: var(--bptm-accent, #4527a4);
+		}
+	}
+
+	&#{$bptm-tf-flip} .bptm-ta-card {
+		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, #fff));
+	}
+}
+
+/* Flip 4 — tall capsule, violet gradient back ---------------------------- */
+.bptm-ta-flip-4 {
+	.bptm-ta-flipbox {
+		width: 86%;
+		max-width: 300px;
+		margin: 0 auto;
+		border-radius: var(--bptm-radius, 999px);
+	}
+
+	.bptm-img-wrap {
+		aspect-ratio: 3 / 4.3;
+	}
+
+	.bptm-ta-back {
+		background: var(--bptm-info-bg, linear-gradient(35deg, #b71cea, #680bec));
+	}
+
+	.bptm-ta-back-inner {
+		padding: 22% 14%;
+
+		.bptm-name {
+			font-size: 1.25rem;
+		}
+
+		.bptm-designation {
+			margin-bottom: 8px;
+		}
+
+		.bptm-meta {
+			font-size: 0.85rem;
+		}
+
+		.bptm-social a {
+			width: auto;
+			height: auto;
+			padding: 4px;
+			border: 0;
+			background: none;
+			color: rgba(255, 255, 255, 0.85);
+			font-size: 16px;
+
+			&:hover,
+			&:focus-visible {
+				background: none;
+				color: #fff;
+				transform: translateY(-3px);
+			}
+		}
+	}
+
+	.bptm-ta-static {
+		margin-top: 0;
+		padding: 26px 18px;
+		border-radius: var(--bptm-radius, 28px);
+		background: var(--bptm-info-bg, linear-gradient(35deg, #b71cea, #680bec));
+		color: #fff;
+	}
+}
+
+/* Flip 5 — photo glides up, gradient panel slides in --------------------- */
+.bptm-ta-flip-5 {
+	.bptm-ta-card {
+		overflow: hidden;
+		border-radius: var(--bptm-radius, 20px);
+		background: var(--bptm-item-bg, #fff);
+		box-shadow: var(--bptm-shadow, 0 18px 40px rgba(12, 21, 41, 0.1));
+	}
+
+	> .bptm-ta-card > .bptm-img-wrap {
+		aspect-ratio: 4 / 5;
+
+		img {
+			transition: transform 0.55s $bptm-tf-ease;
+		}
+	}
+
+	.bptm-ta-info {
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--bptm-item-padding, 24px 20px);
+		background: var(--bptm-info-bg, linear-gradient(105deg, #fca564 7%, #fd5a80));
+		transform: translateY(100%);
+		transition: transform 0.55s $bptm-tf-ease;
+	}
+
+	.bptm-ta-info-inner {
+		max-height: 100%;
+		overflow: auto;
+		text-align: center;
+	}
+
+	.bptm-ta-avatar {
+		width: 46%;
+		min-width: 80px;
+		max-width: 150px;
+		margin: 0 auto 14px;
+
+		.bptm-img-link {
+			pointer-events: none;
+		}
+
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+			aspect-ratio: 1 / 1;
+			object-fit: cover;
+			border: 5px solid rgba(255, 255, 255, 0.85);
+			border-radius: 50%;
+		}
+	}
+
+	.bptm-name,
+	.bptm-name a {
+		color: var(--bptm-name-color, #fff);
+	}
+
+	.bptm-designation {
+		color: var(--bptm-role-color, rgba(255, 255, 255, 0.9));
+	}
+
+	.bptm-details {
+		color: var(--bptm-desc-color, rgba(255, 255, 255, 0.9));
+	}
+
+	.bptm-meta,
+	.bptm-meta i,
+	.bptm-meta svg {
+		color: var(--bptm-info-color, #fff);
+	}
+
+	.bptm-social a {
+		border-color: rgba(255, 255, 255, 0.55);
+		background: transparent;
+		color: #fff;
+	}
+
+	&#{$bptm-tf-flip} {
+		> .bptm-ta-card > .bptm-img-wrap img {
+			transform: translateY(-40%);
+		}
+
+		.bptm-ta-info {
+			transform: none;
+		}
+	}
+
+	&.bptm-ta-no-thumb .bptm-ta-info {
+		position: static;
+		transform: none;
+	}
+}
+
+/* Flip 6 — caption front, flip-image back --------------------------------- */
+.bptm-ta-flip-6 {
+	.bptm-ta-flipbox {
+		border-radius: var(--bptm-radius, 14px);
+		box-shadow: var(--bptm-shadow, 0 18px 40px rgba(12, 21, 41, 0.14));
+	}
+
+	.bptm-ta-front .bptm-img-wrap {
+		aspect-ratio: 4 / 5;
+	}
+
+	.bptm-ta-caption {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		padding: 48px 18px 18px;
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.72) 100%);
+		color: #fff;
+		text-align: left;
+		pointer-events: none;
+	}
+
+	.bptm-ta-caption-name {
+		color: var(--bptm-name-color, #fff);
+		font-size: 1.15rem;
+		font-weight: 700;
+		line-height: 1.3;
+	}
+
+	.bptm-ta-caption-role {
+		color: var(--bptm-role-color, rgba(255, 255, 255, 0.85));
+		font-size: 0.88rem;
+	}
+
+	.bptm-ta-back {
+		background: #111827;
+		transform: rotateY(-180deg);
+	}
+
+	.bptm-ta-back-img {
+		position: absolute;
+		inset: 0;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transform: scale(1.04);
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: var(--bptm-info-bg, linear-gradient(160deg, rgba(17, 24, 39, 0.72), rgba(69, 39, 164, 0.82)));
+		}
+	}
+
+	&.bptm-ta-has-flip .bptm-ta-flipbox#{$bptm-tf-flip},
+	&.bptm-ta-has-flip#{$bptm-tf-flip} .bptm-ta-flipbox {
+		.bptm-ta-front {
+			transform: rotateY(180deg);
+		}
+	}
+
+	.bptm-ta-static {
+		margin-top: 0;
+	}
+}
