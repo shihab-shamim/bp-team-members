@@ -218,6 +218,26 @@ function bptm_get_tax_option( $key, $default = null ) {
 }
 
 /**
+ * Normalize an archive page slug: each path segment is sanitized, so a nested slug such as
+ * "about/team" stays "about/team" (used for the rewrite rules and for every archive link).
+ * Full http(s) URLs are returned as-is (escaped), they point the archive link elsewhere.
+ *
+ * @param string|null $raw Raw value (null = read the saved preference).
+ * @return string '' when empty.
+ */
+function bptm_archive_page_slug( $raw = null ) {
+	$raw = trim( (string) ( null === $raw ? bptm_get_option( 'archive_page_slug', '' ) : $raw ) );
+	if ( '' === $raw ) {
+		return '';
+	}
+	if ( preg_match( '#^https?://#i', $raw ) ) {
+		return esc_url_raw( $raw );
+	}
+	$parts = array_filter( array_map( 'sanitize_title', explode( '/', $raw ) ), 'strlen' );
+	return implode( '/', $parts );
+}
+
+/**
  * All member taxonomies with their current settings.
  *
  * @return array key => ['taxonomy','label','plural','enabled','archive','slug']
@@ -363,11 +383,22 @@ function bptm_sanitize_social_link( $link, $icon = '' ) {
 	}
 	if ( is_email( $link ) ) {
 		$link = 'mailto:' . $link;
-	} elseif ( preg_match( '/^\+?[0-9 ().-]{5,}$/', $link ) && false !== strpos( $icon, 'phone' ) ) {
+	} elseif ( preg_match( '/^\+?[0-9 ().-]{5,}$/', $link ) && bptm_is_phone_icon( $icon ) ) {
 		$link = 'tel:' . preg_replace( '/[^0-9+]/', '', $link );
 	}
 	$protocols = array_merge( wp_allowed_protocols(), array( 'skype', 'whatsapp', 'viber', 'tg', 'callto' ) );
 	return esc_url_raw( $link, array_unique( $protocols ) );
+}
+
+/**
+ * Whether an icon class is a phone icon (fa-phone, fa-phone-*, fa-square-phone*, fa-mobile*),
+ * as opposed to icons that merely contain "phone" (fa-microphone, fa-headphones…).
+ *
+ * @param string $icon Icon class string.
+ * @return bool
+ */
+function bptm_is_phone_icon( $icon ) {
+	return (bool) preg_match( '/(?:^|\s)fa-(?:phone(?:-[a-z0-9-]+)?|square-phone(?:-[a-z0-9-]+)?|mobile(?:-[a-z0-9-]+)?)(?:\s|$)/', strtolower( (string) $icon ) );
 }
 
 /**
@@ -447,15 +478,31 @@ function bptm_sanitize_skills( $value ) {
  * @return string
  */
 function bptm_sanitize_email_list( $value ) {
-	$parts = preg_split( '/[;,\s]+/', (string) $value );
-	$valid = array();
+	return implode( ',', bptm_parse_email_list( $value ) );
+}
+
+/**
+ * Split an email list into valid and invalid addresses. Invalid entries are rejected as a
+ * whole instead of being "repaired" (sanitize_email() turns "a@x.com?body=x" into "a@x.combodyx").
+ *
+ * @param string $value   Raw value (addresses separated by comma, semicolon or whitespace).
+ * @param array  $invalid Filled with the rejected entries.
+ * @return array Valid addresses (unique).
+ */
+function bptm_parse_email_list( $value, &$invalid = array() ) {
+	$invalid = array();
+	$parts   = preg_split( '/[;,\s]+/', is_scalar( $value ) ? (string) $value : '', -1, PREG_SPLIT_NO_EMPTY );
+	$valid   = array();
 	foreach ( (array) $parts as $part ) {
+		$part  = trim( $part );
 		$email = sanitize_email( $part );
-		if ( $email && is_email( $email ) ) {
+		if ( $email && $email === $part && is_email( $email ) ) {
 			$valid[] = $email;
+		} elseif ( '' !== $part ) {
+			$invalid[] = $part;
 		}
 	}
-	return implode( ',', array_unique( $valid ) );
+	return array_values( array_unique( $valid ) );
 }
 
 /**

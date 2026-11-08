@@ -140,7 +140,7 @@ class Admin_Columns {
 	 */
 	public static function sortable( $columns ) {
 		$columns['bptm_designation'] = 'bptm_designation';
-		$columns['bptm_featured']    = 'bptm_featured';
+		$columns['bptm_featured']    = array( 'bptm_featured', true ); // First click: featured first.
 		$columns['bptm_order']       = 'menu_order';
 		return $columns;
 	}
@@ -181,38 +181,12 @@ class Admin_Columns {
 		}
 
 		$orderby = $query->get( 'orderby' );
-		if ( 'bptm_designation' === $orderby ) {
-			$query->set(
-				'meta_query',
-				array(
-					'relation'    => 'OR',
-					'bptm_des'    => array(
-						'key'     => '_bptm_designation',
-						'compare' => 'EXISTS',
-					),
-					'bptm_no_des' => array(
-						'key'     => '_bptm_designation',
-						'compare' => 'NOT EXISTS',
-					),
-				)
-			);
-			$query->set( 'orderby', 'bptm_des' );
-		} elseif ( 'bptm_featured' === $orderby ) {
-			$query->set(
-				'meta_query',
-				array(
-					'relation'    => 'OR',
-					'bptm_feat'   => array(
-						'key'     => '_bptm_featured',
-						'compare' => 'EXISTS',
-					),
-					'bptm_nofeat' => array(
-						'key'     => '_bptm_featured',
-						'compare' => 'NOT EXISTS',
-					),
-				)
-			);
-			$query->set( 'orderby', array( 'bptm_feat' => $query->get( 'order' ) ? $query->get( 'order' ) : 'DESC', 'title' => 'ASC' ) );
+		if ( 'bptm_designation' === $orderby || 'bptm_featured' === $orderby ) {
+			// An EXISTS / NOT EXISTS meta_query pair joins postmeta without limiting the key, so members
+			// without the key were sorted by an arbitrary other meta value. Join exactly one row instead.
+			$query->set( 'bptm_admin_sort', $orderby );
+			$query->set( 'orderby', 'none' );
+			add_filter( 'posts_clauses', array( __CLASS__, 'sort_clauses' ), 10, 2 );
 		} elseif ( empty( $orderby ) ) {
 			$query->set(
 				'orderby',
@@ -222,6 +196,34 @@ class Admin_Columns {
 				)
 			);
 		}
+	}
+
+	/**
+	 * ORDER BY for the Designation / Featured columns, reading exactly the column's meta key
+	 * (correlated subquery: no join, so no duplicate rows and no arbitrary meta values).
+	 * Featured: featured members form one group (first for DESC, last for ASC), then title A-Z.
+	 * Designation: members without one always last, then title A-Z.
+	 *
+	 * @param array     $clauses Query clauses.
+	 * @param \WP_Query $query   Query.
+	 * @return array
+	 */
+	public static function sort_clauses( $clauses, $query ) {
+		$sort = $query->get( 'bptm_admin_sort' );
+		if ( ! in_array( $sort, array( 'bptm_designation', 'bptm_featured' ), true ) ) {
+			return $clauses;
+		}
+		global $wpdb;
+		$order = 'ASC' === strtoupper( (string) $query->get( 'order' ) ) ? 'ASC' : 'DESC';
+		$key   = 'bptm_featured' === $sort ? '_bptm_featured' : '_bptm_designation';
+		$value = $wpdb->prepare( "( SELECT MAX( bptm_sort.meta_value ) FROM {$wpdb->postmeta} AS bptm_sort WHERE bptm_sort.post_id = {$wpdb->posts}.ID AND bptm_sort.meta_key = %s )", $key ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$tie   = "{$wpdb->posts}.post_title ASC, {$wpdb->posts}.ID ASC";
+		if ( 'bptm_featured' === $sort ) {
+			$clauses['orderby'] = "( COALESCE( {$value}, '' ) = '1' ) {$order}, {$tie}";
+		} else {
+			$clauses['orderby'] = "( COALESCE( {$value}, '' ) = '' ) ASC, {$value} {$order}, {$tie}";
+		}
+		return $clauses;
 	}
 
 	/**

@@ -985,3 +985,14 @@ $bptm-ta-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 		}
 	}
 }
+
+/* Grid 6: block shadow / hover background on the card. */
+.bptm-ta-grid-6 {
+	> .bptm-ta-card {
+		box-shadow: var(--bptm-shadow, none);
+	}
+
+	&#{$bptm-ta-hover} > .bptm-ta-card {
+		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, transparent));
+	}
+}

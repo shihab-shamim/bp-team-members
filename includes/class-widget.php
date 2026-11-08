@@ -92,7 +92,7 @@ class Widget extends \WP_Widget {
 				'group'   => $i['group'],
 				'columns' => (string) $i['columns'],
 				'orderby' => $i['orderby'],
-				'order'   => $i['order'],
+				'order'   => 'ASC' === strtoupper( (string) $i['order'] ) ? 'ASC' : 'DESC',
 				'link'    => $i['link'],
 			)
 		);
@@ -250,7 +250,7 @@ class Widget extends \WP_Widget {
 			'theme'    => isset( $themes[ $theme ] ) || ! $themes ? $theme : $d['theme'],
 			'columns'  => isset( $n['columns'] ) ? max( 1, min( 4, (int) $n['columns'] ) ) : 1,
 			'orderby'  => array_key_exists( $orderby, Quick::orderby_choices() ) ? $orderby : $d['orderby'],
-			'order'    => isset( $n['order'] ) && 'ASC' === $n['order'] ? 'ASC' : 'DESC',
+			'order'    => isset( $n['order'] ) && is_scalar( $n['order'] ) && 'ASC' === strtoupper( trim( (string) $n['order'] ) ) ? 'ASC' : 'DESC',
 			'link'     => array_key_exists( $link, Quick::link_choices() ) ? $link : $d['link'],
 		);
 	}

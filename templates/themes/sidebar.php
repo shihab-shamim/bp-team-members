@@ -16,7 +16,8 @@ $bptm_img     = $ctx->image( $m, 'bptm-img' );
 $bptm_badges  = $ctx->ribbon( $m ) . $ctx->featured_badge( $m );
 ?>
 <div <?php echo $ctx->item_attrs( $m, array( 'bptm-sb', 'bptm-sb-' . $bptm_variant, $bptm_img ? 'bptm-sb-has-img' : 'bptm-sb-no-img' ) ); ?>>
-	<div class="bptm-sb-card">
+	<?php // .bptm-tb-card: the render style sheet draws the item border settings on it. ?>
+	<div class="bptm-sb-card bptm-tb-card">
 		<?php if ( $bptm_img ) : ?>
 			<div class="<?php echo $ctx->vis_classes( 'thumbnail', 'bptm-img-wrap bptm-sb-media' ); ?>">
 				<?php echo $bptm_img; ?>

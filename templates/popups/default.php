@@ -13,14 +13,14 @@
 defined( 'ABSPATH' ) || exit;
 
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- every fragment is escaped by the bptm_tb_* helpers / Context.
-$bptm_d = bptm_tb_detail_parts( $ctx, $m, array( 'img', 'name', 'role', 'social_plain', 'desc', 'meta', 'skills' ) );
+$bptm_d = bptm_tb_detail_parts( $ctx, $m, array( 'img', 'badges', 'name', 'role', 'social_plain', 'desc', 'meta', 'skills' ) );
 $bptm_cols = 'one' === bptm_tb_attr( $ctx, 'popupColumns', 'two' ) ? 'one' : 'two';
 ?>
 <div class="<?php echo bptm_tb_detail_classes( $ctx, $m, 'popup', 'default', array( 'bptm-dv--cols-' . $bptm_cols ) ); ?>">
 	<?php if ( 'one' === $bptm_cols ) : ?>
 		<?php if ( $bptm_d['img'] ) : ?>
 			<div class="bptm-dv-media">
-				<?php echo $bptm_d['img']; ?>
+				<?php echo $bptm_d['img'] . $bptm_d['badges']; ?>
 			</div>
 		<?php endif; ?>
 		<div class="bptm-dv-body">
@@ -30,7 +30,7 @@ $bptm_cols = 'one' === bptm_tb_attr( $ctx, 'popupColumns', 'two' ) ? 'one' : 'tw
 		<div class="bptm-dv-side">
 			<?php if ( $bptm_d['img'] ) : ?>
 				<div class="bptm-dv-media">
-					<?php echo $bptm_d['img']; ?>
+					<?php echo $bptm_d['img'] . $bptm_d['badges']; ?>
 				</div>
 			<?php endif; ?>
 			<?php echo $bptm_d['meta']; ?>

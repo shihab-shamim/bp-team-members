@@ -442,6 +442,30 @@ class Query {
 		$found          = (int) $this->wp_query->found_posts;
 		$num            = (int) $this->atts['numberOfMembers'];
 		$this->total    = $num > 0 ? min( $found, $num ) : $found;
+
+		// Out-of-range page (e.g. ?bptm-page-x=99, or members removed since the link was shared):
+		// WP_Query returns nothing and no found_posts, so count separately and clamp to the last page.
+		if ( $this->page > 1 && empty( $this->wp_query->posts ) && in_array( $this->mode, array( 'normal-pagination', 'ajax-pagination' ), true ) ) {
+			$requested             = $this->page;
+			$saved_runtime         = $this->runtime;
+			$this->runtime['page'] = 1; // Page-1 args: same filters, no out-of-range offset / numberOfMembers cap.
+			$count_args            = $this->args();
+			$count_args['posts_per_page'] = 1;
+			$count_args['fields']         = 'ids';
+			$counter                      = new \WP_Query( $count_args );
+			$found                        = (int) $counter->found_posts;
+			$this->total                  = $num > 0 ? min( $found, $num ) : $found;
+			$last                         = $this->max_pages();
+			$this->runtime['page']        = $last >= 1 && $last < $requested ? $last : $requested;
+			$args                         = $this->args();
+			if ( $this->page !== $requested ) {
+				$this->wp_query = new \WP_Query( $args );
+				$found          = (int) $this->wp_query->found_posts;
+				$this->total    = $num > 0 ? min( $found, $num ) : $found;
+			} else {
+				$this->runtime = $saved_runtime; // Nothing to clamp to (no members): keep the original state.
+			}
+		}
 		return $this->wp_query;
 	}
 

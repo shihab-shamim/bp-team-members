@@ -22,6 +22,13 @@ class Importer {
 	const BATCH      = 5;
 
 	/**
+	 * Fields rejected by the last save_member() call: list of [ field, raw value ].
+	 *
+	 * @var array
+	 */
+	public static $last_rejected = array();
+
+	/**
 	 * Hooks.
 	 */
 	public static function init() {
@@ -74,6 +81,21 @@ class Importer {
 	}
 
 	/**
+	 * Human labels of the scalar fields (CSV import report).
+	 *
+	 * @return array
+	 */
+	public static function field_labels() {
+		$out = array();
+		if ( class_exists( __NAMESPACE__ . '\Meta_Boxes' ) ) {
+			foreach ( Meta_Boxes::detail_fields() as $name => $field ) {
+				$out[ $name ] = $field[1] . ' (' . $name . ')';
+			}
+		}
+		return $out;
+	}
+
+	/**
 	 * Sanitize a scalar member field.
 	 *
 	 * @param string $field Field key.
@@ -86,9 +108,12 @@ class Importer {
 			case 'company_website':
 			case 'vcard':
 			case 'custom_page':
-				return esc_url_raw( $value );
+				return CPT::sanitize_url( $value );
 			case 'email':
-				return sanitize_email( $value );
+				return CPT::sanitize_email( $value );
+			case 'email_cc':
+			case 'email_bcc':
+				return bptm_sanitize_email_list( $value );
 			case 'featured':
 				return Settings::to_bool( $value ) ? '1' : '';
 		}
@@ -102,6 +127,10 @@ class Importer {
 	 * @return array
 	 */
 	public static function sanitize_social( $rows ) {
+		if ( function_exists( 'bptm_sanitize_social' ) ) {
+			// Same rules as the meta registration (mailto:/tel: detection for phone icons only).
+			return bptm_sanitize_social( $rows );
+		}
 		$out = array();
 		foreach ( (array) $rows as $row ) {
 			if ( ! is_array( $row ) || empty( $row['icon'] ) || empty( $row['link'] ) ) {
@@ -154,24 +183,48 @@ class Importer {
 	 * @return int|\WP_Error Post ID.
 	 */
 	public static function save_member( array $data, $post_id = 0 ) {
+		self::$last_rejected = array();
 		$name = isset( $data['name'] ) ? sanitize_text_field( (string) $data['name'] ) : '';
 		if ( '' === $name ) {
 			return new \WP_Error( 'bptm_no_name', __( 'Member name is required.', 'bp-team-member' ) );
 		}
 
-		$status = isset( $data['status'] ) ? sanitize_key( $data['status'] ) : 'publish';
-		if ( ! in_array( $status, array( 'publish', 'draft', 'pending', 'private' ), true ) ) {
-			$status = 'publish';
-		}
+		$is_update = (bool) $post_id;
 
+		// Update mode only touches the post fields present in $data: a CSV without a
+		// description / excerpt / status / menu_order column must not wipe or reset them.
 		$post = array(
-			'post_type'    => 'bptm_member',
-			'post_title'   => $name,
-			'post_content' => isset( $data['content'] ) ? wp_kses_post( (string) $data['content'] ) : '',
-			'post_excerpt' => isset( $data['excerpt'] ) ? sanitize_textarea_field( (string) $data['excerpt'] ) : '',
-			'post_status'  => $status,
-			'menu_order'   => isset( $data['menu_order'] ) ? (int) $data['menu_order'] : 0,
+			'post_type'  => 'bptm_member',
+			'post_title' => $name,
 		);
+		if ( ! $is_update || array_key_exists( 'content', $data ) ) {
+			$post['post_content'] = isset( $data['content'] ) ? wp_kses_post( (string) $data['content'] ) : '';
+		}
+		if ( ! $is_update || array_key_exists( 'excerpt', $data ) ) {
+			$post['post_excerpt'] = isset( $data['excerpt'] ) ? sanitize_textarea_field( (string) $data['excerpt'] ) : '';
+		}
+		if ( ! $is_update || ( isset( $data['status'] ) && '' !== (string) $data['status'] ) ) {
+			$status = isset( $data['status'] ) ? sanitize_key( $data['status'] ) : 'publish';
+			if ( ! in_array( $status, array( 'publish', 'draft', 'pending', 'private', 'future' ), true ) ) {
+				$status = 'publish';
+			}
+			$post['post_status'] = $status;
+		}
+		if ( ! $is_update || ( isset( $data['menu_order'] ) && '' !== (string) $data['menu_order'] ) ) {
+			$post['menu_order'] = isset( $data['menu_order'] ) ? (int) $data['menu_order'] : 0;
+		}
+		if ( array_key_exists( 'password', $data ) && is_scalar( $data['password'] ) ) {
+			$post['post_password'] = substr( trim( (string) $data['password'] ), 0, 255 );
+		}
+		// Original dates (JSON export): needed so scheduled members stay scheduled.
+		foreach ( array( 'date' => 'post_date', 'date_gmt' => 'post_date_gmt' ) as $field => $column ) {
+			if ( ! empty( $data[ $field ] ) && is_string( $data[ $field ] ) && '0000-00-00 00:00:00' !== $data[ $field ] && preg_match( '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $data[ $field ] ) ) {
+				$post[ $column ] = $data[ $field ];
+			}
+		}
+		if ( isset( $post['post_date'] ) || isset( $post['post_date_gmt'] ) ) {
+			$post['edit_date'] = true;
+		}
 		if ( ! empty( $data['slug'] ) ) {
 			$post['post_name'] = sanitize_title( $data['slug'] );
 		}
@@ -189,7 +242,21 @@ class Importer {
 
 		foreach ( self::meta_map() as $field => $meta_key ) {
 			if ( array_key_exists( $field, $data ) ) {
+				$raw   = is_scalar( $data[ $field ] ) ? trim( (string) $data[ $field ] ) : '';
 				$value = self::sanitize_field( $field, $data[ $field ] );
+				if ( in_array( $field, array( 'email_cc', 'email_bcc' ), true ) ) {
+					$bad = array();
+					bptm_parse_email_list( $raw, $bad );
+					if ( $bad ) {
+						self::$last_rejected[] = array( $field, implode( ', ', $bad ) );
+					}
+				} elseif ( 'featured' !== $field && '' !== $raw && '' === $value ) {
+					self::$last_rejected[] = array( $field, $raw );
+				}
+				unset( CPT::$rejected_meta[ $meta_key ] );
+				if ( '' !== $raw && '' === $value && 'featured' !== $field ) {
+					continue; // Invalid value: keep the previous one (nothing stored on create).
+				}
 				if ( '' === $value ) {
 					delete_post_meta( $post_id, $meta_key );
 				} else {
@@ -498,9 +565,11 @@ class Importer {
 			fclose( $handle ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 			return new \WP_Error( 'bptm_csv', __( 'The CSV must have a "name" column header. Download the sample file for the expected format.', 'bp-team-member' ) );
 		}
-		$known = self::columns();
-		$rows  = array();
+		$known  = self::columns();
+		$rows   = array();
+		$record = 1; // The header is row 1 (spreadsheet numbering; a quoted multi-line cell stays one row).
 		while ( ( $cells = fgetcsv( $handle, 0, $delimiter, '"', '\\' ) ) !== false ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
+			++$record;
 			if ( array( null ) === $cells || ! array_filter( array_map( 'trim', array_map( 'strval', $cells ) ), 'strlen' ) ) {
 				continue;
 			}
@@ -512,7 +581,8 @@ class Importer {
 				$val         = isset( $cells[ $i ] ) ? (string) $cells[ $i ] : '';
 				$row[ $col ] = function_exists( 'mb_check_encoding' ) && ! mb_check_encoding( $val, 'UTF-8' ) ? mb_convert_encoding( $val, 'UTF-8', 'ISO-8859-1' ) : trim( $val );
 			}
-			$rows[] = $row;
+			$row['_row'] = $record;
+			$rows[]      = $row;
 			if ( count( $rows ) >= 5000 ) {
 				break;
 			}
@@ -610,7 +680,7 @@ class Importer {
 		}
 		$ver = defined( 'BPTM_VERSION' ) ? BPTM_VERSION : '1.0.0';
 		wp_enqueue_style( 'bptm-admin-tools', BPTM_URL . 'assets/admin/tools.css', array(), $ver );
-		wp_enqueue_script( 'bptm-admin-tools', BPTM_URL . 'assets/admin/tools.js', array( 'jquery' ), $ver, true );
+		wp_enqueue_script( 'bptm-admin-tools', BPTM_URL . 'assets/admin/tools.js', array( 'jquery' ), $ver . '.' . filemtime( BPTM_DIR . 'assets/admin/tools.js' ), true );
 		wp_localize_script(
 			'bptm-admin-tools',
 			'bptmTools',
@@ -619,8 +689,12 @@ class Importer {
 				'nonce'   => wp_create_nonce( self::NONCE ),
 				'i18n'    => array(
 					'uploading' => __( 'Reading file…', 'bp-team-member' ),
+					/* translators: 1: rows processed, 2: total rows */
 					'importing' => __( 'Importing %1$d of %2$d…', 'bp-team-member' ),
+					/* translators: 1: created, 2: updated, 3: skipped, 4: failed (member counts) */
 					'done'      => __( 'Import finished: %1$d created, %2$d updated, %3$d skipped, %4$d failed.', 'bp-team-member' ),
+					/* translators: %1$d: number of rejected field values */
+					'rejected'  => __( '%1$d invalid field value(s) were not saved, see the list below.', 'bp-team-member' ),
 					'error'     => __( 'Something went wrong.', 'bp-team-member' ),
 					'choose'    => __( 'Please choose a CSV file.', 'bp-team-member' ),
 					'confirm'   => __( 'Are you sure?', 'bp-team-member' ),
@@ -786,7 +860,7 @@ class Importer {
 			$preview[] = array(
 				'name'        => isset( $row['name'] ) ? sanitize_text_field( $row['name'] ) : '',
 				'designation' => isset( $row['designation'] ) ? sanitize_text_field( $row['designation'] ) : '',
-				'email'       => isset( $row['email'] ) ? sanitize_email( $row['email'] ) : '',
+				'email'       => isset( $row['email'] ) ? sanitize_text_field( $row['email'] ) : '', // As typed: invalid addresses are reported on import, not "repaired".
 				'group'       => isset( $row['group'] ) ? sanitize_text_field( $row['group'] ) : '',
 			);
 		}
@@ -817,15 +891,17 @@ class Importer {
 			'created' => 0,
 			'updated' => 0,
 			'skipped' => 0,
-			'failed'  => 0,
-			'log'     => array(),
+			'failed'   => 0,
+			'rejected' => 0,
+			'log'      => array(),
 		);
+		$labels = self::field_labels();
 		if ( function_exists( 'set_time_limit' ) ) {
 			@set_time_limit( 120 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 		}
 		foreach ( $rows as $i => $row ) {
 			$data = self::row_to_data( $row );
-			$line = $offset + $i + 2;
+			$line = isset( $row['_row'] ) ? (int) $row['_row'] : $offset + $i + 2;
 			if ( '' === trim( (string) $data['name'] ) ) {
 				++$result['skipped'];
 				/* translators: %d: CSV line number */
@@ -846,6 +922,18 @@ class Importer {
 				$existing = $found ? (int) $found[0] : 0;
 			}
 			$id = self::save_member( $data, $existing );
+			if ( ! is_wp_error( $id ) ) {
+				foreach ( self::$last_rejected as $bad ) {
+					++$result['rejected'];
+					$result['log'][] = sprintf(
+						/* translators: 1: CSV row number, 2: column / field name, 3: rejected value */
+						__( 'Row %1$d: %2$s "%3$s" is not valid and was not saved.', 'bp-team-member' ),
+						$line,
+						isset( $labels[ $bad[0] ] ) ? $labels[ $bad[0] ] : $bad[0],
+						$bad[1]
+					);
+				}
+			}
 			if ( is_wp_error( $id ) ) {
 				++$result['failed'];
 				$result['log'][] = sprintf( '%s %d: %s', __( 'Line', 'bp-team-member' ), $line, $id->get_error_message() );

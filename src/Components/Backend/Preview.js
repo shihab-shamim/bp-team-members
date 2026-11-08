@@ -120,7 +120,7 @@ export const EmptyState = () => (
 		<Button variant="primary" href={ adminUrl( 'addMember' ) } target="_blank" rel="noopener noreferrer">
 			{ __( 'Add team member', 'bp-team-member' ) }
 		</Button>
-		<Button variant="secondary" href={ adminUrl( 'settings' ) } target="_blank" rel="noopener noreferrer">
+		<Button variant="secondary" href={ adminUrl( 'demoData' ) } target="_blank" rel="noopener noreferrer">
 			{ __( 'Import demo data', 'bp-team-member' ) }
 		</Button>
 	</Placeholder>

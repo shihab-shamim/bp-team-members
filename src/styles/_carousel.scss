@@ -11,6 +11,8 @@
 	.bptm-carousel {
 		--bptm-per-view: var(--bptm-cols);
 		position: relative;
+		// Arrow placement follows the room the block really has (narrow content columns).
+		container: bptm-carousel / inline-size;
 	}
 
 	.bptm-carousel-viewport {
@@ -91,8 +93,11 @@
 		}
 	}
 
-	// Default: round arrows on the sides, vertically centred.
-	.bptm-navs-default .bptm-nav {
+	// Side arrows (default, style three) sit in gutters reserved beside the
+	// viewport, so they never cover card text. In narrow containers they move to
+	// a centred row below the slides (container query on .bptm-carousel, below).
+	.bptm-navs-default .bptm-nav,
+	.bptm-navs-style-three .bptm-nav {
 		position: absolute;
 		inset-block-start: 50%;
 		z-index: 3;
@@ -100,25 +105,24 @@
 	}
 
 	.bptm-navs-default .bptm-nav-prev {
-		inset-inline-start: -22px;
+		inset-inline-start: 0;
 	}
 
 	.bptm-navs-default .bptm-nav-next {
-		inset-inline-end: -22px;
+		inset-inline-end: 0;
 	}
 
-	.bptm-navs-default.bptm-has-dots .bptm-nav {
+	.bptm-navs-default.bptm-has-dots .bptm-nav,
+	.bptm-navs-style-three.bptm-has-dots .bptm-nav {
 		inset-block-start: calc(50% - 25px);
 	}
 
-	@media (max-width: 1240px) {
-		.bptm-navs-default .bptm-nav-prev {
-			inset-inline-start: 6px;
-		}
+	.bptm-navs-default.bptm-has-navs > .bptm-carousel-viewport {
+		margin-inline: 54px;
+	}
 
-		.bptm-navs-default .bptm-nav-next {
-			inset-inline-end: 6px;
-		}
+	.bptm-navs-style-three.bptm-has-navs > .bptm-carousel-viewport {
+		margin-inline: 46px;
 	}
 
 	// Style one: square buttons centred below the slides.
@@ -160,9 +164,6 @@
 
 	// Style three: tabs attached to the sides, accent filled.
 	.bptm-navs-style-three .bptm-nav {
-		position: absolute;
-		inset-block-start: 50%;
-		z-index: 3;
 		width: 38px;
 		height: 64px;
 		border: 0;
@@ -170,7 +171,6 @@
 		color: var(--bptm-nav-color, #fff);
 		box-shadow: none;
 		opacity: 0.85;
-		transform: translateY(-50%);
 
 		&:hover,
 		&:focus-visible {
@@ -196,9 +196,6 @@
 		border-end-end-radius: 0;
 	}
 
-	.bptm-navs-style-three.bptm-has-dots .bptm-nav {
-		inset-block-start: calc(50% - 25px);
-	}
 
 	// Arrow glyphs point the other way in RTL.
 	&[dir="rtl"] .bptm-nav i,
@@ -232,10 +229,8 @@
 		cursor: pointer;
 		transition: background-color 0.25s ease, width 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 
-		&:hover {
-			background: color-mix(in srgb, var(--bptm-dot-active-color-d) 60%, var(--bptm-dot-color-d));
-		}
-
+		// Hover and active both use the dot hover/active colour (sliderDotHoverColor).
+		&:hover,
 		&.is-active {
 			background: var(--bptm-dot-active-color-d);
 		}
@@ -266,6 +261,11 @@
 		border: 2px solid var(--bptm-dot-color-d);
 		background: transparent;
 
+		&:hover {
+			border-color: var(--bptm-dot-active-color-d);
+			background: var(--bptm-dot-active-color-d);
+		}
+
 		&.is-active {
 			border-color: var(--bptm-dot-active-color-d);
 			background: var(--bptm-dot-active-color-d);
@@ -286,6 +286,55 @@
 		&.is-active {
 			width: 40px;
 		}
+	}
+}
+
+// Narrow carousels: side arrows (default / style three) would squeeze or cover the
+// slides, so they move to a centred row below them and the gutters are released.
+@mixin bptm-carousel-narrow-navs {
+	.bptm-wrap {
+		.bptm-navs-default.bptm-has-navs > .bptm-carousel-viewport,
+		.bptm-navs-style-three.bptm-has-navs > .bptm-carousel-viewport {
+			margin-inline: 0;
+		}
+
+		.bptm-navs-default .bptm-carousel-navs,
+		.bptm-navs-style-three .bptm-carousel-navs {
+			display: flex;
+			justify-content: center;
+			gap: 12px;
+			margin-block-start: 20px;
+
+			&[hidden] {
+				display: none;
+			}
+		}
+
+		.bptm-navs-default .bptm-nav,
+		.bptm-navs-default.bptm-has-dots .bptm-nav,
+		.bptm-navs-style-three .bptm-nav,
+		.bptm-navs-style-three.bptm-has-dots .bptm-nav {
+			position: static;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			transform: none;
+		}
+
+		.bptm-navs-default.bptm-has-dots .bptm-carousel-dots,
+		.bptm-navs-style-three.bptm-has-dots .bptm-carousel-dots {
+			margin-block-start: 16px;
+		}
+	}
+}
+
+@container bptm-carousel (max-width: 479px) {
+	@include bptm-carousel-narrow-navs;
+}
+
+@supports not (container-type: inline-size) {
+	@media (max-width: 767px) {
+		@include bptm-carousel-narrow-navs;
 	}
 }
 

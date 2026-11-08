@@ -28,6 +28,6 @@ $bptm_open    = method_exists( $ctx, 'link_open' ) ? (string) $ctx->link_open( $
 			</div>
 		<?php echo '' !== $bptm_open ? $ctx->link_close( $m ) : ''; ?>
 		<?php echo bptm_tb_badges( $ctx, $m ); ?>
-		<?php echo bptm_tb_extras( $ctx, $m ); ?>
+		<?php echo bptm_tb_part( $ctx, $m, 'details' ) . bptm_tb_extras( $ctx, $m ) . bptm_tb_part( $ctx, $m, 'social' ); // Details + social follow their visibility toggles (off by default). ?>
 	</div>
 </div>

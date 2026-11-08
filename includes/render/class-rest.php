@@ -10,6 +10,7 @@
  *   filters:    object { group, designation, location, language, gender, specialty, extra_one..extra_five: string|string[],
  *                        search, company, zip, tag: string }
  *   seed:       int    (random order seed)
+ *   url:        string (current page URL; numbered pagination links are built from it)
  * Response: { items, details, pagination, found, count, page, maxPages, offset, hasMore, view }
  *
  * @package BPTM
@@ -73,6 +74,13 @@ class Rest {
 						'type'    => 'integer',
 						'minimum' => 0,
 						'maximum' => 999999,
+					),
+					'url'        => array(
+						'type'              => 'string',
+						'default'           => '',
+						'sanitize_callback' => static function ( $v ) {
+							return substr( esc_url_raw( (string) $v, array( 'http', 'https' ) ), 0, 2000 );
+						},
 					),
 					'filters'    => array(
 						'type'              => 'object',
@@ -172,6 +180,11 @@ class Rest {
 		}
 		if ( '' === $runtime['uid'] ) {
 			unset( $runtime['uid'] );
+		}
+		// Page URL of the visitor (absolute pagination links); only same-site URLs are used.
+		$url = (string) $request->get_param( 'url' );
+		if ( '' !== $url && Renderer::is_local_url( $url ) ) {
+			$runtime['url'] = $url;
 		}
 		$attributes = (array) $request->get_param( 'attributes' );
 		$data       = Renderer::render_part( $attributes, $runtime );

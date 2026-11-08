@@ -631,3 +631,15 @@ $bptm-img-filters: (
 		display: none !important;
 	}
 }
+
+// ----------------------------------------------------------------------
+// E-mail addresses (Context::breakable_text()): break only at the <wbr>
+// opportunities after "@" and before "." instead of mid-word. break-word
+// still breaks a single overlong segment as a last resort (it does not
+// lower the min-content width, so table cells keep the segment width).
+// ----------------------------------------------------------------------
+.bptm-email-text {
+	overflow-wrap: break-word;
+	word-break: normal;
+	hyphens: none;
+}

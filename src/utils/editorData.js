@@ -266,7 +266,8 @@ export const adminUrl = ( key ) => {
 	const defaults = {
 		addMember: 'post-new.php?post_type=bptm_member',
 		members: 'edit.php?post_type=bptm_member',
-		settings: 'edit.php?post_type=bptm_member',
+		settings: 'edit.php?post_type=bptm_member&page=bptm-preferences',
+		demoData: 'edit.php?post_type=bptm_member&page=bptm-demo-data',
 	};
 	return urls[ key ] || defaults[ key ] || '';
 };

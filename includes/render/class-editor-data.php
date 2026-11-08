@@ -61,6 +61,7 @@ class Editor_Data {
 				'forced_link' => $t['forced_link'],
 				'forced_view' => $t['forced_view'],
 				'grouped'     => $t['grouped'],
+				'pagination'  => ! empty( $t['pagination'] ),
 				'visibility'  => Visibility::defaults( $id )['initial'],
 			);
 		}
@@ -125,7 +126,9 @@ class Editor_Data {
 			'adminUrls'        => array(
 				'addMember' => admin_url( 'post-new.php?post_type=bptm_member' ),
 				'members'   => admin_url( 'edit.php?post_type=bptm_member' ),
-				'settings'  => admin_url( 'edit.php?post_type=bptm_member&page=bptm-settings' ),
+				'settings'  => admin_url( 'edit.php?post_type=bptm_member&page=bptm-preferences' ),
+				// Demo Data admin page (includes/class-demo-data.php, slug bptm-demo-data).
+				'demoData'  => is_callable( array( '\BPTM\Demo_Data', 'page_url' ) ) ? \BPTM\Demo_Data::page_url() : admin_url( 'edit.php?post_type=bptm_member&page=bptm-demo-data' ),
 			),
 			'restRender'       => esc_url_raw( rest_url( 'bptm/v1/render' ) ),
 			'options'          => array(

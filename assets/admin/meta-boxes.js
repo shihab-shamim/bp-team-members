@@ -305,7 +305,39 @@
 		} );
 	}
 
+	/* ------------------------------------------------------------------ *
+	 * Block editor: warn about values rejected when the meta boxes were saved
+	 * (invalid email / URL / CC / BCC). The classic editor gets a PHP admin notice.
+	 * ------------------------------------------------------------------ */
+	function fetchRejected() {
+		if ( ! data.ajaxUrl || ! data.postId ) {
+			return;
+		}
+		$.post( data.ajaxUrl, { action: 'bptm_rejected_fields', nonce: data.nonce, post_id: data.postId } ).done( function ( res ) {
+			var msgs = res && res.success && res.data && res.data.messages;
+			if ( ! msgs || ! msgs.length || ! window.wp || ! wp.data ) {
+				return;
+			}
+			wp.data.dispatch( 'core/notices' ).createNotice( 'warning', msgs.join( ' ' ), { id: 'bptm-rejected-fields', isDismissible: true } );
+		} );
+	}
+
+	function watchMetaBoxSaves() {
+		if ( ! window.wp || ! wp.data || ! wp.data.select( 'core/edit-post' ) || typeof wp.data.select( 'core/edit-post' ).isSavingMetaBoxes !== 'function' ) {
+			return;
+		}
+		var saving = false;
+		wp.data.subscribe( function () {
+			var now = wp.data.select( 'core/edit-post' ).isSavingMetaBoxes();
+			if ( saving && ! now ) {
+				fetchRejected();
+			}
+			saving = now;
+		} );
+	}
+
 	$( function () {
+		watchMetaBoxSaves();
 		$( '[data-bptm-repeater]' ).each( function () {
 			initRepeater( $( this ) );
 		} );

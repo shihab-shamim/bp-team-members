@@ -192,16 +192,16 @@ $bptm-tl-hover: ":is(:hover, :focus-within)";
  * ------------------------------------------------------------------------- */
 .bptm-tb-list-4 {
 	.bptm-tb-card {
-		padding: 0 0 30px;
+		padding: var(--bptm-item-padding, 0 0 30px);
 		border: 0;
 		border-bottom: 1px solid #e6e9eb;
-		border-radius: 0;
-		background: transparent;
-		box-shadow: none;
+		border-radius: var(--bptm-radius, 0);
+		background: var(--bptm-item-bg, transparent);
+		box-shadow: var(--bptm-shadow, none);
 	}
 
 	&:last-child .bptm-tb-card {
-		padding-bottom: 0;
+		padding: var(--bptm-item-padding, 0);
 		border-bottom: 0;
 	}
 
@@ -300,11 +300,16 @@ $bptm-tl-hover: ":is(:hover, :focus-within)";
 .bptm-tb-list-7 {
 	.bptm-tb-card {
 		align-items: flex-start;
-		padding: 0 0 30px;
+		padding: var(--bptm-item-padding, 0 0 30px);
 		border: 0;
 		border-bottom: 1px solid var(--bptm-item-border-color, #eee);
-		border-radius: 0;
+		border-radius: var(--bptm-radius, 0);
 		background: var(--bptm-item-bg, transparent);
+		box-shadow: var(--bptm-shadow, none);
+	}
+
+	&#{$bptm-tl-hover} .bptm-tb-card {
+		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, transparent));
 	}
 
 	.bptm-tb-media {

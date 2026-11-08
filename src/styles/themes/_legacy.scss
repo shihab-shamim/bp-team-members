@@ -16,6 +16,20 @@ $bptm-tg-hover: ":is(:hover, :focus-within)";
 	}
 }
 
+/* Block box settings on the legacy cards (item padding / background / hover
+ * background / shadow / radius). Fallbacks equal the default (bare) look; themes
+ * with a painted card set --bptm-tb-card-bg or override these below. */
+.bptm-tb-legacy > .bptm-tb-card {
+	padding: var(--bptm-item-padding, 0);
+	border-radius: var(--bptm-radius, 0);
+	background: var(--bptm-item-bg, var(--bptm-tb-card-bg, transparent));
+	box-shadow: var(--bptm-shadow, none);
+}
+
+.bptm-tb-legacy#{$bptm-tg-hover} > .bptm-tb-card {
+	background: var(--bptm-item-bg-hover, var(--bptm-item-bg, var(--bptm-tb-card-bg, transparent)));
+}
+
 .bptm-align-left .bptm-tb-legacy {
 	--bptm-tb-justify: flex-start;
 }
@@ -176,10 +190,6 @@ $bptm-tg-hover: ":is(:hover, :focus-within)";
 		}
 	}
 
-	.bptm-tb-card {
-		padding-top: 0;
-	}
-
 	&#{$bptm-tg-hover} .bptm-tb-tip {
 		opacity: 1;
 		visibility: visible;
@@ -284,6 +294,11 @@ $bptm-tg-hover: ":is(:hover, :focus-within)";
  * Grid 11 — rounded photo + elevated overlapping name card.
  * ------------------------------------------------------------------------- */
 .bptm-tb-grid-11 {
+	// Item padding goes on the floating name card, not around the photo.
+	> .bptm-tb-card {
+		padding: 0;
+	}
+
 	.bptm-tb-media {
 		border-radius: var(--bptm-img-radius, 14px);
 	}
@@ -292,7 +307,7 @@ $bptm-tg-hover: ":is(:hover, :focus-within)";
 		position: relative;
 		z-index: 2;
 		margin: -36px 8% 0;
-		padding: 16px 14px;
+		padding: var(--bptm-item-padding, 16px 14px);
 		border-radius: var(--bptm-radius, 10px);
 		background: var(--bptm-item-bg, #fff);
 		box-shadow: var(--bptm-shadow, 0 10px 30px rgba(12, 21, 41, 0.12));
@@ -622,6 +637,8 @@ $bptm-tg-hover: ":is(:hover, :focus-within)";
  * Grid Filter Single + Group Filter 1 — banner card + contact strip.
  * ------------------------------------------------------------------------- */
 .bptm-tb-banner-card {
+	--bptm-tb-card-bg: #fff;
+
 	text-align: start;
 
 	.bptm-tb-card {

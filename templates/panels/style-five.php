@@ -13,12 +13,12 @@
 defined( 'ABSPATH' ) || exit;
 
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- every fragment is escaped by the bptm_tb_* helpers / Context.
-$bptm_d = bptm_tb_detail_parts( $ctx, $m, array( 'img', 'name', 'role', 'social_plain', 'desc', 'skills' ) );
+$bptm_d = bptm_tb_detail_parts( $ctx, $m, array( 'img', 'badges', 'name', 'role', 'social_plain', 'desc', 'meta', 'skills' ) );
 ?>
 <div class="<?php echo bptm_tb_detail_classes( $ctx, $m, 'panel', 'style-five' ); ?>">
 	<?php if ( $bptm_d['img'] ) : ?>
 		<div class="bptm-dv-media">
-			<?php echo $bptm_d['img']; ?>
+			<?php echo $bptm_d['img'] . $bptm_d['badges']; ?>
 		</div>
 	<?php endif; ?>
 	<div class="bptm-dv-body">
@@ -26,6 +26,6 @@ $bptm_d = bptm_tb_detail_parts( $ctx, $m, array( 'img', 'name', 'role', 'social_
 			<div class="bptm-dv-head-text"><?php echo $bptm_d['name'] . $bptm_d['role']; ?></div>
 			<?php echo $bptm_d['social_plain']; ?>
 		</div>
-		<?php echo $bptm_d['desc'] . $bptm_d['skills'] . $bptm_d['tail']; ?>
+		<?php echo $bptm_d['desc'] . $bptm_d['meta'] . $bptm_d['skills'] . $bptm_d['tail']; ?>
 	</div>
 </div>

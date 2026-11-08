@@ -422,3 +422,17 @@ $bptm-tc-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 		width: 70%;
 	}
 }
+
+/* Block box settings (item background / hover background / shadow) on the card;
+ * circles draw no card of their own, so the fallbacks keep the default look. */
+.bptm-ta-circle {
+	> .bptm-ta-card {
+		border-radius: var(--bptm-radius, 0);
+		background: var(--bptm-item-bg, transparent);
+		box-shadow: var(--bptm-shadow, none);
+	}
+
+	&#{$bptm-tc-hover} > .bptm-ta-card {
+		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, transparent));
+	}
+}

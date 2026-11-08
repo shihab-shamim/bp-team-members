@@ -43,14 +43,14 @@
 
 	/* Confirm destructive forms */
 	$( document ).on( 'submit', 'form.bptm-confirm', function ( e ) {
-		if ( ! window.confirm( t( 'confirm' ) ) ) {
+		if ( ! window.confirm( this.getAttribute( 'data-confirm' ) || t( 'confirm' ) ) ) {
 			e.preventDefault();
 		}
 	} );
 
 	/* CSV import */
 	var total = 0;
-	var stats = { created: 0, updated: 0, skipped: 0, failed: 0 };
+	var stats = { created: 0, updated: 0, skipped: 0, failed: 0, rejected: 0 };
 
 	$( '#bptm-csv-form' ).on( 'submit', function ( e ) {
 		e.preventDefault();
@@ -106,8 +106,8 @@
 					return;
 				}
 				var d = res.data;
-				[ 'created', 'updated', 'skipped', 'failed' ].forEach( function ( k ) {
-					stats[ k ] += d[ k ];
+				[ 'created', 'updated', 'skipped', 'failed', 'rejected' ].forEach( function ( k ) {
+					stats[ k ] += d[ k ] || 0;
 				} );
 				( d.log || [] ).forEach( function ( line ) {
 					$( '.bptm-import-log' ).append( '<li>' + esc( line ) + '</li>' );
@@ -115,7 +115,11 @@
 				var pct = d.total ? Math.round( ( d.next / d.total ) * 100 ) : 100;
 				$( '.bptm-progress-bar' ).css( 'width', pct + '%' );
 				if ( d.finish ) {
-					$( '.bptm-import-status' ).addClass( 'is-done' ).text( fmt( t( 'done' ), [ stats.created, stats.updated, stats.skipped, stats.failed ] ) );
+					var summary = fmt( t( 'done' ), [ stats.created, stats.updated, stats.skipped, stats.failed ] );
+					if ( stats.rejected && t( 'rejected' ) ) {
+						summary += ' ' + fmt( t( 'rejected' ), [ stats.rejected ] );
+					}
+					$( '.bptm-import-status' ).addClass( 'is-done' ).text( summary );
 				} else {
 					$( '.bptm-import-status' ).text( fmt( t( 'importing' ), [ d.next, d.total ] ) );
 					runBatch( d.next );
@@ -129,7 +133,7 @@
 
 	$( '#bptm-csv-start' ).on( 'click', function () {
 		$( this ).prop( 'disabled', true );
-		stats = { created: 0, updated: 0, skipped: 0, failed: 0 };
+		stats = { created: 0, updated: 0, skipped: 0, failed: 0, rejected: 0 };
 		$( '.bptm-progress' ).prop( 'hidden', false );
 		$( '.bptm-progress-bar' ).css( 'width', '0%' );
 		$( '.bptm-import-status' ).removeClass( 'is-done' ).text( fmt( t( 'importing' ), [ 0, total ] ) );

@@ -13,12 +13,14 @@
 defined( 'ABSPATH' ) || exit;
 
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- every fragment is escaped by the bptm_tb_* helpers / Context.
-$bptm_d = bptm_tb_detail_parts( $ctx, $m, array( 'meta', 'social', 'skills', 'name', 'role', 'desc' ) );
+$bptm_d = bptm_tb_detail_parts( $ctx, $m, array( 'img', 'badges', 'meta', 'social', 'skills', 'name', 'role', 'desc' ) );
 $bptm_right = $bptm_d['meta'] . $bptm_d['social'] . $bptm_d['skills'] . $bptm_d['tail'];
+// Small round avatar beside the name (the grid card above already shows the large photo).
+$bptm_ident = $bptm_d['img'] ? '<div class="bptm-dv-ident">' . $bptm_d['img'] . '<div class="bptm-dv-ident-text">' . $bptm_d['badges_block'] . $bptm_d['name'] . $bptm_d['role'] . '</div></div>' : $bptm_d['name'] . $bptm_d['role'];
 ?>
 <div class="<?php echo bptm_tb_detail_classes( $ctx, $m, 'drawer', 'style-three' ); ?>">
 	<div class="bptm-dv-body">
-		<?php echo $bptm_d['name'] . $bptm_d['role'] . $bptm_d['desc']; ?>
+		<?php echo $bptm_ident . $bptm_d['desc']; ?>
 	</div>
 	<?php if ( $bptm_right ) : ?>
 		<div class="bptm-dv-aside"><?php echo $bptm_right; ?></div>

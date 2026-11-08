@@ -414,7 +414,8 @@ class Settings {
 	 * @return array
 	 */
 	public static function sanitize_settings( $input ) {
-		$input   = is_array( $input ) ? wp_unslash( $input ) : array();
+		// options.php already unslashes $_POST before the sanitize callback; imports pass decoded JSON. Never unslash again (it ate backslashes, e.g. content:"\f101").
+		$input   = is_array( $input ) ? $input : array();
 		$current = get_option( self::OPTION, array() );
 		$current = array_merge( self::defaults(), is_array( $current ) ? $current : array() );
 		$page    = isset( $input['_page'] ) ? sanitize_key( $input['_page'] ) : '';
@@ -439,6 +440,43 @@ class Settings {
 				continue;
 			}
 			$out[ $key ] = self::sanitize_preference( $key, $value, isset( $fields[ $key ] ) ? $fields[ $key ] : array() );
+		}
+
+		// The member slug / archive slug must not take a taxonomy archive slug: keep the previous value.
+		$tax_slugs = array();
+		$tax_now   = array_merge( self::taxonomy_defaults(), (array) get_option( self::TAX_OPTION, array() ) );
+		foreach ( self::taxonomy_labels() as $tax_key => $labels ) {
+			$slug = sanitize_title( (string) $tax_now[ "{$tax_key}_tax_archive_slug" ] );
+			$slug = '' !== $slug ? $slug : 'bptm-' . str_replace( '_', '-', $tax_key );
+			$tax_slugs[ $slug ] = '' !== (string) $tax_now[ "{$tax_key}_tax_plural_label" ] ? (string) $tax_now[ "{$tax_key}_tax_plural_label" ] : $labels[1];
+		}
+		$slug_labels = array(
+			'member_slug'       => __( 'Member slug', 'bp-team-member' ),
+			'archive_page_slug' => __( 'Archive page slug', 'bp-team-member' ),
+		);
+		foreach ( $slug_labels as $key => $label ) {
+			$new = (string) $out[ $key ];
+			if ( $new === (string) $current[ $key ] || '' === $new || preg_match( '#^https?://#i', $new ) ) {
+				continue;
+			}
+			$first = strtok( $new, '/' );
+			$hit   = isset( $tax_slugs[ $new ] ) ? $tax_slugs[ $new ] : ( isset( $tax_slugs[ $first ] ) ? $tax_slugs[ $first ] : '' );
+			if ( '' === $hit ) {
+				continue;
+			}
+			self::add_error_once(
+				self::OPTION,
+				'bptm_duplicate_slug_' . $key,
+				sprintf(
+					/* translators: 1: setting label, 2: rejected slug, 3: taxonomy plural label, 4: previous value */
+					__( '%1$s: "%2$s" is already used as the archive slug of the %3$s taxonomy. Slugs must be unique, so the previous value "%4$s" was kept.', 'bp-team-member' ),
+					$label,
+					$new,
+					$hit,
+					(string) $current[ $key ]
+				)
+			);
+			$out[ $key ] = $current[ $key ];
 		}
 
 		// Keep only known keys.
@@ -476,6 +514,9 @@ class Settings {
 				$value = sanitize_title( $value );
 				return '' === $value ? $defaults['member_slug'] : $value;
 			case 'archive_page_slug':
+				if ( function_exists( 'bptm_archive_page_slug' ) ) {
+					return bptm_archive_page_slug( $value );
+				}
 				if ( preg_match( '#^https?://#i', $value ) ) {
 					return esc_url_raw( $value );
 				}
@@ -495,13 +536,13 @@ class Settings {
 	 * @return array
 	 */
 	public static function sanitize_taxonomy_settings( $input ) {
-		$input    = is_array( $input ) ? wp_unslash( $input ) : array();
+		// Input is already unslashed (options.php / JSON import).
+		$input    = is_array( $input ) ? $input : array();
 		$is_form  = ! empty( $input['_page'] );
 		$defaults = self::taxonomy_defaults();
 		$current  = get_option( self::TAX_OPTION, array() );
 		$current  = array_merge( $defaults, is_array( $current ) ? $current : array() );
 		$out      = array();
-		$used     = array();
 
 		foreach ( $defaults as $key => $default ) {
 			$has = array_key_exists( $key, $input );
@@ -519,10 +560,9 @@ class Settings {
 
 			if ( '_archive_slug' === substr( $key, -13 ) ) {
 				$value = sanitize_title( $value );
-				if ( '' === $value || in_array( $value, $used, true ) ) {
+				if ( '' === $value ) {
 					$value = $default;
 				}
-				$used[] = $value;
 			} else {
 				$value = sanitize_text_field( $value );
 				if ( '' === $value ) {
@@ -532,7 +572,111 @@ class Settings {
 			$out[ $key ] = $value;
 		}
 
+		return self::resolve_slug_conflicts( $out, $current );
+	}
+
+	/**
+	 * Archive slugs must be unique: across every taxonomy's effective slug (saved or default,
+	 * whatever its enabled state) and against the member slug / members archive slug. A changed
+	 * slug that collides is rejected with a notice and the previous value is kept.
+	 *
+	 * @param array $out     Sanitized new taxonomy settings.
+	 * @param array $current Previous settings merged with defaults.
+	 * @return array
+	 */
+	protected static function resolve_slug_conflicts( array $out, array $current ) {
+		$keys     = array_keys( self::taxonomy_labels() );
+		$previous = array();
+		foreach ( $keys as $tax_key ) {
+			$field                = "{$tax_key}_tax_archive_slug";
+			$prev                 = sanitize_title( (string) $current[ $field ] );
+			$previous[ $tax_key ] = '' !== $prev ? $prev : 'bptm-' . str_replace( '_', '-', $tax_key );
+		}
+
+		// Reserved by the member post type.
+		$reserved    = array();
+		$member_slug = sanitize_title( (string) self::get( 'member_slug', 'team-members' ) );
+		if ( '' !== $member_slug ) {
+			$reserved[ $member_slug ] = __( 'the member slug', 'bp-team-member' );
+		}
+		$archive = function_exists( 'bptm_archive_page_slug' ) ? bptm_archive_page_slug() : '';
+		if ( '' !== $archive && ! preg_match( '#^https?://#i', $archive ) ) {
+			$reserved[ $archive ] = __( 'the members archive slug', 'bp-team-member' );
+			$first                = strtok( $archive, '/' );
+			if ( $first && ! isset( $reserved[ $first ] ) ) {
+				$reserved[ $first ] = __( 'the members archive slug', 'bp-team-member' );
+			}
+		}
+
+		$label_of = function ( $tax_key ) use ( $out ) {
+			$plural = isset( $out[ "{$tax_key}_tax_plural_label" ] ) ? (string) $out[ "{$tax_key}_tax_plural_label" ] : '';
+			return '' !== $plural ? $plural : $tax_key;
+		};
+
+		// Repeat until stable: reverting one slug can create a new clash with an accepted change.
+		for ( $pass = 0; $pass <= count( $keys ); $pass++ ) {
+			$changed = false;
+			foreach ( $keys as $tax_key ) {
+				$field = "{$tax_key}_tax_archive_slug";
+				$slug  = $out[ $field ];
+				if ( $slug === $previous[ $tax_key ] ) {
+					continue; // Unchanged values are never rejected.
+				}
+				$owner = '';
+				if ( isset( $reserved[ $slug ] ) ) {
+					$owner = $reserved[ $slug ];
+				} else {
+					foreach ( $keys as $other ) {
+						if ( $other !== $tax_key && $out[ "{$other}_tax_archive_slug" ] === $slug ) {
+							/* translators: %s: taxonomy plural label */
+							$owner = sprintf( __( 'the %s taxonomy', 'bp-team-member' ), $label_of( $other ) );
+							break;
+						}
+					}
+				}
+				if ( '' === $owner ) {
+					continue;
+				}
+				self::add_error_once(
+					self::TAX_OPTION,
+					'bptm_duplicate_slug_' . $tax_key,
+					sprintf(
+						/* translators: 1: rejected archive slug, 2: taxonomy label, 3: what already uses the slug (e.g. "the Tags taxonomy"), 4: previous slug */
+						__( 'The archive slug "%1$s" for %2$s is already used by %3$s. Slugs must be unique, so the previous slug "%4$s" was kept.', 'bp-team-member' ),
+						$slug,
+						$label_of( $tax_key ),
+						$owner,
+						$previous[ $tax_key ]
+					)
+				);
+				$out[ $field ] = $previous[ $tax_key ];
+				$changed       = true;
+			}
+			if ( ! $changed ) {
+				break;
+			}
+		}
 		return $out;
+	}
+
+	/**
+	 * add_settings_error() without duplicates (sanitize callbacks may run twice on add_option).
+	 *
+	 * @param string $setting Setting slug.
+	 * @param string $code    Error code.
+	 * @param string $message Message.
+	 * @param string $type    error|warning|success|info.
+	 */
+	protected static function add_error_once( $setting, $code, $message, $type = 'error' ) {
+		if ( ! function_exists( 'add_settings_error' ) ) {
+			return;
+		}
+		foreach ( get_settings_errors( $setting ) as $error ) {
+			if ( isset( $error['code'] ) && $code === $error['code'] ) {
+				return;
+			}
+		}
+		add_settings_error( $setting, $code, $message, $type );
 	}
 
 	/**
@@ -696,6 +840,12 @@ class Settings {
 	 * Print custom CSS on the front end.
 	 */
 	public static function enqueue_custom_css() {
+		// Print once per page. Block themes render the block (which may print the CSS inline and fire
+		// `bptm_custom_css_printed`, see Render\Renderer::custom_css()) before wp_enqueue_scripts runs;
+		// in the other order the renderer sees the queued `bptm-custom-css` style and skips its copy.
+		if ( did_action( 'bptm_custom_css_printed' ) ) {
+			return;
+		}
 		$css = (string) self::get( 'custom_css', '' );
 		$css = trim( wp_strip_all_tags( $css ) );
 		if ( '' === $css ) {

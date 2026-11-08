@@ -25,7 +25,7 @@ $bptm-dv-sm: 767px;
 	color: var(--bptm-dv-text);
 	font-size: 16px;
 	line-height: 1.65;
-	text-align: left;
+	text-align: start;
 
 	*,
 	*::before,
@@ -111,10 +111,13 @@ $bptm-dv-sm: 767px;
 			}
 		}
 
+		// Scroll cap (block setting, else the style's --bptm-dv-desc-cap). Where supported it
+		// snaps down to whole lines and paragraphs sit on the same line grid (1lh gaps), so
+		// the last visible line is never cut in half.
 		.bptm-details.bptm-scroll {
-			max-height: var(--bptm-desc-max-h, 260px);
+			max-height: var(--bptm-desc-max-h, var(--bptm-dv-desc-cap, 260px));
 			overflow-y: auto;
-			padding-right: 6px;
+			padding-inline-end: 6px;
 			scrollbar-width: thin;
 			scrollbar-color: var(--bptm-dv-accent) transparent;
 		}
@@ -233,10 +236,12 @@ $bptm-dv-sm: 767px;
 			}
 		}
 
+		// Sized by its content: a value that does not fit beside the label (a long e-mail)
+		// moves to its own line first and only breaks when it is wider than the whole line.
 		.bptm-meta-value {
-			flex: 1 1 160px;
+			flex: 1 1 auto;
 			min-width: 0;
-			overflow-wrap: anywhere;
+			overflow-wrap: break-word;
 		}
 
 		a {
@@ -329,16 +334,64 @@ $bptm-dv-sm: 767px;
 		}
 	}
 
-	// Ribbon / featured badge over the photo.
+	// Ribbon / featured badge over the photo (self-contained: the detail view may be
+	// moved out of .bptm-wrap by the modal shell).
+	.bptm-ribbon {
+		display: inline-block;
+		padding: 4px 12px;
+		border-radius: 3px;
+		background: var(--bptm-ribbon-bg, var(--bptm-dv-accent));
+		color: #fff;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1.5;
+		letter-spacing: 0.02em;
+	}
+
 	.bptm-dv-media .bptm-ribbon {
+		position: absolute;
 		z-index: 2;
+		top: 14px;
+		inset-inline-end: 0;
+		max-width: calc(100% - 56px);
+		border-radius: 3px 0 0 3px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	// Inline badge row (no photo frame, or a small avatar).
+	.bptm-dv-badges {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+		margin: 0 0 10px;
+
+		.bptm-ribbon,
+		.bptm-featured {
+			position: static;
+			transform: none;
+		}
+
+		.bptm-featured {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 28px;
+			height: 28px;
+			border-radius: 50%;
+			background: #f5b700;
+			color: #fff;
+			font-size: 13px;
+		}
 	}
 
 	.bptm-dv-media .bptm-featured {
 		position: absolute;
 		z-index: 2;
 		top: 12px;
-		left: 12px;
+		inset-inline-start: 12px;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -462,7 +515,7 @@ $bptm-dv-sm: 767px;
 		}
 
 		.bptm-meta {
-			text-align: left;
+			text-align: start;
 		}
 	}
 }
@@ -496,7 +549,7 @@ $bptm-dv-sm: 767px;
 	.bptm-dv-body--scroll {
 		max-height: min(70vh, 640px);
 		overflow-y: auto;
-		padding-right: 10px;
+		padding-inline-end: 10px;
 		scrollbar-width: thin;
 		scrollbar-color: var(--bptm-dv-accent) transparent;
 	}
@@ -513,7 +566,7 @@ $bptm-dv-sm: 767px;
 		.bptm-dv-body--scroll {
 			max-height: none;
 			overflow: visible;
-			padding-right: 0;
+			padding-inline-end: 0;
 		}
 	}
 }
@@ -681,7 +734,7 @@ $bptm-dv-sm: 767px;
 		}
 
 		.bptm-meta {
-			text-align: left;
+			text-align: start;
 		}
 	}
 }
@@ -696,6 +749,20 @@ $bptm-dv-sm: 767px;
 		.bptm-dv-side .bptm-dv-media,
 		> .bptm-dv-media {
 			max-width: 320px;
+		}
+	}
+}
+
+@supports (max-height: round(down, 100px, 1lh)) {
+	.bptm-dv .bptm-dv-desc .bptm-details.bptm-scroll {
+		max-height: round(down, var(--bptm-desc-max-h, var(--bptm-dv-desc-cap, 260px)), 1lh);
+
+		p {
+			margin-block: 0 1lh;
+		}
+
+		> :last-child {
+			margin-block-end: 0;
 		}
 	}
 }

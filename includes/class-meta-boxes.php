@@ -26,6 +26,8 @@ class Meta_Boxes {
 		add_action( 'add_meta_boxes_bptm_member', array( __CLASS__, 'add_meta_boxes' ) );
 		add_action( 'save_post_bptm_member', array( __CLASS__, 'save' ), 10, 2 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue' ) );
+		add_action( 'admin_notices', array( __CLASS__, 'rejected_notice' ) );
+		add_action( 'wp_ajax_bptm_rejected_fields', array( __CLASS__, 'ajax_rejected' ) );
 	}
 
 	/**
@@ -94,8 +96,11 @@ class Meta_Boxes {
 			'bptm-admin-meta-boxes',
 			'bptmMetaBoxes',
 			array(
-				'icons' => $icons,
-				'i18n'  => array(
+				'icons'    => $icons,
+				'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
+				'nonce'    => wp_create_nonce( 'bptm_rejected_fields' ),
+				'postId'   => isset( $GLOBALS['post'] ) && $GLOBALS['post'] instanceof \WP_Post ? (int) $GLOBALS['post']->ID : 0,
+				'i18n'     => array(
 					'chooseIcon'  => __( 'Choose icon', 'bp-team-member' ),
 					'search'      => __( 'Search icons…', 'bp-team-member' ),
 					'noIcons'     => __( 'No icons match your search.', 'bp-team-member' ),
@@ -335,12 +340,27 @@ class Meta_Boxes {
 		// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- each value is sanitized below.
 		$raw = isset( $_POST['bptm_meta'] ) && is_array( $_POST['bptm_meta'] ) ? wp_unslash( $_POST['bptm_meta'] ) : array();
 
+		$rejected = array();
 		foreach ( self::detail_fields() as $name => $field ) {
 			$meta_key = $field[0];
-			$value    = isset( $raw[ $name ] ) && is_scalar( $raw[ $name ] ) ? (string) $raw[ $name ] : '';
-			$value    = sanitize_meta( $meta_key, $value, 'post', CPT::POST_TYPE );
+			$input    = isset( $raw[ $name ] ) && is_scalar( $raw[ $name ] ) ? trim( (string) $raw[ $name ] ) : '';
+			$value    = sanitize_meta( $meta_key, $input, 'post', CPT::POST_TYPE );
+			unset( CPT::$rejected_meta[ $meta_key ] );
+			if ( in_array( $name, array( 'email_cc', 'email_bcc' ), true ) ) {
+				$bad = array();
+				bptm_parse_email_list( $input, $bad );
+				if ( $bad ) {
+					$rejected[] = array( $field[1], implode( ', ', $bad ) );
+				}
+			} elseif ( '' !== $input && '' === (string) $value ) {
+				$rejected[] = array( $field[1], $input );
+			}
+			if ( '' !== $input && '' === (string) $value ) {
+				continue; // Rejected as a whole: keep the previous valid value.
+			}
 			self::store( $post_id, $meta_key, $value );
 		}
+		self::remember_rejected( $post_id, $rejected );
 
 		self::store( $post_id, '_bptm_featured', ! empty( $raw['featured'] ) ? '1' : '' );
 
@@ -362,6 +382,83 @@ class Meta_Boxes {
 		// phpcs:enable
 
 		do_action( 'bptm_member_meta_saved', $post_id, $post );
+	}
+
+	/**
+	 * Transient key of the rejected-field report for the current user + post.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return string
+	 */
+	private static function rejected_key( $post_id ) {
+		return 'bptm_rejected_' . get_current_user_id() . '_' . (int) $post_id;
+	}
+
+	/**
+	 * Remember fields whose value was rejected on save (shown as an admin notice).
+	 *
+	 * @param int   $post_id  Post ID.
+	 * @param array $rejected List of [ label, value ].
+	 */
+	private static function remember_rejected( $post_id, array $rejected ) {
+		if ( $rejected ) {
+			set_transient( self::rejected_key( $post_id ), $rejected, 10 * MINUTE_IN_SECONDS );
+		} else {
+			delete_transient( self::rejected_key( $post_id ) );
+		}
+	}
+
+	/**
+	 * Read (and clear) the rejected-field messages for a post.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return array List of message strings.
+	 */
+	public static function pull_rejected_messages( $post_id ) {
+		$key      = self::rejected_key( $post_id );
+		$rejected = get_transient( $key );
+		if ( ! is_array( $rejected ) || ! $rejected ) {
+			return array();
+		}
+		delete_transient( $key );
+		$out = array();
+		foreach ( $rejected as $row ) {
+			if ( is_array( $row ) && 2 === count( $row ) ) {
+				/* translators: 1: field label, 2: rejected value */
+				$out[] = sprintf( __( '%1$s: "%2$s" is not valid and was not saved.', 'bp-team-member' ), $row[0], $row[1] );
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * Classic editor: notice after a save that dropped invalid values.
+	 */
+	public static function rejected_notice() {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( ! $screen || 'post' !== $screen->base || CPT::POST_TYPE !== $screen->post_type ) {
+			return;
+		}
+		if ( method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() ) {
+			return; // The block editor shows it through meta-boxes.js.
+		}
+		$post_id  = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$messages = $post_id ? self::pull_rejected_messages( $post_id ) : array();
+		if ( $messages ) {
+			echo '<div class="notice notice-warning is-dismissible bptm-rejected-notice"><p>' . implode( '<br />', array_map( 'esc_html', $messages ) ) . '</p></div>';
+		}
+	}
+
+	/**
+	 * AJAX (block editor): rejected-field messages after the meta boxes were saved.
+	 */
+	public static function ajax_rejected() {
+		check_ajax_referer( 'bptm_rejected_fields', 'nonce' );
+		$post_id = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+		if ( ! $post_id || ! current_user_can( 'edit_post', $post_id ) ) {
+			wp_send_json_error( array(), 403 );
+		}
+		wp_send_json_success( array( 'messages' => self::pull_rejected_messages( $post_id ) ) );
 	}
 
 	/**

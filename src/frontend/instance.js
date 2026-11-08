@@ -174,6 +174,11 @@ export default class Instance {
 		if ( typeof cfg.seed !== 'undefined' ) {
 			body.seed = cfg.seed;
 		}
+		// Page URL: the server builds absolute page links from it (keeps other query args).
+		const loc = window.location;
+		if ( /^https?:$/.test( loc.protocol ) && loc.pathname.indexOf( '/wp-admin/' ) === -1 ) {
+			body.url = loc.href.split( '#' )[ 0 ];
+		}
 		const c = this.container();
 		this.root.classList.add( 'is-loading' );
 		if ( c ) {

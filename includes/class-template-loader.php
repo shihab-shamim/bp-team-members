@@ -196,12 +196,18 @@ class Template_Loader {
 		if ( 'bptm_member' !== $post_type ) {
 			return $link;
 		}
-		$custom = trim( (string) Settings::get( 'archive_page_slug', '' ) );
+		$custom = function_exists( 'bptm_archive_page_slug' ) ? bptm_archive_page_slug() : trim( (string) Settings::get( 'archive_page_slug', '' ) );
 		if ( '' === $custom ) {
 			return $link;
 		}
 		if ( preg_match( '#^https?://#i', $custom ) ) {
 			return esc_url_raw( $custom );
+		}
+		// A slug is registered as the post type's has_archive (CPT), so core already builds the
+		// matching link (nested paths, permalink front base, plain permalinks).
+		$obj = get_post_type_object( 'bptm_member' );
+		if ( $obj && is_string( $obj->has_archive ) && '' !== $link ) {
+			return $link;
 		}
 		return home_url( user_trailingslashit( ltrim( $custom, '/' ) ) );
 	}
@@ -890,6 +896,39 @@ class Single_View {
 	}
 
 	/**
+	 * Previous / next published members in the archive order (Sort Order = menu_order ASC,
+	 * then newest first, then ID), instead of WordPress' post-date adjacency.
+	 *
+	 * @param int $id Current member id.
+	 * @return array [ prev WP_Post|null, next WP_Post|null ]
+	 */
+	public static function adjacent_members( $id ) {
+		$ids = get_posts(
+			array(
+				'post_type'        => 'bptm_member',
+				'post_status'      => 'publish',
+				'posts_per_page'   => -1,
+				'fields'           => 'ids',
+				'orderby'          => array(
+					'menu_order' => 'ASC',
+					'date'       => 'DESC',
+					'ID'         => 'DESC',
+				),
+				'no_found_rows'    => true,
+				'suppress_filters' => false,
+			)
+		);
+		$ids = array_map( 'intval', (array) apply_filters( 'bptm_single_adjacent_ids', $ids, $id ) );
+		$pos = array_search( (int) $id, $ids, true );
+		if ( false === $pos ) {
+			return array( null, null );
+		}
+		$prev = $pos > 0 ? get_post( $ids[ $pos - 1 ] ) : null;
+		$next = isset( $ids[ $pos + 1 ] ) ? get_post( $ids[ $pos + 1 ] ) : null;
+		return array( $prev, $next );
+	}
+
+	/**
 	 * Previous / next member navigation (when enabled).
 	 *
 	 * @return string
@@ -898,8 +937,7 @@ class Single_View {
 		if ( ! Settings::to_bool( Settings::get( 'next_prev', false ) ) ) {
 			return '';
 		}
-		$prev = get_previous_post();
-		$next = get_next_post();
+		list( $prev, $next ) = self::adjacent_members( (int) $this->m['id'] );
 		if ( ! $prev && ! $next ) {
 			return '';
 		}
@@ -977,6 +1015,30 @@ class Single_View {
 		}
 		if ( ! empty( $m['skills'] ) ) {
 			$data['knowsAbout'] = array_values( array_filter( wp_list_pluck( $m['skills'], 'skill' ) ) );
+		}
+		// JSON-LD is not HTML: plain text without tags or entities (&gt;, &#8217;, &hellip;…).
+		$plain = function ( $value ) use ( &$plain ) {
+			if ( is_array( $value ) ) {
+				return array_map( $plain, $value );
+			}
+			if ( ! is_string( $value ) ) {
+				return $value;
+			}
+			return trim( html_entity_decode( wp_strip_all_tags( $value ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
+		};
+		foreach ( array( 'name', 'jobTitle', 'description', 'telephone', 'knowsAbout' ) as $key ) {
+			if ( isset( $data[ $key ] ) ) {
+				$data[ $key ] = $plain( $data[ $key ] );
+			}
+		}
+		foreach ( array( 'worksFor', 'address' ) as $key ) {
+			if ( isset( $data[ $key ] ) && is_array( $data[ $key ] ) ) {
+				foreach ( array( 'name', 'streetAddress', 'postalCode' ) as $sub ) {
+					if ( isset( $data[ $key ][ $sub ] ) ) {
+						$data[ $key ][ $sub ] = $plain( $data[ $key ][ $sub ] );
+					}
+				}
+			}
 		}
 		$data = apply_filters( 'bptm_single_schema', $data, $m );
 		return '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP ) . '</script>';

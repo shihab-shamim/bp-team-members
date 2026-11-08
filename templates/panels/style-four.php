@@ -13,12 +13,12 @@
 defined( 'ABSPATH' ) || exit;
 
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- every fragment is escaped by the bptm_tb_* helpers / Context.
-$bptm_d = bptm_tb_detail_parts( $ctx, $m, array( 'img', 'name', 'role', 'desc', 'meta', 'social', 'skills' ) );
+$bptm_d = bptm_tb_detail_parts( $ctx, $m, array( 'img', 'badges', 'name', 'role', 'desc', 'meta', 'social', 'skills' ) );
 ?>
 <div class="<?php echo bptm_tb_detail_classes( $ctx, $m, 'panel', 'style-four' ); ?>">
 	<?php if ( $bptm_d['img'] ) : ?>
 		<div class="bptm-dv-media">
-			<?php echo $bptm_d['img']; ?>
+			<?php echo $bptm_d['img'] . $bptm_d['badges']; ?>
 		</div>
 	<?php endif; ?>
 	<?php if ( $bptm_d['name'] || $bptm_d['role'] ) : ?>

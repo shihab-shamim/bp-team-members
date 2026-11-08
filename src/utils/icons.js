@@ -1,9 +1,13 @@
 const iconColor = '#4527a4';
 
-export const blockIcon = <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} viewBox='0 0 20 20' fill={iconColor}>
-	<path fill={iconColor} fillRule='evenodd' d='M9.938 4.016a.146.146 0 00-.054.057L3.027 15.74a.176.176 0 00-.002.183c.016.03.037.05.054.06.015.01.034.017.066.017h13.713a.12.12 0 00.066-.017.163.163 0 00.055-.06.176.176 0 00-.003-.183L10.12 4.073a.146.146 0 00-.054-.057.13.13 0 00-.063-.016.13.13 0 00-.064.016zm1.043-.45a1.13 1.13 0 00-1.96 0L2.166 15.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L10.982 3.566z'></path>
-	<rect fill={iconColor} width='2' height='2' x='9.002' y='13' rx='1'></rect>
-	<path fill={iconColor} d='M9.1 7.995a.905.905 0 111.8 0l-.35 3.507a.553.553 0 01-1.1 0L9.1 7.995z'></path>
+// Team / people: one member in front, two behind.
+export const blockIcon = <svg xmlns='http://www.w3.org/2000/svg' width={ 24 } height={ 24 } viewBox='0 0 24 24' fill={ iconColor } aria-hidden='true' focusable='false'>
+	<circle cx='12' cy='7.5' r='3.5' />
+	<path d='M5.5 19.5c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5c0 .55-.45 1-1 1h-11c-.55 0-1-.45-1-1z' />
+	<circle cx='5.25' cy='9.25' r='2.5' opacity='0.6' />
+	<circle cx='18.75' cy='9.25' r='2.5' opacity='0.6' />
+	<path d='M1 17.75c0-2.62 1.9-4.75 4.25-4.75.97 0 1.86.36 2.57.97A8.04 8.04 0 0 0 4.06 18.75H2c-.55 0-1-.45-1-1z' opacity='0.6' />
+	<path d='M23 17.75c0-2.62-1.9-4.75-4.25-4.75-.97 0-1.86.36-2.57.97a8.04 8.04 0 0 1 3.76 4.78H22c.55 0 1-.45 1-1z' opacity='0.6' />
 </svg>;
 
 export const verticalLineIcon = <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} viewBox='0 0 14.707 14.707'>

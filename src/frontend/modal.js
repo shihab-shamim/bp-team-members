@@ -24,6 +24,13 @@ export default class Modal {
 			this.shell = $( '.bptm-drawer[data-bptm-for]', this.root );
 		} else {
 			this.shell = $( '.bptm-modal[data-bptm-for]', this.root );
+			if ( this.shell && this.type === 'panel' ) {
+				// Side class from the config (right | left | center) so a centred panel opens as a centred dialog
+				// even with an overridden modal template that only knows left/right.
+				const side = [ 'left', 'right', 'center' ].includes( inst.cfg.panel ) ? inst.cfg.panel : 'right';
+				this.shell.classList.remove( 'bptm-panel-left', 'bptm-panel-right', 'bptm-panel-center' );
+				this.shell.classList.add( 'bptm-panel-' + side );
+			}
 			if ( this.shell ) {
 				this.mountPortal();
 			}
@@ -208,6 +215,8 @@ export default class Modal {
 				lockScroll();
 				this.root.classList.add( 'bptm-modal-open-host' );
 				this.bindOutsideFocus();
+			} else {
+				this.bindDrawerKey();
 			}
 			// Next frame: allow CSS enter transitions.
 			window.requestAnimationFrame( () => {
@@ -296,6 +305,24 @@ export default class Modal {
 		document.addEventListener( 'keydown', this.onDocKey );
 	}
 
+	/** Inline drawer: ESC closes it from anywhere on the page (focus may have left the drawer). */
+	bindDrawerKey() {
+		if ( this.onDrawerKey ) {
+			document.removeEventListener( 'keydown', this.onDrawerKey );
+		}
+		this.onDrawerKey = ( e ) => {
+			if ( e.key !== 'Escape' || e.defaultPrevented || this.shell.hidden ) {
+				return;
+			}
+			// An open popup/panel above the page handles ESC itself.
+			if ( document.querySelector( '.bptm-modal.is-open:not([hidden])' ) ) {
+				return;
+			}
+			this.close();
+		};
+		document.addEventListener( 'keydown', this.onDrawerKey );
+	}
+
 	close() {
 		if ( ! this.shell || this.shell.hidden || this.current === null ) {
 			return;
@@ -311,6 +338,9 @@ export default class Modal {
 			this.root.classList.remove( 'bptm-modal-open-host' );
 			document.removeEventListener( 'focusin', this.onDocFocus );
 			document.removeEventListener( 'keydown', this.onDocKey );
+		} else if ( this.onDrawerKey ) {
+			document.removeEventListener( 'keydown', this.onDrawerKey );
+			this.onDrawerKey = null;
 		}
 		const dur = parseFloat( window.getComputedStyle( this.shell ).getPropertyValue( '--bptm-modal-speed' ) ) || 0;
 		if ( dur > 0 && ! window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ) {

@@ -18,6 +18,7 @@ class Import_Export {
 
 	const CAPABILITY = 'manage_options';
 	const FORMAT     = 'bp-team-member-export';
+	const UID_META   = '_bptm_export_uid';
 
 	/**
 	 * Hooks.
@@ -58,7 +59,7 @@ class Import_Export {
 		$report = get_transient( 'bptm_import_report_' . get_current_user_id() );
 		if ( isset( $_GET['bptm_imported'] ) && is_array( $report ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			delete_transient( 'bptm_import_report_' . get_current_user_id() );
-			$class = empty( $report['error'] ) ? 'notice-success' : 'notice-error';
+			$class = empty( $report['error'] ) ? ( empty( $report['warning'] ) ? 'notice-success' : 'notice-warning' ) : 'notice-error';
 			echo '<div class="notice ' . esc_attr( $class ) . ' is-dismissible"><p>' . esc_html( $report['message'] ) . '</p></div>';
 		}
 		?>
@@ -82,7 +83,7 @@ class Import_Export {
 				<p><label><input type="checkbox" name="import[]" value="members" checked /> <?php esc_html_e( 'Import members', 'bp-team-member' ); ?></label></p>
 				<p><label><input type="checkbox" name="import[]" value="showcases" checked /> <?php esc_html_e( 'Import showcases', 'bp-team-member' ); ?></label></p>
 				<p><label><input type="checkbox" name="import[]" value="settings" checked /> <?php esc_html_e( 'Import settings (overwrites current settings)', 'bp-team-member' ); ?></label></p>
-				<p><label><input type="checkbox" name="overwrite" value="1" /> <?php esc_html_e( 'Update members that already exist (matched by slug) instead of skipping them', 'bp-team-member' ); ?></label></p>
+				<p><label><input type="checkbox" name="overwrite" value="1" /> <?php esc_html_e( 'Update members and showcases that already exist (matched by export ID, slug or title) instead of skipping them', 'bp-team-member' ); ?></label></p>
 				<?php submit_button( __( 'Import', 'bp-team-member' ), 'primary', 'submit', false ); ?>
 			</form>
 		</div>
@@ -119,16 +120,21 @@ class Import_Export {
 			$posts             = get_posts(
 				array(
 					'post_type'      => 'bptm_showcase',
-					'post_status'    => array( 'publish', 'draft', 'private', 'pending' ),
+					'post_status'    => self::statuses(),
 					'posts_per_page' => -1,
 				)
 			);
 			foreach ( $posts as $post ) {
 				$data['showcases'][] = array(
-					'id'      => $post->ID,
-					'title'   => $post->post_title,
-					'content' => $post->post_content,
-					'status'  => $post->post_status,
+					'id'       => $post->ID,
+					'uid'      => self::uid( $post ),
+					'title'    => $post->post_title,
+					'slug'     => $post->post_name,
+					'content'  => $post->post_content,
+					'status'   => $post->post_status,
+					'password' => $post->post_password,
+					'date'     => $post->post_date,
+					'date_gmt' => $post->post_date_gmt,
 				);
 			}
 		}
@@ -137,6 +143,15 @@ class Import_Export {
 			$data['taxonomy_settings'] = Settings::tax_all();
 		}
 		return $data;
+	}
+
+	/**
+	 * Post statuses exported / accepted on import (scheduled members included).
+	 *
+	 * @return array
+	 */
+	public static function statuses() {
+		return array( 'publish', 'future', 'draft', 'pending', 'private' );
 	}
 
 	/**
@@ -184,7 +199,7 @@ class Import_Export {
 		$posts = get_posts(
 			array(
 				'post_type'      => 'bptm_member',
-				'post_status'    => array( 'publish', 'draft', 'private', 'pending' ),
+				'post_status'    => self::statuses(),
 				'posts_per_page' => -1,
 				'orderby'        => 'menu_order',
 				'order'          => 'ASC',
@@ -192,11 +207,16 @@ class Import_Export {
 		);
 		foreach ( $posts as $post ) {
 			$item = array(
+				'id'         => $post->ID,
+				'uid'        => self::uid( $post ),
 				'name'       => $post->post_title,
 				'slug'       => $post->post_name,
 				'content'    => $post->post_content,
 				'excerpt'    => $post->post_excerpt,
 				'status'     => $post->post_status,
+				'password'   => $post->post_password,
+				'date'       => $post->post_date,
+				'date_gmt'   => $post->post_date_gmt,
 				'menu_order' => (int) $post->menu_order,
 			);
 			foreach ( Importer::meta_map() as $field => $meta_key ) {
@@ -244,7 +264,17 @@ class Import_Export {
 		$parts = isset( $_POST['export'] ) ? array_map( 'sanitize_key', (array) wp_unslash( $_POST['export'] ) ) : array();
 		$parts = array_intersect( $parts, array( 'members', 'showcases', 'settings' ) );
 		if ( ! $parts ) {
-			wp_die( esc_html__( 'Nothing selected to export.', 'bp-team-member' ), '', array( 'back_link' => true ) );
+			// Friendly notice on the tool page instead of a wp_die() error screen.
+			set_transient(
+				'bptm_import_report_' . get_current_user_id(),
+				array(
+					'error'   => true,
+					'message' => __( 'Nothing selected to export. Tick at least one of members, showcases or settings.', 'bp-team-member' ),
+				),
+				5 * MINUTE_IN_SECONDS
+			);
+			wp_safe_redirect( self::page_url( array( 'bptm_imported' => 1 ) ) );
+			exit;
 		}
 		$json = wp_json_encode( self::build_export( $parts ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
 		nocache_headers();
@@ -280,9 +310,22 @@ class Import_Export {
 				$counts = self::import( $data, $parts, ! empty( $_POST['overwrite'] ) );
 				$report = array(
 					'error'   => false,
-					/* translators: 1: members created, 2: members updated, 3: members skipped, 4: showcases, 5: settings yes/no */
-					'message' => sprintf( __( 'Import complete. Members: %1$d created, %2$d updated, %3$d skipped. Showcases: %4$d created. Settings imported: %5$s.', 'bp-team-member' ), $counts['created'], $counts['updated'], $counts['skipped'], $counts['showcases'], $counts['settings'] ? __( 'yes', 'bp-team-member' ) : __( 'no', 'bp-team-member' ) ),
+					'message' => sprintf(
+						/* translators: 1: members created, 2: members updated, 3: members skipped, 4: showcases created, 5: showcases updated, 6: showcases skipped (already exist), 7: showcases not imported (empty/invalid), 8: settings yes/no */
+						__( 'Import complete. Members: %1$d created, %2$d updated, %3$d skipped. Showcases: %4$d created, %5$d updated, %6$d skipped (already exist), %7$d not imported (empty or invalid). Settings imported: %8$s.', 'bp-team-member' ),
+						$counts['created'],
+						$counts['updated'],
+						$counts['skipped'],
+						$counts['showcases'],
+						$counts['showcases_updated'],
+						$counts['showcases_skipped'],
+						$counts['showcases_invalid'],
+						$counts['settings'] ? __( 'yes', 'bp-team-member' ) : __( 'no', 'bp-team-member' )
+					),
 				);
+				if ( $counts['showcases_invalid'] ) {
+					$report['warning'] = true;
+				}
 			}
 		}
 		set_transient( 'bptm_import_report_' . get_current_user_id(), $report, 5 * MINUTE_IN_SECONDS );
@@ -303,8 +346,11 @@ class Import_Export {
 			'created'   => 0,
 			'updated'   => 0,
 			'skipped'   => 0,
-			'showcases' => 0,
-			'settings'  => false,
+			'showcases'         => 0,
+			'showcases_updated' => 0,
+			'showcases_skipped' => 0,
+			'showcases_invalid' => 0,
+			'settings'          => false,
 		);
 		if ( function_exists( 'set_time_limit' ) ) {
 			@set_time_limit( 300 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
@@ -359,18 +405,16 @@ class Import_Export {
 				if ( ! is_array( $member ) ) {
 					continue;
 				}
-				$existing = 0;
-				if ( ! empty( $member['slug'] ) ) {
-					$found = get_page_by_path( sanitize_title( $member['slug'] ), OBJECT, 'bptm_member' );
-					if ( $found ) {
-						if ( ! $overwrite ) {
-							++$counts['skipped'];
-							continue;
-						}
-						$existing = (int) $found->ID;
-					}
+				// Match: export uid (also drafts / pending members without a slug), then slug, then title + date.
+				$existing = self::find_existing( 'bptm_member', $member, isset( $member['name'] ) && is_scalar( $member['name'] ) ? (string) $member['name'] : '' );
+				if ( $existing && ! $overwrite ) {
+					++$counts['skipped'];
+					continue;
 				}
 				$id = Importer::save_member( $member, $existing );
+				if ( ! is_wp_error( $id ) ) {
+					self::remember_uid( (int) $id, $member );
+				}
 				if ( is_wp_error( $id ) ) {
 					++$counts['skipped'];
 				} elseif ( $existing ) {
@@ -383,29 +427,170 @@ class Import_Export {
 
 		if ( in_array( 'showcases', $parts, true ) && ! empty( $data['showcases'] ) && is_array( $data['showcases'] ) ) {
 			foreach ( $data['showcases'] as $showcase ) {
-				if ( ! is_array( $showcase ) || empty( $showcase['content'] ) ) {
+				if ( ! is_array( $showcase ) ) {
+					continue;
+				}
+				$title = isset( $showcase['title'] ) && is_scalar( $showcase['title'] ) ? sanitize_text_field( (string) $showcase['title'] ) : '';
+				if ( empty( $showcase['content'] ) || ! is_string( $showcase['content'] ) || '' === trim( $showcase['content'] ) ) {
+					++$counts['showcases_invalid'];
+					continue;
+				}
+				// Same showcase already here (by slug, or by title for exports without slugs)?
+				$existing = self::find_existing( 'bptm_showcase', $showcase, $title );
+				if ( $existing && ! $overwrite ) {
+					++$counts['showcases_skipped'];
 					continue;
 				}
 				$content = self::remap_block_terms( (string) $showcase['content'], $term_map );
-				$status  = isset( $showcase['status'] ) && in_array( $showcase['status'], array( 'publish', 'draft', 'private', 'pending' ), true ) ? $showcase['status'] : 'publish';
-				$id      = wp_insert_post(
-					wp_slash(
-						array(
-							'post_type'    => 'bptm_showcase',
-							'post_title'   => isset( $showcase['title'] ) ? sanitize_text_field( $showcase['title'] ) : __( 'Imported showcase', 'bp-team-member' ),
-							'post_content' => current_user_can( 'unfiltered_html' ) ? $content : wp_kses_post( $content ),
-							'post_status'  => $status,
-						)
-					),
-					true
+				$status  = isset( $showcase['status'] ) && in_array( $showcase['status'], self::statuses(), true ) ? $showcase['status'] : 'publish';
+				$post    = array(
+					'post_type'    => 'bptm_showcase',
+					'post_title'   => '' !== $title ? $title : __( 'Imported showcase', 'bp-team-member' ),
+					'post_content' => current_user_can( 'unfiltered_html' ) ? $content : wp_kses_post( $content ),
+					'post_status'  => $status,
 				);
+				if ( ! empty( $showcase['slug'] ) && is_string( $showcase['slug'] ) ) {
+					$post['post_name'] = sanitize_title( $showcase['slug'] );
+				}
+				if ( array_key_exists( 'password', $showcase ) && is_scalar( $showcase['password'] ) ) {
+					$post['post_password'] = substr( trim( (string) $showcase['password'] ), 0, 255 );
+				}
+				// Original dates: a scheduled showcase stays scheduled (same rules as members).
+				foreach ( array( 'date' => 'post_date', 'date_gmt' => 'post_date_gmt' ) as $field => $column ) {
+					if ( ! empty( $showcase[ $field ] ) && is_string( $showcase[ $field ] ) && '0000-00-00 00:00:00' !== $showcase[ $field ] && preg_match( '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $showcase[ $field ] ) ) {
+						$post[ $column ] = $showcase[ $field ];
+					}
+				}
+				if ( isset( $post['post_date'] ) || isset( $post['post_date_gmt'] ) ) {
+					$post['edit_date'] = true;
+				}
+				if ( $existing ) {
+					$post['ID'] = $existing;
+					$id         = wp_update_post( wp_slash( $post ), true );
+				} else {
+					$id = wp_insert_post( wp_slash( $post ), true );
+				}
 				if ( ! is_wp_error( $id ) ) {
+					self::remember_uid( (int) $id, $showcase );
+				}
+				if ( is_wp_error( $id ) ) {
+					++$counts['showcases_invalid'];
+				} elseif ( $existing ) {
+					++$counts['showcases_updated'];
+				} else {
 					++$counts['showcases'];
 				}
 			}
 		}
 
 		return $counts;
+	}
+
+	/**
+	 * Stable export identifier of a post: the uid it was imported with, else "{site hash}-{post id}".
+	 * Stays the same across exports and lets re-imports match posts that have no slug (drafts).
+	 *
+	 * @param \WP_Post $post Post.
+	 * @return string
+	 */
+	public static function uid( $post ) {
+		$stored = (string) get_post_meta( $post->ID, self::UID_META, true );
+		return '' !== $stored ? $stored : self::site_hash() . '-' . (int) $post->ID;
+	}
+
+	/**
+	 * Short hash of this site's home URL (uid prefix).
+	 *
+	 * @return string
+	 */
+	protected static function site_hash() {
+		return substr( md5( untrailingslashit( home_url() ) ), 0, 12 );
+	}
+
+	/**
+	 * Sanitized uid of an imported item ('' when missing / malformed).
+	 *
+	 * @param array $item Item.
+	 * @return string
+	 */
+	protected static function item_uid( array $item ) {
+		$uid = isset( $item['uid'] ) && is_string( $item['uid'] ) ? strtolower( trim( $item['uid'] ) ) : '';
+		return preg_match( '/^[a-z0-9-]{3,80}$/', $uid ) ? $uid : '';
+	}
+
+	/**
+	 * Store the source uid on an imported post so the next re-import matches it.
+	 *
+	 * @param int   $post_id Post id.
+	 * @param array $item    Imported item.
+	 */
+	protected static function remember_uid( $post_id, array $item ) {
+		$uid = self::item_uid( $item );
+		if ( '' === $uid || ! $post_id ) {
+			return;
+		}
+		if ( self::site_hash() . '-' . $post_id === $uid ) {
+			return; // Exported from this very post: the implicit uid already matches.
+		}
+		update_post_meta( $post_id, self::UID_META, $uid );
+	}
+
+	/**
+	 * Existing post matching an imported item: by export uid, then slug, then exact title (+ date
+	 * when the file has one). Drafts / pending posts have no slug, so the uid is what matches them.
+	 *
+	 * @param string $post_type Post type.
+	 * @param array  $item      Imported item.
+	 * @param string $title     Title / name.
+	 * @return int Post id or 0.
+	 */
+	protected static function find_existing( $post_type, array $item, $title ) {
+		$args = array(
+			'post_type'        => $post_type,
+			'post_status'      => self::statuses(),
+			'posts_per_page'   => 1,
+			'fields'           => 'ids',
+			'orderby'          => 'ID',
+			'order'            => 'ASC',
+			'suppress_filters' => true,
+		);
+		$uid  = self::item_uid( $item );
+		if ( '' !== $uid ) {
+			$prefix = self::site_hash() . '-';
+			if ( 0 === strpos( $uid, $prefix ) ) {
+				$id   = (int) substr( $uid, strlen( $prefix ) );
+				$post = $id ? get_post( $id ) : null;
+				if ( $post && $post_type === $post->post_type && in_array( $post->post_status, self::statuses(), true ) && '' === (string) get_post_meta( $id, self::UID_META, true ) ) {
+					return $id;
+				}
+			}
+			$found = get_posts(
+				$args + array(
+					'meta_key'   => self::UID_META, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+					'meta_value' => $uid, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+				)
+			);
+			if ( $found ) {
+				return (int) $found[0];
+			}
+		}
+		$slug = isset( $item['slug'] ) && is_string( $item['slug'] ) ? sanitize_title( $item['slug'] ) : '';
+		if ( '' !== $slug ) {
+			$found = get_posts( $args + array( 'name' => $slug ) );
+			return $found ? (int) $found[0] : 0;
+		}
+		$title = sanitize_text_field( (string) $title );
+		if ( '' === $title ) {
+			return 0;
+		}
+		$date = isset( $item['date'] ) && is_string( $item['date'] ) && preg_match( '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $item['date'] ) ? $item['date'] : '';
+		$list = get_posts( array_merge( $args, array( 'fields' => 'all', 'posts_per_page' => 50, 'title' => $title ) ) );
+		foreach ( $list as $candidate ) {
+			if ( '' === $date || $candidate->post_date === $date ) {
+				return (int) $candidate->ID;
+			}
+		}
+		return 0;
 	}
 
 	/**

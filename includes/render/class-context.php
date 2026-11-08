@@ -455,6 +455,7 @@ class Context {
 			'b'      => array(),
 			'i'      => $common + array( 'aria-hidden' => true ),
 			'br'     => array(),
+			'wbr'    => array(),
 		);
 	}
 
@@ -651,15 +652,13 @@ class Context {
 			'alt'   => wp_strip_all_tags( (string) $alt ),
 		);
 		if ( $no_lazy ) {
-			$classes            .= ' ' . sanitize_html_class( (string) $this->pref( 'lazy_load_class', 'skip-lazy' ) );
-			$attr['loading']     = 'eager';
+			// "Disable lazy load" applies to every member image (cards, flip, popup / panel / drawer).
+			$classes             = trim( $classes . ' ' . implode( ' ', $this->no_lazy_classes() ) );
+			$attr['loading']      = 'eager';
 			$attr['data-no-lazy'] = '1';
 		} else {
 			$attr['loading']  = $this->index < 4 && 'carousel' !== $this->view && ! $this->is_detail() ? 'eager' : 'lazy';
 			$attr['decoding'] = 'async';
-		}
-		if ( $this->is_detail() ) {
-			$attr['loading'] = 'lazy';
 		}
 		$attr['class'] = trim( $classes );
 		if ( $itemprop ) {
@@ -680,6 +679,79 @@ class Context {
 		}
 		$attr = array( 'src' => $url ) + $attr;
 		return '<img' . self::attrs( $attr ) . ' />';
+	}
+
+	/**
+	 * Lazy-load exclusion classes from Preferences (space / comma separated list, each sanitized).
+	 *
+	 * @return string[]
+	 */
+	public function no_lazy_classes() {
+		$raw = (string) $this->pref( 'lazy_load_class', 'skip-lazy' );
+		$out = array();
+		foreach ( preg_split( '/[\s,]+/', trim( $raw ), -1, PREG_SPLIT_NO_EMPTY ) as $c ) {
+			$c = sanitize_html_class( $c );
+			if ( '' !== $c ) {
+				$out[ $c ] = $c;
+			}
+		}
+		return array_values( $out );
+	}
+
+	/**
+	 * When "disable lazy load" is on, mark the <img> tags inside rich HTML (full description in popup /
+	 * panel / drawer, which went through the_content and got loading="lazy") as eager + exclusion classes.
+	 *
+	 * @param string $html HTML.
+	 * @return string
+	 */
+	public function no_lazy_html( $html ) {
+		if ( ! $this->pref( 'disable_lazy_load', false ) || false === stripos( $html, '<img' ) || ! class_exists( '\WP_HTML_Tag_Processor' ) ) {
+			return $html;
+		}
+		$classes = $this->no_lazy_classes();
+		$p       = new \WP_HTML_Tag_Processor( $html );
+		while ( $p->next_tag( 'img' ) ) {
+			$p->set_attribute( 'loading', 'eager' );
+			$p->set_attribute( 'data-no-lazy', '1' );
+			$p->remove_attribute( 'decoding' );
+			foreach ( $classes as $c ) {
+				$p->add_class( $c );
+			}
+		}
+		return $p->get_updated_html();
+	}
+
+	/**
+	 * Escape plain (already entity-decoded) text exactly once.
+	 *
+	 * @param string $text Text.
+	 * @return string
+	 */
+	public static function esc_text( $text ) {
+		return htmlspecialchars( (string) $text, ENT_QUOTES, 'UTF-8', true );
+	}
+
+	/**
+	 * Escaped visible text of an email address / URL with <wbr> break opportunities after "@" and
+	 * before "." (so it wraps at sensible points instead of mid-word), wrapped in .bptm-email-text.
+	 *
+	 * @param string $text Raw text.
+	 * @return string
+	 */
+	public static function breakable_text( $text ) {
+		$parts = preg_split( '/(@|\.)/', (string) $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		$out   = '';
+		foreach ( (array) $parts as $part ) {
+			if ( '@' === $part ) {
+				$out .= '@<wbr>';
+			} elseif ( '.' === $part ) {
+				$out .= '<wbr>.';
+			} else {
+				$out .= esc_html( $part );
+			}
+		}
+		return '<span class="bptm-email-text">' . $out . '</span>';
 	}
 
 	/**
@@ -754,19 +826,22 @@ class Context {
 			if ( false === strpos( $html, '<p' ) ) {
 				$html = wpautop( $html );
 			}
-			$inner = wp_kses_post( $html );
+			$inner = $this->no_lazy_html( wp_kses_post( $html ) );
 		} else {
 			$text = '' !== trim( (string) $m['excerpt'] ) ? $m['excerpt'] : $m['content'];
-			$text = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( strip_shortcodes( (string) $text ) ) ) );
+			// Measure and cut the plain text, never its HTML-encoded form: decode entities first (wptexturize
+			// stores `&` as `&#038;`/`&amp;`), so a cut can never land inside an entity; esc_html() encodes once below.
+			$text = html_entity_decode( wp_check_invalid_utf8( wp_strip_all_tags( strip_shortcodes( (string) $text ) ), true ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+			$text = trim( (string) preg_replace( '/[\s\x{00A0}]+/u', ' ', $text ) );
 			if ( '' === $text ) {
 				return $this->acf_after( $m, 'after_description' );
 			}
 			$max   = (int) $this->attr( 'detailsLength', 100 );
-			$inner = esc_html( $text );
+			$inner = self::esc_text( $text );
 			$len   = function_exists( 'mb_strlen' ) ? mb_strlen( $text ) : strlen( $text );
 			if ( $max > 0 && $len > $max ) {
 				$cut   = function_exists( 'mb_substr' ) ? mb_substr( $text, 0, $max ) : substr( $text, 0, $max );
-				$inner = esc_html( rtrim( $cut ) ) . '&hellip;';
+				$inner = self::esc_text( rtrim( $cut ) ) . '&hellip;';
 				if ( $this->has_link( $m ) ) {
 					$inner .= ' ' . $this->link_open( $m, 'bptm-more' ) . esc_html( $this->t( 'more' ) ) . '</a>';
 				}
@@ -922,7 +997,7 @@ class Context {
 		if ( '' !== (string) $m['company'] || '' !== (string) $m['company_website'] ) {
 			$text    = '' !== (string) $m['company'] ? $m['company'] : preg_replace( '#^https?://#', '', $m['company_website'] );
 			$company = '' !== (string) $m['company_website']
-				? '<a href="' . esc_url( $m['company_website'] ) . '" target="_blank" rel="nofollow noopener">' . esc_html( $text ) . '</a>'
+				? '<a href="' . esc_url( $m['company_website'] ) . '" target="_blank" rel="nofollow noopener">' . ( '' !== (string) $m['company'] ? esc_html( $text ) : self::breakable_text( $text ) ) . '</a>'
 				: esc_html( $text );
 			$company = '<span itemprop="worksFor">' . $company . '</span>';
 		}
@@ -932,7 +1007,7 @@ class Context {
 		$add( 'cell_phone', $this->t( 'cell_phone' ), $this->phone( $m['cell_phone'], 'cell_phone_link' ), 'fas fa-mobile-screen' );
 		$add( 'email', $this->t( 'email' ), $this->email( $m ), 'fas fa-envelope' );
 		foreach ( array( 'location', 'language', 'specialty', 'gender' ) as $k ) {
-			$label = isset( $taxes[ $k ]['label'] ) && $taxes[ $k ]['label'] ? $taxes[ $k ]['label'] : $this->t( $k );
+			$label = $this->tax_meta_label( $k, $taxes );
 			$icons = array(
 				'location'  => 'fas fa-map-pin',
 				'language'  => 'fas fa-language',
@@ -947,6 +1022,47 @@ class Context {
 			$add( $k, $label, esc_html( $this->terms_text( $m, $k ) ), 'fas fa-circle-info' );
 		}
 		return apply_filters( 'bptm_meta_rows', $rows, $m, $this );
+	}
+
+	/**
+	 * Meta-details label for a taxonomy field (location, language, specialty, gender).
+	 * A customised translation (Settings > Translations, or the `bptm_translation` filter in
+	 * multilingual mode) wins; otherwise the taxonomy label (which can be renamed in taxonomy settings).
+	 *
+	 * @param string $k     Taxonomy key.
+	 * @param array  $taxes bptm_taxonomies().
+	 * @return string
+	 */
+	public function tax_meta_label( $k, array $taxes = array() ) {
+		$label = self::tax_label( $k, $taxes );
+		return '' !== $label ? $label : $this->t( $k );
+	}
+
+	/**
+	 * Static form of tax_meta_label() for code without a Context (table column headers, filter placeholders).
+	 * Customised translation wins, else taxonomy label, else the translation / default string.
+	 *
+	 * @param string     $k     Taxonomy key.
+	 * @param array|null $taxes bptm_taxonomies() (loaded when null).
+	 * @return string
+	 */
+	public static function tax_label( $k, $taxes = null ) {
+		$translated = function_exists( 'bptm_translation' ) ? trim( (string) bptm_translation( $k ) ) : '';
+		$defaults   = function_exists( 'bptm_translation_defaults' ) ? bptm_translation_defaults() : array();
+		$default    = isset( $defaults[ $k ] ) ? (string) $defaults[ $k ] : '';
+		if ( '' !== $translated && $translated !== $k && $translated !== $default ) {
+			return $translated;
+		}
+		if ( null === $taxes ) {
+			$taxes = function_exists( 'bptm_taxonomies' ) ? (array) bptm_taxonomies() : array();
+		}
+		if ( isset( $taxes[ $k ]['label'] ) && '' !== (string) $taxes[ $k ]['label'] ) {
+			return (string) $taxes[ $k ]['label'];
+		}
+		if ( '' !== $translated && $translated !== $k ) {
+			return $translated;
+		}
+		return $default;
 	}
 
 	/**
@@ -979,7 +1095,8 @@ class Context {
 		if ( '' === $email ) {
 			return '';
 		}
-		$text = '<span itemprop="email">' . esc_html( $email ) . '</span>';
+		// Visible text gets <wbr> break points (after @, before .); the href below stays the plain address.
+		$text = '<span itemprop="email">' . self::breakable_text( $email ) . '</span>';
 		if ( ! $this->pref( 'email_link', false ) ) {
 			return $text;
 		}

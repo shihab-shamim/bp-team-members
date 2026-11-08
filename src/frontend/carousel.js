@@ -2,7 +2,7 @@
  * Vanilla carousel: responsive columns per breakpoint, autoplay with hover/focus pause, infinite loop
  * (cloned slides) or rewind, configurable speed / timeout / items to scroll, navs, dots, swipe and keyboard.
  */
-import { $, $$, deviceKey, reducedMotion, sprintf } from './utils';
+import { $, $$, debounce, deviceKey, reducedMotion, sprintf } from './utils';
 
 export default class Carousel {
 	/**
@@ -40,10 +40,50 @@ export default class Carousel {
 		this.setup();
 	}
 
+	/**
+	 * Slides per view = min( configured for the breakpoint, how many minimum-width slides fit ).
+	 * The minimum comes from CSS: `--bptm-carousel-min` (horizontal themes) or `--bptm-min-col`, default 150px.
+	 */
 	get perView() {
 		const c = this.cfg.cols || {};
-		const v = parseInt( c[ deviceKey() ], 10 ) || 1;
-		return Math.max( 1, v );
+		const v = Math.max( 1, parseInt( c[ deviceKey() ], 10 ) || 1 );
+		const width = this.viewport ? this.viewport.clientWidth : 0;
+		if ( ! width ) {
+			return v; // Hidden (e.g. inactive tab): keep the configured value, re-layout on resize.
+		}
+		const min = this.minSlideWidth();
+		const gap = this.gapPx();
+		const fit = Math.floor( ( width + gap ) / ( min + gap ) );
+		return Math.max( 1, Math.min( v, fit ) );
+	}
+
+	minSlideWidth() {
+		const style = window.getComputedStyle( this.stage.closest( '.bptm-wrap' ) || this.stage );
+		const raw =
+			style.getPropertyValue( '--bptm-carousel-min' ).trim() ||
+			style.getPropertyValue( '--bptm-min-col' ).trim();
+		const px = raw ? this.toPx( raw ) : 0;
+		return px > 0 ? px : 150;
+	}
+
+	toPx( value ) {
+		const m = /^(-?[\d.]+)(px|rem|em)?$/i.exec( value );
+		if ( m ) {
+			const n = parseFloat( m[ 1 ] );
+			const unit = ( m[ 2 ] || 'px' ).toLowerCase();
+			if ( unit === 'px' ) {
+				return n;
+			}
+			const el = unit === 'rem' ? document.documentElement : this.stage;
+			return n * ( parseFloat( window.getComputedStyle( el ).fontSize ) || 16 );
+		}
+		// Anything else (calc(), clamp(), vw …): let the browser resolve it on a probe element.
+		const probe = document.createElement( 'div' );
+		probe.style.cssText = 'position:absolute;visibility:hidden;height:0;padding:0;border:0;width:' + value;
+		this.viewport.appendChild( probe );
+		const w = probe.getBoundingClientRect().width;
+		probe.remove();
+		return w;
 	}
 
 	get active() {
@@ -168,6 +208,7 @@ export default class Carousel {
 		let rw = window.innerWidth;
 		this.onResize = () => {
 			if ( ! this.stage.isConnected ) {
+				this.destroy();
 				return;
 			}
 			const pv = this.perView;
@@ -181,8 +222,22 @@ export default class Carousel {
 		if ( typeof window.ResizeObserver === 'function' ) {
 			this.ro = new window.ResizeObserver( () => this.onResize() );
 			this.ro.observe( this.viewport );
-		} else {
-			window.addEventListener( 'resize', this.onResize );
+		}
+		// Breakpoints are viewport based: the carousel's own width may not change when the window crosses one
+		// (fixed-width containers), so also re-layout on window resize and breakpoint media-query changes.
+		this.onWinResize = debounce( () => this.onResize(), 120 );
+		window.addEventListener( 'resize', this.onWinResize );
+		this.mqls = [];
+		if ( typeof window.matchMedia === 'function' ) {
+			[ '(min-width: 1025px)', '(min-width: 768px)', '(min-width: 576px)' ].forEach( ( q ) => {
+				const mql = window.matchMedia( q );
+				if ( typeof mql.addEventListener === 'function' ) {
+					mql.addEventListener( 'change', this.onWinResize );
+				} else if ( typeof mql.addListener === 'function' ) {
+					mql.addListener( this.onWinResize );
+				}
+				this.mqls.push( mql );
+			} );
 		}
 		document.addEventListener( 'visibilitychange', () => {
 			if ( document.hidden ) {
@@ -477,8 +532,17 @@ export default class Carousel {
 		this.stop();
 		if ( this.ro ) {
 			this.ro.disconnect();
-		} else if ( this.onResize ) {
-			window.removeEventListener( 'resize', this.onResize );
+		}
+		if ( this.onWinResize ) {
+			window.removeEventListener( 'resize', this.onWinResize );
+			( this.mqls || [] ).forEach( ( mql ) => {
+				if ( typeof mql.removeEventListener === 'function' ) {
+					mql.removeEventListener( 'change', this.onWinResize );
+				} else if ( typeof mql.removeListener === 'function' ) {
+					mql.removeListener( this.onWinResize );
+				}
+			} );
+			this.mqls = [];
 		}
 	}
 }

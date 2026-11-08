@@ -21,6 +21,6 @@ $bptm_info = bptm_tb_part( $ctx, $m, 'name', 'h3' ) . bptm_tb_part( $ctx, $m, 'd
 				<div class="bptm-tb-infocard"><?php echo $bptm_info; ?></div>
 			<?php endif; ?>
 		</div>
-		<?php echo bptm_tb_extras( $ctx, $m ); ?>
+		<?php echo bptm_tb_part( $ctx, $m, 'details' ) . bptm_tb_extras( $ctx, $m ) . bptm_tb_part( $ctx, $m, 'social' ); // Details + social follow their visibility toggles (off by default). ?>
 	</div>
 </div>

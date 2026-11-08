@@ -45,7 +45,7 @@ class Renderer {
 		'linkType'            => array( 'default', 'single_page', 'popup', 'panel', 'drawer', 'custom', 'none' ),
 		'linkTarget'          => array( '_self', '_blank' ),
 		'popupColumns'        => array( 'two', 'one' ),
-		'panelPosition'       => array( 'right', 'left' ),
+		'panelPosition'       => array( 'right', 'left', 'center' ),
 		'imageFilter'         => array( 'none', 'blur', 'brightness', 'contrast', 'grayscale', 'hue_rotate', 'invert', 'opacity', 'saturate', 'sepia' ),
 		'hoverImageFilter'    => array( 'none', 'blur', 'brightness', 'contrast', 'grayscale', 'hue_rotate', 'invert', 'opacity', 'saturate', 'sepia' ),
 		'acfFieldsPosition'   => array( 'after_skills', 'after_description', 'after_meta_details', 'none' ),
@@ -468,12 +468,14 @@ class Renderer {
 				)
 			);
 			$html .= $ctx->hook( 'bptm_before_filters' );
+			add_filter( 'bptm_taxonomies', array( __CLASS__, 'filter_tax_labels' ), PHP_INT_MAX );
 			$html .= $ctx->partial(
 				'filters',
 				array(
 					'query' => $query,
 				)
 			);
+			remove_filter( 'bptm_taxonomies', array( __CLASS__, 'filter_tax_labels' ), PHP_INT_MAX );
 		}
 
 		$html .= $ctx->hook( 'bptm_before_team_members' );
@@ -482,14 +484,22 @@ class Renderer {
 
 		if ( $query->mode ) {
 			$html .= $ctx->hook( 'bptm_before_pagination' );
-			$html .= $ctx->partial( 'pagination', array( 'query' => $query ) );
+			$html .= self::pagination_html( $ctx, $query, $runtime );
 			$html .= $ctx->hook( 'bptm_after_pagination' );
 		}
 
 		$details = self::details_html( $ctx, $query );
 		$html   .= '<div class="bptm-details-store" hidden>' . $details . '</div>';
 		if ( $ctx->modal_enabled() ) {
-			$html .= $ctx->partial( 'modal', array( 'type' => $ctx->link_type ) );
+			$modal = $ctx->partial( 'modal', array( 'type' => $ctx->link_type ) );
+			if ( 'panel' === $ctx->link_type && 'center' === $atts['panelPosition'] ) {
+				// The modal partial only knows left/right; a centred panel gets `bptm-panel-center` in place of the side class.
+				$modal = (string) preg_replace( '/(class="[^"]*\bbptm-modal--panel)\s+bptm-panel-(?:right|left)\b/', '$1 bptm-panel-center', $modal, 1 );
+				if ( false === strpos( $modal, 'bptm-panel-center' ) ) {
+					$modal = (string) preg_replace( '/class="([^"]*\bbptm-modal--panel\b)/', 'class="$1 bptm-panel-center', $modal, 1 );
+				}
+			}
+			$html .= $modal;
 		}
 		$html .= '</div>';
 
@@ -505,7 +515,7 @@ class Renderer {
 	 * @return array
 	 */
 	public static function render_part( $attributes, array $runtime ) {
-		list( $atts, $theme, $view, $uid, $ctx, $query ) = self::prepare( $attributes, $runtime );
+		list( $atts, $theme, $view, $uid, $ctx, $query, $runtime ) = self::prepare( $attributes, $runtime );
 		unset( $atts );
 		$items = self::items_html( $ctx, $query, $theme );
 		if ( '' === $items && 0 === $query->offset ) {
@@ -514,7 +524,7 @@ class Renderer {
 		$out = array(
 			'items'      => $items,
 			'details'    => self::details_html( $ctx, $query ),
-			'pagination' => $query->mode ? $ctx->partial( 'pagination', array( 'query' => $query ) ) : '',
+			'pagination' => $query->mode ? self::pagination_html( $ctx, $query, $runtime ) : '',
 			'found'      => (int) $query->total,
 			'count'      => count( $query->wp_query->posts ),
 			'page'       => (int) $query->page,
@@ -525,6 +535,83 @@ class Renderer {
 		);
 		wp_reset_postdata();
 		return $out;
+	}
+
+	/**
+	 * Pagination markup with absolute page links that keep the page's other query args
+	 * (opening a page link in a new tab lands on the same page/filters).
+	 *
+	 * @param Context $ctx     Context.
+	 * @param Query   $query   Query.
+	 * @param array   $runtime Runtime (REST passes the visitor's page URL as `url`).
+	 * @return string
+	 */
+	private static function pagination_html( Context $ctx, Query $query, array $runtime ) {
+		$html = $ctx->partial( 'pagination', array( 'query' => $query ) );
+		if ( '' === $html || ! in_array( $query->mode, array( 'normal-pagination', 'ajax-pagination' ), true ) ) {
+			return $html;
+		}
+		$base = self::current_url( $runtime );
+		if ( '' === $base ) {
+			return $html;
+		}
+		$var  = $query->page_var;
+		$base = remove_query_arg( $var, $base );
+		return (string) preg_replace_callback(
+			'/<a\b[^>]*\bdata-page="(\d+)"[^>]*>/',
+			static function ( $mm ) use ( $base, $var ) {
+				$n    = (int) $mm[1];
+				$href = 'href="' . esc_url( $n <= 1 ? $base : add_query_arg( $var, $n, $base ) ) . '"';
+				$tag  = $mm[0];
+				if ( preg_match( '/\shref="[^"]*"/', $tag ) ) {
+					return (string) preg_replace_callback(
+						'/\shref="[^"]*"/',
+						static function () use ( $href ) {
+							return ' ' . $href;
+						},
+						$tag,
+						1
+					);
+				}
+				return '<a ' . $href . substr( $tag, 2 );
+			},
+			$html
+		);
+	}
+
+	/**
+	 * Absolute URL of the page being rendered ('' when unknown, e.g. editor previews).
+	 *
+	 * @param array $runtime Runtime.
+	 * @return string
+	 */
+	public static function current_url( array $runtime = array() ) {
+		if ( ! empty( $runtime['url'] ) ) {
+			return self::is_local_url( $runtime['url'] ) ? esc_url_raw( $runtime['url'] ) : '';
+		}
+		if ( ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || wp_doing_ajax() || ! isset( $_SERVER['REQUEST_URI'] ) ) {
+			return '';
+		}
+		$home = wp_parse_url( home_url() );
+		if ( empty( $home['host'] ) ) {
+			return '';
+		}
+		$origin = ( is_ssl() ? 'https' : ( isset( $home['scheme'] ) ? $home['scheme'] : 'http' ) ) . '://' . $home['host'] . ( isset( $home['port'] ) ? ':' . (int) $home['port'] : '' );
+		$uri    = esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		return $origin . '/' . ltrim( (string) $uri, '/' );
+	}
+
+	/**
+	 * Is a URL on this site (same host as home_url, http/https)?
+	 *
+	 * @param string $url URL.
+	 * @return bool
+	 */
+	public static function is_local_url( $url ) {
+		$u    = wp_parse_url( (string) $url );
+		$host = wp_parse_url( home_url(), PHP_URL_HOST );
+		return is_array( $u ) && ! empty( $u['host'] ) && $host && strtolower( $u['host'] ) === strtolower( (string) $host )
+			&& isset( $u['scheme'] ) && in_array( strtolower( $u['scheme'] ), array( 'http', 'https' ), true );
 	}
 
 	/**
@@ -915,12 +1002,37 @@ class Renderer {
 	 * @return string
 	 */
 	private static function custom_css() {
-		if ( self::$custom_css_done || ! apply_filters( 'bptm_print_custom_css', true ) ) {
+		// Printed only once per page: skip when this request already printed it (static flag), when another
+		// printer announced it (`bptm_custom_css_printed`), or when Settings already queued its `bptm-custom-css` style.
+		if ( self::$custom_css_done || did_action( 'bptm_custom_css_printed' ) || wp_style_is( 'bptm-custom-css', 'enqueued' ) || wp_style_is( 'bptm-custom-css', 'done' ) || ! apply_filters( 'bptm_print_custom_css', true ) ) {
 			return '';
 		}
 		self::$custom_css_done = true;
 		$css                   = function_exists( 'bptm_get_option' ) ? (string) bptm_get_option( 'custom_css', '' ) : '';
 		$css                   = trim( str_replace( array( '</style', '<' ), '', wp_strip_all_tags( $css ) ) );
-		return '' === $css ? '' : '<style class="bptm-custom-css">' . $css . '</style>';
+		if ( '' === $css ) {
+			return '';
+		}
+		/**
+		 * Fires once the preference custom CSS has been output, so other printers (Settings) skip it.
+		 */
+		do_action( 'bptm_custom_css_printed' );
+		return '<style class="bptm-custom-css">' . $css . '</style>';
+	}
+
+	/**
+	 * Filter-bar placeholders: Location / Language / Specialty / Gender use the same rule as the meta labels
+	 * (a customized translation wins, otherwise the taxonomy label). Hooked only while the filters partial renders.
+	 *
+	 * @param array $taxes bptm_taxonomies().
+	 * @return array
+	 */
+	public static function filter_tax_labels( $taxes ) {
+		foreach ( array( 'location', 'language', 'specialty', 'gender' ) as $k ) {
+			if ( isset( $taxes[ $k ] ) && is_array( $taxes[ $k ] ) ) {
+				$taxes[ $k ]['label'] = Context::tax_label( $k, $taxes );
+			}
+		}
+		return $taxes;
 	}
 }

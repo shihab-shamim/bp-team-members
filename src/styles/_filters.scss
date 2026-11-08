@@ -7,6 +7,11 @@
 	--bptm-filter-active-color-d: var(--bptm-filter-active-color, #fff);
 	--bptm-filter-active-bg-d: var(--bptm-filter-active-bg, var(--bptm-accent));
 	--bptm-filter-active-border-d: var(--bptm-filter-active-border, var(--bptm-filter-active-bg, var(--bptm-accent)));
+	// Text colour of the text-only tab styles (two, four) on an active / hovered tab. It is only
+	// valid when an active background is set (var() without fallback); without one, consumers fall
+	// back to the active background colour (accent) as the text colour, so a white "active text"
+	// colour can never end up white on a transparent tab.
+	--bptm-filter-on-bg-color: color-mix(in srgb, var(--bptm-filter-active-color-d) 100%, var(--bptm-filter-active-bg));
 
 	// ------------------------------------------------------------------
 	// Category tabs
@@ -178,32 +183,45 @@
 			box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
 		}
 
+		> .bptm-cat-item > .bptm-cat:hover {
+			border-color: var(--bptm-filter-active-border, transparent);
+		}
+
+		// The pill rule above has the same specificity as the generic active rule and comes later,
+		// so the active state is repeated here (otherwise: white text on the white pill).
 		> .bptm-cat-item.is-active > .bptm-cat,
 		> .bptm-cat-item.is-active-parent > .bptm-cat {
+			border-color: var(--bptm-filter-active-border, transparent);
+			background: var(--bptm-filter-active-bg-d);
+			color: var(--bptm-filter-active-color-d);
 			box-shadow: 0 8px 20px color-mix(in srgb, var(--bptm-filter-active-bg-d) 35%, transparent);
 		}
 	}
 
 	// Style two: underlined tabs.
 	.bptm-cats--style-two {
-		gap: 6px 26px;
+		gap: 6px 8px;
 		border-block-end: 1px solid var(--bptm-line, #e4e6eb);
 
+		// Tabs use filterBgColor / filterTextColor when set, otherwise plain text.
 		> .bptm-cat-item > .bptm-cat {
 			margin-block-end: -1px;
-			padding: 10px 2px;
+			padding: 10px 12px;
 			border: 0;
 			border-block-end: 2px solid transparent;
-			border-radius: 0;
-			background: transparent;
+			border-radius: 4px 4px 0 0;
+			background: var(--bptm-filter-bg, transparent);
+			color: var(--bptm-filter-color-d);
 		}
 
+		// Active / hover: filterActiveBgColor as the tab background when set (text in the active
+		// text colour); without it the text takes the active background (accent) colour.
 		> .bptm-cat-item > .bptm-cat:hover,
 		> .bptm-cat-item.is-active > .bptm-cat,
 		> .bptm-cat-item.is-active-parent > .bptm-cat {
 			border-block-end-color: var(--bptm-filter-active-border-d);
-			background: transparent;
-			color: var(--bptm-filter-active-bg-d);
+			background: var(--bptm-filter-active-bg, transparent);
+			color: var(--bptm-filter-on-bg-color, var(--bptm-filter-active-bg-d));
 		}
 	}
 
@@ -220,6 +238,13 @@
 			border: 0;
 			border-radius: 6px;
 			background: transparent;
+		}
+
+		> .bptm-cat-item.is-active > .bptm-cat,
+		> .bptm-cat-item.is-active-parent > .bptm-cat {
+			background: var(--bptm-filter-active-bg-d);
+			color: var(--bptm-filter-active-color-d);
+			box-shadow: 0 0 0 1px var(--bptm-filter-active-border, transparent), 0 2px 6px rgba(15, 23, 42, 0.12);
 		}
 	}
 
@@ -253,20 +278,31 @@
 		}
 
 		> .bptm-cat-item > .bptm-cat {
-			padding: 6px 8px;
+			padding: 6px 10px;
 			border: 0;
-			background: transparent;
+			border-radius: 4px;
+			background: var(--bptm-filter-bg, transparent);
+			color: var(--bptm-filter-color-d);
 			font-weight: 600;
 			text-transform: uppercase;
 			letter-spacing: 0.04em;
 			font-size: 13px;
 		}
 
+		// Same colour logic as style two (see --bptm-filter-on-bg-color).
 		> .bptm-cat-item > .bptm-cat:hover,
 		> .bptm-cat-item.is-active > .bptm-cat,
 		> .bptm-cat-item.is-active-parent > .bptm-cat {
-			background: transparent;
-			color: var(--bptm-filter-active-bg-d);
+			background: var(--bptm-filter-active-bg, transparent);
+			color: var(--bptm-filter-on-bg-color, var(--bptm-filter-active-bg-d));
+		}
+
+		> .bptm-cat-item.is-active > .bptm-cat,
+		> .bptm-cat-item.is-active-parent > .bptm-cat {
+			text-decoration: underline;
+			text-decoration-color: var(--bptm-filter-active-border, currentColor);
+			text-decoration-thickness: 2px;
+			text-underline-offset: 6px;
 		}
 	}
 
@@ -277,6 +313,17 @@
 			border-color: transparent;
 			border-radius: 3px;
 			background: var(--bptm-filter-bg, #f1f2f5);
+		}
+
+		> .bptm-cat-item > .bptm-cat:hover {
+			border-color: var(--bptm-filter-active-border, transparent);
+		}
+
+		> .bptm-cat-item.is-active > .bptm-cat,
+		> .bptm-cat-item.is-active-parent > .bptm-cat {
+			border-color: var(--bptm-filter-active-border, transparent);
+			background: var(--bptm-filter-active-bg-d);
+			color: var(--bptm-filter-active-color-d);
 		}
 
 		> .bptm-cat-item.is-active > .bptm-cat::after,

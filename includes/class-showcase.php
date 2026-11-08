@@ -32,6 +32,54 @@ class Showcase {
 		add_action( 'admin_action_bptm_duplicate_showcase', array( __CLASS__, 'duplicate' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_assets' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'edit_screen_notice' ) );
+		add_filter( 'rest_request_before_callbacks', array( __CLASS__, 'restrict_rest_read' ), 10, 3 );
+		add_filter( 'post_updated_messages', array( __CLASS__, 'updated_messages' ) );
+	}
+
+	/**
+	 * Classic-screen "updated" messages for showcases.
+	 *
+	 * @param array $messages Messages.
+	 * @return array
+	 */
+	public static function updated_messages( $messages ) {
+		$messages[ self::POST_TYPE ] = array(
+			0  => '',
+			1  => __( 'Showcase updated.', 'bp-team-member' ),
+			2  => __( 'Custom field updated.', 'bp-team-member' ),
+			3  => __( 'Custom field deleted.', 'bp-team-member' ),
+			4  => __( 'Showcase updated.', 'bp-team-member' ),
+			5  => __( 'Showcase restored from revision.', 'bp-team-member' ),
+			6  => __( 'Showcase published.', 'bp-team-member' ),
+			7  => __( 'Showcase saved.', 'bp-team-member' ),
+			8  => __( 'Showcase submitted.', 'bp-team-member' ),
+			9  => __( 'Showcase scheduled.', 'bp-team-member' ),
+			10 => __( 'Showcase draft updated.', 'bp-team-member' ),
+		);
+		return $messages;
+	}
+
+	/**
+	 * The post type is not public: only users who can edit posts may read showcases over REST
+	 * (block editor, Elementor / widget pickers keep working for editors).
+	 *
+	 * @param mixed            $response Response so far.
+	 * @param array            $handler  Route handler.
+	 * @param \WP_REST_Request $request  Request.
+	 * @return mixed
+	 */
+	public static function restrict_rest_read( $response, $handler, $request ) {
+		unset( $handler );
+		if ( is_wp_error( $response ) || ! $request instanceof \WP_REST_Request ) {
+			return $response;
+		}
+		if ( ! preg_match( '#^/wp/v2/' . preg_quote( self::POST_TYPE, '#' ) . '(?:/|$)#', (string) $request->get_route() ) ) {
+			return $response;
+		}
+		if ( current_user_can( 'edit_posts' ) ) {
+			return $response;
+		}
+		return new \WP_Error( 'rest_forbidden', __( 'Sorry, you are not allowed to view showcases.', 'bp-team-member' ), array( 'status' => rest_authorization_required_code() ) );
 	}
 
 	/**
@@ -54,6 +102,13 @@ class Showcase {
 					'not_found_in_trash' => __( 'No showcases found in Trash.', 'bp-team-member' ),
 					'all_items'          => __( 'Showcases', 'bp-team-member' ),
 					'menu_name'          => __( 'Showcases', 'bp-team-member' ),
+					'items_list'         => __( 'Showcases list', 'bp-team-member' ),
+					'item_published'     => __( 'Showcase published.', 'bp-team-member' ),
+					'item_published_privately' => __( 'Showcase published privately.', 'bp-team-member' ),
+					'item_reverted_to_draft'   => __( 'Showcase reverted to draft.', 'bp-team-member' ),
+					'item_trashed'       => __( 'Showcase trashed.', 'bp-team-member' ),
+					'item_scheduled'     => __( 'Showcase scheduled.', 'bp-team-member' ),
+					'item_updated'       => __( 'Showcase updated.', 'bp-team-member' ),
 				),
 				'public'              => false,
 				'publicly_queryable'  => false,
@@ -300,7 +355,7 @@ class Showcase {
 		}
 		$ver = defined( 'BPTM_VERSION' ) ? BPTM_VERSION : '1.0.0';
 		wp_enqueue_style( 'bptm-admin-tools', BPTM_URL . 'assets/admin/tools.css', array(), $ver );
-		wp_enqueue_script( 'bptm-admin-tools', BPTM_URL . 'assets/admin/tools.js', array( 'jquery' ), $ver, true );
+		wp_enqueue_script( 'bptm-admin-tools', BPTM_URL . 'assets/admin/tools.js', array( 'jquery' ), $ver . '.' . filemtime( BPTM_DIR . 'assets/admin/tools.js' ), true );
 		wp_localize_script(
 			'bptm-admin-tools',
 			'bptmTools',

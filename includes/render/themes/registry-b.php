@@ -484,7 +484,11 @@ function bptm_tb_classes( $ctx, array $m, $id, $family, array $extra = array() )
  */
 function bptm_tb_table_column_defs() {
 	$taxes    = function_exists( 'bptm_taxonomies' ) ? (array) bptm_taxonomies() : array();
-	$location = ! empty( $taxes['location']['label'] ) ? $taxes['location']['label'] : bptm_tb_t( 'location', __( 'Location', 'bp-team-member' ) );
+	// Same rule as Context::tax_meta_label(): a customised translation wins, else the taxonomy label.
+	$location = class_exists( '\BPTM\Render\Context' ) ? \BPTM\Render\Context::tax_label( 'location', $taxes ) : '';
+	if ( '' === $location ) {
+		$location = ! empty( $taxes['location']['label'] ) ? $taxes['location']['label'] : bptm_tb_t( 'location', __( 'Location', 'bp-team-member' ) );
+	}
 	return array(
 		'thumbnail'   => array( __( 'Image', 'bp-team-member' ), 'thumbnail' ),
 		'name'        => array( __( 'Name', 'bp-team-member' ), 'name' ),
@@ -551,7 +555,82 @@ function bptm_tb_table_head( $ctx, $id ) {
 			esc_html( $defs[ $col ][0] )
 		);
 	}
-	return '<thead class="bptm-thead"><tr>' . $cells . '</tr></thead>';
+	return bptm_tb_table_border_style( $ctx ) . '<thead class="bptm-thead" data-bptm-cols="' . esc_attr( (string) bptm_tb_table_col_count( $ctx, $id ) ) . '"' . bptm_tb_table_uid_attr( $ctx ) . '><tr>' . $cells . '</tr></thead>';
+}
+
+/**
+ * Number of columns a table theme shows (used to stack wide tables into cards early).
+ *
+ * @param object $ctx Render context.
+ * @param string $id  Theme id.
+ * @return int
+ */
+function bptm_tb_table_col_count( $ctx, $id ) {
+	return count( bptm_tb_visible_columns( $ctx, $id ) );
+}
+
+/**
+ * Column-count class for table rows: tables with many columns switch to the stacked
+ * card layout at a wider container width (see _table.scss, "bptm-tb-cols-*").
+ *
+ * @param object $ctx Render context.
+ * @param string $id  Theme id.
+ * @return string
+ */
+function bptm_tb_table_cols_class( $ctx, $id ) {
+	$n = bptm_tb_table_col_count( $ctx, $id );
+	if ( $n >= 10 ) {
+		return 'bptm-tb-cols-xl';
+	}
+	if ( $n >= 8 ) {
+		return 'bptm-tb-cols-l';
+	}
+	if ( $n >= 6 ) {
+		return 'bptm-tb-cols-m';
+	}
+	return 'bptm-tb-cols-s';
+}
+
+/**
+ * data-bptm-uid attribute for the table head ('' without a context uid).
+ *
+ * @param object $ctx Render context.
+ * @return string
+ */
+function bptm_tb_table_uid_attr( $ctx ) {
+	$uid = is_object( $ctx ) && isset( $ctx->uid ) ? preg_replace( '/[^A-Za-z0-9_-]/', '', (string) $ctx->uid ) : '';
+	return '' === $uid ? '' : ' data-bptm-uid="' . esc_attr( $uid ) . '"';
+}
+
+/**
+ * Item border settings (itemBorderWidth / itemBorderColor / itemBorderRadius) for tables.
+ *
+ * The render style sheet draws the border on card elements only, which a table does not
+ * have, and exposes no variable for the width. A <style> element (allowed inside <table>)
+ * hands the values to this block's wrapper as --bptm-tb-bw / --bptm-tb-bc / --bptm-tb-br;
+ * _table.scss draws them around the table (outer border + radius) or on the stacked cards.
+ *
+ * @param object $ctx Render context.
+ * @return string
+ */
+function bptm_tb_table_border_style( $ctx ) {
+	if ( ! is_object( $ctx ) || ! method_exists( $ctx, 'attr' ) || ! class_exists( '\BPTM\Render\Style' ) ) {
+		return '';
+	}
+	$uid = preg_replace( '/[^A-Za-z0-9_-]/', '', isset( $ctx->uid ) ? (string) $ctx->uid : '' );
+	$bw  = \BPTM\Render\Style::length( (string) $ctx->attr( 'itemBorderWidth', '' ) );
+	$bc  = \BPTM\Render\Style::color( (string) $ctx->attr( 'itemBorderColor', '' ) );
+	if ( '' === $uid || ( '' === $bw && '' === $bc ) ) {
+		return '';
+	}
+	$br   = \BPTM\Render\Style::length( (string) $ctx->attr( 'itemBorderRadius', '' ) );
+	$vars = '--bptm-tb-bw:' . ( '' !== $bw ? $bw : '1px' ) . ';--bptm-tb-bc:' . ( '' !== $bc ? $bc : 'currentColor' ) . ';';
+	if ( '' !== $br ) {
+		$vars .= '--bptm-tb-br:' . $br . ';';
+	}
+	// Values come from Style::length() / Style::color() (validated CSS tokens); strip anything that could close the element.
+	$vars = str_replace( array( '<', '>', '{', '}' ), '', $vars );
+	return '<style>.bptm-wrap:has(.bptm-thead[data-bptm-uid="' . $uid . '"]){' . $vars . '}</style>';
 }
 
 /**
@@ -627,7 +706,7 @@ function bptm_tb_table_row( $ctx, array $m, $id ) {
 		$cells .= bptm_tb_table_cell( $ctx, $m, $col, $id );
 	}
 	$attrs = is_object( $ctx ) && method_exists( $ctx, 'item_attrs' )
-		? $ctx->item_attrs( $m, bptm_tb_classes( $ctx, $m, $id, 'table', array( 'bptm-trow' ) ) )
+		? $ctx->item_attrs( $m, bptm_tb_classes( $ctx, $m, $id, 'table', array( 'bptm-trow', bptm_tb_table_cols_class( $ctx, $id ) ) ) )
 		: ' class="bptm-item bptm-trow"';
 	return '<tr' . $attrs . '>' . $cells . '</tr>';
 }
@@ -712,6 +791,14 @@ function bptm_tb_detail_parts( $ctx, array $m, $use = null ) {
 		}
 	}
 
+	// Ribbon / featured badge: templates print 'badges' over the photo; 'badges_block' is the
+	// same as an inline row for layouts without a photo frame. Without a photo (thumbnail hidden
+	// or missing) the row goes above the name, so the badges are never lost.
+	$out['badges_block'] = '' === $out['badges'] ? '' : '<div class="bptm-dv-badges">' . $out['badges'] . '</div>';
+	if ( '' !== $out['badges_block'] && '' === $out['img'] && in_array( 'name', $use, true ) ) {
+		$out['name'] = $out['badges_block'] . $out['name'];
+	}
+
 	$tail        = bptm_tb_part( $ctx, $m, 'acf_fields' ) . bptm_tb_part( $ctx, $m, 'vcard' );
 	$out['tail'] = '' === $tail ? '' : '<div class="bptm-dv-tail">' . $tail . '</div>';
 	return $out;
@@ -751,27 +838,27 @@ function bptm_tb_detail_style_fields() {
 	$fields = array(
 		'popup'  => array(
 			'default'     => array_merge( $core, $skills, $meta ),
-			'style-one'   => array_merge( $core, $ribbon, $meta ),
+			'style-one'   => array_merge( $core, $ribbon, $skills, $meta ),
 			'style-two'   => array_merge( $core, $ribbon, $skills, $meta ),
 			'style-three' => array_merge( $core, $ribbon, $skills, $meta ),
-			'style-four'  => array_merge( $core, $ribbon, $meta ),
+			'style-four'  => array_merge( $core, $ribbon, $skills, $meta ),
 			'style-five'  => array_merge( $core, $skills, $meta ),
 			'style-six'   => array_merge( $core, $skills, $meta ),
 		),
 		'panel'  => array(
 			'default'     => array_merge( $core, $skills, $meta ),
-			'style-one'   => array_merge( $core, $meta ),
-			'style-two'   => array_merge( $core, $skills, $short ),
+			'style-one'   => array_merge( $core, $skills, $meta ),
+			'style-two'   => array_merge( $core, $skills, $meta ),
 			'style-three' => array_merge( $core, $skills, $meta ),
 			'style-four'  => array_merge( $core, $skills, $meta ),
-			'style-five'  => array_merge( $core, $skills, $short ),
+			'style-five'  => array_merge( $core, $skills, $meta ),
 		),
 		'drawer' => array(
-			'default'     => array_merge( array( 'name', 'designation', 'details', 'social', 'skills' ), $short ),
-			'style-one'   => array_merge( $core, $meta ),
+			'default'     => array_merge( $core, $skills, $meta ),
+			'style-one'   => array_merge( $core, $skills, $meta ),
 			'style-two'   => array_merge( $core, $skills, $meta ),
-			'style-three' => array_merge( array( 'name', 'designation', 'details', 'social', 'skills' ), $meta ),
-			'style-four'  => array_merge( array( 'thumbnail', 'name', 'designation', 'details' ), $meta ),
+			'style-three' => array_merge( $core, $skills, $meta ),
+			'style-four'  => array_merge( $core, $skills, $meta ),
 			'style-five'  => array_merge( $core, $skills, $meta ),
 		),
 	);

@@ -86,23 +86,37 @@ class Filters {
 		$orderby = (string) $ctx->attr( 'taxonomyOrderBy', 'name' );
 		$order   = 'DESC' === $ctx->attr( 'taxonomyOrder', 'ASC' ) ? 'DESC' : 'ASC';
 		$custom  = in_array( $orderby, array( 'order', 'menu_order', 'term_order' ), true );
+		$hide    = (bool) $ctx->attr( 'taxonomyHideEmpty', false );
 		$args    = array(
 			'taxonomy'   => $tax,
-			'hide_empty' => (bool) $ctx->attr( 'taxonomyHideEmpty', false ),
+			// Core term counts include password-protected members, so emptiness is computed below from visible members.
+			'hide_empty' => false,
 			'orderby'    => $custom ? 'name' : ( in_array( $orderby, array( 'name', 'term_id', 'slug', 'count' ), true ) ? $orderby : 'name' ),
 			'order'      => $order,
 		);
-		$include = $include_attr ? Query::term_values( $ctx->attr( $include_attr, array() ) ) : array();
+		// Includes may be term ids or slugs: normalise to ids so parent/ancestor checks work for both.
+		$include = $include_attr ? self::term_ids( Query::term_values( $ctx->attr( $include_attr, array() ) ), $tax ) : array();
 		$terms   = get_terms( $args );
 		if ( is_wp_error( $terms ) ) {
 			return array();
+		}
+		if ( $hide ) {
+			$used  = self::visible_term_ids( $tax );
+			$terms = array_values(
+				array_filter(
+					$terms,
+					static function ( $t ) use ( $used ) {
+						return isset( $used[ (int) $t->term_id ] );
+					}
+				)
+			);
 		}
 		if ( $include ) {
 			$terms = array_values(
 				array_filter(
 					$terms,
 					static function ( $t ) use ( $include, $tax ) {
-						if ( in_array( (int) $t->term_id, $include, true ) || in_array( $t->slug, $include, true ) ) {
+						if ( in_array( (int) $t->term_id, $include, true ) ) {
 							return true;
 						}
 						// Children of an included parent stay available.
@@ -117,13 +131,13 @@ class Filters {
 			);
 		}
 		if ( 'group' === $key ) {
-			$exclude = Query::term_values( $ctx->attr( 'excludeGroups', array() ) );
+			$exclude = self::term_ids( Query::term_values( $ctx->attr( 'excludeGroups', array() ) ), $tax );
 			if ( $exclude ) {
 				$terms = array_values(
 					array_filter(
 						$terms,
 						static function ( $t ) use ( $exclude ) {
-							return ! in_array( (int) $t->term_id, $exclude, true ) && ! in_array( $t->slug, $exclude, true );
+							return ! in_array( (int) $t->term_id, $exclude, true );
 						}
 					)
 				);
@@ -144,6 +158,70 @@ class Filters {
 			);
 		}
 		return apply_filters( 'bptm_filter_terms', $terms, $key, $ctx );
+	}
+
+	/**
+	 * Normalise a list of term ids / slugs to term ids (unknown slugs are dropped).
+	 *
+	 * @param array  $values Ids (int) or slugs (string).
+	 * @param string $tax    Taxonomy.
+	 * @return int[]
+	 */
+	public static function term_ids( array $values, $tax ) {
+		$ids = array();
+		foreach ( $values as $v ) {
+			if ( is_int( $v ) || ctype_digit( (string) $v ) ) {
+				$ids[] = (int) $v;
+				continue;
+			}
+			$term = get_term_by( 'slug', (string) $v, $tax );
+			if ( $term && ! is_wp_error( $term ) ) {
+				$ids[] = (int) $term->term_id;
+			}
+		}
+		return array_values( array_unique( array_filter( $ids ) ) );
+	}
+
+	/**
+	 * Term ids of a taxonomy that have at least one visible member (published, not password protected),
+	 * plus their ancestors (a parent whose members are only in child terms is not empty, like core hide_empty).
+	 *
+	 * @param string $tax Taxonomy.
+	 * @return array term_id => true
+	 */
+	public static function visible_term_ids( $tax ) {
+		static $cache = array();
+		if ( isset( $cache[ $tax ] ) ) {
+			return $cache[ $tax ];
+		}
+		$ids  = get_posts(
+			array(
+				'post_type'        => 'bptm_member',
+				'post_status'      => 'publish',
+				'has_password'     => false,
+				'posts_per_page'   => -1,
+				'fields'           => 'ids',
+				'no_found_rows'    => true,
+				'suppress_filters' => true,
+			)
+		);
+		$used = array();
+		if ( $ids ) {
+			$term_ids = wp_get_object_terms( array_map( 'intval', $ids ), $tax, array( 'fields' => 'ids' ) );
+			if ( ! is_wp_error( $term_ids ) ) {
+				$hier = is_taxonomy_hierarchical( $tax );
+				foreach ( $term_ids as $tid ) {
+					$used[ (int) $tid ] = true;
+					if ( $hier ) {
+						foreach ( get_ancestors( (int) $tid, $tax, 'taxonomy' ) as $a ) {
+							$used[ (int) $a ] = true;
+						}
+					}
+				}
+			}
+		}
+		$cache[ $tax ] = $used;
+		return $used;
 	}
 
 	/**

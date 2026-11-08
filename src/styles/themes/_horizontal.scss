@@ -7,6 +7,14 @@
 $bptm-th-hover: ":is(:hover, :focus-within, .is-flipped, .is-active)";
 $bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
+// Horizontal cards need room for photo + text side by side: never squeeze the
+// grid below ~300px per card (fewer columns instead, e.g. 2 in a 645px column).
+.bptm-wrap.bptm-group-horizontal {
+	--bptm-min-col: 300px;
+	// Carousel slides too (read by the carousel JS): side-by-side needs >= 300px per slide.
+	--bptm-carousel-min: 300px;
+}
+
 .bptm-ta-horizontal {
 	container-type: inline-size;
 	container-name: bptm-ta-h;
@@ -92,7 +100,7 @@ $bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 	.bptm-ta-horizontal-2 {
 		.bptm-ta-card {
 			align-items: center;
-			padding: 28px 22px;
+			padding: var(--bptm-item-padding, 28px 22px);
 			border-radius: var(--bptm-radius, 22px);
 		}
 
@@ -125,7 +133,8 @@ $bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 	.bptm-ta-horizontal-4 {
 		.bptm-ta-card {
 			margin: 64px 0 0;
-			padding: 84px 24px 30px;
+			padding: var(--bptm-item-padding, 84px 24px 30px);
+			padding-top: 84px; // room for the breakout photo
 		}
 
 		.bptm-ta-media {
@@ -310,7 +319,22 @@ $bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* Horizontal 4 — gradient card with breakout round photo ----------------- */
+// Text colour (--bptm-h4-ink): white on the theme's own gradients. When a custom
+// item background / hover background is set, browsers with relative colours pick
+// black or white from that colour's lightness, so a light custom background never
+// gets white text (a custom name / role / description colour still wins).
 .bptm-ta-horizontal-4 {
+	--bptm-h4-ink: var(--bptm-h4-ink-rest, #fff);
+
+	&#{$bptm-th-hover} {
+		--bptm-h4-ink: var(--bptm-h4-ink-hover, #fff);
+	}
+
+	@supports (color: oklch(from red l c h)) {
+		--bptm-h4-ink-rest: oklch(from var(--bptm-item-bg) clamp(0, (0.68 - l) * 1000, 1) 0 0);
+		--bptm-h4-ink-hover: oklch(from var(--bptm-item-bg-hover) clamp(0, (0.68 - l) * 1000, 1) 0 0);
+	}
+
 	.bptm-ta-card {
 		position: relative;
 		margin-left: 70px;
@@ -352,38 +376,39 @@ $bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
 	.bptm-name,
 	.bptm-name a {
-		color: var(--bptm-name-color, #fff);
+		color: var(--bptm-name-color, var(--bptm-h4-ink));
 	}
 
 	.bptm-designation {
-		color: var(--bptm-role-color, rgba(255, 255, 255, 0.9));
+		color: var(--bptm-role-color, color-mix(in srgb, var(--bptm-h4-ink) 90%, transparent));
 	}
 
 	.bptm-details {
-		color: var(--bptm-desc-color, rgba(255, 255, 255, 0.92));
+		color: var(--bptm-desc-color, color-mix(in srgb, var(--bptm-h4-ink) 92%, transparent));
 
 		a {
-			color: var(--bptm-desc-link-color, #fff);
+			color: var(--bptm-desc-link-color, var(--bptm-h4-ink));
 		}
 	}
 
 	.bptm-meta,
 	.bptm-meta i,
 	.bptm-meta svg {
-		color: var(--bptm-info-color, #fff);
+		color: var(--bptm-info-color, var(--bptm-h4-ink));
 	}
 
 	.bptm-social a {
 		width: 34px;
 		height: 34px;
-		border-color: rgba(255, 255, 255, 0.5);
+		border-color: color-mix(in srgb, var(--bptm-h4-ink) 50%, transparent);
 		background: transparent;
-		color: #fff;
+		color: var(--bptm-h4-ink);
 		font-size: 14px;
 
 		&:hover,
 		&:focus-visible {
-			background: #fff;
+			border-color: var(--bptm-h4-ink);
+			background: var(--bptm-h4-ink);
 			color: #fd5a80;
 		}
 	}
@@ -411,6 +436,9 @@ $bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 		border: 1px solid #e5e7eb;
 		border-radius: var(--bptm-radius, 120px);
 		background: var(--bptm-item-bg, #fff);
+		// Item shadow setting shows at rest too; hover adds the theme's lift shadow on top.
+		box-shadow: var(--bptm-shadow, none);
+		transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 	}
 
 	.bptm-ta-media {
@@ -441,7 +469,7 @@ $bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 	&#{$bptm-th-hover} .bptm-ta-card {
 		border-color: transparent;
 		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, #fff));
-		box-shadow: var(--bptm-shadow, 0 20px 50px rgba(12, 21, 41, 0.12));
+		box-shadow: var(--bptm-shadow, 0 0 0 transparent), 0 20px 50px rgba(12, 21, 41, 0.12);
 	}
 }
 
@@ -526,6 +554,12 @@ $bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 		padding: var(--bptm-item-padding, 0);
 		border-radius: var(--bptm-radius, 0);
 		background: var(--bptm-item-bg, transparent);
+		box-shadow: var(--bptm-shadow, none);
+		transition: background-color 0.35s ease;
+	}
+
+	&#{$bptm-th-hover} .bptm-ta-card {
+		background: var(--bptm-item-bg-hover, var(--bptm-item-bg, transparent));
 	}
 
 	.bptm-ta-media {
@@ -614,8 +648,114 @@ $bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 	}
 }
 
+/* Compact side-by-side (300–479px cards): tighter photo + spacing. */
+@container bptm-ta-h (min-width: 300px) and (max-width: 479px) {
+	.bptm-ta-horizontal {
+		.bptm-name {
+			font-size: 1.1rem;
+		}
+
+		.bptm-social a {
+			width: 30px;
+			height: 30px;
+			font-size: 12px;
+		}
+	}
+
+	.bptm-ta-horizontal-1 {
+		.bptm-ta-media {
+			width: 42%;
+		}
+
+		.bptm-ta-info {
+			width: 66%;
+			margin-left: -8%;
+			padding: var(--bptm-item-padding, 18px 16px);
+		}
+	}
+
+	.bptm-ta-horizontal-2 {
+		.bptm-ta-card {
+			padding: var(--bptm-item-padding, 16px 22px 16px 16px);
+		}
+
+		.bptm-ta-media {
+			width: 36%;
+		}
+
+		.bptm-ta-info {
+			padding-left: 14px;
+		}
+	}
+
+	.bptm-ta-horizontal-3 {
+		.bptm-ta-media {
+			width: 40%;
+			min-height: 0;
+		}
+
+		.bptm-ta-info {
+			padding: var(--bptm-item-padding, 18px 16px);
+		}
+	}
+
+	.bptm-ta-horizontal-4 {
+		.bptm-ta-card {
+			margin-left: 46px;
+			padding: var(--bptm-item-padding, 24px 18px 24px 62px);
+		}
+
+		.bptm-ta-media {
+			left: -46px;
+			width: 92px;
+		}
+
+		.bptm-img-wrap {
+			border-width: 5px;
+		}
+
+		&.bptm-ta-no-thumb .bptm-ta-card {
+			margin-left: 0;
+			padding-left: 18px;
+		}
+	}
+
+	.bptm-ta-horizontal-5 {
+		.bptm-ta-card {
+			padding: var(--bptm-item-padding, 14px 20px 14px 14px);
+		}
+
+		.bptm-ta-media {
+			width: 34%;
+		}
+
+		.bptm-ta-info {
+			padding-left: 14px;
+		}
+	}
+
+	.bptm-ta-horizontal-6,
+	.bptm-ta-horizontal-7 {
+		.bptm-ta-media {
+			width: 40%;
+		}
+
+		.bptm-ta-info {
+			padding: var(--bptm-item-padding, 16px);
+		}
+	}
+
+	.bptm-ta-horizontal-8 .bptm-ta-info {
+		padding: 6px 0 6px 16px;
+	}
+
+	.bptm-ta-horizontal-9 .bptm-ta-info {
+		padding: 6px 16px 6px 0;
+	}
+}
+
 /* Stacked (narrow card) overrides: must come after the theme rules. */
-@container bptm-ta-h (max-width: 479px) {
+@container bptm-ta-h (max-width: 299px) {
 	@include bptm-th-stacked;
 }
 
@@ -625,7 +765,7 @@ $bptm-th-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 	}
 }
 
-@container bptm-ta-h (max-width: 479px) {
+@container bptm-ta-h (max-width: 299px) {
 	.bptm-ta-horizontal-9 .bptm-ta-info {
 		text-align: center;
 	}

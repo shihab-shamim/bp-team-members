@@ -20,6 +20,13 @@ class CPT {
 	const FLUSH_FLAG = 'bptm_flush_rewrite';
 
 	/**
+	 * Meta keys whose last sanitized value was a rejected (invalid, non-empty) input: key => raw value.
+	 *
+	 * @var array
+	 */
+	public static $rejected_meta = array();
+
+	/**
 	 * Hook everything.
 	 */
 	public static function init() {
@@ -37,6 +44,8 @@ class CPT {
 
 		add_filter( 'enter_title_here', array( __CLASS__, 'title_placeholder' ), 10, 2 );
 		add_filter( 'post_updated_messages', array( __CLASS__, 'updated_messages' ) );
+		add_filter( 'update_post_metadata', array( __CLASS__, 'keep_previous_on_reject' ), 10, 4 );
+		add_filter( 'add_post_metadata', array( __CLASS__, 'keep_previous_on_reject' ), 10, 4 );
 
 		register_activation_hook( BPTM_FILE, array( __CLASS__, 'activate' ) );
 		register_deactivation_hook( BPTM_FILE, array( __CLASS__, 'deactivate' ) );
@@ -128,9 +137,10 @@ class CPT {
 		if ( '' === $slug ) {
 			$slug = 'team-members';
 		}
-		$archive_raw   = trim( (string) bptm_get_option( 'archive_page_slug', '' ) );
+		$archive_raw   = bptm_archive_page_slug();
 		// A full URL points the archive link elsewhere (template loader filters the link); keep the default archive slug.
-		$archive_slug  = preg_match( '#^https?://#i', $archive_raw ) ? '' : sanitize_title( $archive_raw );
+		// Nested slugs ("about/team") are kept as a path so the rewrite rules match the archive links.
+		$archive_slug  = preg_match( '#^https?://#i', $archive_raw ) ? '' : $archive_raw;
 		$archive_title = trim( (string) bptm_get_option( 'archive_page_title', '' ) );
 		$name          = ( ! is_admin() && '' !== $archive_title ) ? $archive_title : __( 'Team Members', 'bp-team-member' );
 
@@ -156,6 +166,18 @@ class CPT {
 			'archives'              => __( 'Member Archives', 'bp-team-member' ),
 			'attributes'            => __( 'Member Attributes', 'bp-team-member' ),
 			'items_list'            => __( 'Members list', 'bp-team-member' ),
+			'items_list_navigation' => __( 'Members list navigation', 'bp-team-member' ),
+			'filter_items_list'     => __( 'Filter members list', 'bp-team-member' ),
+			'insert_into_item'      => __( 'Insert into member', 'bp-team-member' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this member', 'bp-team-member' ),
+			'item_published'        => __( 'Member published.', 'bp-team-member' ),
+			'item_published_privately' => __( 'Member published privately.', 'bp-team-member' ),
+			'item_reverted_to_draft' => __( 'Member reverted to draft.', 'bp-team-member' ),
+			'item_trashed'          => __( 'Member trashed.', 'bp-team-member' ),
+			'item_scheduled'        => __( 'Member scheduled.', 'bp-team-member' ),
+			'item_updated'          => __( 'Member updated.', 'bp-team-member' ),
+			'item_link'             => _x( 'Member Link', 'navigation link block title', 'bp-team-member' ),
+			'item_link_description' => _x( 'A link to a team member.', 'navigation link block description', 'bp-team-member' ),
 		);
 
 		$args = array(
@@ -272,16 +294,34 @@ class CPT {
 			'_bptm_company_website' => array( 'string', $url, '' ),
 			'_bptm_land_phone'      => array( 'string', $text, '' ),
 			'_bptm_cell_phone'      => array( 'string', $text, '' ),
-			'_bptm_email'           => array( 'string', array( __CLASS__, 'sanitize_email' ), '' ),
-			'_bptm_email_cc'        => array( 'string', 'bptm_sanitize_email_list', '' ),
-			'_bptm_email_bcc'       => array( 'string', 'bptm_sanitize_email_list', '' ),
+			'_bptm_email'           => array(
+				'string',
+				array( __CLASS__, 'sanitize_email' ),
+				'',
+				array(
+					'type'  => 'string',
+					// Empty (clear) or one strictly valid address; anything else is a REST 400.
+					'anyOf' => array(
+						array(
+							'type'      => 'string',
+							'maxLength' => 0,
+						),
+						array(
+							'type'   => 'string',
+							'format' => 'email',
+						),
+					),
+				),
+			),
+			'_bptm_email_cc'        => array( 'string', array( __CLASS__, 'sanitize_email_list' ), '' ),
+			'_bptm_email_bcc'       => array( 'string', array( __CLASS__, 'sanitize_email_list' ), '' ),
 			'_bptm_address'         => array( 'string', $text, '' ),
 			'_bptm_ribbon'          => array( 'string', $text, '' ),
 			'_bptm_zip_code'        => array( 'string', $text, '' ),
 			'_bptm_vcard'           => array( 'string', $url, '' ),
 			'_bptm_custom_page'     => array( 'string', $url, '' ),
 			'_bptm_featured'        => array( 'string', array( __CLASS__, 'sanitize_flag' ), '' ),
-			'_bptm_flip_image'      => array( 'integer', 'absint', 0 ),
+			'_bptm_flip_image'      => array( 'integer', array( __CLASS__, 'sanitize_flip_image' ), 0 ),
 			'_bptm_social'          => array(
 				'array',
 				'bptm_sanitize_social',
@@ -349,23 +389,154 @@ class CPT {
 	/**
 	 * URL sanitizer for http(s) links.
 	 *
-	 * @param string $value Raw.
+	 * @param string $value    Raw.
+	 * @param string $meta_key Meta key (when called as a meta sanitize callback).
 	 * @return string
 	 */
-	public static function sanitize_url( $value ) {
+	public static function sanitize_url( $value, $meta_key = '' ) {
+		self::flag_rejected( $meta_key, null );
+		$value = is_scalar( $value ) ? trim( (string) $value ) : '';
+		if ( '' === $value ) {
+			return '';
+		}
+		if ( ! self::is_plausible_url( $value ) ) {
+			self::flag_rejected( $meta_key, $value );
+			return '';
+		}
+		if ( '/' !== $value[0] && false === strpos( $value, '://' ) ) {
+			$value = 'http://' . $value; // Scheme-less domain ("example.com", "host:8080/x").
+		}
+		$clean = esc_url_raw( $value, array( 'http', 'https', 'ftp', 'ftps' ) );
+		if ( '' === $clean ) {
+			self::flag_rejected( $meta_key, $value );
+		}
+		return $clean;
+	}
+
+	/**
+	 * Whether a value looks like a real link: an http(s)/ftp(s) URL or a scheme-less domain
+	 * ("example.com/page") with a valid host, or a site-relative path ("/team.vcf").
+	 * Rejects words such as "notaurl" that esc_url_raw() would turn into "http://notaurl".
+	 *
+	 * @param string $value Raw value.
+	 * @return bool
+	 */
+	public static function is_plausible_url( $value ) {
 		$value = trim( (string) $value );
-		return '' === $value ? '' : esc_url_raw( $value, array( 'http', 'https', 'ftp', 'ftps' ) );
+		if ( '' === $value || preg_match( '/\s/', $value ) ) {
+			return false;
+		}
+		if ( preg_match( '#^/(?!/)#', $value ) ) {
+			return true; // Site-relative path.
+		}
+		if ( preg_match( '#^([a-z][a-z0-9+.-]*):#i', $value, $scheme ) && ! preg_match( '#^[^:/]+:\d+(/|$)#', $value ) ) {
+			if ( ! in_array( strtolower( $scheme[1] ), array( 'http', 'https', 'ftp', 'ftps' ), true ) ) {
+				return false;
+			}
+			$check = $value;
+		} else {
+			$check = 'http://' . ltrim( $value, '/' );
+		}
+		$host = wp_parse_url( $check, PHP_URL_HOST );
+		if ( ! is_string( $host ) || '' === $host ) {
+			return false;
+		}
+		$host = strtolower( trim( $host, '[]' ) );
+		if ( 'localhost' === $host || filter_var( $host, FILTER_VALIDATE_IP ) ) {
+			return true;
+		}
+		// Dotted host name with a 2+ letter TLD (Unicode/IDN labels allowed).
+		return (bool) preg_match( '/^(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?\.)+(?:[\p{L}]{2,63}|xn--[a-z0-9-]{1,59})$/u', $host );
+	}
+
+	/**
+	 * Flip image meta: only an existing image attachment id (also enforced for REST writes).
+	 *
+	 * @param mixed $value Raw.
+	 * @return int
+	 */
+	public static function sanitize_flip_image( $value ) {
+		$id = is_numeric( $value ) ? absint( $value ) : 0;
+		return ( $id && 'attachment' === get_post_type( $id ) && wp_attachment_is_image( $id ) ) ? $id : 0;
 	}
 
 	/**
 	 * Email sanitizer.
 	 *
-	 * @param string $value Raw.
+	 * @param string $value    Raw.
+	 * @param string $meta_key Meta key (when called as a meta sanitize callback).
 	 * @return string
 	 */
-	public static function sanitize_email( $value ) {
-		$value = sanitize_email( (string) $value );
-		return is_email( $value ) ? $value : '';
+	public static function sanitize_email( $value, $meta_key = '' ) {
+		self::flag_rejected( $meta_key, null );
+		// Strict like the CC/BCC lists: an invalid address is rejected as a whole instead of being
+		// "repaired" (sanitize_email() turns "foo@x.com?body=x" into "foo@x.combodyx").
+		$value = is_scalar( $value ) ? trim( (string) $value ) : '';
+		if ( '' === $value ) {
+			return '';
+		}
+		$valid = bptm_parse_email_list( $value );
+		if ( 1 !== count( $valid ) || $valid[0] !== $value ) {
+			self::flag_rejected( $meta_key, $value );
+			return '';
+		}
+		return $value;
+	}
+
+	/**
+	 * CC / BCC list sanitizer: invalid entries are dropped; a list with no valid entry at all is
+	 * flagged as rejected so the previous value is kept.
+	 *
+	 * @param string $value    Raw.
+	 * @param string $meta_key Meta key (when called as a meta sanitize callback).
+	 * @return string
+	 */
+	public static function sanitize_email_list( $value, $meta_key = '' ) {
+		self::flag_rejected( $meta_key, null );
+		$raw   = is_scalar( $value ) ? trim( (string) $value ) : '';
+		$clean = bptm_sanitize_email_list( $raw );
+		if ( '' !== $raw && '' === $clean ) {
+			self::flag_rejected( $meta_key, $raw );
+		}
+		return $clean;
+	}
+
+	/**
+	 * Remember (or clear) that the last sanitized value of a meta key was rejected.
+	 *
+	 * @param string      $meta_key Meta key ('' = not a meta write, ignored).
+	 * @param string|null $raw      Rejected raw value, null to clear.
+	 */
+	private static function flag_rejected( $meta_key, $raw ) {
+		if ( ! is_string( $meta_key ) || '' === $meta_key ) {
+			return;
+		}
+		if ( null === $raw ) {
+			unset( self::$rejected_meta[ $meta_key ] );
+		} else {
+			self::$rejected_meta[ $meta_key ] = (string) $raw;
+		}
+	}
+
+	/**
+	 * update_post_meta() / add_post_meta() (REST, third-party code): a value that the sanitizer
+	 * rejected (non-empty input sanitized to '') keeps the previous valid value instead of erasing it.
+	 *
+	 * @param null|bool $check     Short-circuit value.
+	 * @param int       $object_id Post ID.
+	 * @param string    $meta_key  Meta key.
+	 * @param mixed     $value     Sanitized value.
+	 * @return null|bool
+	 */
+	public static function keep_previous_on_reject( $check, $object_id, $meta_key, $value ) {
+		if ( null !== $check || '' !== $value || ! is_string( $meta_key ) || ! isset( self::$rejected_meta[ $meta_key ] ) ) {
+			return $check;
+		}
+		if ( self::POST_TYPE !== get_post_type( (int) $object_id ) ) {
+			return $check;
+		}
+		unset( self::$rejected_meta[ $meta_key ] );
+		return true; // Treat as done: the stored value stays untouched.
 	}
 
 	/**

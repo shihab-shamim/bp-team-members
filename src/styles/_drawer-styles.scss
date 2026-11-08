@@ -57,15 +57,15 @@ $bptm-dv-drawer-sm: 767px;
 // Default: description left, social + skills right.
 .bptm-dv-drawer--default {
 	.bptm-dv-aside {
-		padding-left: 32px;
-		border-left: 1px solid var(--bptm-dv-line);
+		padding-inline-start: 32px;
+		border-inline-start: 1px solid var(--bptm-dv-line);
 	}
 
 	@media (max-width: $bptm-dv-drawer-sm) {
 		.bptm-dv-aside {
 			padding: 18px 0 0;
 			border-top: 1px solid var(--bptm-dv-line);
-			border-left: 0;
+			border-inline-start: 0;
 		}
 	}
 }
@@ -129,7 +129,7 @@ $bptm-dv-drawer-sm: 767px;
 			content: "";
 			position: absolute;
 			bottom: 0;
-			left: 0;
+			inset-inline-start: 0;
 			width: 44px;
 			height: 3px;
 			border-radius: 3px;
@@ -140,9 +140,7 @@ $bptm-dv-drawer-sm: 767px;
 	.bptm-dv-desc {
 		margin-bottom: 0;
 
-		.bptm-details.bptm-scroll {
-			max-height: var(--bptm-desc-max-h, 116px);
-		}
+		--bptm-dv-desc-cap: 116px;
 
 		.bptm-details::-webkit-scrollbar {
 			width: 5px;
@@ -221,14 +219,14 @@ $bptm-dv-drawer-sm: 767px;
 	--bptm-dv-accent: var(--bptm-accent, #fd5a80);
 
 	.bptm-dv-body {
-		padding-right: 30px;
-		border-right: 1px solid #f2f2f2;
+		padding-inline-end: 30px;
+		border-inline-end: 1px solid #f2f2f2;
 	}
 
 	@media (max-width: $bptm-dv-drawer-sm) {
 		.bptm-dv-body {
-			padding-right: 0;
-			border-right: 0;
+			padding-inline-end: 0;
+			border-inline-end: 0;
 		}
 	}
 }
@@ -245,6 +243,15 @@ $bptm-dv-drawer-sm: 767px;
 	.bptm-meta > li {
 		border-bottom-style: dashed;
 	}
+
+	.bptm-social {
+		justify-content: flex-start;
+	}
+}
+
+// Narrow aside column: slightly smaller contact values so e-mails fit on one line.
+.bptm-dv-drawer .bptm-dv-aside .bptm-meta-value {
+	font-size: 0.93em;
 }
 
 // Style five: photo left; intro on top, then contact and skills split by a rule.
@@ -265,5 +272,35 @@ $bptm-dv-drawer-sm: 767px;
 
 	.bptm-dv-split-col > :last-child {
 		margin-bottom: 0;
+	}
+}
+
+// Default / style three: small round avatar beside the name.
+.bptm-dv-drawer .bptm-dv-ident {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	margin: 0 0 20px;
+
+	> .bptm-dv-img {
+		flex: 0 0 auto;
+		width: 76px;
+		height: 76px;
+		border-radius: 50%;
+	}
+
+	.bptm-dv-ident-text {
+		min-width: 0;
+	}
+
+	.bptm-dv-role {
+		margin-bottom: 0;
+	}
+
+	@media (max-width: $bptm-dv-drawer-sm) {
+		> .bptm-dv-img {
+			width: 60px;
+			height: 60px;
+		}
 	}
 }
