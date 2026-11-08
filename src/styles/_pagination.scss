@@ -31,12 +31,12 @@
 		align-items: center;
 		justify-content: center;
 		min-width: 42px;
-		height: 42px;
-		padding: 0 12px;
-		border: 1px solid var(--bptm-line, #e4e6eb);
-		border-radius: 6px;
-		background: #fff;
-		color: var(--bptm-text, #2a2f3a);
+		height: var(--bptm-pg-height, 42px);
+		padding: var(--bptm-pg-padding, 0 12px);
+		border: var(--bptm-pg-border-width, 1px) solid var(--bptm-pg-border, var(--bptm-line, #e4e6eb));
+		border-radius: var(--bptm-pg-radius, 6px);
+		background: var(--bptm-pg-bg, #fff);
+		color: var(--bptm-pg-color, var(--bptm-text, #2a2f3a));
 		font-size: 15px;
 		font-weight: 500;
 		line-height: 1;
@@ -47,8 +47,9 @@
 
 	a.bptm-page:hover,
 	a.bptm-page:focus-visible {
-		border-color: var(--bptm-accent);
-		color: var(--bptm-accent);
+		border-color: var(--bptm-pg-hover-border, var(--bptm-accent));
+		background: var(--bptm-pg-hover-bg, var(--bptm-pg-bg, #fff));
+		color: var(--bptm-pg-hover-color, var(--bptm-accent));
 	}
 
 	a.bptm-page:focus-visible {
@@ -57,9 +58,9 @@
 	}
 
 	.bptm-page.is-current {
-		border-color: var(--bptm-accent);
-		background: var(--bptm-accent);
-		color: #fff;
+		border-color: var(--bptm-pg-active-border, var(--bptm-pg-active-bg, var(--bptm-accent)));
+		background: var(--bptm-pg-active-bg, var(--bptm-accent));
+		color: var(--bptm-pg-active-color, #fff);
 	}
 
 	.bptm-page.is-disabled {
@@ -107,11 +108,11 @@
 		gap: 10px;
 		min-width: 170px;
 		margin: 0;
-		padding: 13px 32px;
-		border: 0;
-		border-radius: 6px;
-		background: var(--bptm-accent);
-		color: #fff;
+		padding: var(--bptm-lm-padding, 13px 32px);
+		border: var(--bptm-lm-border-width, 0) solid var(--bptm-lm-border, transparent);
+		border-radius: var(--bptm-lm-radius, 6px);
+		background: var(--bptm-lm-bg, var(--bptm-accent));
+		color: var(--bptm-lm-color, #fff);
 		font: inherit;
 		font-size: 15px;
 		font-weight: 600;
@@ -121,7 +122,9 @@
 		transition: filter 0.2s ease, transform 0.2s ease;
 
 		&:hover {
-			filter: brightness(1.1);
+			filter: var(--bptm-lm-hover-filter, brightness(1.1));
+			background: var(--bptm-lm-hover-bg, var(--bptm-lm-bg, var(--bptm-accent)));
+			color: var(--bptm-lm-hover-color, var(--bptm-lm-color, #fff));
 			transform: translateY(-1px);
 		}
 
@@ -146,7 +149,7 @@
 		justify-content: center;
 		min-height: 40px;
 		margin-block-start: 30px;
-		color: var(--bptm-accent);
+		color: var(--bptm-pg-loader-color, var(--bptm-accent));
 	}
 
 	&.is-loading .bptm-infinite .bptm-spinner {

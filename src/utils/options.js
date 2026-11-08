@@ -16,8 +16,7 @@ export const viewTypeOptions = [
 ];
 
 export const linkTypeOptions = [
-	s( 'default', __( 'Default', 'bp-team-member' ) ),
-	s( 'single_page', __( 'Single Page', 'bp-team-member' ) ),
+	s( 'default', __( 'Default (popup)', 'bp-team-member' ) ),
 	s( 'popup', __( 'Popup', 'bp-team-member' ) ),
 	s( 'panel', __( 'Panel', 'bp-team-member' ) ),
 	s( 'drawer', __( 'Drawer', 'bp-team-member' ) ),
@@ -57,24 +56,23 @@ export const imageFilterOptions = [
 	s( 'sepia', __( 'Sepia', 'bp-team-member' ) ),
 ];
 
-export const acfPositionOptions = [
-	s( 'after_skills', __( 'After Skills', 'bp-team-member' ) ),
-	s( 'after_description', __( 'After Description', 'bp-team-member' ) ),
-	s( 'after_meta_details', __( 'After Meta Details', 'bp-team-member' ) ),
-];
-
 export const orderByOptions = [
-	s( 'menu_order', __( 'Custom Order', 'bp-team-member' ) ),
-	s( 'ID', __( 'Member ID', 'bp-team-member' ) ),
-	s( 'title', __( 'Member Name', 'bp-team-member' ) ),
-	s( 'date', __( 'Date', 'bp-team-member' ) ),
+	s( 'default', __( 'Default (as added)', 'bp-team-member' ) ),
+	s( 'title', __( 'Name', 'bp-team-member' ) ),
 	s( 'rand', __( 'Random', 'bp-team-member' ) ),
 ];
 
+/** Legacy orderBy values (post-type era) mapped to the v2 options. */
+export const normalizeOrderBy = ( v ) => {
+	if ( 'title' === v || 'name' === v ) {
+		return 'title';
+	}
+	return 'rand' === v ? 'rand' : 'default';
+};
+
 export const taxonomyOrderByOptions = [
-	s( 'order', __( 'Custom Order', 'bp-team-member' ) ),
-	s( 'term_id', __( 'Taxonomy ID', 'bp-team-member' ) ),
-	s( 'name', __( 'Taxonomy Name', 'bp-team-member' ) ),
+	s( 'name', __( 'Name', 'bp-team-member' ) ),
+	s( 'default', __( 'Order of appearance', 'bp-team-member' ) ),
 ];
 
 export const orderOptions = [ s( 'DESC', __( 'Descending', 'bp-team-member' ) ), s( 'ASC', __( 'Ascending', 'bp-team-member' ) ) ];
@@ -97,44 +95,6 @@ export const paginationTypeOptions = [
 	s( 'ajax-pagination', __( 'Ajax Pagination', 'bp-team-member' ) ),
 	s( 'load-more-button', __( 'Load More Button', 'bp-team-member' ) ),
 	s( 'load-more-scroll', __( 'Load More on Scroll', 'bp-team-member' ) ),
-];
-
-export const fontWeightOptions = [ s( '', __( 'Default', 'bp-team-member' ) ) ].concat(
-	[ 100, 200, 300, 400, 500, 600, 700, 800, 900 ].map( ( w ) => s( String( w ), String( w ) ) )
-);
-
-export const textTransformOptions = [
-	s( '', __( 'Default', 'bp-team-member' ) ),
-	s( 'none', __( 'None', 'bp-team-member' ) ),
-	s( 'uppercase', __( 'Uppercase', 'bp-team-member' ) ),
-	s( 'lowercase', __( 'Lowercase', 'bp-team-member' ) ),
-	s( 'capitalize', __( 'Capitalize', 'bp-team-member' ) ),
-];
-
-export const fontStyleOptions = [
-	s( '', __( 'Default', 'bp-team-member' ) ),
-	s( 'normal', __( 'Normal', 'bp-team-member' ) ),
-	s( 'italic', __( 'Italic', 'bp-team-member' ) ),
-	s( 'oblique', __( 'Oblique', 'bp-team-member' ) ),
-];
-
-export const textDecorationOptions = [
-	s( '', __( 'Default', 'bp-team-member' ) ),
-	s( 'none', __( 'None', 'bp-team-member' ) ),
-	s( 'underline', __( 'Underline', 'bp-team-member' ) ),
-	s( 'overline', __( 'Overline', 'bp-team-member' ) ),
-	s( 'line-through', __( 'Line Through', 'bp-team-member' ) ),
-];
-
-export const shadowPresets = [
-	s( '', __( 'Theme default', 'bp-team-member' ) ),
-	s( 'none', __( 'None', 'bp-team-member' ) ),
-	// Preset keys resolved by includes/render/class-style.php (Style::SHADOWS).
-	s( 'sm', __( 'Small', 'bp-team-member' ) ),
-	s( 'md', __( 'Medium', 'bp-team-member' ) ),
-	s( 'lg', __( 'Large', 'bp-team-member' ) ),
-	s( 'xl', __( 'Extra large', 'bp-team-member' ) ),
-	s( 'custom', __( 'Custom…', 'bp-team-member' ) ),
 ];
 
 export const DEVICES = [

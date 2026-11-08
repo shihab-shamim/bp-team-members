@@ -8,206 +8,208 @@ No Freemius, no licensing, no "Pro" badges, no upsell notices, no locked options
 Reimplement in our own code. You may study GS markup/CSS/behaviour for reference, but do not copy
 GS images, logos, branding, Freemius code, or promotional pages. Do not use the strings "GS" / "gsteam" in BP.
 
-## Product shape
+## Product shape (v3: browser rendering)
 
-GS = custom post type + shortcode builder admin page + PHP templates.
-BP = the same data layer (CPT + taxonomies + meta boxes + admin tools) but the **builder is a Gutenberg block**.
-The block's inspector is the shortcode-builder equivalent; the editor shows a live server-side-rendered preview.
-For page builders / classic editor / widgets there is a "Showcase" CPT (`bptm_showcase`) whose content is one
-BP block; `[bp_team id="123"]` renders it (equivalent of GS `[gsteam id=1]`).
+BP = **the block is the only data source and the only renderer input**: team members are stored in the block's
+`members` attribute and edited in the block inspector. The block is rendered **in the browser, with React, from the
+block attributes** — in the editor (instant preview, no server round-trip) and on the front end (the same component).
+No team-member markup is produced on the server: PHP only prints a mount wrapper carrying the attributes.
+
+There is no member post type, no taxonomies, no single/archive member pages (see "v2 data model").
+For page builders / classic editor / widgets there is a "Showcase" CPT (`bptm_showcase`, admin menu "BP Team Member")
+whose content is one BP block; `[bp_team id="123"]` renders it.
 
 ## Hard rules
 
-- Prefix everything: PHP namespace `BPTM`, functions `bptm_`, constants `BPTM_`, CSS classes `bptm-`, JS global `window.BPTM`, option names `bptm_*`, hooks `bptm_*`, text domain `bp-team-member`.
+- Prefix everything: PHP namespace `BPTM`, functions `bptm_`, constants `BPTM_`, CSS classes `bptm-`, JS global `window.BPTM` / `window.bptmData`, option names `bptm_*`, hooks `bptm_*`, text domain `bp-team-member`.
 - Main plugin file stays `test-purpose.php` (renaming would deactivate the plugin). It only requires `includes/bootstrap.php` and registers the block.
-- Block name stays `icb/fold-out-reveal` (backward compatibility with already-saved blocks). Legacy attributes `alignment`, `purposeType`, `colors` stay declared. `alignment` = content text alignment.
-- PHP ≥ 7.4 compatible, WordPress ≥ 6.3. Escape all output (`esc_html`, `esc_attr`, `esc_url`, `wp_kses_post`), sanitize all input, nonces + `current_user_can()` on every admin action / AJAX / REST write.
-- Frontend JS is **vanilla** (no jQuery, no Owl/Isotope/Magnific). Admin-only JS may use jQuery + jQuery UI sortable (bundled with WP) and `wp.media`.
-- Admin assets are plain files under `assets/admin/` (not built by webpack). Block/frontend code lives in `src/` and is built by `npm run build` (wp-scripts; `--webpack-copy-php` copies `src/render.php`).
-- Never edit a file owned by another work area (see ownership table). If you need something from another area, code against the contract below; if the contract is missing something, add a clearly-marked `// CONTRACT-GAP:` note in your own file and mention it in your final report.
+- Block name stays `icb/fold-out-reveal` (backward compatibility with already-saved blocks). Legacy attributes `alignment`, `purposeType`, `colors` stay declared. `alignment` = content text alignment. Attributes may only be ADDED, never renamed/removed.
+- PHP ≥ 7.4, WordPress ≥ 6.3. Escape all PHP output, sanitize all input, nonces + `current_user_can()` on every admin action.
+- **Attributes are untrusted input.** The React renderer sanitizes everything itself (see "Security").
+- Frontend React comes from WordPress (`wp-element`); no other runtime libraries (no jQuery, Owl, Isotope …). Admin-only JS may use jQuery + `wp.media`.
+- Admin assets are plain files under `assets/admin/`. Block code lives in `src/` and is built by `npm run build` (wp-scripts; `--webpack-copy-php` copies `src/render.php`).
+- `../bpl-tools` is a shared package: never edit it.
+- The editing tool chain used by agents turns `\uXXXX` escapes into literal characters: do not write `\u` escapes in JS sources (use `\s`, `\x..`, or `String.fromCharCode`).
 
-## File ownership
+## File map
 
-| Area | Owns |
+| Area | Files |
 |---|---|
-| core (orchestrator, already done) | `test-purpose.php`, `includes/bootstrap.php`, `docs/ARCHITECTURE.md` |
-| data | `includes/class-cpt.php`, `includes/class-meta-boxes.php`, `includes/class-admin-columns.php`, `includes/class-ordering.php`, `includes/functions.php`, `includes/class-acf.php`, `assets/admin/meta-boxes.{js,css}`, `assets/admin/ordering.{js,css}` |
-| tools | `includes/class-settings.php`, `includes/class-importer.php`, `includes/class-import-export.php`, `includes/class-demo-data.php`, `includes/class-showcase.php`, `includes/class-widget.php`, `includes/class-template-loader.php`, `includes/integrations/*`, `templates/single/*.php`, `templates/archive.php`, `templates/single.php`, `assets/admin/settings.{js,css}`, `assets/admin/tools.{js,css}`, `src/styles/_single.scss`, `src/styles/_archive.scss` |
-| render | `includes/render/*.php` (except theme registries), `templates/partials/*.php`, `src/view.js`, `src/frontend/*.js`, `src/style.scss`, `src/styles/_base.scss`, `_filters.scss`, `_carousel.scss`, `_pagination.scss`, `_modal.scss`, `_icons.scss`, `assets/vendor/*` |
-| themes-a | `includes/render/themes/registry-a.php`, `templates/themes/{grid-1..grid-6,circle-1..circle-6,horizontal-1..horizontal-9,flip-1..flip-6}.php`, `src/styles/themes/_grid.scss`, `_circle.scss`, `_horizontal.scss`, `_flip.scss` |
-| themes-b | `includes/render/themes/registry-b.php`, `templates/themes/{table-*,list-*,grid-7..grid-12,grid-popup,grid-single,grid-filter-*,grid-slider,grid-panel,grid-drawer-*,group-filter-1}.php`, `templates/popups/*.php`, `templates/panels/*.php`, `templates/drawers/*.php`, `src/styles/themes/_table.scss`, `_list.scss`, `_legacy.scss`, `src/styles/_popup-styles.scss`, `_panel-styles.scss`, `_drawer-styles.scss` |
-| editor | `src/block.json` (attributes may only be ADDED, never renamed/removed), `src/index.js`, `src/editor.scss`, `src/Components/**`, `src/utils/**` |
+| bootstrap | `test-purpose.php`, `includes/bootstrap.php` (loads `includes/functions.php`, then `includes/*.php`, `includes/integrations/*.php`) |
+| block glue (PHP) | `src/render.php` → `includes/class-block.php` (`BPTM\Block`): mount wrapper, data bridge, assets, custom CSS |
+| shared renderer (JS) | `src/Components/Common/Team/*` — used by the editor preview and the front end |
+| front end entry | `src/view.js` (mounts `<TeamMembers>` with `createRoot`), `src/style.scss` + `src/styles/**` (all CSS) |
+| editor | `src/index.js`, `src/Components/Backend/**`, `src/utils/**`, `src/editor.scss`, `src/block.json` |
+| data helpers | `includes/functions.php` (options, translations, sanitizers), `includes/data/social-icons.php`, `includes/data/google-fonts.php` |
+| tools | `includes/class-settings.php`, `class-showcase.php`, `class-quick.php`, `class-widget.php`, `class-i18n.php`, `includes/integrations/*`, `assets/admin/*`, `languages/*` |
 
-Empty stub files for every SCSS partial already exist so the build works before each area is finished.
+## Constants (includes/bootstrap.php)
 
-## Constants (defined in includes/bootstrap.php)
+`BPTM_VERSION`, `BPTM_FILE` (main file path), `BPTM_DIR` (trailing slash), `BPTM_URL` (trailing slash). Legacy `DFORC_*` constants stay defined.
 
-`BPTM_VERSION`, `BPTM_FILE` (main file path), `BPTM_DIR` (trailing slash), `BPTM_URL` (trailing slash).
-Legacy `DFORC_*` constants stay defined.
+## Server side (PHP)
 
-## Data contract (owner: data)
+`src/render.php` → `\BPTM\Block::render( $attributes, get_block_wrapper_attributes() )` returns:
 
-Post type `bptm_member` (public, `show_in_rest` true, supports title, editor, thumbnail, excerpt, page-attributes (menu_order), custom-fields). Rewrite slug from `bptm_get_option('member_slug','team-members')`.
-
-Taxonomies (all `show_in_rest` true, `rest_base` = same as taxonomy name, hierarchical: group yes, others no; each can be disabled / relabelled / given an archive slug via taxonomy settings):
-
-| key | taxonomy | default label |
-|---|---|---|
-| group | `bptm_group` | Group / Groups |
-| tag | `bptm_tag` | Tag / Tags |
-| language | `bptm_language` | Language |
-| location | `bptm_location` | Location |
-| gender | `bptm_gender` | Gender |
-| specialty | `bptm_specialty` | Specialty |
-| extra_one … extra_five | `bptm_extra_one` … `bptm_extra_five` | Extra One … Extra Five |
-
-Post meta (all registered with `register_post_meta`, `show_in_rest` true):
-
-| key | type | meaning |
-|---|---|---|
-| `_bptm_designation` | string | job title / role |
-| `_bptm_company` | string | |
-| `_bptm_company_website` | url | |
-| `_bptm_land_phone` | string | |
-| `_bptm_cell_phone` | string | |
-| `_bptm_email` | email | |
-| `_bptm_email_cc` / `_bptm_email_bcc` | string | mailto cc/bcc |
-| `_bptm_address` | string | |
-| `_bptm_ribbon` | string | ribbon text |
-| `_bptm_zip_code` | string | |
-| `_bptm_vcard` | url | vCard link |
-| `_bptm_custom_page` | url | custom URL (link type "custom") |
-| `_bptm_featured` | '1' or '' | featured member |
-| `_bptm_flip_image` | int | attachment id (flip themes back side) |
-| `_bptm_social` | array of `{icon: string, link: string}` | icon = Font Awesome class e.g. `fab fa-linkedin-in`, `fas fa-envelope` |
-| `_bptm_skills` | array of `{skill: string, percent: int}` | |
-
-Helper API in `includes/functions.php` (data owns; everyone may call; guard with `function_exists` not needed):
-
-```php
-bptm_taxonomies(): array          // key => ['taxonomy'=>'bptm_group','label'=>..,'plural'=>..,'enabled'=>bool,'archive'=>bool,'slug'=>..]
-bptm_get_option(string $key, $default = null)        // preferences (option 'bptm_settings'), merged with defaults from Settings::defaults()
-bptm_get_tax_option(string $key, $default = null)    // taxonomy settings (option 'bptm_taxonomy_settings')
-bptm_translation(string $key): string                // replaceable front-end strings (see Settings translations list)
-bptm_get_member(int|WP_Post $post, string $image_size = 'large'): array
-// returns: id, name, permalink, content (filtered post content), excerpt, designation, company, company_website,
-// land_phone, cell_phone, email, email_cc, email_bcc, address, ribbon, zip_code, vcard, custom_page, featured(bool),
-// image_id, image_url, image_alt, flip_image_id, flip_image_url, social(array), skills(array),
-// terms => [ key => [ ['id'=>,'name'=>,'slug'=>,'parent'=>], ... ] ] for every enabled taxonomy key
-bptm_member_term_names(array $member, string $key, string $sep = ', '): string
-bptm_member_term_slugs(array $member, string $key): array
-bptm_social_icons(): array     // icon class => label, the full picker list (≥ 450 brand/solid icons)
-bptm_placeholder_image_url(): string
+```html
+<div class="wp-block-icb-fold-out-reveal alignwide …" id="bptm-{uid}|{anchor}" data-bptm-uid="{uid}"
+     data-attributes="{JSON of the attributes that differ from block.json defaults}">
+  <noscript><ul class="bptm-noscript"><li><strong>Name</strong> – Designation</li>…</ul></noscript>
+</div>
 ```
 
-## Settings contract (owner: tools)
+- `''` when the block has no members (the editor shows its own empty state).
+- `uid` = first 8 hex chars of md5( attributes JSON ), de-duplicated per request (`-2`, `-3` …). It is stable across
+  page loads, so the normal-pagination query var `bptm-page-{uid}` deep-links.
+- JSON is encoded with `JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT` and then `esc_attr()`'d.
+- `Block::render()` calls `Block::enqueue_frontend()`: block style, Font Awesome (`bptm-fontawesome`, a dependency of the
+  block style), the view script (`icb-fold-out-reveal-view-script`) with the data bridge, and the preference custom CSS.
+  This also makes shortcodes, showcases, the widget and page-builder modules work (they all end in `render_block()` /
+  `Block::render()`). Filter `bptm_render_html( $html, $attributes, $uid )`.
 
-Option `bptm_settings` (Preferences) defaults — `BPTM\Settings::defaults()`:
-`member_slug`=team-members, `replace_custom_slug`=false, `archive_page_slug`='', `archive_page_title`='', `single_page_style`='default' (default|style-one|style-two|style-three|style-four|style-five), `single_link_type`='single_page', `next_prev`=false, `breadcrumb`=false, `search_all_fields`=false, `multilingual`=false, `disable_google_fonts`=false, `show_acf_fields`=false, `acf_fields_position`='after_skills', `disable_lazy_load`=false, `lazy_load_class`='skip-lazy', `land_phone_link`=false, `cell_phone_link`=false, `email_link`=false, `custom_css`='', plus translations.
+Data bridge (`wp_add_inline_script( …, 'before' )` on the view script and on the editor script):
 
-Translations (keys → default English): `filter_designation` Show All Designation, `search_name` Search By Name, `search_company` Search By Company, `search_zip` Search By Zip, `search_tag` Search By Tag, `company` Company, `address` Address, `land_phone` Land Phone, `cell_phone` Cell Phone, `email` Email, `zip_code` Zip Code, `location` Location, `language` Language, `specialty` Specialty, `gender` Gender, `follow_me_on` Follow Me On, `skills` Skills, `read_on` Read On, `more` More, `vcard` Download vCard, `reset_filters` Reset Filters, `prev` Prev, `next` Next, `load_more` Load More, `no_members` No team member found.
-
-Option `bptm_taxonomy_settings`: for each tax key: `enable_{key}_tax`, `{key}_tax_label`, `{key}_tax_plural_label`, `enable_{key}_tax_archive`, `{key}_tax_archive_slug` (default `bptm-{key}` with `_`→`-`).
-
-## Render contract (owner: render)
-
-`src/render.php` (block render callback file) does:
-```php
-echo \BPTM\Render\Renderer::render( $attributes, get_block_wrapper_attributes() ); // returns full HTML
-```
-`Renderer::render(array $attributes, string $wrapper_attrs = '', array $runtime = []): string`
-- merges defaults from `src/block.json` (read once via `Renderer::defaults()`), sanitizes,
-- builds the query (`BPTM\Render\Query`), builds a `BPTM\Render\Context $ctx`,
-- outputs: wrapper div `<div {wrapper_attrs} id="bptm-{uid}" class="… bptm-wrap bptm-theme-{theme}" data-bptm="{json config for JS}">`,
-  scoped `<style>` (dynamic CSS from style attributes), filters UI, the items container, pagination, modal containers.
-- used by: block, `[bp_team]` shortcode, REST endpoint for AJAX pagination/filter, single template partial reuse.
-
-Theme registry: `apply_filters('bptm_themes', [])` — registry-a.php / registry-b.php each `add_filter('bptm_themes', fn($t) => $t + [...])`.
-Each theme entry: `id => ['label'=>..,'group'=>'grid|circle|horizontal|flip|table|list|legacy','layout'=>'grid'|'table'|'list','carousel'=>bool,'filter'=>bool,'forced_link'=>null|'popup'|'single_page'|'panel'|'drawer','forced_view'=>null|'filter'|'carousel','visibility'=>[field=>bool defaults],'template'=>'themes/{id}']`.
-
-Theme template contract: `templates/themes/{id}.php` renders **one member item** and is included with `$m` (member array from `bptm_get_member`) and `$ctx` (Context) in scope. Layout `table` themes may also provide `templates/themes/{id}-head.php` (table `<thead>`), included once. Context helpers (render owns, themes call):
-
-```php
-$ctx->attr($key, $default=null)          // sanitized attribute value
-$ctx->show($field)                        // visibility check for: thumbnail,name,designation,details,social,ribbon,featured_badge,skills,company,address,land_phone,cell_phone,email,location,language,specialty,gender,zip,extra_one..extra_five,acf_fields,vcard,read_more
-$ctx->item_attrs($m, array $extra_classes=[]): string   // class="bptm-item …filter classes…" data-* for filters/search/animation/modal; echo raw (already escaped)
-$ctx->link_open($m, string $class=''): string  / $ctx->link_close($m): string  // <a> per link type (single/popup/panel/drawer/custom) or '' when not linked
-$ctx->image($m, string $class='bptm-img'): string   // <img> with lazy-load + image filter classes; placeholder if none
-$ctx->flip_image($m): string
-$ctx->name($m, string $tag='h3'): string        // includes link if name linking on
-$ctx->designation($m): string
-$ctx->details($m): string                        // trimmed to detailsLength or full HTML when allowHtmlDetails, scroll control
-$ctx->social($m, string $style=''): string
-$ctx->ribbon($m): string
-$ctx->featured_badge($m): string
-$ctx->skills($m): string
-$ctx->meta_details($m, string $variant='list'): string  // company, address, phones, email, location, language, specialty, gender, zip, extras (each respects show())
-$ctx->vcard($m): string
-$ctx->read_more($m): string
-$ctx->acf($m): string
-$ctx->terms_text($m, $key): string
-$ctx->modal_payload($m): string  // hidden detail markup used by popup/panel/drawer (render prints these in containers)
+```js
+window.bptmData = {
+  pluginUrl,                      // BPTM_URL — relative member image URLs resolve against it
+  translations: { key: string },  // all bptm_translation_defaults() keys, multilingual mode resolved by bptm_translation()
+  prefs: { land_phone_link, cell_phone_link, email_link, disable_google_fonts, disable_lazy_load, lazy_load_class, search_all_fields },
+  // editor only:
+  fonts: [ 'Arial', …, Google families ], thumbnailSizes: [ { value, label } ], adminUrls: { settings, translations, showcases },
+}
 ```
 
-Popup / panel / drawer detail templates: `templates/popups/{style}.php`, `templates/panels/{style}.php`, `templates/drawers/{style}.php` (owner themes-b) — each renders the detail view of one member with `$m`, `$ctx` in scope. Styles: popup `default, style-one … style-six`; panel `default, style-one … style-five`; drawer `default, style-one … style-five`. Render prints them hidden (`<template>` or `hidden` div with `data-bptm-detail="{id}"`) and frontend JS opens them.
+Filter: `bptm_script_data( $data, $is_editor )`. The JS falls back to `window.bptmEditor` (older builds) and to built-in
+English strings / a plugin URL derived from the script URL when the bridge is missing.
 
-CSS class contract (render owns the base; themes use these):
-`.bptm-wrap` (root) · `.bptm-items` (items container; grid uses CSS grid with `--bptm-cols-{d|t|mp|m}` vars and `--bptm-gap`) · `.bptm-item` · `.bptm-img-wrap`, `.bptm-img` · `.bptm-name` · `.bptm-designation` · `.bptm-details` · `.bptm-social` (ul) · `.bptm-ribbon` · `.bptm-featured` · `.bptm-skills` · `.bptm-meta` · `.bptm-readmore`.
-CSS custom properties set by the dynamic CSS (themes should use them): `--bptm-name-color`, `--bptm-role-color`, `--bptm-desc-color`, `--bptm-desc-link-color`, `--bptm-info-color`, `--bptm-info-icon-color`, `--bptm-info-bg`, `--bptm-item-bg`, `--bptm-item-bg-hover`, `--bptm-name-bg`, `--bptm-tooltip-bg`, `--bptm-hover-icon-bg`, `--bptm-ribbon-bg`, `--bptm-popup-arrow-color`, `--bptm-accent` (default #4527a4), `--bptm-radius`, `--bptm-item-padding`, `--bptm-shadow`.
+Other PHP pieces: `Block::defaults()` / `Block::schema()` (from `build/block.json`), `Block::theme_labels()` (id => label
+for the widget / builder selects; filter `bptm_theme_labels`), `Block::fonts()` (filter `bptm_fonts`),
+`Block::enqueue_custom_css()` (once per page; `Settings::enqueue_custom_css()` on `wp_enqueue_scripts` cooperates via the
+`bptm_custom_css_printed` action), `I18n` registers JSON script translations for **both** the editor and the view script.
 
-Frontend JS (`src/view.js`, render owns): `window.BPTM.init(root = document)` initialises every `.bptm-wrap[data-bptm]` inside root exactly once (idempotent; mark with `data-bptm-ready`). Editor calls it after each server-side render. Features: carousel (vanilla, responsive per breakpoint, autoplay, hover pause, loop, speed, timeout, items to scroll, navs/dots + styles), filters (category tabs incl. child cats, All, multi-select dropdowns with ellipsis, designation/location/language/gender/specialty/extra filters, instant search by name/company/zip/tag, reset), pagination (normal links, AJAX numbered, load-more button, infinite scroll) via REST `bptm/v1/render`, popup/panel/drawer open/close (ESC, overlay click, focus trap, next/prev), flip, scroll animation (IntersectionObserver), description scroll height.
+There is no REST route any more (`bptm/v1/render` was removed) and no PHP templates (`templates/` was removed).
 
-Responsive breakpoints: desktop ≥ 1025px, tablet 768–1024, mobile-portrait (landscape phones) 576–767, mobile < 576.
+## Shared renderer (`src/Components/Common/Team/`)
+
+`<TeamMembers attributes uid domId isEditor host wrapperClass />` renders exactly the markup the former PHP renderer
+printed (same elements and class names, so `build/view.css` applies unchanged):
+
+| Module | Content |
+|---|---|
+| `registry.js` | Theme registry (64 themes: id, label, group, layout grid/table/list, carousel, filter, forced_link, forced_view, grouped, pagination, card visibility defaults), visibility keys/groups/devices, detail styles, carousel nav icons. Single source for editor + front end. |
+| `model.js` | Attribute sanitizing (defaults from `block.json`, type coercion, enums, clamps), member objects (`memberFromItem`, port of `bptm_member_from_item`), images, view / link type / pagination mode, visibility resolution, query (includes/excludes by term names, order default/title/rand + legacy mapping, featured first, number cap), filter data, client and "ajax" filter matching. |
+| `context.js` | Port of the former PHP Context: `show()`, `vis_classes()`, link props, item props (filter data attributes, schema.org), image, name, designation, details, social, ribbon, featured badge, skills, meta rows / meta details, vCard, read more. |
+| `themes.js` | Item templates of all themes (registry A grid/circle/horizontal/flip, registry B tables/lists/legacy grids, sidebar), table head + border style. |
+| `details.js` | 19 detail templates (popup default + style-one…six, panel default + one…five, drawer default + one…five) and the detail payload wrapper. |
+| `css.js` | Scoped dynamic CSS (columns, gaps, all colour variables, box, image radius, alignment, description height, 6 typographies with responsive sizes and hover colours), Google Fonts URL. |
+| `Filters.js`, `Pagination.js` | Filter UI (category tabs, searches, dropdowns, multi-select + ellipsis, reset, status) and pagination UI. |
+| `carousel.js` | Carousel engine + `useCarousel()`; React renders slides and clones, the engine translates the track, builds dots, autoplay / hover & focus pause / loop / rewind / swipe / keys / resize. |
+| `modal.js` | `useModal()`, `usePortal()`, `ModalShell` (popup / panel left·right·center / drawer). |
+| `effects.js` | Scroll-in animation (only items that never animated), tap-to-reveal / flip on touch, equal details height, scrollable descriptions, Google font `<link>` (deduplicated, skipped with `disable_google_fonts`). |
+| `sanitize.js`, `bridge.js`, `socialIcons.json` | Sanitizers, bridge accessors, icon labels (generated from `includes/data/social-icons.php`). |
+
+Behaviour (all client side): filters ("normal" = hide non-matching items; "ajax" = filter the list before pagination,
+same semantics as the former REST filter), pagination (normal = client page state reflected in `?bptm-page-{uid}=n` via
+`history.pushState` + `popstate`, deep links work; ajax = page state only; load-more button; infinite scroll),
+carousel, popup / panel / drawer (ESC, overlay, same-card drawer toggle, prev / next / arrow keys, focus trap, focus
+restore, scroll lock), flip / tap reveal, equal heights. Every listener, portal, focus trap, font link and style uses the
+root element's `ownerDocument` / `defaultView`, so it all works inside the editor canvas iframe.
+
+Custom DOM events on the block root: `bptm:open` ({ id, type }), `bptm:close`.
+
+`src/view.js`: `window.BPTM.init( root = document )` mounts every not-yet-mounted
+`.wp-block-icb-fold-out-reveal[data-attributes]` inside `root` (`createRoot( wrapper )`; React then owns the wrapper's
+children and keeps its classes = server wrapper classes + `bptm-*` classes). Page builders call it after injecting
+markup (`Quick::builder_init_script()`, Elementor widget). `window.BPTM.get( el )` → `{ attributes }`.
+
+## Security
+
+Attributes are untrusted. React escapes all text. Details with `allowHtmlDetails` are parsed with `DOMParser` (inert
+document) and rebuilt from a whitelist (`p, br, strong, b, em, i, u, a[href|target|rel], ul, ol, li, span, h3–h6,
+blockquote`; script/style/iframe/… dropped with their content, other tags unwrapped, `target=_blank` gets `rel=noopener`)
+into React elements — `dangerouslySetInnerHTML` is never used. URLs: `esc_url_raw` port, only http(s) / mailto / tel /
+relative for links (social links also skype, callto, sms, viber, whatsapp); `javascript:`, `data:`, `vbscript:` … give
+no href. Image URLs: http(s) or plugin-relative (no `..`). Social icon classes must match the Font Awesome whitelist
+(`fa|fab|fas|far|fa-brands|fa-solid|fa-regular` + `fa-{name}`), otherwise the link is dropped. Numbers are clamped.
+Dynamic CSS only accepts validated colours, lengths, keywords and `[A-Za-z0-9 _-]` font names; `<` is stripped.
+
+## Editor
+
+- Inspector tabs: General (Team Members via bpl-tools ItemsPanel, theme picker, view & columns, linking, image, visibility),
+  Query, Filter, Carousel / Pagination, Style.
+- `src/Components/Backend/Preview.js` renders `<TeamMembers isEditor>` (ids derived from the clientId); every attribute
+  change re-renders instantly with React reconciliation (no server request, no remount, no flicker). Links and form
+  submits inside the preview (and in portalled popups) never navigate; after 1.5 s the preview gets `is-settled` so
+  re-mounted cards never replay the entrance animation.
+- `src/utils/editorData.js` reads themes / visibility fields / social icons from the shared modules and fonts, image
+  sizes, admin URLs, translations, plugin URL from `window.bptmData` (fallback `window.bptmEditor`).
+- Image control: selecting a media item stores `{ id, url, alt, sizes: { thumbnail: { url }, medium: { url }, large: { url }, full: { url }, … } }`
+  so the front end honours `thumbnailSize` without the server (fallback: `url`).
+
+## Responsive breakpoints
+
+Desktop ≥ 1025px, tablet 768–1024, mobile-portrait (landscape phones) 576–767, mobile < 576.
 
 ## Block attributes
 
-See `src/block.json` — that file is the single source of truth for attribute names, types and defaults.
-PHP reads defaults from it; the editor reads it via metadata.
+See `src/block.json` — the single source of truth for attribute names, types and defaults (the JS renderer imports it).
 
-## Editor contract (owner: editor)
+## Settings (Preferences / Translations)
 
-- Inspector tabs: **Layout** (theme picker with visual thumbnails grouped by family, view type grid/carousel/filter, columns per device, gap, link type + popup/panel/drawer style, thumbnail size, image filters, visibility toggles per field), **Query** (number, order, orderby, taxonomy order, include/exclude terms for every taxonomy, hide empty), **Filter** (all filter/search toggles & texts & styles; only when filter view), **Carousel** (when carousel view), **Pagination**, **Style** (colors, typography ×6 with Google font family list, spacing/radius/shadow, carousel & filter colors), **Advanced** (custom class is native).
-- Preview: `@wordpress/server-side-render` with `httpMethod="POST"`, then `window.BPTM.init(previewEl)` (use a MutationObserver/effect on render). Clicks on links inside preview must not navigate.
-- PHP localizes `window.bptmEditor` (render owns the PHP side, in `includes/render/class-editor-data.php`): `{ themes: [...registry...], thumbnailSizes: [{label,value}], fonts: [..google font family names..], visibilityFields: [{key,label}], taxonomies: [{key,taxonomy,label,enabled}], hasMembers: bool, adminUrls: {addMember, members, settings} }`.
-- Theme thumbnails: small inline SVG/CSS schematic previews (no copied GS images).
-- Empty state in editor when no members: message + button to add members / import demo data.
+Admin menu "BP Team Member": Showcases, Add New Showcase, Preferences (`page=bptm-preferences`), Translations
+(`page=bptm-translations`). Option `bptm_settings`: `search_all_fields`, `multilingual`, `disable_google_fonts`,
+`disable_lazy_load`, `lazy_load_class` (default `skip-lazy`), `land_phone_link`, `cell_phone_link`, `email_link`,
+`custom_css`, plus translations (keys → default English): `filter_designation` … `no_members` (see `bptm_translation_defaults()`).
+All of them reach the renderer through the data bridge.
 
-## Assets on non-block pages
+## Shortcodes, widget, builders
 
-`src/style.scss` (→ `build/view.css`, block style handle `icb-fold-out-reveal-style`) also contains single/archive CSS.
-The template loader (tools) enqueues that handle + the view script handle (`icb-fold-out-reveal-view-script`) on single member,
-member archive and taxonomy archive pages, and wherever `[bp_team]` is used. Font Awesome (render, `assets/vendor/fontawesome/`)
-is registered by render as style handle `bptm-fontawesome` and must be enqueued wherever members render.
+- `[bp_team id="123"]` (showcase, optional attribute overrides), `[bp_team …attrs]` (quick list of the block's default
+  sample members: `theme number group exclude_group columns columns_tablet columns_mobile orderby order link view
+  popup_style panel_style drawer_style gap pagination per_page class`), `[bp_team_sidebar total_mem group_mem …]`
+  (themes `sidebar-1..3`). Filter `bptm_quick_attributes`.
+- Classic widget (`includes/class-widget.php`): title + saved Showcase (legacy quick-list instances keep rendering).
+- Page-builder modules (`includes/integrations/*`): Elementor, WPBakery, Divi, Beaver Builder, Oxygen, tagDiv Composer;
+  `bptm_integration_{builder}` filters turn them off; builder canvases call `window.BPTM.init()` for injected markup.
+
+## v2 data model: members live in the block
+
+The block is the ONLY data source. The former `bptm_member` post type, taxonomies, meta boxes, ordering, importer,
+demo data, single/archive templates and ACF fields were removed (DB rows left untouched).
+
+Attribute `members` (array, default = 10 sample members in src/block.json). Item shape:
+```
+{ id: string (stable unique, [A-Za-z0-9_-]; new/duplicated items get a fresh id),
+  name, designation, details (plain text; blank lines = paragraphs; HTML only when allowHtmlDetails),
+  image: {id:int, url:string, alt:string, sizes?: {size: {url}}}, flipImage: {id,url,alt,sizes?},
+  company, companyWebsite, landPhone, cellPhone, email, emailCc, emailBcc, address, ribbon, zipCode, vcard (url), customUrl,
+  featured: bool, social: [{icon:'fab fa-…', link}], skills: [{skill, percent:0-100}],
+  group, tags, language, location, gender, specialty, extraOne … extraFive   // comma-separated text values
+}
+```
+- Image URLs that are not absolute (no scheme, no leading `/`) are relative to the plugin root (`bptmData.pluginUrl`).
+  With `image.id` > 0 the renderer uses `image.sizes[thumbnailSize].url` when present, else `url`; empty → placeholder.
+- Query: `orderBy` 'default' (array order) | 'title' | 'rand' (seeded per page view); legacy 'name' → 'title',
+  'date'/'ID'/'menu_order'/'modified' → 'default'. `order` DESC reverses. `numberOfMembers`, `enableFeaturing` (featured
+  first), include*/exclude* arrays hold term NAMES (case-insensitive; legacy numeric ids are ignored).
+- Filters: tabs / dropdowns are built from the distinct values of the members' text fields (group = category tabs;
+  `taxonomyOrderBy` 'name' | 'default' (first-seen order), `taxonomyOrder`).
+- Link types: `default` → popup; `single_page` (legacy) → custom (member customUrl; no link when empty); forced single
+  themes → popup; drawer in carousels / tables → popup.
+
+## Removed with the move to browser rendering (v3)
+
+`includes/render/*` (Renderer, Context, Query, Filters, Style, Fonts, Assets, Rest, Editor_Data, Visibility, Themes and
+the theme registries), `templates/**`, `src/frontend/*` (vanilla behaviours), the REST route `bptm/v1/render`, the
+`window.bptmEditor` localization (replaced by `window.bptmData`). The former PHP render hooks (`bptm_before_team_members`,
+`bptm_after_member_*`, `bptm_member_*_html`, `bptm_meta_rows`, `bptm_query_members`, `bptm_themes`, template overrides
+via `bptm_locate_template` …) no longer exist, because no member markup is produced in PHP.
 
 ## Dev environment (for agents)
 
-- Site: http://gs-team-member.local (Local by Flywheel, WP 7.1.4, theme Twenty Twenty-Five, nginx). Admin test login in
-  `C:\Users\shiha\AppData\Local\Temp\claude\5a73b6152b8cfd68\256b695e-b54d-41ec-884f-7502522333c2\scratchpad\test-login.txt`.
-- PHP CLI wrapper (has mysqli, connects to the site DB): `"/c/Users/shiha/AppData/Local/Temp/claude/5a73b6152b8cfd68/256b695e-b54d-41ec-884f-7502522333c2/scratchpad/php.sh"`.
-  Lint: `php.sh -l file.php`. Run WP code: write a script that does `define('WP_USE_THEMES',false); $_SERVER['HTTP_HOST']='gs-team-member.local'; require 'C:/Users/shiha/Local Sites/gs-team-member/app/public/wp-load.php';`.
-  Put scratch scripts in the scratchpad directory above, never in the plugin.
-- Build: `npm run build` in the plugin dir (other areas may be mid-edit; a failure in a file you don't own is not yours to fix — report it).
-- Playwright is installed in the plugin's node_modules (chromium + firefox browsers present); Chrome and Edge are installed too.
-- No php `wp` CLI. Git is available but do NOT commit.
-
-## Integration notes (resolved contract gaps)
-
-- Filter bar order: `Render\Filters::order()` reads `bptm_filters_order()` (option `bptm_filters_order`, set on Sort Order > Filters) and maps `search_name|search_company|search_zip|search_tag` to the render keys `search|company|zip|tag`.
-- Custom term order: term meta `bptm_order` (class-ordering.php). `taxonomyOrderBy` accepts `order`, `menu_order` or `term_order` for it.
-- `window.bptmEditor` also carries `hasAcf` (bool) and `singleLinkType` (Preferences default link type).
-- The frontend view script (`icb-fold-out-reveal-view-script`) is enqueued on `enqueue_block_assets` in the editor, so previews have `window.BPTM` without injection (Preview.js keeps injection only as a fallback).
-- Editor previews (REST block-renderer requests) salt the instance uid so duplicated blocks never share a DOM id.
-- Box style attributes: `itemBg`, `itemBgHover`, `itemPadding`, `itemBorderRadius`, `itemShadow` are delivered only as CSS variables (`--bptm-item-bg`, `--bptm-item-padding`, `--bptm-radius`, `--bptm-shadow`) that each theme applies where its card is drawn; the border (`itemBorderWidth/Color`) is drawn on the card element (`.bptm-item > .bptm-ta-card|.bptm-tb-card`); table rows get the background on their cells.
-- Grid columns: `.bptm-items` shows at most `--bptm-cols` columns but never makes cards narrower than `--bptm-min-col` (default 150px), so blocks in narrow content columns drop to fewer columns instead of squashing cards.
-- Touch devices: items with `.bptm-tap-reveal` (grid/circle themes) and flip themes reveal their hover state on first tap (`is-flipped`), second tap follows links.
-
-## Parity additions (gap stage)
-
-- **Quick rendering without a Showcase** (`includes/class-quick.php`): `[bp_team theme="" number="" group="" exclude_group="" columns="" columns_tablet="" columns_mobile="" orderby="" order="" link="" view="grid|carousel|filter" popup_style="" panel_style="" drawer_style="" gap="" pagination="normal|ajax|button|scroll" per_page="" class=""]`; with `id` these override the showcase. Filter `bptm_quick_attributes`.
-- **Sidebar list**: `[bp_team_sidebar total_mem="" group_mem=""]` (also accepts every quick attribute) and themes `sidebar-1..3` (registry `includes/render/themes/registry-c.php`, template `templates/themes/sidebar.php`, CSS `src/styles/themes/_sidebar.scss`, editor family "Sidebar / Widget").
-- **Classic widget** (`includes/class-widget.php`): title, total members, group, theme, columns, order by, order, member link — or a saved Showcase (old instances with only `showcase` keep working).
-- **Page-builder modules** (`includes/integrations/builders.php` + `builders/`): WPBakery (`vc_map` of `[bp_team]`), Divi (`et_pb_bptm_team`, visual builder via server render), Beaver Builder, Oxygen (`OxyEl`), tagDiv Composer (`td_bptm_team`). Each loads only when its builder API exists; `bptm_integration_{wpbakery|divi|beaver|oxygen|tagdiv}` filters turn them off. `Quick::is_builder_preview()` adds an inline `BPTM.init` for markup injected by builder canvases.
-- **Developer hooks** (actions receive `($member|null, $ctx)`, callbacks echo): `bptm_before_team_members`, `bptm_after_team_members`, `bptm_before_member_content`, `bptm_after_member_content` (inside the item root / first-last cell for tables), `bptm_after_member_thumbnail`, `bptm_after_member_thumbnail_popup`, `bptm_after_member_name`, `bptm_after_member_designation`, `bptm_after_member_details`, `bptm_after_member_social_links`, `bptm_after_member_skills`, `bptm_after_member_ribbon`, `bptm_after_member_meta_details`, `bptm_before_cats_filters`, `bptm_before_filters`, `bptm_before_{search|company_search|zip_search|tag_search|designation|location|language|gender|specialty|extra_*}_filter`, `bptm_before_pagination`, `bptm_after_pagination`, `bptm_before_navigation`, `bptm_after_navigation`, `bptm_after_no_team_found`. Filters: `bptm_member_thumbnail_html`, `bptm_member_thumbnail_size`, `bptm_member_thumbnail_classes` (+ `bptm_member_secondary_*` for flip images), `bptm_member_name_html`, `bptm_member_social_links`, `bptm_member_skills`, `bptm_member_email_link` (only when email linking is on), `bptm_meta_rows`, `bptm_member`.
-- **Template overrides**: `Renderer::locate()` and `Template_Loader::locate()` both use `bptm_templates_folder` (default `bp-team-member`) and pass the relative file (with `.php`) to `bptm_locate_template`.
-- **Drawer shell** carries `bptm-drawer--{drawerStyle}` so a drawer style can restyle its shell (style-one: white elevated card).
-- **Translations**: `BPTM\I18n` loads the `bp-team-member` text domain from `languages/` and points the editor script's JSON translations there. `languages/bp-team-member.pot` covers PHP, JS (`build/index.js` reference for `wp i18n make-json`) and block.json strings; `npm run i18n-pot` regenerates it with WP-CLI.
+- Site: http://gs-team-member.local (Local, WP 7.1.x, Twenty Twenty-Five, nginx).
+- PHP CLI: `php.exe` from Local's lightning-services (`-d extension=mysqli -d mysqli.default_port=10083 -d mysqli.default_host=127.0.0.1`);
+  WP bootstrap in scripts: `define('WP_USE_THEMES',false); $_SERVER['HTTP_HOST']='gs-team-member.local'; require '…/wp-load.php';`.
+  Put scratch scripts in the session scratch folder, never in the plugin.
+- Build: `npm run build` in the plugin dir. Playwright is in the plugin's node_modules (Chrome / Edge channels, Firefox).
+- No `wp` CLI. Git is available but do NOT commit.

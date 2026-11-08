@@ -28,8 +28,8 @@ class Oxygen_Element extends \OxyEl {
 	 */
 	public function enqueue_scripts() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only builder detection.
-		if ( ! empty( $_GET['ct_builder'] ) && class_exists( '\BPTM\Render\Assets' ) ) {
-			\BPTM\Render\Assets::enqueue_frontend();
+		if ( ! empty( $_GET['ct_builder'] ) && class_exists( '\BPTM\Block' ) ) {
+			\BPTM\Block::enqueue_frontend();
 		}
 	}
 

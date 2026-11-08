@@ -54,8 +54,8 @@ class I18n {
 		if ( ! function_exists( 'wp_set_script_translations' ) ) {
 			return;
 		}
-		// The view script has no translatable strings (they come from PHP in data-bptm), so only the editor script.
-		$handles = array( 'icb-fold-out-reveal-editor-script' );
+		// Both scripts render the block in the browser and carry translatable strings.
+		$handles = array( 'icb-fold-out-reveal-editor-script', 'icb-fold-out-reveal-view-script' );
 		$scripts = wp_scripts();
 		foreach ( $handles as $handle ) {
 			if ( isset( $scripts->registered[ $handle ] ) ) {

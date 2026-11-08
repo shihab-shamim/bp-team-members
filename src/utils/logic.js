@@ -1,7 +1,7 @@
 /**
  * Pure helpers that decide which controls apply to the current attributes.
- * They mirror the PHP render decisions (Renderer::view(), Query::pagination_mode(),
- * Context::resolve_link_type()) so the inspector only shows controls that matter.
+ * They mirror the render decisions in src/Components/Common/Team/model.js (resolveView(),
+ * paginationMode(), resolveLinkType()) so the inspector only shows controls that matter.
  */
 import { getTheme } from './editorData';
 
@@ -39,26 +39,39 @@ export const effectiveView = ( attributes ) => {
 };
 
 /**
+ * Theme's forced link type. Single member pages no longer exist (v2), so a forced
+ * single page means popup.
+ */
+export const themeForcedLink = ( theme ) => ( 'single_page' === theme.forced_link ? 'popup' : theme.forced_link || null );
+
+/**
  * Whether the theme's forced link type cannot be changed.
- * A forced popup / single page only replaces "default"; a forced panel / drawer always wins.
+ * A forced popup only replaces "default"; a forced panel / drawer always wins.
  */
 export const linkTypeLocked = ( attributes ) => {
-	const forced = getTheme( attributes.theme ).forced_link;
+	const forced = themeForcedLink( getTheme( attributes.theme ) );
 	return !! forced && [ 'panel', 'drawer' ].includes( forced );
 };
 
 /**
- * Link type the render will use: 'none' when members are not linked,
- * 'default' when it is left to Settings → single link type.
+ * Link type the render will use: 'none' when members are not linked.
+ * 'default' opens the popup; the removed 'single_page' type behaves like 'custom'.
  */
 export const effectiveLinkType = ( attributes ) => {
 	if ( ! attributes.nameIsLinked ) {
 		return 'none';
 	}
 	const theme = getTheme( attributes.theme );
+	const forced = themeForcedLink( theme );
 	let type = attributes.linkType || 'default';
-	if ( theme.forced_link && ( 'default' === type || linkTypeLocked( attributes ) ) ) {
-		type = theme.forced_link;
+	if ( 'single_page' === type ) {
+		type = 'custom';
+	}
+	if ( forced && ( 'default' === type || linkTypeLocked( attributes ) ) ) {
+		type = forced;
+	}
+	if ( 'default' === type ) {
+		type = 'popup';
 	}
 	// The inline drawer cannot expand inside carousels or tables; render uses the popup there.
 	if ( 'drawer' === type && ( 'carousel' === effectiveView( attributes ) || 'table' === theme.layout ) ) {

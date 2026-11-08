@@ -431,11 +431,13 @@ $bptm-tg-hover: ":is(:hover, :focus-within)";
 			height: auto;
 			border: 0;
 			border-radius: 0;
-			background: transparent !important;
+			// Social panel (Style tab) background / hover background, transparent by default.
+			background: var(--bptm-social-bg, transparent) !important;
 			color: var(--bptm-name-color, #002145);
 		}
 
 		a:hover {
+			background: var(--bptm-social-hover-bg, var(--bptm-social-bg, transparent)) !important;
 			color: var(--bptm-tb-accent);
 		}
 	}

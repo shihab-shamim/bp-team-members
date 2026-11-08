@@ -14,6 +14,10 @@
 	],
 	"textdomain": "bp-team-member",
 	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "wide"
+		},
 		"alignment": {
 			"type": "string",
 			"default": "center"
@@ -28,6 +32,943 @@
 				"color": "black",
 				"bg": "#B1C5A4"
 			}
+		},
+		"members": {
+			"type": "array",
+			"default": [
+				{
+					"id": "m1",
+					"name": "Sophia Nguyen",
+					"designation": "Lead Product Designer",
+					"details": "Sophia has spent more than a decade working on product design and design systems. Colleagues know Sophia as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\n\nOutside of work Sophia enjoys hiking, photography and good coffee. Ask about the latest side project!",
+					"image": {
+						"id": 0,
+						"url": "assets/img/team/sophia-nguyen.jpg",
+						"alt": "Sophia Nguyen",
+						"sizes": {
+							"thumbnail": {
+								"url": "assets/img/team/sophia-nguyen-150x150.jpg",
+								"width": 150,
+								"height": 150
+							},
+							"medium": {
+								"url": "assets/img/team/sophia-nguyen-300x300.jpg",
+								"width": 300,
+								"height": 300
+							},
+							"large": {
+								"url": "assets/img/team/sophia-nguyen.jpg",
+								"width": 600,
+								"height": 600
+							},
+							"full": {
+								"url": "assets/img/team/sophia-nguyen.jpg",
+								"width": 600,
+								"height": 600
+							}
+						}
+					},
+					"flipImage": {
+						"id": 0,
+						"url": "",
+						"alt": ""
+					},
+					"company": "Northwind Collective",
+					"companyWebsite": "https://example.com",
+					"landPhone": "+1 555 0104",
+					"cellPhone": "+1 555 0205",
+					"email": "sophia.nguyen@example.com",
+					"emailCc": "",
+					"emailBcc": "",
+					"address": "24 Harbor Avenue, San Francisco",
+					"ribbon": "Top Rated",
+					"zipCode": "10084",
+					"vcard": "",
+					"customUrl": "",
+					"featured": false,
+					"social": [
+						{
+							"icon": "fab fa-dribbble",
+							"link": "https://dribbble.com/sophia.nguyen"
+						},
+						{
+							"icon": "fab fa-behance",
+							"link": "https://www.behance.net/sophia.nguyen"
+						},
+						{
+							"icon": "fab fa-linkedin-in",
+							"link": "https://www.linkedin.com/in/sophia.nguyen"
+						},
+						{
+							"icon": "fas fa-envelope",
+							"link": "mailto:sophia.nguyen@example.com"
+						}
+					],
+					"skills": [
+						{
+							"skill": "UI Design",
+							"percent": 96
+						},
+						{
+							"skill": "Prototyping",
+							"percent": 88
+						},
+						{
+							"skill": "User Research",
+							"percent": 82
+						}
+					],
+					"group": "Design",
+					"tags": "Creative, UX",
+					"language": "English, Vietnamese",
+					"location": "San Francisco",
+					"gender": "Female",
+					"specialty": "Design",
+					"extraOne": "",
+					"extraTwo": "",
+					"extraThree": "",
+					"extraFour": "",
+					"extraFive": ""
+				},
+				{
+					"id": "m2",
+					"name": "Olivia Bennett",
+					"designation": "Chief Executive Officer",
+					"details": "Olivia has spent more than a decade working on company strategy and growth. Colleagues know Olivia as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\n\nOutside of work Olivia enjoys hiking, photography and good coffee. Ask about the latest side project!",
+					"image": {
+						"id": 0,
+						"url": "assets/img/team/olivia-bennett.jpg",
+						"alt": "Olivia Bennett",
+						"sizes": {
+							"thumbnail": {
+								"url": "assets/img/team/olivia-bennett-150x150.jpg",
+								"width": 150,
+								"height": 150
+							},
+							"medium": {
+								"url": "assets/img/team/olivia-bennett-300x300.jpg",
+								"width": 300,
+								"height": 300
+							},
+							"large": {
+								"url": "assets/img/team/olivia-bennett.jpg",
+								"width": 600,
+								"height": 600
+							},
+							"full": {
+								"url": "assets/img/team/olivia-bennett.jpg",
+								"width": 600,
+								"height": 600
+							}
+						}
+					},
+					"flipImage": {
+						"id": 0,
+						"url": "",
+						"alt": ""
+					},
+					"company": "Northwind Collective",
+					"companyWebsite": "https://example.com",
+					"landPhone": "+1 555 0100",
+					"cellPhone": "+1 555 0201",
+					"email": "olivia.bennett@example.com",
+					"emailCc": "",
+					"emailBcc": "",
+					"address": "10 Harbor Avenue, New York",
+					"ribbon": "CEO",
+					"zipCode": "10010",
+					"vcard": "",
+					"customUrl": "",
+					"featured": true,
+					"social": [
+						{
+							"icon": "fab fa-linkedin-in",
+							"link": "https://www.linkedin.com/in/olivia.bennett"
+						},
+						{
+							"icon": "fab fa-x-twitter",
+							"link": "https://x.com/olivia.bennett"
+						},
+						{
+							"icon": "fab fa-facebook-f",
+							"link": "https://www.facebook.com/olivia.bennett"
+						},
+						{
+							"icon": "fas fa-envelope",
+							"link": "mailto:olivia.bennett@example.com"
+						}
+					],
+					"skills": [
+						{
+							"skill": "Leadership",
+							"percent": 95
+						},
+						{
+							"skill": "Strategy",
+							"percent": 90
+						},
+						{
+							"skill": "Public Speaking",
+							"percent": 85
+						}
+					],
+					"group": "Management",
+					"tags": "Leadership",
+					"language": "English, French",
+					"location": "New York",
+					"gender": "Female",
+					"specialty": "Strategy",
+					"extraOne": "",
+					"extraTwo": "",
+					"extraThree": "",
+					"extraFour": "",
+					"extraFive": ""
+				},
+				{
+					"id": "m3",
+					"name": "Liam Carter",
+					"designation": "Chief Technology Officer",
+					"details": "Liam has spent more than a decade working on scalable web platforms. Colleagues know Liam as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\n\nOutside of work Liam enjoys hiking, photography and good coffee. Ask about the latest side project!",
+					"image": {
+						"id": 0,
+						"url": "assets/img/team/liam-carter.jpg",
+						"alt": "Liam Carter",
+						"sizes": {
+							"thumbnail": {
+								"url": "assets/img/team/liam-carter-150x150.jpg",
+								"width": 150,
+								"height": 150
+							},
+							"medium": {
+								"url": "assets/img/team/liam-carter-300x300.jpg",
+								"width": 300,
+								"height": 300
+							},
+							"large": {
+								"url": "assets/img/team/liam-carter.jpg",
+								"width": 600,
+								"height": 600
+							},
+							"full": {
+								"url": "assets/img/team/liam-carter.jpg",
+								"width": 600,
+								"height": 600
+							}
+						}
+					},
+					"flipImage": {
+						"id": 0,
+						"url": "",
+						"alt": ""
+					},
+					"company": "Northwind Collective",
+					"companyWebsite": "https://example.com",
+					"landPhone": "+1 555 0102",
+					"cellPhone": "+1 555 0203",
+					"email": "liam.carter@example.com",
+					"emailCc": "",
+					"emailBcc": "",
+					"address": "17 Harbor Avenue, Berlin",
+					"ribbon": "CTO",
+					"zipCode": "10047",
+					"vcard": "",
+					"customUrl": "",
+					"featured": true,
+					"social": [
+						{
+							"icon": "fab fa-linkedin-in",
+							"link": "https://www.linkedin.com/in/liam.carter"
+						},
+						{
+							"icon": "fab fa-github",
+							"link": "https://github.com/liam.carter"
+						},
+						{
+							"icon": "fab fa-x-twitter",
+							"link": "https://x.com/liam.carter"
+						},
+						{
+							"icon": "fas fa-envelope",
+							"link": "mailto:liam.carter@example.com"
+						}
+					],
+					"skills": [
+						{
+							"skill": "Architecture",
+							"percent": 92
+						},
+						{
+							"skill": "PHP",
+							"percent": 88
+						},
+						{
+							"skill": "Cloud",
+							"percent": 80
+						}
+					],
+					"group": "Engineering",
+					"tags": "Backend, Leadership",
+					"language": "English, German",
+					"location": "Berlin",
+					"gender": "Male",
+					"specialty": "Development",
+					"extraOne": "",
+					"extraTwo": "",
+					"extraThree": "",
+					"extraFour": "",
+					"extraFive": ""
+				},
+				{
+					"id": "m4",
+					"name": "Noah Williams",
+					"designation": "Senior Frontend Developer",
+					"details": "Noah has spent more than a decade working on frontend engineering and accessibility. Colleagues know Noah as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\n\nOutside of work Noah enjoys hiking, photography and good coffee. Ask about the latest side project!",
+					"image": {
+						"id": 0,
+						"url": "assets/img/team/noah-williams.jpg",
+						"alt": "Noah Williams",
+						"sizes": {
+							"thumbnail": {
+								"url": "assets/img/team/noah-williams-150x150.jpg",
+								"width": 150,
+								"height": 150
+							},
+							"medium": {
+								"url": "assets/img/team/noah-williams-300x300.jpg",
+								"width": 300,
+								"height": 300
+							},
+							"large": {
+								"url": "assets/img/team/noah-williams.jpg",
+								"width": 600,
+								"height": 600
+							},
+							"full": {
+								"url": "assets/img/team/noah-williams.jpg",
+								"width": 600,
+								"height": 600
+							}
+						}
+					},
+					"flipImage": {
+						"id": 0,
+						"url": "",
+						"alt": ""
+					},
+					"company": "Northwind Collective",
+					"companyWebsite": "https://example.com",
+					"landPhone": "+1 555 0106",
+					"cellPhone": "+1 555 0207",
+					"email": "noah.williams@example.com",
+					"emailCc": "",
+					"emailBcc": "",
+					"address": "31 Harbor Avenue, London",
+					"ribbon": "",
+					"zipCode": "10121",
+					"vcard": "",
+					"customUrl": "",
+					"featured": false,
+					"social": [
+						{
+							"icon": "fab fa-github",
+							"link": "https://github.com/noah.williams"
+						},
+						{
+							"icon": "fab fa-x-twitter",
+							"link": "https://x.com/noah.williams"
+						},
+						{
+							"icon": "fab fa-linkedin-in",
+							"link": "https://www.linkedin.com/in/noah.williams"
+						},
+						{
+							"icon": "fas fa-envelope",
+							"link": "mailto:noah.williams@example.com"
+						}
+					],
+					"skills": [
+						{
+							"skill": "JavaScript",
+							"percent": 94
+						},
+						{
+							"skill": "React",
+							"percent": 90
+						},
+						{
+							"skill": "CSS",
+							"percent": 86
+						}
+					],
+					"group": "Engineering",
+					"tags": "Frontend, JavaScript",
+					"language": "English",
+					"location": "London",
+					"gender": "Male",
+					"specialty": "Development",
+					"extraOne": "",
+					"extraTwo": "",
+					"extraThree": "",
+					"extraFour": "",
+					"extraFive": ""
+				},
+				{
+					"id": "m5",
+					"name": "Emma Rodriguez",
+					"designation": "Marketing Manager",
+					"details": "Emma has spent more than a decade working on brand storytelling and digital marketing. Colleagues know Emma as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\n\nOutside of work Emma enjoys hiking, photography and good coffee. Ask about the latest side project!",
+					"image": {
+						"id": 0,
+						"url": "assets/img/team/emma-rodriguez.jpg",
+						"alt": "Emma Rodriguez",
+						"sizes": {
+							"thumbnail": {
+								"url": "assets/img/team/emma-rodriguez-150x150.jpg",
+								"width": 150,
+								"height": 150
+							},
+							"medium": {
+								"url": "assets/img/team/emma-rodriguez-300x300.jpg",
+								"width": 300,
+								"height": 300
+							},
+							"large": {
+								"url": "assets/img/team/emma-rodriguez.jpg",
+								"width": 600,
+								"height": 600
+							},
+							"full": {
+								"url": "assets/img/team/emma-rodriguez.jpg",
+								"width": 600,
+								"height": 600
+							}
+						}
+					},
+					"flipImage": {
+						"id": 0,
+						"url": "",
+						"alt": ""
+					},
+					"company": "Northwind Collective",
+					"companyWebsite": "https://example.com",
+					"landPhone": "+1 555 0108",
+					"cellPhone": "+1 555 0209",
+					"email": "emma.rodriguez@example.com",
+					"emailCc": "",
+					"emailBcc": "",
+					"address": "38 Harbor Avenue, Madrid",
+					"ribbon": "New",
+					"zipCode": "10158",
+					"vcard": "",
+					"customUrl": "",
+					"featured": false,
+					"social": [
+						{
+							"icon": "fab fa-instagram",
+							"link": "https://www.instagram.com/emma.rodriguez"
+						},
+						{
+							"icon": "fab fa-facebook-f",
+							"link": "https://www.facebook.com/emma.rodriguez"
+						},
+						{
+							"icon": "fab fa-x-twitter",
+							"link": "https://x.com/emma.rodriguez"
+						},
+						{
+							"icon": "fas fa-envelope",
+							"link": "mailto:emma.rodriguez@example.com"
+						}
+					],
+					"skills": [
+						{
+							"skill": "SEO",
+							"percent": 85
+						},
+						{
+							"skill": "Content Strategy",
+							"percent": 90
+						},
+						{
+							"skill": "Analytics",
+							"percent": 78
+						}
+					],
+					"group": "Marketing",
+					"tags": "Content, Social Media",
+					"language": "English, Spanish",
+					"location": "Madrid",
+					"gender": "Female",
+					"specialty": "Marketing",
+					"extraOne": "",
+					"extraTwo": "",
+					"extraThree": "",
+					"extraFour": "",
+					"extraFive": ""
+				},
+				{
+					"id": "m6",
+					"name": "James Okafor",
+					"designation": "Backend Engineer",
+					"details": "James has spent more than a decade working on APIs, databases and automation. Colleagues know James as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\n\nOutside of work James enjoys hiking, photography and good coffee. Ask about the latest side project!",
+					"image": {
+						"id": 0,
+						"url": "assets/img/team/james-okafor.jpg",
+						"alt": "James Okafor",
+						"sizes": {
+							"thumbnail": {
+								"url": "assets/img/team/james-okafor-150x150.jpg",
+								"width": 150,
+								"height": 150
+							},
+							"medium": {
+								"url": "assets/img/team/james-okafor-300x300.jpg",
+								"width": 300,
+								"height": 300
+							},
+							"large": {
+								"url": "assets/img/team/james-okafor.jpg",
+								"width": 600,
+								"height": 600
+							},
+							"full": {
+								"url": "assets/img/team/james-okafor.jpg",
+								"width": 600,
+								"height": 600
+							}
+						}
+					},
+					"flipImage": {
+						"id": 0,
+						"url": "",
+						"alt": ""
+					},
+					"company": "Northwind Collective",
+					"companyWebsite": "https://example.com",
+					"landPhone": "+1 555 0110",
+					"cellPhone": "+1 555 0211",
+					"email": "james.okafor@example.com",
+					"emailCc": "",
+					"emailBcc": "",
+					"address": "45 Harbor Avenue, Lagos",
+					"ribbon": "",
+					"zipCode": "10195",
+					"vcard": "",
+					"customUrl": "",
+					"featured": false,
+					"social": [
+						{
+							"icon": "fab fa-github",
+							"link": "https://github.com/james.okafor"
+						},
+						{
+							"icon": "fab fa-linkedin-in",
+							"link": "https://www.linkedin.com/in/james.okafor"
+						},
+						{
+							"icon": "fas fa-envelope",
+							"link": "mailto:james.okafor@example.com"
+						}
+					],
+					"skills": [
+						{
+							"skill": "Node.js",
+							"percent": 88
+						},
+						{
+							"skill": "Databases",
+							"percent": 84
+						},
+						{
+							"skill": "DevOps",
+							"percent": 75
+						}
+					],
+					"group": "Engineering",
+					"tags": "API, Backend",
+					"language": "English, Yoruba",
+					"location": "Lagos",
+					"gender": "Male",
+					"specialty": "Development",
+					"extraOne": "",
+					"extraTwo": "",
+					"extraThree": "",
+					"extraFour": "",
+					"extraFive": ""
+				},
+				{
+					"id": "m7",
+					"name": "Ava Schmidt",
+					"designation": "HR Specialist",
+					"details": "Ava has spent more than a decade working on people operations and company culture. Colleagues know Ava as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\n\nOutside of work Ava enjoys hiking, photography and good coffee. Ask about the latest side project!",
+					"image": {
+						"id": 0,
+						"url": "assets/img/team/ava-schmidt.jpg",
+						"alt": "Ava Schmidt",
+						"sizes": {
+							"thumbnail": {
+								"url": "assets/img/team/ava-schmidt-150x150.jpg",
+								"width": 150,
+								"height": 150
+							},
+							"medium": {
+								"url": "assets/img/team/ava-schmidt-300x300.jpg",
+								"width": 300,
+								"height": 300
+							},
+							"large": {
+								"url": "assets/img/team/ava-schmidt.jpg",
+								"width": 600,
+								"height": 600
+							},
+							"full": {
+								"url": "assets/img/team/ava-schmidt.jpg",
+								"width": 600,
+								"height": 600
+							}
+						}
+					},
+					"flipImage": {
+						"id": 0,
+						"url": "",
+						"alt": ""
+					},
+					"company": "Northwind Collective",
+					"companyWebsite": "https://example.com",
+					"landPhone": "+1 555 0112",
+					"cellPhone": "+1 555 0213",
+					"email": "ava.schmidt@example.com",
+					"emailCc": "",
+					"emailBcc": "",
+					"address": "52 Harbor Avenue, Berlin",
+					"ribbon": "",
+					"zipCode": "10232",
+					"vcard": "",
+					"customUrl": "",
+					"featured": false,
+					"social": [
+						{
+							"icon": "fab fa-linkedin-in",
+							"link": "https://www.linkedin.com/in/ava.schmidt"
+						},
+						{
+							"icon": "fab fa-facebook-f",
+							"link": "https://www.facebook.com/ava.schmidt"
+						},
+						{
+							"icon": "fas fa-envelope",
+							"link": "mailto:ava.schmidt@example.com"
+						}
+					],
+					"skills": [
+						{
+							"skill": "Recruiting",
+							"percent": 90
+						},
+						{
+							"skill": "Communication",
+							"percent": 95
+						},
+						{
+							"skill": "Coaching",
+							"percent": 80
+						}
+					],
+					"group": "Operations",
+					"tags": "Culture, People",
+					"language": "English, German",
+					"location": "Berlin",
+					"gender": "Female",
+					"specialty": "Human Resources",
+					"extraOne": "",
+					"extraTwo": "",
+					"extraThree": "",
+					"extraFour": "",
+					"extraFive": ""
+				},
+				{
+					"id": "m8",
+					"name": "Lucas Martin",
+					"designation": "Customer Success Lead",
+					"details": "Lucas has spent more than a decade working on customer success and onboarding. Colleagues know Lucas as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\n\nOutside of work Lucas enjoys hiking, photography and good coffee. Ask about the latest side project!",
+					"image": {
+						"id": 0,
+						"url": "assets/img/team/lucas-martin.jpg",
+						"alt": "Lucas Martin",
+						"sizes": {
+							"thumbnail": {
+								"url": "assets/img/team/lucas-martin-150x150.jpg",
+								"width": 150,
+								"height": 150
+							},
+							"medium": {
+								"url": "assets/img/team/lucas-martin-300x300.jpg",
+								"width": 300,
+								"height": 300
+							},
+							"large": {
+								"url": "assets/img/team/lucas-martin.jpg",
+								"width": 600,
+								"height": 600
+							},
+							"full": {
+								"url": "assets/img/team/lucas-martin.jpg",
+								"width": 600,
+								"height": 600
+							}
+						}
+					},
+					"flipImage": {
+						"id": 0,
+						"url": "",
+						"alt": ""
+					},
+					"company": "Northwind Collective",
+					"companyWebsite": "https://example.com",
+					"landPhone": "+1 555 0114",
+					"cellPhone": "+1 555 0215",
+					"email": "lucas.martin@example.com",
+					"emailCc": "",
+					"emailBcc": "",
+					"address": "59 Harbor Avenue, Paris",
+					"ribbon": "Lead",
+					"zipCode": "10269",
+					"vcard": "",
+					"customUrl": "",
+					"featured": true,
+					"social": [
+						{
+							"icon": "fab fa-linkedin-in",
+							"link": "https://www.linkedin.com/in/lucas.martin"
+						},
+						{
+							"icon": "fab fa-x-twitter",
+							"link": "https://x.com/lucas.martin"
+						},
+						{
+							"icon": "fab fa-youtube",
+							"link": "https://www.youtube.com/@lucas.martin"
+						},
+						{
+							"icon": "fas fa-envelope",
+							"link": "mailto:lucas.martin@example.com"
+						}
+					],
+					"skills": [
+						{
+							"skill": "Customer Care",
+							"percent": 96
+						},
+						{
+							"skill": "Training",
+							"percent": 85
+						},
+						{
+							"skill": "Product Knowledge",
+							"percent": 88
+						}
+					],
+					"group": "Support",
+					"tags": "Customer, Leadership",
+					"language": "English, French",
+					"location": "Paris",
+					"gender": "Male",
+					"specialty": "Support",
+					"extraOne": "",
+					"extraTwo": "",
+					"extraThree": "",
+					"extraFour": "",
+					"extraFive": ""
+				},
+				{
+					"id": "m9",
+					"name": "Mia Tanaka",
+					"designation": "UX Researcher",
+					"details": "Mia has spent more than a decade working on user research and usability testing. Colleagues know Mia as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\n\nOutside of work Mia enjoys hiking, photography and good coffee. Ask about the latest side project!",
+					"image": {
+						"id": 0,
+						"url": "assets/img/team/mia-tanaka.jpg",
+						"alt": "Mia Tanaka",
+						"sizes": {
+							"thumbnail": {
+								"url": "assets/img/team/mia-tanaka-150x150.jpg",
+								"width": 150,
+								"height": 150
+							},
+							"medium": {
+								"url": "assets/img/team/mia-tanaka-300x300.jpg",
+								"width": 300,
+								"height": 300
+							},
+							"large": {
+								"url": "assets/img/team/mia-tanaka.jpg",
+								"width": 600,
+								"height": 600
+							},
+							"full": {
+								"url": "assets/img/team/mia-tanaka.jpg",
+								"width": 600,
+								"height": 600
+							}
+						}
+					},
+					"flipImage": {
+						"id": 0,
+						"url": "",
+						"alt": ""
+					},
+					"company": "Northwind Collective",
+					"companyWebsite": "https://example.com",
+					"landPhone": "+1 555 0116",
+					"cellPhone": "+1 555 0217",
+					"email": "mia.tanaka@example.com",
+					"emailCc": "",
+					"emailBcc": "",
+					"address": "66 Harbor Avenue, Tokyo",
+					"ribbon": "",
+					"zipCode": "10306",
+					"vcard": "",
+					"customUrl": "",
+					"featured": false,
+					"social": [
+						{
+							"icon": "fab fa-linkedin-in",
+							"link": "https://www.linkedin.com/in/mia.tanaka"
+						},
+						{
+							"icon": "fab fa-dribbble",
+							"link": "https://dribbble.com/mia.tanaka"
+						},
+						{
+							"icon": "fab fa-instagram",
+							"link": "https://www.instagram.com/mia.tanaka"
+						},
+						{
+							"icon": "fas fa-envelope",
+							"link": "mailto:mia.tanaka@example.com"
+						}
+					],
+					"skills": [
+						{
+							"skill": "Interviews",
+							"percent": 92
+						},
+						{
+							"skill": "Usability Testing",
+							"percent": 89
+						},
+						{
+							"skill": "Data Analysis",
+							"percent": 76
+						}
+					],
+					"group": "Design",
+					"tags": "Research, UX",
+					"language": "English, Japanese",
+					"location": "Tokyo",
+					"gender": "Female",
+					"specialty": "Design",
+					"extraOne": "",
+					"extraTwo": "",
+					"extraThree": "",
+					"extraFour": "",
+					"extraFive": ""
+				},
+				{
+					"id": "m10",
+					"name": "Ethan Brooks",
+					"designation": "Sales Executive",
+					"details": "Ethan has spent more than a decade working on business development and partnerships. Colleagues know Ethan as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\n\nOutside of work Ethan enjoys hiking, photography and good coffee. Ask about the latest side project!",
+					"image": {
+						"id": 0,
+						"url": "assets/img/team/ethan-brooks.jpg",
+						"alt": "Ethan Brooks",
+						"sizes": {
+							"thumbnail": {
+								"url": "assets/img/team/ethan-brooks-150x150.jpg",
+								"width": 150,
+								"height": 150
+							},
+							"medium": {
+								"url": "assets/img/team/ethan-brooks-300x300.jpg",
+								"width": 300,
+								"height": 300
+							},
+							"large": {
+								"url": "assets/img/team/ethan-brooks.jpg",
+								"width": 600,
+								"height": 600
+							},
+							"full": {
+								"url": "assets/img/team/ethan-brooks.jpg",
+								"width": 600,
+								"height": 600
+							}
+						}
+					},
+					"flipImage": {
+						"id": 0,
+						"url": "",
+						"alt": ""
+					},
+					"company": "Northwind Collective",
+					"companyWebsite": "https://example.com",
+					"landPhone": "+1 555 0118",
+					"cellPhone": "+1 555 0219",
+					"email": "ethan.brooks@example.com",
+					"emailCc": "",
+					"emailBcc": "",
+					"address": "73 Harbor Avenue, Toronto",
+					"ribbon": "",
+					"zipCode": "10343",
+					"vcard": "",
+					"customUrl": "",
+					"featured": false,
+					"social": [
+						{
+							"icon": "fab fa-linkedin-in",
+							"link": "https://www.linkedin.com/in/ethan.brooks"
+						},
+						{
+							"icon": "fab fa-facebook-f",
+							"link": "https://www.facebook.com/ethan.brooks"
+						},
+						{
+							"icon": "fab fa-x-twitter",
+							"link": "https://x.com/ethan.brooks"
+						},
+						{
+							"icon": "fas fa-envelope",
+							"link": "mailto:ethan.brooks@example.com"
+						}
+					],
+					"skills": [
+						{
+							"skill": "Negotiation",
+							"percent": 91
+						},
+						{
+							"skill": "CRM",
+							"percent": 84
+						},
+						{
+							"skill": "Presentations",
+							"percent": 87
+						}
+					],
+					"group": "Sales",
+					"tags": "Business, Customer",
+					"language": "English",
+					"location": "Toronto",
+					"gender": "Male",
+					"specialty": "Sales",
+					"extraOne": "",
+					"extraTwo": "",
+					"extraThree": "",
+					"extraFour": "",
+					"extraFive": ""
+				}
+			]
 		},
 		"theme": {
 			"type": "string",
@@ -156,11 +1097,11 @@
 		},
 		"orderBy": {
 			"type": "string",
-			"default": "date"
+			"default": "default"
 		},
 		"order": {
 			"type": "string",
-			"default": "DESC"
+			"default": "ASC"
 		},
 		"taxonomyOrderBy": {
 			"type": "string",
@@ -410,6 +1351,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"infoLabelColor": {
+			"type": "string",
+			"default": ""
+		},
 		"infoBg": {
 			"type": "string",
 			"default": ""
@@ -434,7 +1379,63 @@
 			"type": "string",
 			"default": ""
 		},
+		"popupBg": {
+			"type": "string",
+			"default": ""
+		},
+		"popupCloseColor": {
+			"type": "string",
+			"default": ""
+		},
+		"popupCloseBg": {
+			"type": "string",
+			"default": ""
+		},
+		"popupCloseHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"popupCloseHoverBg": {
+			"type": "string",
+			"default": ""
+		},
+		"popupCloseIconSize": {
+			"type": "string",
+			"default": ""
+		},
+		"popupCloseSize": {
+			"type": "string",
+			"default": ""
+		},
+		"popupCloseRadius": {
+			"type": "string",
+			"default": ""
+		},
 		"popupArrowColor": {
+			"type": "string",
+			"default": ""
+		},
+		"popupNavBg": {
+			"type": "string",
+			"default": ""
+		},
+		"popupNavBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"popupNavHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"popupNavHoverBg": {
+			"type": "string",
+			"default": ""
+		},
+		"popupNavHoverBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"popupNavRadius": {
 			"type": "string",
 			"default": ""
 		},
@@ -526,6 +1527,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"itemShadowList": {
+			"type": "array",
+			"default": []
+		},
 		"itemBorderColor": {
 			"type": "string",
 			"default": ""
@@ -535,6 +1540,134 @@
 			"default": ""
 		},
 		"imageBorderRadius": {
+			"type": "string",
+			"default": ""
+		},
+		"pgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"pgBg": {
+			"type": "string",
+			"default": ""
+		},
+		"pgBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"pgHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"pgHoverBg": {
+			"type": "string",
+			"default": ""
+		},
+		"pgHoverBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"pgActiveColor": {
+			"type": "string",
+			"default": ""
+		},
+		"pgActiveBg": {
+			"type": "string",
+			"default": ""
+		},
+		"pgActiveBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"pgBorderWidth": {
+			"type": "string",
+			"default": ""
+		},
+		"pgBorderRadius": {
+			"type": "string",
+			"default": ""
+		},
+		"lmColor": {
+			"type": "string",
+			"default": ""
+		},
+		"lmBg": {
+			"type": "string",
+			"default": ""
+		},
+		"lmBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"lmHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"lmHoverBg": {
+			"type": "string",
+			"default": ""
+		},
+		"lmBorderWidth": {
+			"type": "string",
+			"default": ""
+		},
+		"lmBorderRadius": {
+			"type": "string",
+			"default": ""
+		},
+		"pgLoaderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"pgPadding": {
+			"type": "object",
+			"default": {}
+		},
+		"lmPadding": {
+			"type": "object",
+			"default": {}
+		},
+		"socialIconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"socialIconHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"socialBg": {
+			"type": "string",
+			"default": ""
+		},
+		"socialHoverBg": {
+			"type": "string",
+			"default": ""
+		},
+		"socialBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"socialHoverBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"socialIconSize": {
+			"type": "string",
+			"default": ""
+		},
+		"socialSize": {
+			"type": "string",
+			"default": ""
+		},
+		"socialBorderWidth": {
+			"type": "string",
+			"default": ""
+		},
+		"socialRadius": {
+			"type": "string",
+			"default": ""
+		},
+		"socialGap": {
 			"type": "string",
 			"default": ""
 		}

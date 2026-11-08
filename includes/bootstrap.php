@@ -29,7 +29,8 @@ if ( ! defined( 'BPTM_URL' ) ) {
  * Load plugin files. functions.php first, then everything else alphabetically per folder.
  */
 function bptm_load_files() {
-	$dirs = array( 'includes', 'includes/render', 'includes/render/themes', 'includes/integrations' );
+	// The block is rendered in the browser (src/Components/Common/Team); PHP keeps only glue, settings and integrations.
+	$dirs = array( 'includes', 'includes/integrations' );
 
 	if ( file_exists( BPTM_DIR . 'includes/functions.php' ) ) {
 		require_once BPTM_DIR . 'includes/functions.php';

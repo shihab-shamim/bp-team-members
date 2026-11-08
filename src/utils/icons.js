@@ -10,10 +10,3 @@ export const blockIcon = <svg xmlns='http://www.w3.org/2000/svg' width={ 24 } he
 	<path d='M23 17.75c0-2.62-1.9-4.75-4.25-4.75-.97 0-1.86.36-2.57.97a8.04 8.04 0 0 1 3.76 4.78H22c.55 0 1-.45 1-1z' opacity='0.6' />
 </svg>;
 
-export const verticalLineIcon = <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} viewBox='0 0 14.707 14.707'>
-	<rect x='6.275' y='0' width='2.158' height='14.707' />
-</svg>;
-
-export const horizontalLineIcon = <svg xmlns='http://www.w3.org/2000/svg' width={24} height={24} viewBox='0 0 357 357'>
-	<path d='M357,204H0v-51h357V204z' />
-</svg>;

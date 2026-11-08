@@ -101,7 +101,7 @@ class Elementor_Widget extends \Elementor\Widget_Base {
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
 					'showcase' => __( 'A saved showcase', 'bp-team-member' ),
-					'quick'    => __( 'Team members list', 'bp-team-member' ),
+					'quick'    => __( 'Sample team list', 'bp-team-member' ),
 				),
 				'default' => 'showcase',
 			)

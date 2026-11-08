@@ -35,8 +35,8 @@ class Beaver_Module extends \FLBuilderModule {
 				'partial_refresh' => true,
 			)
 		);
-		if ( class_exists( '\BPTM\Render\Assets' ) ) {
-			$this->add_css( \BPTM\Render\Assets::FA_HANDLE );
+		if ( class_exists( '\BPTM\Block' ) ) {
+			$this->add_css( \BPTM\Block::FA_HANDLE );
 		}
 	}
 

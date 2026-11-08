@@ -22,10 +22,6 @@
 			}
 			row.classList.toggle( 'is-hidden', ! visible );
 		} );
-		$( '.bptm-tax-card' ).each( function () {
-			var first = this.querySelector( 'input[type="checkbox"]' );
-			this.classList.toggle( 'is-disabled', ! ( first && first.checked ) );
-		} );
 	}
 
 	$( function () {

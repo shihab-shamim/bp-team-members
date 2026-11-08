@@ -1,45 +1,76 @@
 /**
- * BP Team Member frontend entry (block viewScript + style).
+ * BP Team Member front end (block viewScript + style).
  *
- * window.BPTM.init( root = document ) initialises every `.bptm-wrap[data-bptm]` inside root exactly once.
+ * src/render.php prints only a wrapper `<div class="wp-block-icb-fold-out-reveal …" data-bptm-uid data-attributes="{json}">`;
+ * this script renders the block in the browser from those attributes with React (the same component the editor uses).
+ *
+ * window.BPTM.init( root = document ) mounts every not-yet-mounted block inside root (page builders call it
+ * after injecting markup). window.BPTM.get( el ) returns { attributes } of a mounted block.
  */
 import './style.scss';
-import Instance from './frontend/instance';
-import Modal from './frontend/modal';
+import { createRoot, createElement } from '@wordpress/element';
 
-const instances = new WeakMap();
+import TeamMembers from './Components/Common/Team/TeamMembers';
 
-function init( root ) {
-	const ctx = root && typeof root.querySelectorAll === 'function' ? root : document;
-	Modal.cleanupPortals();
-	const roots = Array.from( ctx.querySelectorAll( '.bptm-wrap[data-bptm]:not(.bptm-portal)' ) );
-	if ( ctx.matches && ctx.matches( '.bptm-wrap[data-bptm]' ) ) {
-		roots.unshift( ctx );
+const SELECTOR = '.wp-block-icb-fold-out-reveal[data-attributes]';
+const mounted = new Map();
+
+const randomUid = () => Math.random().toString( 16 ).slice( 2, 10 );
+
+function mount( el ) {
+	if ( mounted.has( el ) ) {
+		return;
 	}
-	const created = [];
-	roots.forEach( ( el ) => {
-		if ( el.hasAttribute( 'data-bptm-ready' ) ) {
-			return;
+	let attributes = {};
+	try {
+		attributes = JSON.parse( el.getAttribute( 'data-attributes' ) || '{}' ) || {};
+	} catch ( e ) {
+		attributes = {};
+	}
+	if ( ! attributes || 'object' !== typeof attributes || Array.isArray( attributes ) ) {
+		attributes = {};
+	}
+	const uid = String( el.getAttribute( 'data-bptm-uid' ) || randomUid() ).replace( /[^a-z0-9-]/gi, '' ).toLowerCase() || randomUid();
+	const domId = el.id || 'bptm-' + uid;
+	const wrapperClass = el.className;
+	const root = createRoot( el );
+	mounted.set( el, { root, attributes } );
+	root.render( createElement( TeamMembers, { attributes, uid, domId, host: el, wrapperClass } ) );
+}
+
+function init( scope ) {
+	// Roots whose element left the document (builder previews re-render): unmount.
+	mounted.forEach( ( rec, el ) => {
+		if ( ! el.isConnected ) {
+			rec.root.unmount();
+			mounted.delete( el );
 		}
-		el.setAttribute( 'data-bptm-ready', '1' );
+	} );
+	const ctx = scope && 'function' === typeof scope.querySelectorAll ? scope : document;
+	const els = Array.from( ctx.querySelectorAll( SELECTOR ) );
+	if ( ctx.matches && ctx.matches( SELECTOR ) ) {
+		els.unshift( ctx );
+	}
+	els.forEach( ( el ) => {
 		try {
-			const inst = new Instance( el );
-			instances.set( el, inst );
-			created.push( inst );
+			mount( el );
 		} catch ( e ) {
 			// eslint-disable-next-line no-console
 			console.error( 'BP Team Member:', e );
 		}
 	} );
-	return created;
+	return els;
 }
 
-const api = window.BPTM && typeof window.BPTM === 'object' ? window.BPTM : {};
+const api = window.BPTM && 'object' === typeof window.BPTM ? window.BPTM : {};
 api.init = init;
-api.get = ( el ) => instances.get( el ) || null;
+api.get = ( el ) => {
+	const rec = mounted.get( el );
+	return rec ? { attributes: rec.attributes } : null;
+};
 window.BPTM = api;
 
-if ( document.readyState === 'loading' ) {
+if ( 'loading' === document.readyState ) {
 	document.addEventListener( 'DOMContentLoaded', () => init( document ) );
 } else {
 	init( document );

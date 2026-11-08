@@ -1,29 +1,60 @@
 import { PanelBody } from '@wordpress/components';
+import { useEffect, useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 
 import ThemePicker from '../../Controls/ThemePicker';
 import VisibilityControl from '../../Controls/VisibilityControl';
 import { Toggle, Select, Text, Range, Segmented, ColumnsControl, Notice } from '../../Controls/Fields';
-import { getTheme, getThumbnailSizes, hasAcf, singleLinkType } from '../../../../utils/editorData';
+// bpl-tools ItemsPanel, imported from its own file so the bundle does not pull in every bpl-tools component.
+import ItemsPanel from '../../../../../../bpl-tools/Components/ItemsPanel/ItemsPanel';
+import MemberSettings from '../../Members/MemberSettings';
+import { blankMember, duplicateMember, getMembers } from '../../../../utils/members';
+import { ensureFontAwesome } from '../../../../utils/fontAwesome';
+import { getTheme, getThumbnailSizes } from '../../../../utils/editorData';
 import {
 	effectiveView, effectiveLinkType, linkTypeLocked, selectedView, viewChange, themeChange,
-	themeSupportsCarousel, themeSupportsFilter,
+	themeSupportsCarousel, themeSupportsFilter, themeForcedLink,
 } from '../../../../utils/logic';
 import {
 	viewTypeOptions, linkTypeOptions, linkTargetOptions, popupStyleOptions, popupColumnOptions,
-	panelStyleOptions, panelPositionOptions, drawerStyleOptions, imageFilterOptions, acfPositionOptions,
+	panelStyleOptions, panelPositionOptions, drawerStyleOptions, imageFilterOptions,
 } from '../../../../utils/options';
 
 const optLabel = ( opts, v ) => ( opts.find( ( o ) => o.value === v ) || {} ).label || v;
 
 const Layout = ( { attributes, setAttributes } ) => {
 	const f = { attributes, setAttributes };
+	const members = getMembers( attributes );
+	const [ activeMember, setActiveMember ] = useState( 0 );
+
+	// Font Awesome for the social icon picker inside each member's settings.
+	useEffect( () => {
+		ensureFontAwesome();
+	}, [] );
+
+	// New / duplicated members always get a fresh unique id.
+	const setMembers = ( next ) => setAttributes( { members: next } );
+	const handleAdd = () => {
+		setMembers( [ ...members, blankMember( members ) ] );
+		setActiveMember( members.length );
+	};
+	const handleCopy = ( index ) => {
+		const next = [ ...members ];
+		next.splice( index + 1, 0, duplicateMember( members[ index ], members ) );
+		setMembers( next );
+		setActiveMember( index + 1 );
+	};
+	const handleDelete = ( index ) => {
+		setMembers( members.filter( ( _, i ) => i !== index ) );
+		setActiveMember( Math.max( 0, index - 1 ) );
+	};
 	const theme = getTheme( attributes.theme );
 	const view = effectiveView( attributes );
 	const link = effectiveLinkType( attributes );
 	const linkOn = !! attributes.nameIsLinked;
 	const locked = linkTypeLocked( attributes );
-	const selectedLink = attributes.linkType || 'default';
+	const forcedLink = themeForcedLink( theme );
+	const selectedLink = 'single_page' === attributes.linkType ? 'custom' : attributes.linkType || 'default';
 
 	const viewOptions = viewTypeOptions.map( ( o ) => ( {
 		...o,
@@ -32,7 +63,26 @@ const Layout = ( { attributes, setAttributes } ) => {
 
 	return (
 		<>
-			<PanelBody title={ __( 'Theme', 'bp-team-member' ) } initialOpen>
+			<PanelBody title={ __( 'Team Members', 'bp-team-member' ) } className="bptm-ed-members-panel" initialOpen>
+				<ItemsPanel
+					attributes={ { ...attributes, members } }
+					setAttributes={ setAttributes }
+					arrKey="members"
+					design="sortable"
+					title="name"
+					itemLabel={ __( 'Member', 'bp-team-member' ) }
+					newItem={ blankMember( members ) }
+					ItemSettings={ MemberSettings }
+					activeIndex={ activeMember }
+					setActiveIndex={ setActiveMember }
+					handleAdd={ handleAdd }
+					handleCopy={ handleCopy }
+					handleDelete={ handleDelete }
+					minItem={ 0 }
+				/>
+			</PanelBody>
+
+			<PanelBody title={ __( 'Theme', 'bp-team-member' ) } initialOpen={ false }>
 				<p className="bptm-ed-current">
 					{ __( 'Current:', 'bp-team-member' ) } <strong>{ theme.label }</strong>
 				</p>
@@ -70,26 +120,23 @@ const Layout = ( { attributes, setAttributes } ) => {
 
 			<PanelBody title={ __( 'Linking', 'bp-team-member' ) } initialOpen={ false }>
 				<Toggle { ...f } name="nameIsLinked" label={ __( 'Link members', 'bp-team-member' ) } help={ __( 'Make the name (and image) open the member detail.', 'bp-team-member' ) } />
-				{ linkOn && theme.forced_link && (
+				{ linkOn && forcedLink && (
 					<Notice>
 						{ sprintf(
 							/* translators: 1: theme, 2: link type */
 							locked ? __( '%1$s always opens members as: %2$s.', 'bp-team-member' ) : __( '%1$s opens members as %2$s unless you choose another link type.', 'bp-team-member' ),
 							theme.label,
-							optLabel( linkTypeOptions, theme.forced_link )
+							optLabel( linkTypeOptions, forcedLink )
 						) }
 					</Notice>
 				) }
 				{ linkOn && (
 					<>
-						<Select { ...f } name="linkType" label={ __( 'Link type', 'bp-team-member' ) } options={ linkTypeOptions } disabled={ locked } value={ locked ? theme.forced_link : selectedLink } />
-						{ 'default' === link && (
-							<p className="bptm-ed-muted">{ 'none' === singleLinkType() ? __( 'Default follows the “Default link type” in BP Team → Preferences, which is currently set to None (members are not linked). Choose a link type here to override it.', 'bp-team-member' ) : __( 'Default follows the “Default link type” in BP Team → Preferences (currently: single page). Choose a link type here to configure its style.', 'bp-team-member' ) }</p>
-						) }
+						<Select { ...f } name="linkType" label={ __( 'Link type', 'bp-team-member' ) } options={ linkTypeOptions } disabled={ locked } value={ locked ? forcedLink : selectedLink } />
 						{ 'popup' === link && selectedLink === 'drawer' && (
 							<Notice status="warning">{ __( 'Drawers cannot open inside carousels or tables; the popup is used instead.', 'bp-team-member' ) }</Notice>
 						) }
-						{ [ 'single_page', 'custom', 'default' ].includes( link ) && (
+						{ 'custom' === link && (
 							<Select { ...f } name="linkTarget" label={ __( 'Open in', 'bp-team-member' ) } options={ linkTargetOptions } />
 						) }
 						{ 'popup' === link && (
@@ -110,7 +157,7 @@ const Layout = ( { attributes, setAttributes } ) => {
 							<Select { ...f } name="drawerStyle" label={ __( 'Drawer style', 'bp-team-member' ) } options={ drawerStyleOptions } />
 						) }
 						{ 'custom' === link && (
-							<p className="bptm-ed-muted">{ __( 'Uses each member\'s “Custom page URL” field.', 'bp-team-member' ) }</p>
+							<p className="bptm-ed-muted">{ __( 'Uses each member’s “Custom URL” field (Team Members → Contact). Members without one are not linked.', 'bp-team-member' ) }</p>
 						) }
 					</>
 				) }
@@ -140,14 +187,8 @@ const Layout = ( { attributes, setAttributes } ) => {
 				) }
 				<Toggle { ...f } name="detailsAreaHeight" label={ __( 'Equal details area height', 'bp-team-member' ) } />
 			</PanelBody>
+			
 
-			<PanelBody title={ __( 'ACF fields', 'bp-team-member' ) } initialOpen={ false }>
-				{ ! hasAcf() && <Notice>{ __( 'Requires Advanced Custom Fields with field groups assigned to team members.', 'bp-team-member' ) }</Notice> }
-				<Toggle { ...f } name="showAcfFields" label={ __( 'Show ACF fields', 'bp-team-member' ) } />
-				{ attributes.showAcfFields && (
-					<Select { ...f } name="acfFieldsPosition" label={ __( 'ACF fields position', 'bp-team-member' ) } options={ acfPositionOptions } />
-				) }
-			</PanelBody>
 		</>
 	);
 };

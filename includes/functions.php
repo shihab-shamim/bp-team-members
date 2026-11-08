@@ -1,22 +1,16 @@
 <?php
 /**
- * Public helper API (data area).
+ * Public helper API.
  *
- * Every function here is part of the data contract in docs/ARCHITECTURE.md and
- * may be called by any other area.
+ * Team members live in the block (`members` attribute, see docs/ARCHITECTURE.md "v2 data model").
+ * bptm_member_from_item() turns one stored item into the member array every theme / popup / panel /
+ * drawer template and the render Context work with.
  *
  * @package BPTM
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-}
-
-/**
- * Member post type name.
- */
-if ( ! defined( 'BPTM_POST_TYPE' ) ) {
-	define( 'BPTM_POST_TYPE', 'bptm_member' );
 }
 
 /**
@@ -58,10 +52,17 @@ function bptm_translation_defaults() {
 		'cell_phone'         => __( 'Cell Phone', 'bp-team-member' ),
 		'email'              => __( 'Email', 'bp-team-member' ),
 		'zip_code'           => __( 'Zip Code', 'bp-team-member' ),
+		'group'              => __( 'Group', 'bp-team-member' ),
+		'tag'                => __( 'Tag', 'bp-team-member' ),
 		'location'           => __( 'Location', 'bp-team-member' ),
 		'language'           => __( 'Language', 'bp-team-member' ),
 		'specialty'          => __( 'Specialty', 'bp-team-member' ),
 		'gender'             => __( 'Gender', 'bp-team-member' ),
+		'extra_one'          => __( 'Extra One', 'bp-team-member' ),
+		'extra_two'          => __( 'Extra Two', 'bp-team-member' ),
+		'extra_three'        => __( 'Extra Three', 'bp-team-member' ),
+		'extra_four'         => __( 'Extra Four', 'bp-team-member' ),
+		'extra_five'         => __( 'Extra Five', 'bp-team-member' ),
 		'follow_me_on'       => __( 'Follow Me On', 'bp-team-member' ),
 		'skills'             => __( 'Skills', 'bp-team-member' ),
 		'read_on'            => __( 'Read On', 'bp-team-member' ),
@@ -76,26 +77,15 @@ function bptm_translation_defaults() {
 }
 
 /**
- * Preference defaults. Uses BPTM\Settings::defaults() when the Settings class exists,
- * otherwise the built-in contract defaults.
+ * Preference defaults (option 'bptm_settings' without translations).
  *
  * @return array
  */
-function bptm_option_defaults() {
-	$builtin = array(
-		'member_slug'          => 'team-members',
-		'replace_custom_slug'  => false,
-		'archive_page_slug'    => '',
-		'archive_page_title'   => '',
-		'single_page_style'    => 'default',
-		'single_link_type'     => 'single_page',
-		'next_prev'            => false,
-		'breadcrumb'           => false,
+function bptm_preference_defaults() {
+	return array(
 		'search_all_fields'    => false,
 		'multilingual'         => false,
 		'disable_google_fonts' => false,
-		'show_acf_fields'      => false,
-		'acf_fields_position'  => 'after_skills',
 		'disable_lazy_load'    => false,
 		'lazy_load_class'      => 'skip-lazy',
 		'land_phone_link'      => false,
@@ -103,20 +93,22 @@ function bptm_option_defaults() {
 		'email_link'           => false,
 		'custom_css'           => '',
 	);
-	$builtin = array_merge( $builtin, bptm_translation_defaults() );
+}
 
-	if ( class_exists( '\BPTM\Settings' ) && method_exists( '\BPTM\Settings', 'defaults' ) ) {
-		$from_settings = \BPTM\Settings::defaults();
-		if ( is_array( $from_settings ) ) {
-			$builtin = array_merge( $builtin, $from_settings );
-		}
-	}
-
-	return $builtin;
+/**
+ * All defaults of option 'bptm_settings' (preferences + translations).
+ *
+ * @return array
+ */
+function bptm_option_defaults() {
+	return array_merge( bptm_preference_defaults(), bptm_translation_defaults() );
 }
 
 /**
  * Get a preference (option 'bptm_settings') merged with defaults.
+ *
+ * Keys of removed preferences (member slug, single page, ACF …) still saved in the option are
+ * returned as stored but no code reads them any more.
  *
  * @param string $key     Option key.
  * @param mixed  $default Fallback when neither saved nor default exists.
@@ -132,163 +124,6 @@ function bptm_get_option( $key, $default = null ) {
 		return $defaults[ $key ];
 	}
 	return $default;
-}
-
-/**
- * Taxonomy key => [taxonomy name, default singular, default plural].
- *
- * @return array
- */
-function bptm_taxonomy_definitions() {
-	return array(
-		'group'       => array( 'bptm_group', __( 'Group', 'bp-team-member' ), __( 'Groups', 'bp-team-member' ) ),
-		'tag'         => array( 'bptm_tag', __( 'Tag', 'bp-team-member' ), __( 'Tags', 'bp-team-member' ) ),
-		'language'    => array( 'bptm_language', __( 'Language', 'bp-team-member' ), __( 'Languages', 'bp-team-member' ) ),
-		'location'    => array( 'bptm_location', __( 'Location', 'bp-team-member' ), __( 'Locations', 'bp-team-member' ) ),
-		'gender'      => array( 'bptm_gender', __( 'Gender', 'bp-team-member' ), __( 'Genders', 'bp-team-member' ) ),
-		'specialty'   => array( 'bptm_specialty', __( 'Specialty', 'bp-team-member' ), __( 'Specialties', 'bp-team-member' ) ),
-		'extra_one'   => array( 'bptm_extra_one', __( 'Extra One', 'bp-team-member' ), __( 'Extra One', 'bp-team-member' ) ),
-		'extra_two'   => array( 'bptm_extra_two', __( 'Extra Two', 'bp-team-member' ), __( 'Extra Two', 'bp-team-member' ) ),
-		'extra_three' => array( 'bptm_extra_three', __( 'Extra Three', 'bp-team-member' ), __( 'Extra Three', 'bp-team-member' ) ),
-		'extra_four'  => array( 'bptm_extra_four', __( 'Extra Four', 'bp-team-member' ), __( 'Extra Four', 'bp-team-member' ) ),
-		'extra_five'  => array( 'bptm_extra_five', __( 'Extra Five', 'bp-team-member' ), __( 'Extra Five', 'bp-team-member' ) ),
-	);
-}
-
-/**
- * Taxonomy settings defaults (option 'bptm_taxonomy_settings').
- * Uses BPTM\Settings::taxonomy_defaults() when available.
- *
- * @return array
- */
-function bptm_tax_option_defaults() {
-	$defaults = array();
-	foreach ( bptm_taxonomy_definitions() as $key => $def ) {
-		$defaults[ "enable_{$key}_tax" ]         = 0 !== strpos( $key, 'extra_' );
-		$defaults[ "{$key}_tax_label" ]          = $def[1];
-		$defaults[ "{$key}_tax_plural_label" ]   = $def[2];
-		$defaults[ "enable_{$key}_tax_archive" ] = true;
-		$defaults[ "{$key}_tax_archive_slug" ]   = 'bptm-' . str_replace( '_', '-', $key );
-	}
-
-	if ( class_exists( '\BPTM\Settings' ) && method_exists( '\BPTM\Settings', 'taxonomy_defaults' ) ) {
-		$from_settings = \BPTM\Settings::taxonomy_defaults();
-		if ( is_array( $from_settings ) ) {
-			$defaults = array_merge( $defaults, $from_settings );
-		}
-	}
-
-	return $defaults;
-}
-
-/**
- * Get a taxonomy setting (option 'bptm_taxonomy_settings') merged with defaults.
- * Empty labels / slugs fall back to their defaults. With the "multilingual" preference on,
- * labels always come from the (translatable) defaults.
- *
- * @param string $key     Setting key, e.g. 'enable_group_tax'.
- * @param mixed  $default Fallback.
- * @return mixed
- */
-function bptm_get_tax_option( $key, $default = null ) {
-	$saved    = get_option( 'bptm_taxonomy_settings', array() );
-	$saved    = is_array( $saved ) ? $saved : array();
-	$defaults = bptm_tax_option_defaults();
-
-	$is_label = (bool) preg_match( '/_tax(_plural)?_label$/', $key );
-	$is_slug  = (bool) preg_match( '/_tax_archive_slug$/', $key );
-
-	if ( $is_label && isset( $defaults[ $key ] ) && bptm_is_on( bptm_get_option( 'multilingual', false ) ) ) {
-		return $defaults[ $key ];
-	}
-
-	if ( array_key_exists( $key, $saved ) ) {
-		$value = $saved[ $key ];
-		if ( ( $is_label || $is_slug ) && ( ! is_string( $value ) || '' === trim( $value ) ) && isset( $defaults[ $key ] ) ) {
-			return $defaults[ $key ];
-		}
-		return $value;
-	}
-
-	if ( array_key_exists( $key, $defaults ) ) {
-		return $defaults[ $key ];
-	}
-
-	return $default;
-}
-
-/**
- * Normalize an archive page slug: each path segment is sanitized, so a nested slug such as
- * "about/team" stays "about/team" (used for the rewrite rules and for every archive link).
- * Full http(s) URLs are returned as-is (escaped), they point the archive link elsewhere.
- *
- * @param string|null $raw Raw value (null = read the saved preference).
- * @return string '' when empty.
- */
-function bptm_archive_page_slug( $raw = null ) {
-	$raw = trim( (string) ( null === $raw ? bptm_get_option( 'archive_page_slug', '' ) : $raw ) );
-	if ( '' === $raw ) {
-		return '';
-	}
-	if ( preg_match( '#^https?://#i', $raw ) ) {
-		return esc_url_raw( $raw );
-	}
-	$parts = array_filter( array_map( 'sanitize_title', explode( '/', $raw ) ), 'strlen' );
-	return implode( '/', $parts );
-}
-
-/**
- * All member taxonomies with their current settings.
- *
- * @return array key => ['taxonomy','label','plural','enabled','archive','slug']
- */
-function bptm_taxonomies() {
-	$out = array();
-	foreach ( bptm_taxonomy_definitions() as $key => $def ) {
-		$slug = sanitize_title( (string) bptm_get_tax_option( "{$key}_tax_archive_slug" ) );
-		if ( '' === $slug ) {
-			$slug = 'bptm-' . str_replace( '_', '-', $key );
-		}
-		$out[ $key ] = array(
-			'taxonomy' => $def[0],
-			'label'    => (string) bptm_get_tax_option( "{$key}_tax_label", $def[1] ),
-			'plural'   => (string) bptm_get_tax_option( "{$key}_tax_plural_label", $def[2] ),
-			'enabled'  => bptm_is_on( bptm_get_tax_option( "enable_{$key}_tax" ) ),
-			'archive'  => bptm_is_on( bptm_get_tax_option( "enable_{$key}_tax_archive" ) ),
-			'slug'     => $slug,
-		);
-	}
-	return apply_filters( 'bptm_taxonomies', $out );
-}
-
-/**
- * Enabled taxonomy names (e.g. bptm_group) keyed by taxonomy key.
- *
- * @return array
- */
-function bptm_enabled_taxonomy_names() {
-	$out = array();
-	foreach ( bptm_taxonomies() as $key => $tax ) {
-		if ( $tax['enabled'] ) {
-			$out[ $key ] = $tax['taxonomy'];
-		}
-	}
-	return $out;
-}
-
-/**
- * Whether a taxonomy name belongs to this plugin.
- *
- * @param string $taxonomy Taxonomy name.
- * @return bool
- */
-function bptm_is_member_taxonomy( $taxonomy ) {
-	foreach ( bptm_taxonomy_definitions() as $def ) {
-		if ( $def[0] === $taxonomy ) {
-			return true;
-		}
-	}
-	return false;
 }
 
 /**
@@ -318,15 +153,14 @@ function bptm_translation( $key ) {
 		}
 	}
 	if ( '' === trim( $value ) ) {
-		$value = bptm_get_option( $key, $default );
-		$value = is_string( $value ) && '' !== trim( $value ) ? $value : $default;
+		$value = $default;
 	}
 
 	return (string) apply_filters( 'bptm_translation', $value, $key );
 }
 
 /**
- * Placeholder image URL used when a member has no featured image.
+ * Placeholder image URL used when a member has no image.
  *
  * @return string
  */
@@ -335,38 +169,29 @@ function bptm_placeholder_image_url() {
 }
 
 /**
- * Read a member's social links meta in normalized form.
- *
- * @param int $post_id Post ID.
- * @return array
- */
-function bptm_get_member_social( $post_id ) {
-	$raw = get_post_meta( $post_id, '_bptm_social', true );
-	return bptm_sanitize_social( $raw );
-}
-
-/**
- * Read a member's skills meta in normalized form.
- *
- * @param int $post_id Post ID.
- * @return array
- */
-function bptm_get_member_skills( $post_id ) {
-	$raw = get_post_meta( $post_id, '_bptm_skills', true );
-	return bptm_sanitize_skills( $raw );
-}
-
-/**
- * Sanitize a Font Awesome class string ("fab fa-linkedin-in").
+ * Sanitize a Font Awesome class string ("fab fa-linkedin-in"). Only Font Awesome style classes
+ * (fa, fab, fas, far, fa-brands, fa-solid, fa-regular) and `fa-{name}` icon classes are kept;
+ * anything else drops the whole value.
  *
  * @param string $icon Raw icon.
- * @return string
+ * @return string '' when invalid.
  */
 function bptm_sanitize_icon_class( $icon ) {
-	$icon    = is_string( $icon ) ? strtolower( $icon ) : '';
-	$classes = preg_split( '/\s+/', trim( $icon ) );
-	$classes = array_filter( array_map( 'sanitize_html_class', (array) $classes ) );
-	return implode( ' ', $classes );
+	$icon    = is_string( $icon ) ? strtolower( trim( $icon ) ) : '';
+	$classes = preg_split( '/\s+/', $icon, -1, PREG_SPLIT_NO_EMPTY );
+	$out     = array();
+	$has_ico = false;
+	foreach ( (array) $classes as $class ) {
+		if ( in_array( $class, array( 'fa', 'fab', 'fas', 'far', 'fa-brands', 'fa-solid', 'fa-regular' ), true ) ) {
+			$out[] = $class;
+		} elseif ( preg_match( '/^fa-[a-z0-9]+(?:-[a-z0-9]+)*$/', $class ) ) {
+			$out[]   = $class;
+			$has_ico = true;
+		} else {
+			return '';
+		}
+	}
+	return $has_ico ? implode( ' ', array_unique( $out ) ) : '';
 }
 
 /**
@@ -410,7 +235,7 @@ function bptm_is_phone_icon( $icon ) {
 function bptm_sanitize_social( $value ) {
 	if ( is_string( $value ) ) {
 		$decoded = json_decode( $value, true );
-		$value   = is_array( $decoded ) ? $decoded : maybe_unserialize( $value );
+		$value   = is_array( $decoded ) ? $decoded : array();
 	}
 	if ( ! is_array( $value ) ) {
 		return array();
@@ -424,7 +249,7 @@ function bptm_sanitize_social( $value ) {
 			continue;
 		}
 		$icon = bptm_sanitize_icon_class( isset( $row['icon'] ) ? $row['icon'] : '' );
-		$link = bptm_sanitize_social_link( isset( $row['link'] ) ? $row['link'] : '', $icon );
+		$link = bptm_sanitize_social_link( isset( $row['link'] ) && is_scalar( $row['link'] ) ? $row['link'] : '', $icon );
 		if ( '' === $icon || '' === $link ) {
 			continue;
 		}
@@ -445,7 +270,7 @@ function bptm_sanitize_social( $value ) {
 function bptm_sanitize_skills( $value ) {
 	if ( is_string( $value ) ) {
 		$decoded = json_decode( $value, true );
-		$value   = is_array( $decoded ) ? $decoded : maybe_unserialize( $value );
+		$value   = is_array( $decoded ) ? $decoded : array();
 	}
 	if ( ! is_array( $value ) ) {
 		return array();
@@ -458,11 +283,11 @@ function bptm_sanitize_skills( $value ) {
 		if ( ! is_array( $row ) ) {
 			continue;
 		}
-		$skill = sanitize_text_field( isset( $row['skill'] ) ? (string) $row['skill'] : '' );
+		$skill = sanitize_text_field( isset( $row['skill'] ) && is_scalar( $row['skill'] ) ? (string) $row['skill'] : '' );
 		if ( '' === $skill ) {
 			continue;
 		}
-		$percent = isset( $row['percent'] ) ? (int) $row['percent'] : 0;
+		$percent = isset( $row['percent'] ) && is_numeric( $row['percent'] ) ? (int) round( (float) $row['percent'] ) : 0;
 		$out[]   = array(
 			'skill'   => $skill,
 			'percent' => max( 0, min( 100, $percent ) ),
@@ -506,151 +331,276 @@ function bptm_parse_email_list( $value, &$invalid = array() ) {
 }
 
 /**
- * Build the normalized member array.
+ * Item text fields (block `members` attribute) that hold comma-separated "term" values,
+ * mapped to the member array's `terms` keys.
  *
- * @param int|WP_Post $post       Member post or ID.
- * @param string      $image_size Image size for image_url / flip_image_url.
- * @return array Empty array when the post is not found.
+ * @return array item field => term key
  */
-function bptm_get_member( $post, $image_size = 'large' ) {
-	static $cache = array();
-	static $depth = 0;
-
-	$post = get_post( $post );
-	if ( ! $post instanceof WP_Post ) {
-		return array();
-	}
-
-	$image_size = is_string( $image_size ) && '' !== $image_size ? $image_size : 'large';
-	$cache_key  = $post->ID . '|' . $image_size . '|' . $post->post_modified_gmt . '|' . wp_cache_get_last_changed( 'posts' ) . '|' . wp_cache_get_last_changed( 'terms' );
-	if ( isset( $cache[ $cache_key ] ) ) {
-		return $cache[ $cache_key ];
-	}
-
-	$id = (int) $post->ID;
-
-	// Filtered content. Guard against recursion (a member whose content renders a team block).
-	if ( $depth > 1 ) {
-		$content = wpautop( wp_kses_post( $post->post_content ) );
-	} else {
-		++$depth;
-		$content = apply_filters( 'the_content', $post->post_content ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-		$content = str_replace( ']]>', ']]&gt;', $content );
-		--$depth;
-	}
-
-	if ( '' !== trim( $post->post_excerpt ) ) {
-		$excerpt = $post->post_excerpt;
-	} else {
-		$excerpt = wp_trim_words( wp_strip_all_tags( strip_shortcodes( excerpt_remove_blocks( $post->post_content ) ) ), 55, '&hellip;' );
-	}
-
-	$image_id  = (int) get_post_thumbnail_id( $id );
-	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, $image_size ) : '';
-	$image_alt = '';
-	if ( $image_id ) {
-		$image_alt = trim( wp_strip_all_tags( (string) get_post_meta( $image_id, '_wp_attachment_image_alt', true ) ) );
-	}
-	if ( ! $image_url ) {
-		$image_id  = 0;
-		$image_url = bptm_placeholder_image_url();
-	}
-	if ( '' === $image_alt ) {
-		$image_alt = get_the_title( $post );
-	}
-
-	$flip_id  = (int) get_post_meta( $id, '_bptm_flip_image', true );
-	$flip_url = $flip_id ? wp_get_attachment_image_url( $flip_id, $image_size ) : '';
-	if ( ! $flip_url ) {
-		$flip_id  = 0;
-		$flip_url = '';
-	}
-
-	$terms = array();
-	foreach ( bptm_taxonomies() as $key => $tax ) {
-		if ( ! $tax['enabled'] || ! taxonomy_exists( $tax['taxonomy'] ) ) {
-			continue;
-		}
-		$list   = array();
-		$objs   = get_the_terms( $id, $tax['taxonomy'] );
-		if ( is_array( $objs ) ) {
-			foreach ( $objs as $term ) {
-				$list[] = array(
-					'id'     => (int) $term->term_id,
-					'name'   => $term->name,
-					'slug'   => $term->slug,
-					'parent' => (int) $term->parent,
-				);
-			}
-		}
-		$terms[ $key ] = $list;
-	}
-
-	$meta = function ( $key ) use ( $id ) {
-		$value = get_post_meta( $id, $key, true );
-		return is_scalar( $value ) ? (string) $value : '';
-	};
-
-	$member = array(
-		'id'              => $id,
-		'name'            => get_the_title( $post ),
-		'slug'            => $post->post_name,
-		'permalink'       => get_permalink( $post ),
-		'content'         => $content,
-		'excerpt'         => $excerpt,
-		'designation'     => $meta( '_bptm_designation' ),
-		'company'         => $meta( '_bptm_company' ),
-		'company_website' => $meta( '_bptm_company_website' ),
-		'land_phone'      => $meta( '_bptm_land_phone' ),
-		'cell_phone'      => $meta( '_bptm_cell_phone' ),
-		'email'           => $meta( '_bptm_email' ),
-		'email_cc'        => $meta( '_bptm_email_cc' ),
-		'email_bcc'       => $meta( '_bptm_email_bcc' ),
-		'address'         => $meta( '_bptm_address' ),
-		'ribbon'          => $meta( '_bptm_ribbon' ),
-		'zip_code'        => $meta( '_bptm_zip_code' ),
-		'vcard'           => $meta( '_bptm_vcard' ),
-		'custom_page'     => $meta( '_bptm_custom_page' ),
-		'featured'        => '1' === $meta( '_bptm_featured' ),
-		'image_id'        => $image_id,
-		'image_url'       => (string) $image_url,
-		'image_alt'       => $image_alt,
-		'flip_image_id'   => $flip_id,
-		'flip_image_url'  => (string) $flip_url,
-		/**
-		 * Filters a member's social links (front end): array of { icon, link }.
-		 *
-		 * @param array $links   Sanitized links.
-		 * @param int   $post_id Member post id.
-		 */
-		'social'          => bptm_sanitize_social( apply_filters( 'bptm_member_social_links', bptm_get_member_social( $id ), $id ) ),
-		/**
-		 * Filters a member's skills (front end): array of { skill, percent }.
-		 *
-		 * @param array $skills  Sanitized skills.
-		 * @param int   $post_id Member post id.
-		 */
-		'skills'          => bptm_sanitize_skills( apply_filters( 'bptm_member_skills', bptm_get_member_skills( $id ), $id ) ),
-		'terms'           => $terms,
-		'menu_order'      => (int) $post->menu_order,
-		'date'            => $post->post_date,
+function bptm_term_fields() {
+	return array(
+		'group'      => 'group',
+		'tags'       => 'tag',
+		'language'   => 'language',
+		'location'   => 'location',
+		'gender'     => 'gender',
+		'specialty'  => 'specialty',
+		'extraOne'   => 'extra_one',
+		'extraTwo'   => 'extra_two',
+		'extraThree' => 'extra_three',
+		'extraFour'  => 'extra_four',
+		'extraFive'  => 'extra_five',
 	);
-
-	$member = apply_filters( 'bptm_member', $member, $post, $image_size );
-
-	if ( count( $cache ) > 500 ) {
-		$cache = array();
-	}
-	$cache[ $cache_key ] = $member;
-
-	return $member;
 }
 
 /**
- * Term names of a member for a taxonomy key.
+ * Term keys (group, tag, location, …, extra_five).
  *
- * @param array  $member Member array from bptm_get_member().
- * @param string $key    Taxonomy key (group, tag, location, ...).
+ * @return string[]
+ */
+function bptm_term_keys() {
+	return array_values( bptm_term_fields() );
+}
+
+/**
+ * Front-end label of a term key (from Translations).
+ *
+ * @param string $key Term key (group, tag, location, …).
+ * @return string
+ */
+function bptm_term_label( $key ) {
+	$label = bptm_translation( $key );
+	return '' !== $label ? $label : ucwords( str_replace( '_', ' ', (string) $key ) );
+}
+
+/**
+ * Stable filter slug of a term value ("Product Design" => "product-design"); values that sanitize
+ * to nothing (e.g. only punctuation) get a hash-based slug.
+ *
+ * @param string $name Term name.
+ * @return string
+ */
+function bptm_term_slug( $name ) {
+	$name = (string) $name;
+	$slug = sanitize_title( $name );
+	if ( '' === $slug && '' !== trim( $name ) ) {
+		$slug = 'v-' . substr( md5( $name ), 0, 8 );
+	}
+	return $slug;
+}
+
+/**
+ * Split a comma-separated text value into term arrays.
+ *
+ * @param mixed $value Raw value (string; arrays of strings are accepted too).
+ * @return array List of ['id' => slug, 'name' => .., 'slug' => .., 'parent' => 0].
+ */
+function bptm_split_terms( $value ) {
+	if ( is_array( $value ) ) {
+		$value = implode( ',', array_filter( $value, 'is_scalar' ) );
+	}
+	if ( ! is_scalar( $value ) ) {
+		return array();
+	}
+	$out = array();
+	foreach ( explode( ',', (string) $value ) as $part ) {
+		$name = sanitize_text_field( $part );
+		if ( '' === $name ) {
+			continue;
+		}
+		$slug = bptm_term_slug( $name );
+		if ( isset( $out[ $slug ] ) ) {
+			continue;
+		}
+		$out[ $slug ] = array(
+			'id'     => $slug,
+			'name'   => $name,
+			'slug'   => $slug,
+			'parent' => 0,
+		);
+	}
+	return array_values( $out );
+}
+
+/**
+ * Sanitize a member item id: [A-Za-z0-9_-], max 64 chars.
+ *
+ * @param mixed $id Raw id.
+ * @return string '' when nothing is left.
+ */
+function bptm_sanitize_item_id( $id ) {
+	if ( ! is_scalar( $id ) ) {
+		return '';
+	}
+	return substr( (string) preg_replace( '/[^A-Za-z0-9_-]/', '', (string) $id ), 0, 64 );
+}
+
+/**
+ * Resolve a member image ({id, url, alt}) for an image size.
+ *
+ * Attachment ids win (wp_get_attachment_image_src() with $size, falling back to the stored url).
+ * URLs without a scheme and without a leading "/" are relative to the plugin root (BPTM_URL).
+ *
+ * @param mixed  $image Raw image value.
+ * @param string $size  Image size.
+ * @return array ['id' => int, 'url' => string, 'alt' => string] ('' url when none).
+ */
+function bptm_resolve_image( $image, $size = 'large' ) {
+	$image = is_array( $image ) ? $image : array();
+	$id    = isset( $image['id'] ) && is_numeric( $image['id'] ) ? absint( $image['id'] ) : 0;
+	$url   = isset( $image['url'] ) && is_string( $image['url'] ) ? trim( $image['url'] ) : '';
+	$alt   = isset( $image['alt'] ) && is_scalar( $image['alt'] ) ? sanitize_text_field( (string) $image['alt'] ) : '';
+
+	if ( $id ) {
+		$src = wp_get_attachment_image_src( $id, $size );
+		if ( is_array( $src ) && ! empty( $src[0] ) ) {
+			$url = $src[0];
+			if ( '' === $alt ) {
+				$alt = sanitize_text_field( (string) get_post_meta( $id, '_wp_attachment_image_alt', true ) );
+			}
+		} else {
+			$id = 0;
+		}
+	}
+
+	if ( '' !== $url && ! $id && ! preg_match( '#^(?:[a-z][a-z0-9+.-]*:|/)#i', $url ) ) {
+		// Plugin-relative path (e.g. "assets/img/team/jane.jpg"); never allow walking up.
+		$parts = array();
+		foreach ( explode( '/', str_replace( '\\', '/', $url ) ) as $seg ) {
+			if ( '' === $seg || '.' === $seg || '..' === $seg ) {
+				continue;
+			}
+			$parts[] = rawurlencode( rawurldecode( $seg ) );
+		}
+		$url = $parts ? BPTM_URL . implode( '/', $parts ) : '';
+	}
+
+	$url = '' !== $url ? esc_url_raw( $url, array( 'http', 'https' ) ) : '';
+	if ( '' === $url ) {
+		$id = 0;
+	}
+
+	return array(
+		'id'  => $id,
+		'url' => $url,
+		'alt' => $alt,
+	);
+}
+
+/**
+ * Build the member array (shape used by every template and the render Context) from one item of
+ * the block's `members` attribute. Every value is sanitized here; templates still escape on output.
+ *
+ * @param array  $item       Raw item.
+ * @param string $image_size Image size for image_url / flip_image_url.
+ * @param bool   $allow_html Details may contain HTML (block option allowHtmlDetails); otherwise plain text.
+ * @param int    $index      Position in the members list (fallback id, menu_order).
+ * @return array Empty array when the item is not an array.
+ */
+function bptm_member_from_item( $item, $image_size = 'large', $allow_html = false, $index = 0 ) {
+	if ( is_object( $item ) ) {
+		$item = (array) $item;
+	}
+	if ( ! is_array( $item ) ) {
+		return array();
+	}
+	$image_size = is_string( $image_size ) && '' !== $image_size ? $image_size : 'large';
+
+	$text = static function ( $key ) use ( $item ) {
+		return isset( $item[ $key ] ) && is_scalar( $item[ $key ] ) && ! is_bool( $item[ $key ] ) ? sanitize_text_field( (string) $item[ $key ] ) : '';
+	};
+	$url  = static function ( $key ) use ( $item ) {
+		return isset( $item[ $key ] ) && is_string( $item[ $key ] ) && '' !== trim( $item[ $key ] ) ? esc_url_raw( trim( $item[ $key ] ) ) : '';
+	};
+
+	$id = bptm_sanitize_item_id( isset( $item['id'] ) ? $item['id'] : '' );
+	if ( '' === $id ) {
+		$id = 'm' . ( (int) $index + 1 );
+	}
+	$name = $text( 'name' );
+
+	// Details: plain text (blank lines = paragraphs) unless HTML is allowed.
+	$raw_details = isset( $item['details'] ) && is_string( $item['details'] ) ? str_replace( array( "\r\n", "\r" ), "\n", $item['details'] ) : '';
+	$raw_details = wp_check_invalid_utf8( $raw_details, true );
+	if ( $allow_html ) {
+		$content = wp_kses_post( $raw_details );
+		$content = '' !== trim( $content ) ? wpautop( $content ) : '';
+	} else {
+		$plain   = wp_strip_all_tags( $raw_details );
+		$content = '' !== trim( $plain ) ? wpautop( esc_html( $plain ) ) : '';
+	}
+	$excerpt = trim( (string) preg_replace( '/\s+/u', ' ', wp_strip_all_tags( $raw_details ) ) );
+
+	$image = bptm_resolve_image( isset( $item['image'] ) ? $item['image'] : array(), $image_size );
+	$flip  = bptm_resolve_image( isset( $item['flipImage'] ) ? $item['flipImage'] : array(), $image_size );
+
+	$terms = array();
+	foreach ( bptm_term_fields() as $field => $key ) {
+		$terms[ $key ] = bptm_split_terms( isset( $item[ $field ] ) ? $item[ $field ] : '' );
+	}
+
+	$email = isset( $item['email'] ) && is_string( $item['email'] ) ? sanitize_email( $item['email'] ) : '';
+
+	$member = array(
+		'id'              => $id,
+		'name'            => $name,
+		'slug'            => bptm_term_slug( $name ),
+		'permalink'       => '',
+		'content'         => $content,
+		'excerpt'         => $excerpt,
+		'designation'     => $text( 'designation' ),
+		'company'         => $text( 'company' ),
+		'company_website' => $url( 'companyWebsite' ),
+		'land_phone'      => $text( 'landPhone' ),
+		'cell_phone'      => $text( 'cellPhone' ),
+		'email'           => is_email( $email ) ? $email : '',
+		'email_cc'        => bptm_sanitize_email_list( isset( $item['emailCc'] ) ? $item['emailCc'] : '' ),
+		'email_bcc'       => bptm_sanitize_email_list( isset( $item['emailBcc'] ) ? $item['emailBcc'] : '' ),
+		'address'         => $text( 'address' ),
+		'ribbon'          => $text( 'ribbon' ),
+		'zip_code'        => $text( 'zipCode' ),
+		'vcard'           => $url( 'vcard' ),
+		'custom_page'     => $url( 'customUrl' ),
+		'featured'        => isset( $item['featured'] ) && bptm_is_on( $item['featured'] ),
+		'image_id'        => $image['id'],
+		'image_url'       => '' !== $image['url'] ? $image['url'] : bptm_placeholder_image_url(),
+		'image_alt'       => '' !== $image['alt'] ? $image['alt'] : $name,
+		'flip_image_id'   => $flip['id'],
+		'flip_image_url'  => $flip['url'],
+		/**
+		 * Filters a member's social links (front end): array of { icon, link }.
+		 *
+		 * @param array  $links   Sanitized links.
+		 * @param string $item_id Member item id.
+		 */
+		'social'          => bptm_sanitize_social( apply_filters( 'bptm_member_social_links', bptm_sanitize_social( isset( $item['social'] ) ? $item['social'] : array() ), $id ) ),
+		/**
+		 * Filters a member's skills (front end): array of { skill, percent }.
+		 *
+		 * @param array  $skills  Sanitized skills.
+		 * @param string $item_id Member item id.
+		 */
+		'skills'          => bptm_sanitize_skills( apply_filters( 'bptm_member_skills', bptm_sanitize_skills( isset( $item['skills'] ) ? $item['skills'] : array() ), $id ) ),
+		'terms'           => $terms,
+		'menu_order'      => (int) $index,
+		'date'            => '',
+	);
+
+	/**
+	 * Filters the member array built from a block item.
+	 *
+	 * @param array  $member     Member array.
+	 * @param array  $item       Raw item.
+	 * @param string $image_size Image size.
+	 */
+	$member = apply_filters( 'bptm_member', $member, $item, $image_size );
+	return is_array( $member ) ? $member : array();
+}
+
+/**
+ * Term names of a member for a term key.
+ *
+ * @param array  $member Member array from bptm_member_from_item().
+ * @param string $key    Term key (group, tag, location, ...).
  * @param string $sep    Separator.
  * @return string Unescaped names.
  */
@@ -662,10 +612,10 @@ function bptm_member_term_names( array $member, $key, $sep = ', ' ) {
 }
 
 /**
- * Term slugs of a member for a taxonomy key.
+ * Term slugs of a member for a term key.
  *
  * @param array  $member Member array.
- * @param string $key    Taxonomy key.
+ * @param string $key    Term key.
  * @return array
  */
 function bptm_member_term_slugs( array $member, $key ) {
@@ -687,57 +637,4 @@ function bptm_social_icons() {
 		$icons = is_array( $icons ) ? $icons : array();
 	}
 	return apply_filters( 'bptm_social_icons', $icons );
-}
-
-/**
- * Filter (search/filter bar) order configured on the "Sort Order" admin page.
- *
- * Keys: search_name, search_company, search_zip, search_tag, designation, location, language,
- * gender, specialty, extra_one … extra_five.
- *
- * @return array Ordered list of keys.
- */
-function bptm_filters_order() {
-	$defaults = array_keys( bptm_filter_labels() );
-	$saved    = get_option( 'bptm_filters_order', array() );
-	$saved    = is_array( $saved ) ? array_values( array_intersect( $saved, $defaults ) ) : array();
-	return array_values( array_unique( array_merge( $saved, $defaults ) ) );
-}
-
-/**
- * Labels for the sortable filter keys.
- *
- * @return array key => label
- */
-function bptm_filter_labels() {
-	$tax = bptm_taxonomies();
-	return array(
-		'search_name'    => bptm_translation( 'search_name' ),
-		'search_company' => bptm_translation( 'search_company' ),
-		'search_zip'     => bptm_translation( 'search_zip' ),
-		'search_tag'     => bptm_translation( 'search_tag' ),
-		'designation'    => bptm_translation( 'filter_designation' ),
-		'location'       => $tax['location']['label'],
-		'language'       => $tax['language']['label'],
-		'gender'         => $tax['gender']['label'],
-		'specialty'      => $tax['specialty']['label'],
-		'extra_one'      => $tax['extra_one']['label'],
-		'extra_two'      => $tax['extra_two']['label'],
-		'extra_three'    => $tax['extra_three']['label'],
-		'extra_four'     => $tax['extra_four']['label'],
-		'extra_five'     => $tax['extra_five']['label'],
-	);
-}
-
-/**
- * ACF field groups/values for a member (empty when ACF is inactive).
- *
- * @param int $post_id Member ID.
- * @return array List of ['title'=>string,'fields'=>[['name','label','type','value'(raw),'html'(safe HTML)]]]
- */
-function bptm_member_acf_fields( $post_id ) {
-	if ( ! class_exists( '\BPTM\ACF' ) ) {
-		return array();
-	}
-	return \BPTM\ACF::get_member_fields( (int) $post_id );
 }

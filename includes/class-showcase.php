@@ -34,6 +34,19 @@ class Showcase {
 		add_action( 'admin_notices', array( __CLASS__, 'edit_screen_notice' ) );
 		add_filter( 'rest_request_before_callbacks', array( __CLASS__, 'restrict_rest_read' ), 10, 3 );
 		add_filter( 'post_updated_messages', array( __CLASS__, 'updated_messages' ) );
+		add_action( 'init', array( __CLASS__, 'flush_legacy_rewrites' ), 999 );
+	}
+
+	/**
+	 * The member post type and its taxonomy archives are gone (v2 data model): drop their rewrite
+	 * rules once so old member URLs 404 instead of resolving to unrelated pages.
+	 */
+	public static function flush_legacy_rewrites() {
+		if ( 'v2' === get_option( 'bptm_rewrite_version' ) ) {
+			return;
+		}
+		update_option( 'bptm_rewrite_version', 'v2', true );
+		flush_rewrite_rules( false );
 	}
 
 	/**
@@ -101,7 +114,7 @@ class Showcase {
 					'not_found'          => __( 'No showcases found.', 'bp-team-member' ),
 					'not_found_in_trash' => __( 'No showcases found in Trash.', 'bp-team-member' ),
 					'all_items'          => __( 'Showcases', 'bp-team-member' ),
-					'menu_name'          => __( 'Showcases', 'bp-team-member' ),
+					'menu_name'          => __( 'BP Team Member', 'bp-team-member' ),
 					'items_list'         => __( 'Showcases list', 'bp-team-member' ),
 					'item_published'     => __( 'Showcase published.', 'bp-team-member' ),
 					'item_published_privately' => __( 'Showcase published privately.', 'bp-team-member' ),
@@ -114,7 +127,9 @@ class Showcase {
 				'publicly_queryable'  => false,
 				'exclude_from_search' => true,
 				'show_ui'             => true,
-				'show_in_menu'        => 'edit.php?post_type=bptm_member',
+				'show_in_menu'        => true,
+				'menu_icon'           => 'dashicons-groups',
+				'menu_position'       => 26,
 				'show_in_nav_menus'   => false,
 				'show_in_rest'        => true,
 				'rest_base'           => 'bptm_showcase',
@@ -212,6 +227,11 @@ class Showcase {
 	 * Enqueue block + icon assets (also used outside block contexts).
 	 */
 	public static function enqueue_assets() {
+		if ( class_exists( __NAMESPACE__ . '\\Block' ) ) {
+			// Style, Font Awesome, view script + its data bridge, custom CSS.
+			Block::enqueue_frontend();
+			return;
+		}
 		foreach ( array( 'icb-fold-out-reveal-style', 'bptm-fontawesome' ) as $handle ) {
 			if ( wp_style_is( $handle, 'registered' ) ) {
 				wp_enqueue_style( $handle );
@@ -383,7 +403,7 @@ class Showcase {
 			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Showcase duplicated as draft.', 'bp-team-member' ) . '</p></div>';
 		}
 		if ( 'edit' === $screen->base ) {
-			echo '<div class="notice notice-info"><p>' . esc_html__( 'A showcase holds one BP Team Member block. Paste its shortcode into any page builder, classic editor, widget or template, e.g. [bp_team id="123"].', 'bp-team-member' ) . '</p><p>' . esc_html__( 'Without a showcase: [bp_team theme="grid-1" number="6" group="group-slug" columns="3" orderby="title" order="ASC" link="popup" view="carousel"] or the compact list [bp_team_sidebar total_mem="3" group_mem="group-slug"]. Attributes given together with id override the showcase.', 'bp-team-member' ) . '</p></div>';
+			echo '<div class="notice notice-info"><p>' . esc_html__( 'A showcase holds one BP Team Member block. Paste its shortcode into any page builder, classic editor, widget or template, e.g. [bp_team id="123"].', 'bp-team-member' ) . '</p><p>' . esc_html__( 'Without a showcase (shows the default sample members): [bp_team theme="grid-1" number="6" group="Design" columns="3" orderby="title" order="ASC" link="popup" view="carousel"] or the compact list [bp_team_sidebar total_mem="3" group_mem="Design"]. Attributes given together with id override the showcase.', 'bp-team-member' ) . '</p></div>';
 		}
 	}
 

@@ -2,8 +2,9 @@
 /**
  * Page-builder modules: WPBakery, Divi, Beaver Builder, Oxygen and tagDiv Composer.
  * (Elementor lives in elementor.php.) Each one only loads when its builder is active;
- * every module renders through \BPTM\Quick::render_settings(), i.e. a saved Showcase
- * or a quick list (theme, number, group, columns, order, link).
+ * every module renders through \BPTM\Quick::render_settings(), i.e. a saved Showcase (members are
+ * edited in the showcase's block) or a quick list of the block's default sample members
+ * (theme, number, group, columns, order, link).
  *
  * Each integration can be turned off with the `bptm_integration_{builder}` filter.
  *
@@ -32,10 +33,10 @@ function bptm_builder_fields() {
 			'select',
 			__( 'Content', 'bp-team-member' ),
 			array(
-				'quick'    => __( 'Team members list (options below)', 'bp-team-member' ),
 				'showcase' => __( 'A saved showcase', 'bp-team-member' ),
+				'quick'    => __( 'Sample team list (options below)', 'bp-team-member' ),
 			),
-			'quick',
+			'showcase',
 		),
 		'showcase' => array( 'select', __( 'Showcase', 'bp-team-member' ), $showcases, '0' ),
 		'theme'    => array( 'select', __( 'Theme', 'bp-team-member' ), $c['themes'], 'grid-5' ),
@@ -64,15 +65,15 @@ function bptm_builder_fields() {
 			),
 			'grid',
 		),
-		'orderby'  => array( 'select', __( 'Order by', 'bp-team-member' ), \BPTM\Quick::orderby_choices(), 'date' ),
+		'orderby'  => array( 'select', __( 'Order by', 'bp-team-member' ), \BPTM\Quick::orderby_choices(), 'default' ),
 		'order'    => array(
 			'select',
 			__( 'Order', 'bp-team-member' ),
 			array(
-				'DESC' => __( 'Descending', 'bp-team-member' ),
 				'ASC'  => __( 'Ascending', 'bp-team-member' ),
+				'DESC' => __( 'Descending', 'bp-team-member' ),
 			),
-			'DESC',
+			'ASC',
 		),
 		'link'     => array( 'select', __( 'Member link', 'bp-team-member' ), \BPTM\Quick::link_choices(), 'default' ),
 	);
@@ -302,8 +303,8 @@ add_action( 'td_global_after', __NAMESPACE__ . '\\bptm_tagdiv_register' );
  * Builder canvases that inject markup after load: make sure the frontend assets are present.
  */
 function bptm_builder_preview_assets() {
-	if ( \BPTM\Quick::is_builder_preview() && class_exists( '\BPTM\Render\Assets' ) ) {
-		\BPTM\Render\Assets::enqueue_frontend();
+	if ( \BPTM\Quick::is_builder_preview() && class_exists( '\BPTM\Block' ) ) {
+		\BPTM\Block::enqueue_frontend();
 	}
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\bptm_builder_preview_assets', 20 );

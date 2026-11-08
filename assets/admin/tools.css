@@ -1,35 +1,4 @@
-/* BP Team Member - admin tools. */
-.bptm-progress {
-	height: 10px;
-	background: #f0f0f1;
-	border-radius: 10px;
-	overflow: hidden;
-	max-width: 600px;
-	margin: 12px 0;
-}
-.bptm-progress-bar {
-	height: 100%;
-	width: 0;
-	background: #4527a4;
-	transition: width 0.3s;
-}
-.bptm-import-status.is-done {
-	color: #008a20;
-	font-weight: 600;
-}
-.bptm-import-log {
-	max-height: 200px;
-	overflow: auto;
-	color: #b32d2e;
-}
-.bptm-preview-table {
-	max-height: 420px;
-	overflow: auto;
-	margin-bottom: 12px;
-}
-.bptm-columns-table td:first-child {
-	width: 180px;
-}
+/* BP Team Member - admin tools (Showcases list). */
 .bptm-shortcode-copy {
 	display: inline-flex;
 	gap: 4px;

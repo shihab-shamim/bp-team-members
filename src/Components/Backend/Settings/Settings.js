@@ -23,7 +23,7 @@ const Settings = ( { attributes, setAttributes } ) => {
 	const theme = getTheme( attributes.theme );
 	const view = effectiveView( attributes );
 
-	const tabs = [ { name: 'layout', title: __( 'Layout', 'bp-team-member' ) }, { name: 'query', title: __( 'Query', 'bp-team-member' ) } ];
+	const tabs = [ { name: 'layout', title: __( 'General', 'bp-team-member' ) }, { name: 'query', title: __( 'Query', 'bp-team-member' ) } ];
 	if ( isFilter( attributes ) ) {
 		tabs.push( { name: 'filter', title: __( 'Filter', 'bp-team-member' ) } );
 	}

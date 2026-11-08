@@ -1,11 +1,12 @@
 <?php
 /**
  * "Quick" rendering without a saved Showcase: shortcode attributes / widget / page-builder
- * settings are mapped onto block attributes and rendered by the block renderer.
+ * settings are mapped onto block attributes and rendered by the block renderer (with the block's
+ * default sample members, since members live in the block).
  *
- *   [bp_team theme="grid-1" number="6" group="sales,support" columns="3" orderby="title" order="ASC"]
+ *   [bp_team theme="grid-1" number="6" group="Design,Marketing" columns="3" orderby="title" order="ASC"]
  *   [bp_team id="12" number="3"]                 (showcase with overrides)
- *   [bp_team_sidebar total_mem="3" group_mem="sales"]
+ *   [bp_team_sidebar total_mem="3" group_mem="Design"]
  *
  * @package BPTM
  */
@@ -76,7 +77,7 @@ class Quick {
 	}
 
 	/**
-	 * Comma separated list of slugs / ids.
+	 * Comma separated list of group names (matched case-insensitively, slugs work too).
 	 *
 	 * @param string $value Value.
 	 * @return array
@@ -84,11 +85,11 @@ class Quick {
 	private static function list_of( $value ) {
 		$out = array();
 		foreach ( explode( ',', (string) $value ) as $part ) {
-			$part = trim( $part );
+			$part = sanitize_text_field( $part );
 			if ( '' === $part || in_array( strtolower( $part ), array( 'all', '*' ), true ) ) {
 				continue;
 			}
-			$out[] = ctype_digit( $part ) ? (int) $part : sanitize_title( $part );
+			$out[] = $part;
 		}
 		return array_values( array_unique( $out ) );
 	}
@@ -156,7 +157,8 @@ class Quick {
 		$link = $get( 'link' );
 		if ( null !== $link ) {
 			$link            = sanitize_key( str_replace( '-', '_', $link ) );
-			$out['linkType'] = 'single' === $link ? 'single_page' : $link;
+			// Single member pages no longer exist: "single" / "single_page" mean the member's custom URL.
+			$out['linkType'] = in_array( $link, array( 'single', 'single_page' ), true ) ? 'custom' : $link;
 		}
 
 		$view = $get( 'view' );
@@ -222,7 +224,7 @@ class Quick {
 	 * @return string
 	 */
 	public static function render( array $attributes ) {
-		if ( ! class_exists( '\BPTM\Render\Renderer' ) ) {
+		if ( ! class_exists( __NAMESPACE__ . '\\Block' ) ) {
 			return '';
 		}
 		static $depth = 0;
@@ -230,7 +232,7 @@ class Quick {
 			return '';
 		}
 		++$depth;
-		$html = \BPTM\Render\Renderer::render( $attributes );
+		$html = Block::render( $attributes );
 		--$depth;
 		return $html . self::builder_init_script();
 	}
@@ -256,7 +258,7 @@ class Quick {
 	}
 
 	/**
-	 * [bp_team_sidebar total_mem="3" group_mem="slug"] (also number/group/theme/... from keys()).
+	 * [bp_team_sidebar total_mem="3" group_mem="Design"] (also number/group/theme/... from keys()).
 	 *
 	 * @param array|string $atts Attributes.
 	 * @return string
@@ -313,28 +315,17 @@ class Quick {
 	 * @return array{themes:array,groups:array,showcases:array}
 	 */
 	public static function choices() {
-		$themes = array();
-		if ( class_exists( '\BPTM\Render\Themes' ) ) {
-			foreach ( \BPTM\Render\Themes::all() as $id => $theme ) {
-				$themes[ $id ] = $theme['label'];
-			}
-		}
+		$themes = class_exists( __NAMESPACE__ . '\\Block' ) ? Block::theme_labels() : array();
+		// Groups of the default sample members (members live in the block; quick lists render the defaults).
 		$groups = array();
-		$taxes  = function_exists( 'bptm_taxonomies' ) ? bptm_taxonomies() : array();
-		$tax    = isset( $taxes['group']['taxonomy'] ) ? $taxes['group']['taxonomy'] : 'bptm_group';
-		if ( taxonomy_exists( $tax ) ) {
-			$terms = get_terms(
-				array(
-					'taxonomy'   => $tax,
-					'hide_empty' => false,
-					'number'     => 300,
-				)
-			);
-			if ( ! is_wp_error( $terms ) ) {
-				foreach ( $terms as $term ) {
-					$groups[ $term->slug ] = $term->name;
+		if ( class_exists( __NAMESPACE__ . '\\Block' ) ) {
+			$defaults = Block::defaults();
+			foreach ( isset( $defaults['members'] ) && is_array( $defaults['members'] ) ? $defaults['members'] : array() as $item ) {
+				foreach ( bptm_split_terms( is_array( $item ) && isset( $item['group'] ) ? $item['group'] : '' ) as $term ) {
+					$groups[ $term['name'] ] = $term['name'];
 				}
 			}
+			natcasesort( $groups );
 		}
 		return array(
 			'themes'    => $themes,
@@ -350,12 +341,9 @@ class Quick {
 	 */
 	public static function orderby_choices() {
 		return array(
-			'date'       => __( 'Date', 'bp-team-member' ),
-			'title'      => __( 'Name', 'bp-team-member' ),
-			'menu_order' => __( 'Custom order', 'bp-team-member' ),
-			'ID'         => __( 'ID', 'bp-team-member' ),
-			'modified'   => __( 'Last modified', 'bp-team-member' ),
-			'rand'       => __( 'Random', 'bp-team-member' ),
+			'default' => __( 'Default order', 'bp-team-member' ),
+			'title'   => __( 'Name', 'bp-team-member' ),
+			'rand'    => __( 'Random', 'bp-team-member' ),
 		);
 	}
 
@@ -366,12 +354,12 @@ class Quick {
 	 */
 	public static function link_choices() {
 		return array(
-			'default'     => __( 'Default (Preferences)', 'bp-team-member' ),
-			'single_page' => __( 'Single page', 'bp-team-member' ),
-			'popup'       => __( 'Popup', 'bp-team-member' ),
-			'panel'       => __( 'Side panel', 'bp-team-member' ),
-			'drawer'      => __( 'Drawer', 'bp-team-member' ),
-			'none'        => __( 'No link', 'bp-team-member' ),
+			'default' => __( 'Default (popup)', 'bp-team-member' ),
+			'popup'   => __( 'Popup', 'bp-team-member' ),
+			'panel'   => __( 'Side panel', 'bp-team-member' ),
+			'drawer'  => __( 'Drawer', 'bp-team-member' ),
+			'custom'  => __( 'Custom URL (per member)', 'bp-team-member' ),
+			'none'    => __( 'No link', 'bp-team-member' ),
 		);
 	}
 

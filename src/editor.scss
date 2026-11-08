@@ -251,91 +251,16 @@ $bptm-border: #e0e0e0;
 	min-height: 40px;
 }
 
-/* Typography */
-.bptm-ed-typo {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 8px;
-
-	.bptm-ed-label {
-		margin-bottom: 0;
-	}
-
-	&__actions {
-		display: flex;
-		align-items: center;
-		gap: 6px;
-		max-width: 65%;
-
-		.components-button {
-			max-width: 100%;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-		}
-	}
-
-	&__swatches i {
-		display: inline-block;
-		width: 14px;
-		height: 14px;
-		border-radius: 50%;
-		border: 1px solid rgba(0, 0, 0, 0.15);
-		margin-left: 2px;
-	}
-
-	&__content {
-		width: 280px;
-		padding: 12px;
-		display: flex;
-		flex-direction: column;
-		gap: 14px;
-	}
-
-	&__row {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 8px;
-	}
-}
-
 /* ---------- Canvas ---------- */
 .bptm-ed-preview {
 	position: relative;
 	min-height: 60px;
 
-	&__loading {
-		position: relative;
-		min-height: 80px;
-		transition: opacity 0.2s;
-
-		&.is-slow {
-			opacity: 0.6;
-		}
-	}
-
-	&__spinner {
-		position: absolute;
-		top: 12px;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 5;
-		background: #fff;
-		border-radius: 50%;
-		padding: 4px;
-		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-
-		.components-spinner {
-			margin: 0;
-		}
-	}
-
-	&__skeleton {
-		height: 160px;
-		border-radius: 4px;
-		background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
-		background-size: 200% 100%;
+	// Re-renders after the first one: no re-played entrance animation.
+	&.is-settled .bptm-wrap .bptm-anim,
+	&.is-settled .bptm-wrap .bptm-anim:not(.bptm-in) {
+		opacity: 1 !important;
+		animation: none !important;
 	}
 
 	a {
@@ -386,6 +311,402 @@ $bptm-border: #e0e0e0;
 		}
 
 		.bptm-ed-theme__label {
+			font-size: 12px;
+		}
+	}
+}
+
+/* ---------- Team Members (General tab): bpl-tools ItemsPanel, "sortable" design ---------- */
+.bptm-ed-members-panel {
+	.bPlItemsPanel {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.bPlSortablePanelItem {
+		border: 1px solid $bptm-border;
+		border-radius: 6px;
+		background: #fff;
+		overflow: hidden;
+		transition: border-color 0.15s, box-shadow 0.15s;
+
+		&:hover {
+			border-color: rgba($bptm-accent, 0.45);
+		}
+
+		// Open item (its body is not hidden).
+		&:has(> .itemsPanelBody:not(.hidden)) {
+			border-color: $bptm-accent;
+			box-shadow: 0 0 0 1px $bptm-accent;
+
+			> .itemsPanelHeader {
+				background: rgba($bptm-accent, 0.07);
+				border-bottom: 1px solid rgba($bptm-accent, 0.25);
+
+				.repeater-panel-title {
+					color: $bptm-accent;
+				}
+			}
+		}
+
+		.itemsPanelHeader {
+			margin: 0 !important;
+			height: 44px;
+			border: 0;
+			background: #f9f9fb;
+
+			.gripIcon {
+				padding: 0 8px 0 10px;
+				color: $bptm-muted;
+
+				&:active {
+					cursor: grabbing;
+				}
+			}
+
+			.panel-header-title {
+				min-width: 0;
+
+				.repeater-panel-title {
+					flex: 1 1 auto;
+					width: auto;
+					min-width: 0;
+					display: flex;
+					align-items: center;
+					padding: 0 8px 0 2px;
+					font-size: 13px;
+					font-weight: 600;
+					color: #1e1e1e;
+
+					&:hover {
+						background: transparent;
+						color: $bptm-accent;
+					}
+				}
+
+				.itemAction > button {
+					width: 36px;
+					border-left: 1px solid $bptm-border;
+					color: $bptm-muted;
+					transition: background 0.15s, color 0.15s;
+
+					svg {
+						width: 16px;
+						height: 16px;
+						fill: currentColor;
+					}
+
+					&:hover,
+					&:focus-visible {
+						background: rgba($bptm-accent, 0.08);
+						color: $bptm-accent;
+					}
+
+					&:last-child:not(:first-child):hover,
+					&:last-child:not(:first-child):focus-visible {
+						background: #fcf0f1;
+						color: #cc1818;
+					}
+				}
+			}
+		}
+
+		.itemsPanelBody {
+			padding: 0;
+			border: 0;
+
+			&.hidden {
+				display: none;
+			}
+
+			.bptm-ed-member {
+				margin: 0;
+				border-top: 0;
+
+				.bptm-ed-subpanel.components-panel__body:last-child {
+					border-bottom: 0;
+				}
+			}
+		}
+	}
+
+	.addItem {
+		margin-top: 14px;
+
+		.components-button {
+			width: 100%;
+			height: 40px;
+			justify-content: center;
+			gap: 6px;
+			border-radius: 6px;
+		}
+	}
+}
+
+.bptm-ed-member {
+	margin: 0 -16px;
+	border-top: 1px solid $bptm-border;
+
+	.bptm-ed-subpanel.components-panel__body {
+		border-top: 0;
+		border-bottom: 1px solid $bptm-border;
+
+		> .components-panel__body-title {
+			margin: 0;
+
+			.components-panel__body-toggle {
+				padding: 12px 16px;
+				font-size: 13px;
+			}
+		}
+
+		&.is-opened {
+			padding: 0 16px 16px;
+
+			> .components-panel__body-title {
+				margin: 0 -16px 8px;
+			}
+		}
+	}
+}
+
+/* Member image */
+.bptm-ed-image {
+	&__preview {
+		margin-bottom: 8px;
+		border: 1px solid $bptm-border;
+		background: #f6f7f7;
+		text-align: center;
+
+		img {
+			display: block;
+			max-width: 100%;
+			max-height: 180px;
+			margin: 0 auto;
+			object-fit: contain;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		gap: 8px;
+		margin-bottom: 8px;
+	}
+
+	&__alt {
+		margin-top: 8px;
+	}
+}
+
+/* Repeaters (social links, skills) */
+.bptm-ed-repeater {
+	&__row {
+		padding: 8px;
+		margin-bottom: 8px;
+		border: 1px solid $bptm-border;
+		border-radius: 2px;
+
+		.components-base-control + .components-base-control {
+			margin-top: 8px;
+		}
+	}
+
+	&__head {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		margin-bottom: 8px;
+
+		> :first-child {
+			flex: 1 1 auto;
+			min-width: 0;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		flex: 0 0 auto;
+
+		.components-button.has-icon {
+			min-width: 24px;
+			width: 24px;
+			padding: 0;
+		}
+	}
+}
+
+.bptm-ed-iconpicker {
+	width: 260px;
+
+	&__dropdown {
+		display: block;
+		min-width: 0;
+	}
+
+	&__toggle.components-button {
+		width: 100%;
+		gap: 8px;
+		justify-content: flex-start;
+
+		i {
+			width: 18px;
+			text-align: center;
+			font-size: 15px;
+		}
+	}
+
+	&__name {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&__popover .components-popover__content {
+		padding: 10px;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		gap: 4px;
+		max-height: 240px;
+		overflow-y: auto;
+		margin-top: 8px;
+	}
+
+	&__icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 36px;
+		border: 1px solid $bptm-border;
+		border-radius: 2px;
+		background: #fff;
+		cursor: pointer;
+		font-size: 16px;
+		color: #1e1e1e;
+
+		&:hover,
+		&:focus-visible {
+			border-color: var(--wp-admin-theme-color, $bptm-accent);
+			color: var(--wp-admin-theme-color, $bptm-accent);
+		}
+
+		&.is-selected {
+			background: var(--wp-admin-theme-color, $bptm-accent);
+			border-color: var(--wp-admin-theme-color, $bptm-accent);
+			color: #fff;
+		}
+	}
+}
+
+/* ---------- bpl-tools base styles used by the Style tab controls ----------
+ * Subset of bpl-tools/Components/style.scss (spacing helpers, dropdown popover, panel labels).
+ * The full file is not imported because it also changes global editor layout rules. */
+$bpl-primary: #146EF5;
+
+@each $prop, $prefix in (margin-top: mt, margin-bottom: mb) {
+	@each $value in (0, 5, 10, 15, 20) {
+		.#{$prefix}#{$value} {
+			#{$prop}: #{$value}px !important;
+		}
+	}
+}
+
+.bPlDropdown .dashicon,
+.bPlDropdownPopover .dashicon {
+	margin-right: 0 !important;
+}
+
+.bPlDropdownPopover {
+	min-width: 280px;
+	box-sizing: border-box;
+	z-index: 9999;
+
+	.components-popover__content {
+		min-width: 320px;
+		padding: 14px 16px;
+		box-sizing: border-box;
+		border: none;
+		border-radius: 6px;
+		box-shadow: 0 6px 24px rgba(20, 110, 245, 0.18);
+	}
+}
+
+.bPlPanelBody,
+.bPlDropdownPopover .components-popover__content {
+	label.bPlLabel {
+		font-size: 13px;
+		font-weight: 400;
+		text-transform: none;
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+}
+
+.bPlDropdownPopover .components-popover__content {
+	.components-unit-control-wrapper .components-unit-control__select {
+		min-width: 34px;
+		padding: 0 4px;
+		font-size: 11px;
+		line-height: 1;
+		text-align: center;
+		color: #fff !important;
+		background-color: $bpl-primary;
+		border-radius: 2px;
+	}
+
+	.bPlBtnGroup {
+		flex-wrap: nowrap;
+
+		.components-button {
+			padding: 0 8px;
+		}
+	}
+}
+
+/* ---------- Style tab ---------- */
+.bptm-ed-style {
+	.bPlPanelBody {
+		.components-panel__row {
+			min-height: 32px;
+		}
+
+		.bptm-ed-field {
+			margin-top: 14px;
+		}
+	}
+
+	&__section {
+		margin: 18px 0 2px;
+		padding-top: 12px;
+		border-top: 1px solid $bptm-border;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: $bptm-muted;
+
+		&:first-child {
+			margin-top: 4px;
+			padding-top: 0;
+			border-top: 0;
+		}
+	}
+
+	.bPlBtnGroup {
+		display: flex;
+		flex-wrap: nowrap;
+		width: 100%;
+		margin-top: 6px;
+
+		.components-button {
+			flex: 1 1 0;
+			min-width: 0;
+			padding: 0 4px;
+			justify-content: center;
 			font-size: 12px;
 		}
 	}

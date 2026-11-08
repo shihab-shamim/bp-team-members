@@ -28,9 +28,6 @@
 .bptm-admin .form-table th {
 	width: 240px;
 }
-.bptm-admin .bptm-inline-form .button {
-	margin-bottom: 8px;
-}
 .bptm-admin tr.is-hidden {
 	display: none;
 }
@@ -78,29 +75,6 @@
 }
 .bptm-switch input:focus-visible + .bptm-switch-slider {
 	box-shadow: 0 0 0 2px #fff, 0 0 0 4px #4527a4;
-}
-
-/* Taxonomy grid */
-.bptm-tax-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
-	gap: 20px;
-	max-width: 1400px;
-}
-.bptm-tax-grid .bptm-card {
-	margin: 0;
-	max-width: none;
-}
-.bptm-tax-grid .form-table th {
-	width: 140px;
-}
-.bptm-tax-card.is-disabled > h2 {
-	opacity: 0.55;
-}
-@media (max-width: 782px) {
-	.bptm-tax-grid {
-		grid-template-columns: 1fr;
-	}
 }
 
 .bptm-admin .CodeMirror {
