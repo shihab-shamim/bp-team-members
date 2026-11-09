@@ -55,7 +55,7 @@ class I18n {
 			return;
 		}
 		// Both scripts render the block in the browser and carry translatable strings.
-		$handles = array( 'icb-fold-out-reveal-editor-script', 'icb-fold-out-reveal-view-script' );
+		$handles = array( 'tsb-team-members-editor-script', 'tsb-team-members-view-script' );
 		$scripts = wp_scripts();
 		foreach ( $handles as $handle ) {
 			if ( isset( $scripts->registered[ $handle ] ) ) {

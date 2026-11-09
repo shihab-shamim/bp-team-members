@@ -2,35 +2,26 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: BP Team Member 1.0.0\n"
+"Project-Id-Version: Team Builder – Grid, List, Carousel & Popup 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bp-team-member\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-08 03:14:10+00:00\n"
+"POT-Creation-Date: 2026-11-09 03:28:17+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: bptm-pot-script\n"
 "X-Domain: bp-team-member\n"
 
 #. Plugin Name of the plugin
-#: test-purpose.php includes/class-showcase.php:117
-#: includes/class-widget.php:28 includes/integrations/builders.php:167
-#: includes/integrations/builders.php:289
-#: includes/integrations/builders/beaver/class-beaver-module.php:26
-#: includes/integrations/builders/beaver/class-beaver-module.php:28
-#: includes/integrations/builders/class-divi-module.php:40
-#: includes/integrations/builders/class-oxygen-element.php:42
-#: includes/integrations/elementor/class-elementor-widget.php:34
-#: src/Components/Backend/Preview.js:100 build/index.js
-#: src/Components/Backend/Preview.js:107 src/Components/Backend/Preview.js:115
-msgid "BP Team Member"
+#: test-purpose.php src/Components/Backend/Preview.js:19 build/index.js
+msgid "Team Builder – Grid, List, Carousel & Popup"
 msgstr ""
 
 #. Description of the plugin
 #: test-purpose.php
-msgid "BP Team Member is a WordPress plugin that allows you to showcase your team members beautifully on your website."
+msgid "Team Builder – Grid, List, Carousel & Popup is a WordPress plugin that allows you to showcase your team members beautifully on your website."
 msgstr ""
 
 #. Author of the plugin
@@ -43,988 +34,185 @@ msgstr ""
 msgid "https://bplugins.com"
 msgstr ""
 
-#: includes/class-quick.php:349
-msgid "Default order"
-msgstr ""
-
-#: includes/class-quick.php:350 includes/render/class-visibility.php:41
-#: includes/render/themes/registry-b.php:485
-#: src/Components/Backend/Members/MemberSettings.js:41 build/index.js
-#: src/Components/Backend/Settings/Tabs/Style.js:14
-#: src/Components/Backend/Settings/Tabs/Style.js:60 src/utils/editorData.js:150
-#: src/utils/options.js:67 src/utils/options.js:80
-msgid "Name"
-msgstr ""
-
-#: includes/class-quick.php:351 src/utils/options.js:68 build/index.js
-msgid "Random"
-msgstr ""
-
-#: includes/class-quick.php:362 src/utils/options.js:19 build/index.js
-msgid "Default (popup)"
-msgstr ""
-
-#: includes/class-quick.php:363
-#: src/Components/Backend/Controls/VisibilityControl.js:20 build/index.js
-#: src/utils/options.js:20
-msgid "Popup"
-msgstr ""
-
-#: includes/class-quick.php:364
-msgid "Side panel"
-msgstr ""
-
-#: includes/class-quick.php:365
-#: src/Components/Backend/Controls/VisibilityControl.js:22 build/index.js
-#: src/utils/options.js:22
-msgid "Drawer"
-msgstr ""
-
-#: includes/class-quick.php:366
-msgid "Custom URL (per member)"
-msgstr ""
-
-#: includes/class-quick.php:367
-msgid "No link"
-msgstr ""
-
-#: includes/class-settings.php:120
-msgid "Contact Links"
-msgstr ""
-
-#: includes/class-settings.php:124
-msgid "Link land phone (tel:)"
-msgstr ""
-
-#: includes/class-settings.php:128
-msgid "Link cell phone (tel:)"
-msgstr ""
-
-#: includes/class-settings.php:132
-msgid "Link email (mailto:)"
-msgstr ""
-
-#: includes/class-settings.php:137
-msgid "Behaviour"
-msgstr ""
-
-#: includes/class-settings.php:141
-msgid "Search in all fields"
-msgstr ""
-
-#: includes/class-settings.php:142
-msgid "Name search also matches designation, company, description, contact details, groups, tags and the other text fields."
-msgstr ""
-
-#: includes/class-settings.php:146
-msgid "Enable multilingual mode"
-msgstr ""
-
-#: includes/class-settings.php:147
-msgid "Ignore the strings of the Translations page and use the translatable defaults instead (for WPML, Polylang, Loco Translate…)."
-msgstr ""
-
-#: includes/class-settings.php:151
-msgid "Disable Google fonts"
-msgstr ""
-
-#: includes/class-settings.php:152
-msgid "Never load fonts from Google, even when chosen in block typography."
-msgstr ""
-
-#: includes/class-settings.php:156
-msgid "Disable lazy load"
-msgstr ""
-
-#: includes/class-settings.php:157
-msgid "Add an exclusion class to member images so lazy-load plugins skip them and drop the native loading=\"lazy\"."
-msgstr ""
-
-#: includes/class-settings.php:161
-msgid "Lazy load exclusion class"
-msgstr ""
-
-#: includes/class-settings.php:167 includes/class-settings.php:171
-msgid "Custom CSS"
-msgstr ""
-
-#: includes/class-settings.php:172
-msgid "Printed on every front-end page."
-msgstr ""
-
-#: includes/class-settings.php:310 includes/class-settings.php:416
-#: includes/class-settings.php:441
-msgid "Preferences"
-msgstr ""
-
-#: includes/class-settings.php:311 includes/class-settings.php:417
-#: includes/class-settings.php:514
-msgid "Translations"
-msgstr ""
-
-#: includes/class-settings.php:314
-msgid "Settings"
-msgstr ""
-
-#: includes/class-settings.php:458
-msgid "Save Preferences"
-msgstr ""
-
-#: includes/class-settings.php:517
-msgid "Multilingual mode is enabled in Preferences: these strings are ignored and the translatable defaults are used instead."
-msgstr ""
-
-#: includes/class-settings.php:536
-msgid "Save Translations"
-msgstr ""
-
-#: includes/class-showcase.php:61 includes/class-showcase.php:64
-#: includes/class-showcase.php:124
-msgid "Showcase updated."
-msgstr ""
-
-#: includes/class-showcase.php:62
-msgid "Custom field updated."
-msgstr ""
-
-#: includes/class-showcase.php:63
-msgid "Custom field deleted."
-msgstr ""
-
-#: includes/class-showcase.php:65
-msgid "Showcase restored from revision."
-msgstr ""
-
-#: includes/class-showcase.php:66 includes/class-showcase.php:119
-msgid "Showcase published."
-msgstr ""
-
-#: includes/class-showcase.php:67
-msgid "Showcase saved."
-msgstr ""
-
-#: includes/class-showcase.php:68
-msgid "Showcase submitted."
-msgstr ""
-
-#: includes/class-showcase.php:69 includes/class-showcase.php:123
-msgid "Showcase scheduled."
-msgstr ""
-
-#: includes/class-showcase.php:70
-msgid "Showcase draft updated."
-msgstr ""
-
-#: includes/class-showcase.php:95
-msgid "Sorry, you are not allowed to view showcases."
-msgstr ""
-
-#: includes/class-showcase.php:106 includes/class-showcase.php:116
-msgid "Showcases"
-msgstr ""
-
-#: includes/class-showcase.php:107 includes/integrations/builders.php:41
-#: includes/integrations/elementor/class-elementor-widget.php:112
-msgid "Showcase"
-msgstr ""
-
-#: includes/class-showcase.php:108 includes/class-showcase.php:109
-msgid "Add New Showcase"
-msgstr ""
-
-#: includes/class-showcase.php:110
-msgid "Edit Showcase"
-msgstr ""
-
-#: includes/class-showcase.php:111
-msgid "New Showcase"
-msgstr ""
-
-#: includes/class-showcase.php:112
-msgid "View Showcase"
-msgstr ""
-
-#: includes/class-showcase.php:113
-msgid "Search Showcases"
-msgstr ""
-
-#: includes/class-showcase.php:114
-msgid "No showcases found."
-msgstr ""
-
-#: includes/class-showcase.php:115
-msgid "No showcases found in Trash."
-msgstr ""
-
-#: includes/class-showcase.php:118
-msgid "Showcases list"
-msgstr ""
-
-#: includes/class-showcase.php:120
-msgid "Showcase published privately."
-msgstr ""
-
-#: includes/class-showcase.php:121
-msgid "Showcase reverted to draft."
-msgstr ""
-
-#: includes/class-showcase.php:122
-msgid "Showcase trashed."
-msgstr ""
-
-#: includes/class-showcase.php:260
-msgid "BP Team Member: please provide a showcase id, e.g. [bp_team id=\"123\"]."
-msgstr ""
-
-#. translators: %d: showcase id
-#: includes/class-showcase.php:265
-#, php-format
-msgid "BP Team Member: showcase #%d was not found or contains no team block."
-msgstr ""
-
-#: includes/class-showcase.php:281
-msgid "Shortcode"
-msgstr ""
-
-#: includes/class-showcase.php:282 includes/integrations/builders.php:42
-#: src/Components/Backend/Settings/Tabs/Layout.js:41 build/index.js
-msgid "Theme"
-msgstr ""
-
-#: includes/class-showcase.php:297
-msgid "Copy"
-msgstr ""
-
-#: includes/class-showcase.php:327
-msgid "Duplicate"
-msgstr ""
-
-#: includes/class-showcase.php:339
-msgid "You are not allowed to duplicate this showcase."
-msgstr ""
-
-#. translators: %s: original title
-#: includes/class-showcase.php:346
-#, php-format
-msgid "%s (Copy)"
-msgstr ""
-
-#: includes/class-showcase.php:381
-msgid "Copied!"
-msgstr ""
-
-#: includes/class-showcase.php:382
-msgid "Are you sure?"
-msgstr ""
-
-#: includes/class-showcase.php:398
-msgid "Showcase duplicated as draft."
-msgstr ""
-
-#: includes/class-showcase.php:401
-msgid "A showcase holds one BP Team Member block. Paste its shortcode into any page builder, classic editor, widget or template, e.g. [bp_team id=\"123\"]."
-msgstr ""
-
-#: includes/class-showcase.php:401
-msgid "Without a showcase (shows the default sample members): [bp_team theme=\"grid-1\" number=\"6\" group=\"Design\" columns=\"3\" orderby=\"title\" order=\"ASC\" link=\"popup\" view=\"carousel\"] or the compact list [bp_team_sidebar total_mem=\"3\" group_mem=\"Design\"]. Attributes given together with id override the showcase."
-msgstr ""
-
-#. translators: %d: post id
-#: includes/class-showcase.php:423
-#, php-format
-msgid "Showcase #%d"
-msgstr ""
-
-#: includes/class-widget.php:30
-msgid "Display a saved team showcase."
-msgstr ""
-
-#: includes/class-widget.php:52
-msgid "Meet Our Team"
-msgstr ""
-
-#: includes/class-widget.php:146
-msgid "Title:"
-msgstr ""
-
-#: includes/class-widget.php:150
-msgid "Showcase:"
-msgstr ""
-
-#: includes/class-widget.php:152
-#: includes/integrations/elementor/class-elementor-widget.php:87
-msgid "— Select —"
-msgstr ""
-
-#: includes/class-widget.php:159
-msgid "This widget still shows its old member list (sample members). Choose a showcase and save to manage the members in the showcase's block."
-msgstr ""
-
-#: includes/class-widget.php:162 includes/integrations/builders.php:140
-#: includes/integrations/elementor/class-elementor-widget.php:146
-msgid "Create a new showcase"
-msgstr ""
-
-#: includes/class-widget.php:162
-msgid "Create a showcase first."
-msgstr ""
-
-#: includes/functions.php:44
-msgid "Show All Designation"
-msgstr ""
-
-#: includes/functions.php:45
-msgid "Search By Name"
-msgstr ""
-
-#: includes/functions.php:46
-msgid "Search By Company"
-msgstr ""
-
-#: includes/functions.php:47
-msgid "Search By Zip"
-msgstr ""
-
-#: includes/functions.php:48
-msgid "Search By Tag"
-msgstr ""
-
-#: includes/functions.php:49 includes/render/class-visibility.php:48
-#: includes/render/themes/registry-b.php:488
-#: src/Components/Backend/Members/MemberSettings.js:69 build/index.js
-#: src/utils/editorData.js:157
-msgid "Company"
-msgstr ""
-
-#: includes/functions.php:50 includes/render/class-visibility.php:49
-#: includes/render/themes/registry-b.php:492
-#: src/Components/Backend/Members/MemberSettings.js:76 build/index.js
-#: src/utils/editorData.js:158
-msgid "Address"
-msgstr ""
-
-#: includes/functions.php:51 includes/render/class-visibility.php:50
-#: includes/render/themes/registry-b.php:491
-msgid "Land Phone"
-msgstr ""
-
-#: includes/functions.php:52 includes/render/class-visibility.php:51
-#: includes/render/themes/registry-b.php:490
-msgid "Cell Phone"
-msgstr ""
-
-#: includes/functions.php:53 includes/render/class-visibility.php:52
-#: includes/render/themes/registry-b.php:489
-#: src/Components/Backend/Members/MemberSettings.js:73 build/index.js
-#: src/utils/editorData.js:161
-msgid "Email"
-msgstr ""
-
-#: includes/functions.php:54 includes/render/class-visibility.php:57
-msgid "Zip Code"
-msgstr ""
-
-#: includes/functions.php:55 includes/integrations/builders.php:44
-#: src/utils/editorData.js:188 build/index.js
-msgid "Group"
-msgstr ""
-
-#: includes/functions.php:56
-msgid "Tag"
-msgstr ""
-
-#: includes/functions.php:57 src/utils/editorData.js:162 build/index.js
-#: src/utils/editorData.js:190
-msgid "Location"
-msgstr ""
-
-#: includes/functions.php:58 src/utils/editorData.js:163 build/index.js
-#: src/utils/editorData.js:191
-msgid "Language"
-msgstr ""
-
-#: includes/functions.php:59 src/utils/editorData.js:164 build/index.js
-#: src/utils/editorData.js:192
-msgid "Specialty"
-msgstr ""
-
-#: includes/functions.php:60 src/utils/editorData.js:165 build/index.js
-#: src/utils/editorData.js:193
-msgid "Gender"
-msgstr ""
-
-#: includes/functions.php:61 src/utils/editorData.js:167 build/index.js
-#: src/utils/editorData.js:194
-msgid "Extra One"
-msgstr ""
-
-#: includes/functions.php:62 src/utils/editorData.js:168 build/index.js
-#: src/utils/editorData.js:195
-msgid "Extra Two"
-msgstr ""
-
-#: includes/functions.php:63 src/utils/editorData.js:169 build/index.js
-#: src/utils/editorData.js:196
-msgid "Extra Three"
-msgstr ""
-
-#: includes/functions.php:64 src/utils/editorData.js:170 build/index.js
-#: src/utils/editorData.js:197
-msgid "Extra Four"
-msgstr ""
-
-#: includes/functions.php:65 src/utils/editorData.js:171 build/index.js
-#: src/utils/editorData.js:198
-msgid "Extra Five"
-msgstr ""
-
-#: includes/functions.php:66 includes/render/themes/registry-b.php:723
-msgid "Follow Me On"
-msgstr ""
-
-#: includes/functions.php:67 includes/render/class-visibility.php:47
-#: src/Components/Backend/Members/MemberSettings.js:86 build/index.js
-#: src/utils/editorData.js:156
-msgid "Skills"
-msgstr ""
-
-#: includes/functions.php:68
-msgid "Read On"
-msgstr ""
-
-#: includes/functions.php:69
-msgid "More"
-msgstr ""
-
-#: includes/functions.php:70
-msgid "Download vCard"
-msgstr ""
-
-#: includes/functions.php:71
-msgid "Reset Filters"
-msgstr ""
-
-#: includes/functions.php:72
-msgid "Prev"
-msgstr ""
-
-#: includes/functions.php:73
-msgid "Next"
-msgstr ""
-
-#: includes/functions.php:74
-msgid "Load More"
-msgstr ""
-
-#: includes/functions.php:75
-msgid "No team member found."
-msgstr ""
-
-#: includes/integrations/builders.php:27
-msgid "— None (use the options below) —"
-msgstr ""
-
-#: includes/integrations/builders.php:34 includes/integrations/builders.php:170
-#: includes/integrations/elementor/class-elementor-widget.php:100
-#: src/Components/Backend/Settings/Tabs/Layout.js:133 build/index.js
-msgid "Content"
-msgstr ""
-
-#: includes/integrations/builders.php:36
-#: includes/integrations/elementor/class-elementor-widget.php:103
-msgid "A saved showcase"
-msgstr ""
-
-#: includes/integrations/builders.php:37
-msgid "Sample team list (options below)"
-msgstr ""
-
-#: includes/integrations/builders.php:43
-msgid "Number of members (-1 = all)"
-msgstr ""
-
-#: includes/integrations/builders.php:44
-msgid "All groups"
-msgstr ""
-
-#: includes/integrations/builders.php:47
-msgid "Columns (desktop)"
-msgstr ""
-
-#: includes/integrations/builders.php:60
-msgid "View"
-msgstr ""
-
-#: includes/integrations/builders.php:62 src/utils/editorData.js:11
-#: build/index.js src/utils/options.js:13
-msgid "Grid"
-msgstr ""
-
-#: includes/integrations/builders.php:63
-#: src/Components/Backend/Controls/ThemePicker.js:14 build/index.js
-#: src/Components/Backend/Settings/Settings.js:31
-#: src/Components/Backend/Settings/Tabs/Carousel.js:11 src/utils/options.js:14
-msgid "Carousel"
-msgstr ""
-
-#: includes/integrations/builders.php:64
-#: src/Components/Backend/Controls/ThemePicker.js:17 build/index.js
-#: src/Components/Backend/Settings/Settings.js:28
-#: src/Components/Backend/Settings/Tabs/Filter.js:27 src/utils/options.js:15
-msgid "Filter"
-msgstr ""
-
-#: includes/integrations/builders.php:68
-#: src/Components/Backend/Settings/Tabs/Query.js:22 build/index.js
-#: src/Components/Backend/Settings/Tabs/Query.js:29
-msgid "Order by"
-msgstr ""
-
-#: includes/integrations/builders.php:71
-#: src/Components/Backend/Settings/Tabs/Query.js:23 build/index.js
-#: src/Components/Backend/Settings/Tabs/Query.js:30
-msgid "Order"
-msgstr ""
-
-#: includes/integrations/builders.php:73 src/utils/options.js:84 build/index.js
-msgid "Ascending"
-msgstr ""
-
-#: includes/integrations/builders.php:74 src/utils/options.js:84 build/index.js
-msgid "Descending"
-msgstr ""
-
-#: includes/integrations/builders.php:78
-msgid "Member link"
-msgstr ""
-
-#: includes/integrations/builders.php:101
-msgid "BP Team Member: choose a showcase or switch Content to \"Team members list\"."
-msgstr ""
-
-#: includes/integrations/builders.php:151
-#: includes/integrations/builders.php:162
-msgid "Team list"
-msgstr ""
-
-#: includes/integrations/builders.php:152
-msgid "Leave empty to keep the showcase setting."
-msgstr ""
-
-#: includes/integrations/builders.php:160
-msgid "— Default —"
-msgstr ""
-
-#: includes/integrations/builders.php:169
-#: includes/integrations/builders/beaver/class-beaver-module.php:27
-msgid "Team members showcase or list"
-msgstr ""
-
-#: includes/integrations/builders.php:227
-msgid "Team"
-msgstr ""
-
-#: includes/integrations/builders.php:230
-#: includes/integrations/builders/class-divi-module.php:46
-#: includes/render/class-renderer.php:688
-#: src/Components/Backend/Members/MembersPanel.js:69 build/index.js
-msgid "Team members"
-msgstr ""
-
-#: includes/integrations/builders/beaver/class-beaver-module.php:29
-#: src/Components/Backend/Members/MemberSettings.js:40 build/index.js
-msgid "Basic"
-msgstr ""
-
-#: includes/integrations/elementor/class-elementor-widget.php:94
-#: src/Components/Backend/Settings/Tabs/Layout.js:37 build/index.js
-msgid "Team Members"
-msgstr ""
-
-#: includes/integrations/elementor/class-elementor-widget.php:104
-msgid "Sample team list"
-msgstr ""
-
-#: includes/integrations/elementor/class-elementor-widget.php:165
-msgid "Select a showcase in the widget settings."
-msgstr ""
-
-#: includes/render/class-context.php:862
-#: src/Components/Backend/Members/MembersPanel.js:81 build/index.js
-msgid "Featured"
-msgstr ""
-
-#: includes/render/class-editor-data.php:73
-#: includes/render/class-visibility.php:40 src/utils/editorData.js:132
-#: build/index.js src/utils/editorData.js:149
+#: includes/class-block.php:333 src/utils/editorData.js:45 build/index.js
+#: src/utils/editorData.js:54
 msgid "Thumbnail"
 msgstr ""
 
-#: includes/render/class-editor-data.php:74 src/utils/editorData.js:133
-#: build/index.js src/utils/options.js:138
+#: includes/class-block.php:334 src/utils/editorData.js:46 build/index.js
 msgid "Medium"
 msgstr ""
 
-#: includes/render/class-editor-data.php:75 src/utils/editorData.js:135
-#: build/index.js src/utils/options.js:139
+#: includes/class-block.php:335 src/utils/editorData.js:48 build/index.js
 msgid "Large"
 msgstr ""
 
-#: includes/render/class-editor-data.php:76
-#: includes/render/class-editor-data.php:82
+#: includes/class-block.php:336 includes/class-block.php:348
 msgid "Full Size"
 msgstr ""
 
-#: includes/render/class-renderer.php:700
-msgid "Choose slide"
-msgstr ""
-
-#: includes/render/class-renderer.php:816
-msgid "Others"
-msgstr ""
-
-#: includes/render/class-renderer.php:931 templates/partials/modal.php:22
-#: templates/partials/modal.php:39
-msgid "Close"
-msgstr ""
-
-#: includes/render/class-renderer.php:933
-msgid "Loading…"
-msgstr ""
-
-#: includes/render/class-renderer.php:936
-#, php-format
-msgid "Go to slide %d"
-msgstr ""
-
-#: includes/render/class-renderer.php:937
-#, php-format
-msgid "%d selected"
-msgstr ""
-
-#: includes/render/class-rest.php:106
-msgid "Attributes must be an object."
-msgstr ""
-
-#. translators: %s: attribute name
-#: includes/render/class-rest.php:115
-#, php-format
-msgid "Unknown attribute: %s"
-msgstr ""
-
-#: includes/render/class-rest.php:118
-msgid "Invalid members."
-msgstr ""
-
-#: includes/render/class-visibility.php:42
-#: src/Components/Backend/Members/MemberSettings.js:42 build/index.js
-#: src/Components/Backend/Settings/Tabs/Style.js:15
-#: src/Components/Backend/Settings/Tabs/Style.js:62 src/utils/editorData.js:151
-msgid "Designation"
-msgstr ""
-
-#: includes/render/class-visibility.php:43
-#: src/Components/Backend/Members/MemberSettings.js:46 build/index.js
-#: src/Components/Backend/Settings/Tabs/Style.js:16 src/utils/editorData.js:152
-msgid "Details"
-msgstr ""
-
-#: includes/render/class-visibility.php:44
-msgid "Social Links"
-msgstr ""
-
-#: includes/render/class-visibility.php:45
-#: src/Components/Backend/Members/MemberSettings.js:65 build/index.js
-#: src/Components/Backend/Settings/Tabs/Style.js:18 src/utils/editorData.js:154
-msgid "Ribbon"
-msgstr ""
-
-#: includes/render/class-visibility.php:46
-msgid "Featured Badge"
-msgstr ""
-
-#: includes/render/class-visibility.php:63 src/utils/editorData.js:172
+#: includes/functions.php:44 src/Components/Common/Team/bridge.js:23
 #: build/index.js
-msgid "vCard"
+msgid "Show All Designation"
 msgstr ""
 
-#: includes/render/class-visibility.php:64
-msgid "Read More"
+#: includes/functions.php:45 src/Components/Common/Team/bridge.js:24
+#: build/index.js
+msgid "Search By Name"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:75
-msgid "Grid 1"
+#: includes/functions.php:46 src/Components/Common/Team/bridge.js:25
+#: build/index.js
+msgid "Search By Company"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:76
-msgid "Grid 2"
+#: includes/functions.php:47 src/Components/Common/Team/bridge.js:26
+#: build/index.js
+msgid "Search By Zip"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:77
-msgid "Grid 3"
+#: includes/functions.php:48 src/Components/Common/Team/bridge.js:27
+#: build/index.js
+msgid "Search By Tag"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:78
-msgid "Grid 4"
+#: includes/functions.php:49
+#: src/Components/Backend/Members/MemberSettings.js:69 build/index.js
+#: src/Components/Common/Team/bridge.js:28 src/utils/editorData.js:62
+msgid "Company"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:79
-msgid "Grid 5"
+#: includes/functions.php:50
+#: src/Components/Backend/Members/MemberSettings.js:76 build/index.js
+#: src/Components/Common/Team/bridge.js:29 src/utils/editorData.js:63
+msgid "Address"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:80
-msgid "Grid 6"
+#: includes/functions.php:51 src/Components/Common/Team/bridge.js:30
+#: build/index.js src/utils/editorData.js:64
+msgid "Land Phone"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:81
-msgid "Circle 1"
+#: includes/functions.php:52 src/Components/Common/Team/bridge.js:31
+#: build/index.js src/utils/editorData.js:65
+msgid "Cell Phone"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:82
-msgid "Circle 2"
+#: includes/functions.php:53
+#: src/Components/Backend/Members/MemberSettings.js:73 build/index.js
+#: src/Components/Common/Team/bridge.js:32 src/utils/editorData.js:66
+msgid "Email"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:83
-msgid "Circle 3"
+#: includes/functions.php:54 src/Components/Common/Team/bridge.js:33
+#: build/index.js src/utils/editorData.js:67
+msgid "Zip Code"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:84
-msgid "Circle 4"
+#: includes/functions.php:55 src/Components/Common/Team/bridge.js:34
+#: build/index.js src/utils/editorData.js:89
+msgid "Group"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:85
-msgid "Circle 5"
+#: includes/functions.php:56 src/Components/Common/Team/bridge.js:35
+#: build/index.js
+msgid "Tag"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:86
-msgid "Circle 6"
+#: includes/functions.php:57 src/Components/Common/Team/bridge.js:36
+#: build/index.js
+msgid "Location"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:87
-msgid "Horizontal 1"
+#: includes/functions.php:58 src/Components/Common/Team/bridge.js:37
+#: build/index.js
+msgid "Language"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:88
-msgid "Horizontal 2"
+#: includes/functions.php:59 src/Components/Common/Team/bridge.js:38
+#: build/index.js
+msgid "Specialty"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:89
-msgid "Horizontal 3"
+#: includes/functions.php:60 src/Components/Common/Team/bridge.js:39
+#: build/index.js
+msgid "Gender"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:90
-msgid "Horizontal 4"
+#: includes/functions.php:61 src/Components/Common/Team/bridge.js:40
+#: build/index.js
+msgid "Extra One"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:91
-msgid "Horizontal 5"
+#: includes/functions.php:62 src/Components/Common/Team/bridge.js:41
+#: build/index.js
+msgid "Extra Two"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:92
-msgid "Horizontal 6"
+#: includes/functions.php:63 src/Components/Common/Team/bridge.js:42
+#: build/index.js
+msgid "Extra Three"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:93
-msgid "Horizontal 7"
+#: includes/functions.php:64 src/Components/Common/Team/bridge.js:43
+#: build/index.js
+msgid "Extra Four"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:94
-msgid "Horizontal 8"
+#: includes/functions.php:65 src/Components/Common/Team/bridge.js:44
+#: build/index.js
+msgid "Extra Five"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:95
-msgid "Horizontal 9"
+#: includes/functions.php:66 src/Components/Common/Team/bridge.js:45
+#: build/index.js
+msgid "Follow Me On"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:96
-msgid "Flip 1"
+#: includes/functions.php:67
+#: src/Components/Backend/Members/MemberSettings.js:86 build/index.js
+#: src/Components/Common/Team/bridge.js:46 src/utils/editorData.js:61
+msgid "Skills"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:97
-msgid "Flip 2"
+#: includes/functions.php:68 src/Components/Common/Team/bridge.js:47
+#: build/index.js
+msgid "Read On"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:98
-msgid "Flip 3"
+#: includes/functions.php:69 src/Components/Common/Team/bridge.js:48
+#: build/index.js
+msgid "More"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:99
-msgid "Flip 4"
+#: includes/functions.php:70 src/Components/Common/Team/bridge.js:49
+#: build/index.js
+msgid "Download vCard"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:100
-msgid "Flip 5"
+#: includes/functions.php:71 src/Components/Common/Team/bridge.js:50
+#: build/index.js
+msgid "Reset Filters"
 msgstr ""
 
-#: includes/render/themes/registry-a.php:101
-msgid "Flip 6"
+#: includes/functions.php:72 src/Components/Common/Team/bridge.js:51
+#: build/index.js
+msgid "Prev"
 msgstr ""
 
-#: includes/render/themes/registry-b.php:79
-msgid "Table 1"
+#: includes/functions.php:73 src/Components/Common/Team/bridge.js:52
+#: build/index.js
+msgid "Next"
 msgstr ""
 
-#: includes/render/themes/registry-b.php:80
-msgid "Table 2"
+#: includes/functions.php:74 src/Components/Common/Team/bridge.js:53
+#: build/index.js
+msgid "Load More"
 msgstr ""
 
-#: includes/render/themes/registry-b.php:81
-msgid "Table 3"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:82
-msgid "Table 4"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:83
-msgid "Table 5"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:85
-msgid "List 1"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:86
-msgid "List 2"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:87
-msgid "List 3"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:88
-msgid "List 4"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:89
-msgid "List 5"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:91
-msgid "Grid 7"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:92
-msgid "Grid 8"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:93
-msgid "Grid 9"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:94
-msgid "Grid 10 (Greyscale)"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:95
-msgid "Grid 11"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:96
-msgid "Grid 12"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:97
-msgid "Grid Popup"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:98
-msgid "Grid Single"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:99
-msgid "Grid Filter Single"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:100
-msgid "Grid Filter Popup"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:101
-msgid "Grid Slider"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:102
-msgid "Grid Filter - Selected Groups"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:103
-msgid "Grid Filter with vCard"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:104
-msgid "Grid Panel Slide"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:105
-msgid "Grid Drawer 1"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:106
-msgid "Grid Drawer 2"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:108
-msgid "Table 6 - Underline"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:109
-msgid "Table 7 - Box Border"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:110
-msgid "Table 8 - Odd Even"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:111
-msgid "Table 9 - Filter"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:112
-msgid "Table 10 - Filter Dense"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:114
-msgid "List 6"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:115
-msgid "List 7"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:117
-msgid "Group Filter 1"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:484
-#: src/Components/Backend/Members/MemberSettings.js:53 build/index.js
-#: src/Components/Backend/Settings/Tabs/Layout.js:122
-msgid "Image"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:486
-msgid "Position"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:487
-#: src/Components/Backend/Settings/Tabs/Style.js:63 build/index.js
-msgid "Description"
-msgstr ""
-
-#: includes/render/themes/registry-b.php:494
-msgid "Social"
-msgstr ""
-
-#: includes/render/themes/registry-c.php:38
-msgid "Sidebar 1 - Framed Photo"
-msgstr ""
-
-#: includes/render/themes/registry-c.php:39
-msgid "Sidebar 2 - Round Avatar"
-msgstr ""
-
-#: includes/render/themes/registry-c.php:40
-msgid "Sidebar 3 - Compact Rows"
+#: includes/functions.php:75 src/Components/Common/Team/bridge.js:54
+#: build/index.js
+msgid "No team member found."
 msgstr ""
 
 #: src/Components/Backend/Controls/Fields.js:139 build/index.js
@@ -1043,12 +231,26 @@ msgstr ""
 msgid "No values in the members yet"
 msgstr ""
 
+#: src/Components/Backend/Controls/ThemePicker.js:14 build/index.js
+#: src/Components/Backend/Settings/Settings.js:31
+#: src/Components/Backend/Settings/Tabs/Carousel.js:11
+#: src/Components/Backend/Settings/Tabs/Style.js:446 src/utils/options.js:14
+msgid "Carousel"
+msgstr ""
+
+#: src/Components/Backend/Controls/ThemePicker.js:17 build/index.js
+#: src/Components/Backend/Settings/Settings.js:28
+#: src/Components/Backend/Settings/Tabs/Filter.js:27
+#: src/Components/Backend/Settings/Tabs/Style.js:463 src/utils/options.js:15
+msgid "Filter"
+msgstr ""
+
 #: src/Components/Backend/Controls/ThemePicker.js:28 build/index.js
 msgid "Theme families"
 msgstr ""
 
 #: src/Components/Backend/Controls/ThemePicker.js:29 build/index.js
-#: templates/partials/cat-filters.php:23
+#: src/Components/Common/Team/Filters.js:211
 msgid "All"
 msgstr ""
 
@@ -1074,70 +276,24 @@ msgstr ""
 msgid "Choose a theme"
 msgstr ""
 
-#: src/Components/Backend/Controls/TypographyControl.js:65 build/index.js
-#: src/utils/options.js:7 src/utils/options.js:106 src/utils/options.js:111
-#: src/utils/options.js:119 src/utils/options.js:126
-msgid "Default"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:134 build/index.js
-msgid "Font family"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:136 build/index.js
-#: src/utils/options.js:134
-msgid "Theme default"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:142 build/index.js
-#: src/Components/Backend/Controls/TypographyControl.js:149
-msgid "Font size (px)"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:159 build/index.js
-msgid "Weight"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:160 build/index.js
-msgid "Transform"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:163 build/index.js
-#: src/Components/Backend/Settings/Settings.js:35
-msgid "Style"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:164 build/index.js
-msgid "Decoration"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:168 build/index.js
-msgid "Line height"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:179 build/index.js
-msgid "Letter spacing (px)"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:188 build/index.js
-msgid "Color"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:191 build/index.js
-msgid "Hover color"
-msgstr ""
-
-#: src/Components/Backend/Controls/TypographyControl.js:196 build/index.js
-msgid "Reset typography"
-msgstr ""
-
 #: src/Components/Backend/Controls/VisibilityControl.js:19 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:378
 msgid "Card"
+msgstr ""
+
+#: src/Components/Backend/Controls/VisibilityControl.js:20 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:272 src/utils/options.js:20
+msgid "Popup"
 msgstr ""
 
 #: src/Components/Backend/Controls/VisibilityControl.js:21 build/index.js
 #: src/utils/options.js:21
 msgid "Panel"
+msgstr ""
+
+#: src/Components/Backend/Controls/VisibilityControl.js:22 build/index.js
+#: src/utils/options.js:22
+msgid "Drawer"
 msgstr ""
 
 #: src/Components/Backend/Controls/VisibilityControl.js:56 build/index.js
@@ -1164,24 +320,45 @@ msgstr ""
 msgid "Reset all to theme defaults"
 msgstr ""
 
-#: src/Components/Backend/Members/ImageControl.js:43 build/index.js
+#: src/Components/Backend/Members/ImageControl.js:66 build/index.js
 msgid "Image URL"
 msgstr ""
 
-#: src/Components/Backend/Members/ImageControl.js:56 build/index.js
+#: src/Components/Backend/Members/ImageControl.js:79 build/index.js
 msgid "Replace"
 msgstr ""
 
-#: src/Components/Backend/Members/ImageControl.js:56 build/index.js
+#: src/Components/Backend/Members/ImageControl.js:79 build/index.js
 msgid "Select image"
 msgstr ""
 
-#: src/Components/Backend/Members/ImageControl.js:60 build/index.js
+#: src/Components/Backend/Members/ImageControl.js:83 build/index.js
 msgid "Remove image"
 msgstr ""
 
-#: src/Components/Backend/Members/ImageControl.js:71 build/index.js
+#: src/Components/Backend/Members/ImageControl.js:94 build/index.js
 msgid "Alt text"
+msgstr ""
+
+#: src/Components/Backend/Members/MemberSettings.js:40 build/index.js
+msgid "Basic"
+msgstr ""
+
+#: src/Components/Backend/Members/MemberSettings.js:41 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:302
+#: src/Components/Common/Team/themes.js:519 src/utils/editorData.js:55
+#: src/utils/options.js:61 src/utils/options.js:74
+msgid "Name"
+msgstr ""
+
+#: src/Components/Backend/Members/MemberSettings.js:42 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:309 src/utils/editorData.js:56
+msgid "Designation"
+msgstr ""
+
+#: src/Components/Backend/Members/MemberSettings.js:46 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:315 src/utils/editorData.js:57
+msgid "Details"
 msgstr ""
 
 #: src/Components/Backend/Members/MemberSettings.js:50 build/index.js
@@ -1192,8 +369,20 @@ msgstr ""
 msgid "Blank lines start new paragraphs."
 msgstr ""
 
+#: src/Components/Backend/Members/MemberSettings.js:53 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:167
+#: src/Components/Backend/Settings/Tabs/Style.js:392
+#: src/Components/Common/Team/themes.js:518
+msgid "Image"
+msgstr ""
+
 #: src/Components/Backend/Members/MemberSettings.js:61 build/index.js
 msgid "Featured member"
+msgstr ""
+
+#: src/Components/Backend/Members/MemberSettings.js:65 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:350 src/utils/editorData.js:59
+msgid "Ribbon"
 msgstr ""
 
 #: src/Components/Backend/Members/MemberSettings.js:65 build/index.js
@@ -1209,12 +398,10 @@ msgid "Company website"
 msgstr ""
 
 #: src/Components/Backend/Members/MemberSettings.js:71 build/index.js
-#: src/utils/editorData.js:159
 msgid "Land phone"
 msgstr ""
 
 #: src/Components/Backend/Members/MemberSettings.js:72 build/index.js
-#: src/utils/editorData.js:160
 msgid "Cell phone"
 msgstr ""
 
@@ -1227,7 +414,6 @@ msgid "Email BCC"
 msgstr ""
 
 #: src/Components/Backend/Members/MemberSettings.js:77 build/index.js
-#: src/utils/editorData.js:166
 msgid "Zip code"
 msgstr ""
 
@@ -1245,7 +431,6 @@ msgid "Used when the link type is “Custom URL”."
 msgstr ""
 
 #: src/Components/Backend/Members/MemberSettings.js:82 build/index.js
-#: src/utils/editorData.js:153
 msgid "Social links"
 msgstr ""
 
@@ -1269,34 +454,6 @@ msgstr ""
 msgid "Shown on the back of the card in flip themes."
 msgstr ""
 
-#. translators: %s: member name
-#. translators: %s: row label
-#: src/Components/Backend/Members/MembersPanel.js:88 build/index.js
-#: src/Components/Backend/Members/Repeaters.js:79
-#, js-format
-msgid "Move %s up"
-msgstr ""
-
-#. translators: %s: member name
-#. translators: %s: row label
-#: src/Components/Backend/Members/MembersPanel.js:95 build/index.js
-#: src/Components/Backend/Members/Repeaters.js:80
-#, js-format
-msgid "Move %s down"
-msgstr ""
-
-#: src/Components/Backend/Members/MembersPanel.js:104 build/index.js
-msgid "No team members yet. Add your first member below."
-msgstr ""
-
-#: src/Components/Backend/Members/MembersPanel.js:107 build/index.js
-msgid "Select a member to edit it. The order here is the display order when “Order by” is Default."
-msgstr ""
-
-#: src/Components/Backend/Members/MembersPanel.js:115 build/index.js
-msgid "Member"
-msgstr ""
-
 #: src/Components/Backend/Members/Repeaters.js:30 build/index.js
 msgid "Search icons"
 msgstr ""
@@ -1316,6 +473,18 @@ msgstr ""
 #: src/Components/Backend/Members/Repeaters.js:59 build/index.js
 #: src/Components/Backend/Members/Repeaters.js:61
 msgid "Choose icon"
+msgstr ""
+
+#. translators: %s: row label
+#: src/Components/Backend/Members/Repeaters.js:79 build/index.js
+#, js-format
+msgid "Move %s up"
+msgstr ""
+
+#. translators: %s: row label
+#: src/Components/Backend/Members/Repeaters.js:80 build/index.js
+#, js-format
+msgid "Move %s down"
 msgstr ""
 
 #. translators: %s: row label
@@ -1368,23 +537,16 @@ msgstr ""
 msgid "Add skill"
 msgstr ""
 
-#: src/Components/Backend/Preview.js:101 build/index.js
-msgid "The preview could not be rendered."
-msgstr ""
-
-#: src/Components/Backend/Preview.js:108 build/index.js
-msgid "No team members match the current query settings."
-msgstr ""
-
-#: src/Components/Backend/Preview.js:116 build/index.js
+#: src/Components/Backend/Preview.js:20 build/index.js
 msgid "This block has no team members yet. Add your first member, then fill in its details in the sidebar (General → Team Members)."
 msgstr ""
 
-#: src/Components/Backend/Preview.js:120 build/index.js
+#: src/Components/Backend/Preview.js:24 build/index.js
 msgid "Add member"
 msgstr ""
 
 #: src/Components/Backend/Settings/Settings.js:26 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:265
 msgid "General"
 msgstr ""
 
@@ -1395,7 +557,12 @@ msgstr ""
 #: src/Components/Backend/Settings/Settings.js:33 build/index.js
 #: src/Components/Backend/Settings/Tabs/Pagination.js:32
 #: src/Components/Backend/Settings/Tabs/Pagination.js:39
+#: src/Components/Backend/Settings/Tabs/Style.js:398
 msgid "Pagination"
+msgstr ""
+
+#: src/Components/Backend/Settings/Settings.js:35 build/index.js
+msgid "Style"
 msgstr ""
 
 #: src/Components/Backend/Settings/Settings.js:66 build/index.js
@@ -1403,7 +570,7 @@ msgid "Change theme"
 msgstr ""
 
 #: src/Components/Backend/Settings/Settings.js:83 build/index.js
-#: src/Components/Backend/Settings/Tabs/Layout.js:50
+#: src/Components/Backend/Settings/Tabs/Layout.js:95
 msgid "View type"
 msgstr ""
 
@@ -1462,8 +629,8 @@ msgstr ""
 #. translators: %s: field label, e.g. Location
 #. translators: %s: group label
 #: src/Components/Backend/Settings/Tabs/Filter.js:9 build/index.js
-#: templates/partials/cat-filters.php:26
-#, js-format, php-format
+#: src/Components/Common/Team/Filters.js:219
+#, js-format
 msgid "Filter by %s"
 msgstr ""
 
@@ -1543,153 +710,169 @@ msgstr ""
 msgid "Reset filters button"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:43 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:66 build/index.js
+msgid "Choose a Theme"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:68 build/index.js
 msgid "Current:"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:48 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:72 build/index.js
+msgid "Team Members"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:79 build/index.js
+msgid "Member"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:93 build/index.js
 msgid "View & Columns"
 msgstr ""
 
 #. translators: 1: theme, 2: view
-#: src/Components/Backend/Settings/Tabs/Layout.js:59 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:104 build/index.js
 #, js-format
 msgid "%1$s always uses the %2$s view."
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:66 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:111 build/index.js
 msgid "This theme does not support the selected view; it renders as a grid."
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:69 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:114 build/index.js
 msgid "Table and list themes use one row per member; columns do not apply."
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:73 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:118 build/index.js
 msgid "Column gap (px)"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:74 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:119 build/index.js
 msgid "Row gap (px)"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:77 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:122 build/index.js
 msgid "Linking"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:78 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:123 build/index.js
 msgid "Link members"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:78 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:123 build/index.js
 msgid "Make the name (and image) open the member detail."
 msgstr ""
 
 #. translators: 1: theme, 2: link type
-#: src/Components/Backend/Settings/Tabs/Layout.js:83 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:128 build/index.js
 #, js-format
 msgid "%1$s always opens members as: %2$s."
 msgstr ""
 
 #. translators: 1: theme, 2: link type
-#: src/Components/Backend/Settings/Tabs/Layout.js:83 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:128 build/index.js
 #, js-format
 msgid "%1$s opens members as %2$s unless you choose another link type."
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:91 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:136 build/index.js
 msgid "Link type"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:93 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:138 build/index.js
 msgid "Drawers cannot open inside carousels or tables; the popup is used instead."
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:96 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:141 build/index.js
 msgid "Open in"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:100 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:145 build/index.js
 msgid "Popup style"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:102 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:147 build/index.js
 msgid "Popup columns"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:108 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:153 build/index.js
 msgid "Panel style"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:109 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:154 build/index.js
 msgid "Panel side"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:113 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:158 build/index.js
 msgid "Drawer style"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:116 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:161 build/index.js
 msgid "Uses each member’s “Custom URL” field (Team Members → Contact). Members without one are not linked."
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:123 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:168 build/index.js
 msgid "Thumbnail size"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:124 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:169 build/index.js
 msgid "Link image"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:124 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:169 build/index.js
 msgid "Clicking the image opens the member like the name does."
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:125 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:170 build/index.js
 msgid "Image filter"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:126 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:171 build/index.js
 msgid "Hover image filter"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:129 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:174 build/index.js
 msgid "Visibility"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:134 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:178 build/index.js
+msgid "Content"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Layout.js:179 build/index.js
 msgid "Show featured members first"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:135 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:180 build/index.js
 msgid "Scroll animation"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:136 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:181 build/index.js
 msgid "Allow HTML in details"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:136 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:181 build/index.js
 msgid "Show the full formatted description instead of a trimmed text."
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:138 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:183 build/index.js
 msgid "Details length (characters)"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:140 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:185 build/index.js
 msgid "Scrollable description"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:142 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:187 build/index.js
 msgid "Max scroll height"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:142 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:187 build/index.js
 msgid "CSS length, e.g. 200px. Empty = theme default."
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Layout.js:144 build/index.js
+#: src/Components/Backend/Settings/Tabs/Layout.js:189 build/index.js
 msgid "Equal details area height"
 msgstr ""
 
@@ -1749,6 +932,16 @@ msgstr ""
 msgid "Pagination is on: the per-page settings control how many members load at a time."
 msgstr ""
 
+#: src/Components/Backend/Settings/Tabs/Query.js:22 build/index.js
+#: src/Components/Backend/Settings/Tabs/Query.js:29
+msgid "Order by"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Query.js:23 build/index.js
+#: src/Components/Backend/Settings/Tabs/Query.js:30
+msgid "Order"
+msgstr ""
+
 #: src/Components/Backend/Settings/Tabs/Query.js:24 build/index.js
 msgid "Default uses the order of the Team Members list (General tab)."
 msgstr ""
@@ -1779,175 +972,606 @@ msgstr ""
 msgid "Exclude %s"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:17 build/index.js
-msgid "Info / meta"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:19 build/index.js
-msgid "Read more"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:29 build/index.js
-msgid "Box shadow"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:44 build/index.js
-msgid "Custom box-shadow"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:59 build/index.js
-msgid "Accent"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:61 build/index.js
-msgid "Name background"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:64 build/index.js
-msgid "Description links"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:65 build/index.js
-msgid "Info text"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:66 build/index.js
-msgid "Info icons"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:67 build/index.js
-msgid "Info background"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:70 build/index.js
-msgid "Item background"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:71 build/index.js
-msgid "Item background (hover)"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:72 build/index.js
-msgid "Item border"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:73 build/index.js
-msgid "Tooltip background"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:74 build/index.js
-msgid "Hover icon background"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:75 build/index.js
-msgid "Ribbon background"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:78 build/index.js
-msgid "Popup arrows"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:83 build/index.js
-msgid "Text colors"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:84 build/index.js
-msgid "Item colors"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:86 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:139 build/index.js
 msgid "Typography"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:92 build/index.js
-msgid "Box"
+#: src/Components/Backend/Settings/Tabs/Style.js:145 build/index.js
+msgid "Hover color"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:97 build/index.js
-msgid "Item padding"
+#: src/Components/Backend/Settings/Tabs/Style.js:151 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:159
+#: src/Components/Backend/Settings/Tabs/Style.js:449
+#: src/Components/Backend/Settings/Tabs/Style.js:456
+msgid "Color"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:111 build/index.js
-msgid "Item border radius"
+#: src/Components/Backend/Settings/Tabs/Style.js:179 build/index.js
+#: src/utils/options.js:47
+msgid "None"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:112 build/index.js
-msgid "Item border width"
+#: src/Components/Backend/Settings/Tabs/Style.js:184 build/index.js
+msgid "Custom"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:114 build/index.js
-msgid "Image border radius"
+#: src/Components/Backend/Settings/Tabs/Style.js:208 build/index.js
+msgid "Box shadow"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:118 build/index.js
-msgid "Carousel colors"
+#: src/Components/Backend/Settings/Tabs/Style.js:221 build/index.js
+msgid "Custom shadow"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:119 build/index.js
-msgid "Arrow"
+#: src/Components/Backend/Settings/Tabs/Style.js:266 build/index.js
+msgid "Accent color"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:120 build/index.js
-msgid "Arrow background"
+#: src/Components/Backend/Settings/Tabs/Style.js:268 build/index.js
+msgid "Tooltip background"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:121 build/index.js
-msgid "Arrow (hover)"
+#: src/Components/Backend/Settings/Tabs/Style.js:273 build/index.js
+msgid "Background color"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:122 build/index.js
-msgid "Arrow background (hover)"
+#: src/Components/Backend/Settings/Tabs/Style.js:275 build/index.js
+msgid "Close icon"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:123 build/index.js
-msgid "Dot"
+#: src/Components/Backend/Settings/Tabs/Style.js:276 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:333
+#: src/Components/Backend/Settings/Tabs/Style.js:338
+#: src/Components/Backend/Settings/Tabs/Style.js:360
+msgid "Icon color"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:124 build/index.js
-msgid "Dot (hover / active)"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:129 build/index.js
-msgid "Filter colors"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:130 build/index.js
-msgid "Text"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:131 build/index.js
-msgid "Active text"
-msgstr ""
-
-#: src/Components/Backend/Settings/Tabs/Style.js:132 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:277 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:291
+#: src/Components/Backend/Settings/Tabs/Style.js:295
+#: src/Components/Backend/Settings/Tabs/Style.js:305
+#: src/Components/Backend/Settings/Tabs/Style.js:326
+#: src/Components/Backend/Settings/Tabs/Style.js:334
+#: src/Components/Backend/Settings/Tabs/Style.js:339
+#: src/Components/Backend/Settings/Tabs/Style.js:352
+#: src/Components/Backend/Settings/Tabs/Style.js:361
+#: src/Components/Backend/Settings/Tabs/Style.js:379
+#: src/Components/Backend/Settings/Tabs/Style.js:403
+#: src/Components/Backend/Settings/Tabs/Style.js:408
+#: src/Components/Backend/Settings/Tabs/Style.js:413
+#: src/Components/Backend/Settings/Tabs/Style.js:427
+#: src/Components/Backend/Settings/Tabs/Style.js:432
+#: src/Components/Backend/Settings/Tabs/Style.js:450
+#: src/Components/Backend/Settings/Tabs/Style.js:467
+#: src/Components/Backend/Settings/Tabs/Style.js:473
 msgid "Background"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:133 build/index.js
-msgid "Active background"
+#: src/Components/Backend/Settings/Tabs/Style.js:278 build/index.js
+msgid "Icon color (hover)"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:134 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:279 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:380
+#: src/Components/Backend/Settings/Tabs/Style.js:452
+msgid "Background (hover)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:280 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:343
+#: src/Components/Backend/Settings/Tabs/Style.js:365
+msgid "Icon size"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:281 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:344
+msgid "Button size"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:282 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:298
+#: src/Components/Backend/Settings/Tabs/Style.js:346
+#: src/Components/Backend/Settings/Tabs/Style.js:368
+#: src/Components/Backend/Settings/Tabs/Style.js:385
+#: src/Components/Backend/Settings/Tabs/Style.js:393
+#: src/Components/Backend/Settings/Tabs/Style.js:419
+#: src/Components/Backend/Settings/Tabs/Style.js:437
+msgid "Border radius"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:287 build/index.js
+msgid "Popup arrows"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:288 build/index.js
+msgid "Prev / Next buttons shown in the member popup, panel and drawer."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:289 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:332
+#: src/Components/Backend/Settings/Tabs/Style.js:401
+#: src/Components/Backend/Settings/Tabs/Style.js:464
+msgid "Normal"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:290 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:294
+msgid "Arrow color"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:292 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:296
+#: src/Components/Backend/Settings/Tabs/Style.js:335
+#: src/Components/Backend/Settings/Tabs/Style.js:340
+#: src/Components/Backend/Settings/Tabs/Style.js:362
+#: src/Components/Backend/Settings/Tabs/Style.js:383
+#: src/Components/Backend/Settings/Tabs/Style.js:404
+#: src/Components/Backend/Settings/Tabs/Style.js:409
+#: src/Components/Backend/Settings/Tabs/Style.js:414
+#: src/Components/Backend/Settings/Tabs/Style.js:428
+msgid "Border color"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:293 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:337
+#: src/Components/Backend/Settings/Tabs/Style.js:406
+#: src/Components/Backend/Settings/Tabs/Style.js:430
+msgid "Hover"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:297 build/index.js
+msgid "Shape"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:316 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:323
+#: src/Components/Backend/Settings/Tabs/Style.js:351
+#: src/Components/Backend/Settings/Tabs/Style.js:402
+#: src/Components/Backend/Settings/Tabs/Style.js:407
+#: src/Components/Backend/Settings/Tabs/Style.js:412
+#: src/Components/Backend/Settings/Tabs/Style.js:426
+#: src/Components/Backend/Settings/Tabs/Style.js:431
+msgid "Text color"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:318 build/index.js
+msgid "Link color"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:322 build/index.js
+msgid "Info / Contact"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:325 build/index.js
+msgid "Label color"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:330 build/index.js
+#: src/Components/Common/Team/themes.js:528
+msgid "Social"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:331 build/index.js
+msgid "Social icons on the cards and inside the popup, panel and drawer."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:342 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:364
+msgid "Size & shape"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:345 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:367
+#: src/Components/Backend/Settings/Tabs/Style.js:384
+#: src/Components/Backend/Settings/Tabs/Style.js:418
+#: src/Components/Backend/Settings/Tabs/Style.js:436
+msgid "Border width"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:347 build/index.js
+msgid "Space between icons"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:357 build/index.js
+msgid "Featured badge"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:358 build/index.js
+msgid "Badge shown on featured members (cards, popup, panel and drawer)."
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:359 build/index.js
+msgid "Colors"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:366 build/index.js
+msgid "Badge size"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:372 build/index.js
+msgid "Read more"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:382 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:468
+#: src/Components/Backend/Settings/Tabs/Style.js:474
 msgid "Border"
 msgstr ""
 
-#: src/Components/Backend/Settings/Tabs/Style.js:135 build/index.js
-msgid "Active border"
+#: src/Components/Backend/Settings/Tabs/Style.js:387 build/index.js
+msgid "Spacing & shadow"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:388 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:417
+#: src/Components/Backend/Settings/Tabs/Style.js:435
+msgid "Padding"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:394 build/index.js
+msgid "Hover icon background"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:411 build/index.js
+msgid "Active (current page)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:416 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:434
+msgid "Size & border"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:425 build/index.js
+msgid "Load more button"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:441 build/index.js
+msgid "Loader color"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:447 build/index.js
+msgid "Arrows"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:451 build/index.js
+msgid "Color (hover)"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:454 build/index.js
+msgid "Dots"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:457 build/index.js
+msgid "Active / hover"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:466 build/index.js
+#: src/Components/Backend/Settings/Tabs/Style.js:472
+msgid "Text"
+msgstr ""
+
+#: src/Components/Backend/Settings/Tabs/Style.js:470 build/index.js
+msgid "Active"
+msgstr ""
+
+#. translators: %d: number of selected options
+#: src/Components/Common/Team/Filters.js:81 build/index.js
+#, js-format
+msgid "%d selected"
+msgstr ""
+
+#: src/Components/Common/Team/Pagination.js:67 build/index.js
+msgid "Team members pages"
+msgstr ""
+
+#: src/Components/Common/Team/Pagination.js:124 build/index.js
+msgid "Loading more members"
+msgstr ""
+
+#: src/Components/Common/Team/TeamMembers.js:218 build/index.js
+#, js-format
+msgid "Go to slide %d"
+msgstr ""
+
+#: src/Components/Common/Team/TeamMembers.js:467 build/index.js
+msgid "Others"
+msgstr ""
+
+#: src/Components/Common/Team/TeamMembers.js:536 build/index.js
+msgid "Team members"
+msgstr ""
+
+#: src/Components/Common/Team/TeamMembers.js:548 build/index.js
+msgid "Choose slide"
+msgstr ""
+
+#: src/Components/Common/Team/context.js:318 build/index.js
+#: src/Components/Common/Team/context.js:320
+msgid "Featured"
+msgstr ""
+
+#: src/Components/Common/Team/details.js:122 build/index.js
+msgid "Contact Info"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:42 build/index.js
+msgid "Grid 1"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:43 build/index.js
+msgid "Grid 2"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:44 build/index.js
+msgid "Grid 3"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:45 build/index.js
+msgid "Grid 4"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:46 build/index.js
+msgid "Grid 5"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:47 build/index.js
+msgid "Grid 6"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:48 build/index.js
+msgid "Circle 1"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:49 build/index.js
+msgid "Circle 2"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:50 build/index.js
+msgid "Circle 3"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:51 build/index.js
+msgid "Circle 4"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:52 build/index.js
+msgid "Circle 5"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:53 build/index.js
+msgid "Circle 6"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:54 build/index.js
+msgid "Horizontal 1"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:55 build/index.js
+msgid "Horizontal 2"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:56 build/index.js
+msgid "Horizontal 3"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:57 build/index.js
+msgid "Horizontal 4"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:58 build/index.js
+msgid "Horizontal 5"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:59 build/index.js
+msgid "Horizontal 6"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:60 build/index.js
+msgid "Horizontal 7"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:61 build/index.js
+msgid "Horizontal 8"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:62 build/index.js
+msgid "Horizontal 9"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:63 build/index.js
+msgid "Flip 1"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:64 build/index.js
+msgid "Flip 2"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:65 build/index.js
+msgid "Flip 3"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:66 build/index.js
+msgid "Flip 4"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:67 build/index.js
+msgid "Flip 5"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:68 build/index.js
+msgid "Flip 6"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:69 build/index.js
+msgid "Table 1"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:70 build/index.js
+msgid "Table 2"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:71 build/index.js
+msgid "Table 3"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:72 build/index.js
+msgid "Table 4"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:73 build/index.js
+msgid "Table 5"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:74 build/index.js
+msgid "List 1"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:75 build/index.js
+msgid "List 2"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:76 build/index.js
+msgid "List 3"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:77 build/index.js
+msgid "List 4"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:78 build/index.js
+msgid "List 5"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:79 build/index.js
+msgid "Grid 7"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:80 build/index.js
+msgid "Grid 8"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:81 build/index.js
+msgid "Grid 9"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:82 build/index.js
+msgid "Grid 10 (Greyscale)"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:83 build/index.js
+msgid "Grid 11"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:84 build/index.js
+msgid "Grid 12"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:85 build/index.js
+msgid "Grid Popup"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:86 build/index.js
+msgid "Grid Single"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:87 build/index.js
+msgid "Grid Filter Single"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:88 build/index.js
+msgid "Grid Filter Popup"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:89 build/index.js
+msgid "Grid Slider"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:90 build/index.js
+msgid "Grid Filter - Selected Groups"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:91 build/index.js
+msgid "Grid Filter with vCard"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:92 build/index.js
+msgid "Grid Panel Slide"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:93 build/index.js
+msgid "Grid Drawer 1"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:94 build/index.js
+msgid "Grid Drawer 2"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:95 build/index.js
+msgid "Table 6 - Underline"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:96 build/index.js
+msgid "Table 7 - Box Border"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:97 build/index.js
+msgid "Table 8 - Odd Even"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:98 build/index.js
+msgid "Table 9 - Filter"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:99 build/index.js
+msgid "Table 10 - Filter Dense"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:100 build/index.js
+msgid "List 6"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:101 build/index.js
+msgid "List 7"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:102 build/index.js
+msgid "Group Filter 1"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:103 build/index.js
+msgid "Sidebar 1 - Framed Photo"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:104 build/index.js
+msgid "Sidebar 2 - Round Avatar"
+msgstr ""
+
+#: src/Components/Common/Team/registry.js:105 build/index.js
+msgid "Sidebar 3 - Compact Rows"
+msgstr ""
+
+#: src/Components/Common/Team/themes.js:520 build/index.js
+msgid "Position"
+msgstr ""
+
+#: src/Components/Common/Team/themes.js:521 build/index.js
+msgid "Description"
 msgstr ""
 
 #: src/block.json
 msgctxt "block title"
-msgid "BP Team Member"
+msgid "Team Builder – Grid, List, Carousel & Popup"
 msgstr ""
 
 #: src/block.json
 msgctxt "block description"
-msgid "BP Team Member is a WordPress plugin that allows you to showcase your team members beautifully on your website."
+msgid "Team Builder – Grid, List, Carousel & Popup is a WordPress plugin that allows you to showcase your team members beautifully on your website."
 msgstr ""
 
 #: src/block.json
 msgctxt "block keyword"
-msgid "BP Team Member"
+msgid "Team Members"
 msgstr ""
 
 #: src/block.json
@@ -1965,52 +1589,72 @@ msgctxt "block keyword"
 msgid "staff"
 msgstr ""
 
-#: src/utils/editorData.js:12 build/index.js
-msgid "Circle"
-msgstr ""
-
-#: src/utils/editorData.js:13 build/index.js
-msgid "Horizontal"
-msgstr ""
-
-#: src/utils/editorData.js:14 build/index.js
-msgid "Flip"
+#: src/utils/editorData.js:14 build/index.js src/utils/options.js:13
+msgid "Grid"
 msgstr ""
 
 #: src/utils/editorData.js:15 build/index.js
-msgid "Table"
+msgid "Circle"
 msgstr ""
 
 #: src/utils/editorData.js:16 build/index.js
-msgid "List"
+msgid "Horizontal"
 msgstr ""
 
 #: src/utils/editorData.js:17 build/index.js
-msgid "Special layouts"
+msgid "Flip"
 msgstr ""
 
 #: src/utils/editorData.js:18 build/index.js
+msgid "Table"
+msgstr ""
+
+#: src/utils/editorData.js:19 build/index.js
+msgid "List"
+msgstr ""
+
+#: src/utils/editorData.js:20 build/index.js
+msgid "Special layouts"
+msgstr ""
+
+#: src/utils/editorData.js:21 build/index.js
 msgid "Sidebar / Widget"
 msgstr ""
 
-#: src/utils/editorData.js:134 build/index.js
+#: src/utils/editorData.js:47 build/index.js
 msgid "Medium Large"
 msgstr ""
 
-#: src/utils/editorData.js:136 build/index.js
+#: src/utils/editorData.js:49 build/index.js
 msgid "Full"
 msgstr ""
 
-#: src/utils/editorData.js:155 build/index.js
-msgid "Featured badge"
+#: src/utils/editorData.js:58 build/index.js
+msgid "Social Links"
 msgstr ""
 
-#: src/utils/editorData.js:173 build/index.js
-msgid "Read more link"
+#: src/utils/editorData.js:60 build/index.js
+msgid "Featured Badge"
 msgstr ""
 
-#: src/utils/editorData.js:189 build/index.js
+#: src/utils/editorData.js:68 build/index.js
+msgid "vCard"
+msgstr ""
+
+#: src/utils/editorData.js:69 build/index.js
+msgid "Read More"
+msgstr ""
+
+#: src/utils/editorData.js:90 build/index.js
 msgid "Tags"
+msgstr ""
+
+#: src/utils/options.js:7 build/index.js
+msgid "Default"
+msgstr ""
+
+#: src/utils/options.js:19 build/index.js
+msgid "Default (popup)"
 msgstr ""
 
 #: src/utils/options.js:27 build/index.js
@@ -2025,25 +1669,20 @@ msgstr ""
 msgid "One"
 msgstr ""
 
-#: src/utils/options.js:38 build/index.js src/utils/options.js:91
+#: src/utils/options.js:38 build/index.js src/utils/options.js:85
 msgid "Two"
 msgstr ""
 
-#: src/utils/options.js:41 build/index.js src/utils/options.js:94
+#: src/utils/options.js:41 build/index.js src/utils/options.js:88
 msgid "Left"
 msgstr ""
 
-#: src/utils/options.js:42 build/index.js src/utils/options.js:95
+#: src/utils/options.js:42 build/index.js src/utils/options.js:89
 msgid "Center"
 msgstr ""
 
-#: src/utils/options.js:43 build/index.js src/utils/options.js:96
+#: src/utils/options.js:43 build/index.js src/utils/options.js:90
 msgid "Right"
-msgstr ""
-
-#: src/utils/options.js:47 build/index.js src/utils/options.js:112
-#: src/utils/options.js:127 src/utils/options.js:135
-msgid "None"
 msgstr ""
 
 #: src/utils/options.js:48 build/index.js
@@ -2083,129 +1722,65 @@ msgid "Sepia"
 msgstr ""
 
 #: src/utils/options.js:60 build/index.js
-msgid "After Skills"
-msgstr ""
-
-#: src/utils/options.js:61 build/index.js
-msgid "After Description"
-msgstr ""
-
-#: src/utils/options.js:62 build/index.js
-msgid "After Meta Details"
-msgstr ""
-
-#: src/utils/options.js:66 build/index.js
 msgid "Default (as added)"
 msgstr ""
 
-#: src/utils/options.js:81 build/index.js
+#: src/utils/options.js:62 build/index.js
+msgid "Random"
+msgstr ""
+
+#: src/utils/options.js:75 build/index.js
 msgid "Order of appearance"
 msgstr ""
 
-#: src/utils/options.js:87 build/index.js
+#: src/utils/options.js:78 build/index.js
+msgid "Descending"
+msgstr ""
+
+#: src/utils/options.js:78 build/index.js
+msgid "Ascending"
+msgstr ""
+
+#: src/utils/options.js:81 build/index.js
 msgid "Normal Filter"
 msgstr ""
 
-#: src/utils/options.js:88 build/index.js
+#: src/utils/options.js:82 build/index.js
 msgid "Ajax Filter"
 msgstr ""
 
-#: src/utils/options.js:91 build/index.js
+#: src/utils/options.js:85 build/index.js
 msgid "Three"
 msgstr ""
 
-#: src/utils/options.js:100 build/index.js
+#: src/utils/options.js:94 build/index.js
 msgid "Normal Pagination"
 msgstr ""
 
-#: src/utils/options.js:101 build/index.js
+#: src/utils/options.js:95 build/index.js
 msgid "Ajax Pagination"
 msgstr ""
 
-#: src/utils/options.js:102 build/index.js
+#: src/utils/options.js:96 build/index.js
 msgid "Load More Button"
 msgstr ""
 
-#: src/utils/options.js:103 build/index.js
+#: src/utils/options.js:97 build/index.js
 msgid "Load More on Scroll"
 msgstr ""
 
-#: src/utils/options.js:113 build/index.js
-msgid "Uppercase"
-msgstr ""
-
-#: src/utils/options.js:114 build/index.js
-msgid "Lowercase"
-msgstr ""
-
-#: src/utils/options.js:115 build/index.js
-msgid "Capitalize"
-msgstr ""
-
-#: src/utils/options.js:120 build/index.js
-msgid "Normal"
-msgstr ""
-
-#: src/utils/options.js:121 build/index.js
-msgid "Italic"
-msgstr ""
-
-#: src/utils/options.js:122 build/index.js
-msgid "Oblique"
-msgstr ""
-
-#: src/utils/options.js:128 build/index.js
-msgid "Underline"
-msgstr ""
-
-#: src/utils/options.js:129 build/index.js
-msgid "Overline"
-msgstr ""
-
-#: src/utils/options.js:130 build/index.js
-msgid "Line Through"
-msgstr ""
-
-#: src/utils/options.js:137 build/index.js
-msgid "Small"
-msgstr ""
-
-#: src/utils/options.js:140 build/index.js
-msgid "Extra large"
-msgstr ""
-
-#: src/utils/options.js:141 build/index.js
-msgid "Custom…"
-msgstr ""
-
-#: src/utils/options.js:145 build/index.js
+#: src/utils/options.js:101 build/index.js
 msgid "Desktop"
 msgstr ""
 
-#: src/utils/options.js:146 build/index.js
+#: src/utils/options.js:102 build/index.js
 msgid "Tablet"
 msgstr ""
 
-#: src/utils/options.js:147 build/index.js
+#: src/utils/options.js:103 build/index.js
 msgid "Mobile landscape"
 msgstr ""
 
-#: src/utils/options.js:148 build/index.js
+#: src/utils/options.js:104 build/index.js
 msgid "Mobile"
-msgstr ""
-
-#: templates/partials/modal.php:19 templates/partials/modal.php:38
-msgid "Member details"
-msgstr ""
-
-#: templates/partials/pagination.php:49
-msgid "Team members pages"
-msgstr ""
-
-#: templates/partials/pagination.php:93
-msgid "Loading more members"
-msgstr ""
-
-#: templates/popups/style-three.php:30
-msgid "Contact Info"
 msgstr ""

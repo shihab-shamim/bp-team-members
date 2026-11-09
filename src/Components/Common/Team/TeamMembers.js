@@ -154,7 +154,7 @@ const TeamMembers = ( { attributes, uid, domId, isEditor = false, host = null, w
 	const drawerItemRef = useRef( null );
 
 	/* ---------------- Classes ---------------- */
-	const baseClass = String( wrapperClass || cx( 'wp-block-icb-fold-out-reveal', atts.className ) )
+	const baseClass = String( wrapperClass || cx( 'wp-block-tsb-team-members', atts.className ) )
 		.split( /\s+/ )
 		.map( htmlClass )
 		.filter( Boolean )

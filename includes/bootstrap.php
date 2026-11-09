@@ -1,6 +1,6 @@
 <?php
 /**
- * BP Team Member bootstrap: constants + file loader.
+ * Team Builder – Grid, List, Carousel & Popup bootstrap: constants + file loader.
  *
  * Every included file must be safe to load in any order: it may only declare
  * classes/functions and register hooks (no work at include time).

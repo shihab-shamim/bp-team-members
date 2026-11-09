@@ -89,7 +89,7 @@ export const usePortal = ( rootRef, enabled, classes, uid, isEditor ) => {
 		if ( el ) {
 			const keep = String( classes )
 				.split( /\s+/ )
-				.filter( ( c ) => /^bptm-(wrap|theme-|group-|layout-|link-|align-|imgfx-|imghfx-)/.test( c ) || 'wp-block-icb-fold-out-reveal' === c );
+				.filter( ( c ) => /^bptm-(wrap|theme-|group-|layout-|link-|align-|imgfx-|imghfx-)/.test( c ) || 'wp-block-tsb-team-members' === c );
 			el.className = keep.concat( [ 'bptm-portal' ] ).join( ' ' );
 		}
 	} );

@@ -18,9 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Block {
 
-	const STYLE_HANDLE  = 'icb-fold-out-reveal-style';
-	const SCRIPT_HANDLE = 'icb-fold-out-reveal-view-script';
-	const EDITOR_HANDLE = 'icb-fold-out-reveal-editor-script';
+	const STYLE_HANDLE  = 'tsb-team-members-style';
+	const SCRIPT_HANDLE = 'tsb-team-members-view-script';
+	const EDITOR_HANDLE = 'tsb-team-members-editor-script';
 	const FA_HANDLE     = 'bptm-fontawesome';
 	const FA_VERSION    = '6.5.2';
 
@@ -210,7 +210,7 @@ class Block {
 
 		$wrapper_attrs = trim( (string) $wrapper_attrs );
 		if ( '' === $wrapper_attrs ) {
-			$classes = 'wp-block-icb-fold-out-reveal';
+			$classes = 'wp-block-tsb-team-members';
 			if ( ! empty( $attributes['className'] ) && is_string( $attributes['className'] ) ) {
 				$classes .= ' ' . implode( ' ', array_filter( array_map( 'sanitize_html_class', preg_split( '/\s+/', $attributes['className'] ) ) ) );
 			}

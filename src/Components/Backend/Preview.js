@@ -16,7 +16,7 @@ import { blockIcon } from '../../utils/icons';
 export const EmptyState = ( { onAdd } ) => (
 	<Placeholder
 		icon={ blockIcon }
-		label={ __( 'BP Team Member', 'bp-team-member' ) }
+		label={ __( 'Team Builder – Grid, List, Carousel & Popup', 'bp-team-member' ) }
 		instructions={ __( 'This block has no team members yet. Add your first member, then fill in its details in the sidebar (General → Team Members).', 'bp-team-member' ) }
 		className="bptm-ed-empty"
 	>

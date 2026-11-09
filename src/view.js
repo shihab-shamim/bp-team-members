@@ -1,7 +1,7 @@
 /**
- * BP Team Member front end (block viewScript + style).
+ * Team Builder – Grid, List, Carousel & Popup front end (block viewScript + style).
  *
- * src/render.php prints only a wrapper `<div class="wp-block-icb-fold-out-reveal …" data-bptm-uid data-attributes="{json}">`;
+ * src/render.php prints only a wrapper `<div class="wp-block-tsb-team-members …" data-bptm-uid data-attributes="{json}">`;
  * this script renders the block in the browser from those attributes with React (the same component the editor uses).
  *
  * window.BPTM.init( root = document ) mounts every not-yet-mounted block inside root (page builders call it
@@ -12,7 +12,7 @@ import { createRoot, createElement } from '@wordpress/element';
 
 import TeamMembers from './Components/Common/Team/TeamMembers';
 
-const SELECTOR = '.wp-block-icb-fold-out-reveal[data-attributes]';
+const SELECTOR = '.wp-block-tsb-team-members[data-attributes]';
 const mounted = new Map();
 
 const randomUid = () => Math.random().toString( 16 ).slice( 2, 10 );
@@ -56,7 +56,7 @@ function init( scope ) {
 			mount( el );
 		} catch ( e ) {
 			// eslint-disable-next-line no-console
-			console.error( 'BP Team Member:', e );
+			console.error( 'Team Builder – Grid, List, Carousel & Popup:', e );
 		}
 	} );
 	return els;

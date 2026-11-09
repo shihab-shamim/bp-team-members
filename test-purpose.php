@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: BP Team Member
- * Description: BP Team Member is a WordPress plugin that allows you to showcase your team members beautifully on your website.
+ * Plugin Name: Team Builder – Grid, List, Carousel & Popup
+ * Description: Showcase your team beautifully with grid, list, carousel and popup layouts.
  * Version: 1.0.0
  * Author: bPlugins
  * Author URI: https://bplugins.com

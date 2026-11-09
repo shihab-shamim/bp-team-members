@@ -1,4 +1,4 @@
-# BP Team Member — Architecture & Contracts
+# Team Builder – Grid, List, Carousel & Popup — Architecture & Contracts
 
 Reference plugin (read-only, GPL-2.0+): `E:\gs-team-members.2.8.4\gs-team-members` ("GS").
 Target plugin (this repo): `bp-team-member` ("BP").
@@ -16,14 +16,14 @@ block attributes** — in the editor (instant preview, no server round-trip) and
 No team-member markup is produced on the server: PHP only prints a mount wrapper carrying the attributes.
 
 There is no member post type, no taxonomies, no single/archive member pages (see "v2 data model").
-For page builders / classic editor / widgets there is a "Showcase" CPT (`bptm_showcase`, admin menu "BP Team Member")
+For page builders / classic editor / widgets there is a "Showcase" CPT (`bptm_showcase`, admin menu "Team Builder – Grid, List, Carousel & Popup")
 whose content is one BP block; `[bp_team id="123"]` renders it.
 
 ## Hard rules
 
 - Prefix everything: PHP namespace `BPTM`, functions `bptm_`, constants `BPTM_`, CSS classes `bptm-`, JS global `window.BPTM` / `window.bptmData`, option names `bptm_*`, hooks `bptm_*`, text domain `bp-team-member`.
 - Main plugin file stays `test-purpose.php` (renaming would deactivate the plugin). It only requires `includes/bootstrap.php` and registers the block.
-- Block name stays `icb/fold-out-reveal` (backward compatibility with already-saved blocks). Legacy attributes `alignment`, `purposeType`, `colors` stay declared. `alignment` = content text alignment. Attributes may only be ADDED, never renamed/removed.
+- Block name stays `tsb/team-members` (backward compatibility with already-saved blocks). Legacy attributes `alignment`, `purposeType`, `colors` stay declared. `alignment` = content text alignment. Attributes may only be ADDED, never renamed/removed.
 - PHP ≥ 7.4, WordPress ≥ 6.3. Escape all PHP output, sanitize all input, nonces + `current_user_can()` on every admin action.
 - **Attributes are untrusted input.** The React renderer sanitizes everything itself (see "Security").
 - Frontend React comes from WordPress (`wp-element`); no other runtime libraries (no jQuery, Owl, Isotope …). Admin-only JS may use jQuery + `wp.media`.
@@ -52,7 +52,7 @@ whose content is one BP block; `[bp_team id="123"]` renders it.
 `src/render.php` → `\BPTM\Block::render( $attributes, get_block_wrapper_attributes() )` returns:
 
 ```html
-<div class="wp-block-icb-fold-out-reveal alignwide …" id="bptm-{uid}|{anchor}" data-bptm-uid="{uid}"
+<div class="wp-block-tsb-team-members alignwide …" id="bptm-{uid}|{anchor}" data-bptm-uid="{uid}"
      data-attributes="{JSON of the attributes that differ from block.json defaults}">
   <noscript><ul class="bptm-noscript"><li><strong>Name</strong> – Designation</li>…</ul></noscript>
 </div>
@@ -63,7 +63,7 @@ whose content is one BP block; `[bp_team id="123"]` renders it.
   page loads, so the normal-pagination query var `bptm-page-{uid}` deep-links.
 - JSON is encoded with `JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT` and then `esc_attr()`'d.
 - `Block::render()` calls `Block::enqueue_frontend()`: block style, Font Awesome (`bptm-fontawesome`, a dependency of the
-  block style), the view script (`icb-fold-out-reveal-view-script`) with the data bridge, and the preference custom CSS.
+  block style), the view script (`tsb-team-members-view-script`) with the data bridge, and the preference custom CSS.
   This also makes shortcodes, showcases, the widget and page-builder modules work (they all end in `render_block()` /
   `Block::render()`). Filter `bptm_render_html( $html, $attributes, $uid )`.
 
@@ -118,7 +118,7 @@ root element's `ownerDocument` / `defaultView`, so it all works inside the edito
 Custom DOM events on the block root: `bptm:open` ({ id, type }), `bptm:close`.
 
 `src/view.js`: `window.BPTM.init( root = document )` mounts every not-yet-mounted
-`.wp-block-icb-fold-out-reveal[data-attributes]` inside `root` (`createRoot( wrapper )`; React then owns the wrapper's
+`.wp-block-tsb-team-members[data-attributes]` inside `root` (`createRoot( wrapper )`; React then owns the wrapper's
 children and keeps its classes = server wrapper classes + `bptm-*` classes). Page builders call it after injecting
 markup (`Quick::builder_init_script()`, Elementor widget). `window.BPTM.get( el )` → `{ attributes }`.
 
@@ -156,7 +156,7 @@ See `src/block.json` — the single source of truth for attribute names, types a
 
 ## Settings (Preferences / Translations)
 
-Admin menu "BP Team Member": Showcases, Add New Showcase, Preferences (`page=bptm-preferences`), Translations
+Admin menu "Team Builder – Grid, List, Carousel & Popup": Showcases, Add New Showcase, Preferences (`page=bptm-preferences`), Translations
 (`page=bptm-translations`). Option `bptm_settings`: `search_all_fields`, `multilingual`, `disable_google_fonts`,
 `disable_lazy_load`, `lazy_load_class` (default `skip-lazy`), `land_phone_link`, `cell_phone_link`, `email_link`,
 `custom_css`, plus translations (keys → default English): `filter_designation` … `no_members` (see `bptm_translation_defaults()`).

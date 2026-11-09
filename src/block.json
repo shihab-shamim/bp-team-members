@@ -1,13 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "icb/fold-out-reveal",
+	"name": "tsb/team-members",
 	"version": "1.0.0",
-	"title": "BP Team Member",
+	"title": "Team Builder – Grid, List, Carousel & Popup",
 	"category": "widgets",
-	"description": "BP Team Member is a WordPress plugin that allows you to showcase your team members beautifully on your website.",
+	"description": "Showcase your team beautifully with grid, list, carousel and popup layouts.",
 	"keywords": [
-		"BP Team Member",
+		"Team Members",
 		"team",
 		"member",
 		"staff"
