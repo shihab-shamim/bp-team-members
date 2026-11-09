@@ -1401,15 +1401,15 @@
     },
     "popupCloseIconSize": {
       "type": "string",
-      "default": ""
+      "default": "20px"
     },
     "popupCloseSize": {
       "type": "string",
-      "default": ""
+      "default": "40px"
     },
     "popupCloseRadius": {
       "type": "string",
-      "default": ""
+      "default": "50%"
     },
     "popupArrowColor": {
       "type": "string",
@@ -1437,7 +1437,15 @@
     },
     "popupNavRadius": {
       "type": "string",
-      "default": ""
+      "default": "50px"
+    },
+    "popupNavIconSize": {
+      "type": "string",
+      "default": "14px"
+    },
+    "popupNavTypography": {
+      "type": "object",
+      "default": {}
     },
     "accentColor": {
       "type": "string",

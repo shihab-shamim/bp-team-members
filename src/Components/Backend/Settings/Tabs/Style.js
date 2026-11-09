@@ -10,7 +10,7 @@
  * - itemPadding is {top,right,bottom,left}, itemShadow is a CSS box-shadow string
  *   (custom shadows also keep their ShadowControl list in itemShadowList).
  */
-import { PanelBody } from '@wordpress/components';
+import { PanelBody, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 // bpl-tools components, imported from their own files (the Components barrel would pull every component in).
@@ -236,6 +236,24 @@ const Style = ( { attributes, setAttributes } ) => {
 	const link = effectiveLinkType( attributes );
 	const color = ( attr, label ) => <Color label={ label } value={ attributes[ attr ] } onChange={ ( v ) => setAttributes( { [ attr ]: v } ) } />;
 	const unit = ( attr, label, units ) => <Unit label={ label } value={ attributes[ attr ] } onChange={ ( v ) => setAttributes( { [ attr ]: v } ) } units={ units } />;
+	// Slider for a length attribute stored as "<number><suffix>" (e.g. "20px", "50%"); never shown empty.
+	const range = ( attr, label, min, max, def, suffix ) => {
+		const n = parseFloat( attributes[ attr ] );
+		return (
+			<RangeControl
+				__nextHasNoMarginBottom
+				__next40pxDefaultSize
+				className="bptm-ed-field"
+				label={ label }
+				min={ min }
+				max={ max }
+				value={ Number.isFinite( n ) ? n : def }
+				allowReset
+				resetFallbackValue={ def }
+				onChange={ ( v ) => setAttributes( { [ attr ]: `${ undefined === v || null === v || '' === v ? def : v }${ suffix }` } ) }
+			/>
+		);
+	};
 	const box = ( attr, label ) => {
 		const v = attributes[ attr ] && 'object' === typeof attributes[ attr ] && ! Array.isArray( attributes[ attr ] ) ? attributes[ attr ] : {};
 		return (
@@ -262,7 +280,7 @@ const Style = ( { attributes, setAttributes } ) => {
 
 	return (
 		<div className="bptm-ed-style">
-			<PanelBody className="bPlPanelBody" title={ __( 'General', 'bp-team-member' ) } initialOpen>
+			<PanelBody className="bPlPanelBody" title={ __( '', 'bp-team-member' ) } >
 				{ color( 'accentColor', __( 'Accent color', 'bp-team-member' ) ) }
 				{ /* Only the Grid 8 theme has a tooltip (the name / designation bubble). */ }
 				{ 'grid-8' === attributes.theme && color( 'tooltipBg', __( 'Tooltip background', 'bp-team-member' ) ) }
@@ -277,9 +295,9 @@ const Style = ( { attributes, setAttributes } ) => {
 					{ color( 'popupCloseBg', __( 'Background', 'bp-team-member' ) ) }
 					{ color( 'popupCloseHoverColor', __( 'Icon color (hover)', 'bp-team-member' ) ) }
 					{ color( 'popupCloseHoverBg', __( 'Background (hover)', 'bp-team-member' ) ) }
-					<Unit label={ __( 'Icon size', 'bp-team-member' ) } value={ attributes.popupCloseIconSize } onChange={ ( v ) => setAttributes( { popupCloseIconSize: v } ) } units={ [ { value: 'px', label: 'px', default: 20 } ] } />
-					<Unit label={ __( 'Button size', 'bp-team-member' ) } value={ attributes.popupCloseSize } onChange={ ( v ) => setAttributes( { popupCloseSize: v } ) } units={ [ { value: 'px', label: 'px', default: 40 } ] } />
-					<Unit label={ __( 'Border radius', 'bp-team-member' ) } value={ attributes.popupCloseRadius } onChange={ ( v ) => setAttributes( { popupCloseRadius: v } ) } units={ [ { value: 'px', label: 'px', default: 0 }, { value: '%', label: '%', default: 50 } ] } />
+					{ range( 'popupCloseIconSize', __( 'Icon size (px)', 'bp-team-member' ), 8, 48, 20, 'px' ) }
+					{ range( 'popupCloseSize', __( 'Button size (px)', 'bp-team-member' ), 20, 80, 40, 'px' ) }
+					{ range( 'popupCloseRadius', __( 'Border radius (%)', 'bp-team-member' ), 0, 50, 50, '%' ) }
 				</PanelBody>
 			) }
 
@@ -295,7 +313,11 @@ const Style = ( { attributes, setAttributes } ) => {
 					{ color( 'popupNavHoverBg', __( 'Background', 'bp-team-member' ) ) }
 					{ color( 'popupNavHoverBorderColor', __( 'Border color', 'bp-team-member' ) ) }
 					<Section>{ __( 'Shape', 'bp-team-member' ) }</Section>
-					<Unit label={ __( 'Border radius', 'bp-team-member' ) } value={ attributes.popupNavRadius } onChange={ ( v ) => setAttributes( { popupNavRadius: v } ) } />
+					{ range( 'popupNavRadius', __( 'Border radius (px)', 'bp-team-member' ), 0, 50, 50, 'px' ) }
+					{ range( 'popupNavIconSize', __( 'Icon size (px)', 'bp-team-member' ), 8, 32, 14, 'px' ) }
+
+					<Section>{ __( 'Text', 'bp-team-member' ) }</Section>
+					<TypoControl { ...f } name="popupNavTypography" label={ __( 'Text typography', 'bp-team-member' ) } />
 				</PanelBody>
 			) }
 

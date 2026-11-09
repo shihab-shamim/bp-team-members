@@ -68,6 +68,7 @@ const TYPO = {
 	infoTypography: [ '--bptm-info', [ '.bptm-meta', '.bptm-meta a', '.bptm-meta-value' ], [ '.bptm-meta-item:hover', '.bptm-meta-item:hover a' ] ],
 	ribbonTypography: [ '--bptm-ribbon', [ '.bptm-ribbon' ], [ '.bptm-item:hover .bptm-ribbon' ] ],
 	readmoreTypography: [ '--bptm-readmore', [ '.bptm-readmore a', '.bptm-more', '.bptm-readmore-btn' ], [ '.bptm-readmore a:hover', '.bptm-more:hover', '.bptm-readmore-btn:hover' ] ],
+	popupNavTypography: [ '--bptm-popup-nav', [ '.bptm-modal-nav button span' ], [ '.bptm-modal-nav button:hover span' ] ],
 };
 
 const SHADOWS = {
@@ -417,6 +418,10 @@ export const dynamicCss = ( atts, domId, uid ) => {
 	}
 	if ( color( atts.lmHoverBg ) || color( atts.lmHoverColor ) ) {
 		setVar( '--bptm-lm-hover-filter', 'none' );
+	}
+	const navIcon = length( atts.popupNavIconSize );
+	if ( navIcon ) {
+		add( '', [ '.bptm-modal-nav button i' ], 'font-size:' + navIcon );
 	}
 	const navR = length( atts.popupNavRadius );
 	if ( navR ) {
