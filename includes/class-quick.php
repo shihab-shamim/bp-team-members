@@ -172,7 +172,7 @@ class Quick {
 			$pagination = sanitize_key( $pagination );
 			$types      = array(
 				'normal'   => 'normal-pagination',
-				'ajax'     => 'ajax-pagination',
+				'ajax'     => 'normal-pagination',
 				'button'   => 'load-more-button',
 				'loadmore' => 'load-more-button',
 				'scroll'   => 'load-more-scroll',

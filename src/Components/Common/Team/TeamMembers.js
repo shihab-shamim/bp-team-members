@@ -91,7 +91,7 @@ const TeamMembers = ( { attributes, uid, domId, isEditor = false, host = null, w
 	const filterActive = Object.keys( clientState ).filter( ( k ) => ! ( 'group' === k && ! atts.filterAllEnabled && group === firstGroup ) ).length > 0;
 
 	/* ---------------- Pagination ---------------- */
-	const [ page, setPage ] = useState( () => ( ! isEditor && win && ( 'normal-pagination' === mode || 'ajax-pagination' === mode ) ? readPageFromUrl( win, pageVar ) : 1 ) );
+	const [ page, setPage ] = useState( () => ( ! isEditor && win && 'normal-pagination' === mode ? readPageFromUrl( win, pageVar ) : 1 ) );
 	const [ loads, setLoads ] = useState( 0 );
 	const resetPaging = () => {
 		setPage( 1 );
@@ -131,7 +131,7 @@ const TeamMembers = ( { attributes, uid, domId, isEditor = false, host = null, w
 	let maxPages = 1;
 	let curPage = 1;
 	let more = false;
-	if ( 'normal-pagination' === mode || 'ajax-pagination' === mode ) {
+	if ( 'normal-pagination' === mode ) {
 		const pp = Math.max( 1, atts.perPage );
 		maxPages = Math.max( 1, Math.ceil( total / pp ) );
 		curPage = Math.min( Math.max( 1, page ), maxPages );
@@ -355,7 +355,7 @@ const TeamMembers = ( { attributes, uid, domId, isEditor = false, host = null, w
 	const goPage = ( n ) => {
 		setPage( n );
 		const root = rootRef.current;
-		if ( ! isEditor && 'normal-pagination' === mode && win && win.history && 'function' === typeof win.history.pushState ) {
+		if ( ! isEditor && 'normal-pagination' === mode && 'filter' !== view && win && win.history && 'function' === typeof win.history.pushState ) {
 			try {
 				win.history.pushState( { bptmPage: n }, '', pageUrl( win, pageVar, n, false ) );
 			} catch ( e ) {
@@ -376,13 +376,13 @@ const TeamMembers = ( { attributes, uid, domId, isEditor = false, host = null, w
 		}
 	};
 	useEffect( () => {
-		if ( isEditor || ! win || 'normal-pagination' !== mode ) {
+		if ( isEditor || ! win || 'normal-pagination' !== mode || 'filter' === view ) {
 			return undefined;
 		}
 		const onPop = () => setPage( readPageFromUrl( win, pageVar ) );
 		win.addEventListener( 'popstate', onPop );
 		return () => win.removeEventListener( 'popstate', onPop );
-	}, [ isEditor, win, mode, pageVar ] );
+	}, [ isEditor, win, mode, view, pageVar ] );
 
 	const sentinelRef = useRef( null );
 	const moreRef = useRef( more );
@@ -561,8 +561,8 @@ const TeamMembers = ( { attributes, uid, domId, isEditor = false, host = null, w
 	/* ---------------- Render: pagination ---------------- */
 	let pagination = null;
 	if ( mode ) {
-		if ( 'normal-pagination' === mode || 'ajax-pagination' === mode ) {
-			pagination = h( Numbered, { mode, page: curPage, max: maxPages, pageVar, win, isEditor, onPage: goPage } );
+		if ( 'normal-pagination' === mode ) {
+			pagination = h( Numbered, { page: curPage, max: maxPages, pageVar, win, isEditor, onPage: goPage } );
 		} else if ( 'load-more-button' === mode ) {
 			pagination = h( LoadMore, { text: String( atts.loadButtonText || '' ).trim() || t( 'load_more' ), more, onMore: () => setLoads( ( n ) => n + 1 ) } );
 		} else {

@@ -1,5 +1,5 @@
 /**
- * Pagination UI (port of templates/partials/pagination.php): numbered links (normal / ajax),
+ * Pagination UI (port of templates/partials/pagination.php): numbered links,
  * load-more button and the infinite-scroll sentinel. Paging itself is client-side state.
  */
 import { createElement as h } from '@wordpress/element';
@@ -33,7 +33,7 @@ export const pageUrl = ( win, pageVar, n, isEditor ) => {
 	}
 };
 
-export const Numbered = ( { mode, page, max, pageVar, win, isEditor, onPage } ) => {
+export const Numbered = ( { page, max, pageVar, win, isEditor, onPage } ) => {
 	const cur = Math.min( Math.max( 1, page ), Math.max( 1, max ) );
 	const pages = [];
 	for ( let i = 1; i <= max; i++ ) {
@@ -43,7 +43,6 @@ export const Numbered = ( { mode, page, max, pageVar, win, isEditor, onPage } ) 
 			pages.push( '…' );
 		}
 	}
-	const ajax = 'ajax-pagination' === mode;
 	const link = ( n, cls, extra, children ) =>
 		h(
 			'a',
@@ -64,7 +63,7 @@ export const Numbered = ( { mode, page, max, pageVar, win, isEditor, onPage } ) 
 		);
 	return h(
 		'nav',
-		{ className: 'bptm-pagination bptm-pagination--' + ( ajax ? 'ajax' : 'normal' ), 'aria-label': __( 'Team members pages', 'bp-team-member' ), hidden: max <= 1 },
+		{ className: 'bptm-pagination bptm-pagination--normal', 'aria-label': __( 'Team members pages', 'bp-team-member' ), hidden: max <= 1 },
 		h(
 			'ul',
 			{ className: 'bptm-pages' },

@@ -236,6 +236,24 @@ const Style = ( { attributes, setAttributes } ) => {
 	const link = effectiveLinkType( attributes );
 	const color = ( attr, label ) => <Color label={ label } value={ attributes[ attr ] } onChange={ ( v ) => setAttributes( { [ attr ]: v } ) } />;
 	const unit = ( attr, label, units ) => <Unit label={ label } value={ attributes[ attr ] } onChange={ ( v ) => setAttributes( { [ attr ]: v } ) } units={ units } />;
+	// Slider for a length attribute that is empty by default (each theme keeps its own design):
+	// shows the base default while empty, Reset clears the value again.
+	const themeRange = ( attr, label, min, max, def, suffix ) => {
+		const n = parseFloat( attributes[ attr ] );
+		return (
+			<RangeControl
+				__nextHasNoMarginBottom
+				__next40pxDefaultSize
+				className="bptm-ed-field"
+				label={ label }
+				min={ min }
+				max={ max }
+				value={ Number.isFinite( n ) ? n : def }
+				allowReset
+				onChange={ ( v ) => setAttributes( { [ attr ]: undefined === v || null === v || '' === v ? '' : `${ v }${ suffix }` } ) }
+			/>
+		);
+	};
 	// Slider for a length attribute stored as "<number><suffix>" (e.g. "20px", "50%"); never shown empty.
 	const range = ( attr, label, min, max, def, suffix ) => {
 		const n = parseFloat( attributes[ attr ] );
@@ -362,11 +380,11 @@ const Style = ( { attributes, setAttributes } ) => {
 				{ color( 'socialHoverBorderColor', __( 'Border color', 'bp-team-member' ) ) }
 
 				<Section>{ __( 'Size & shape', 'bp-team-member' ) }</Section>
-				{ unit( 'socialIconSize', __( 'Icon size', 'bp-team-member' ), [ { value: 'px', label: 'px', default: 14 } ] ) }
-				{ unit( 'socialSize', __( 'Button size', 'bp-team-member' ), [ { value: 'px', label: 'px', default: 34 } ] ) }
-				{ unit( 'socialBorderWidth', __( 'Border width', 'bp-team-member' ), PX ) }
-				{ unit( 'socialRadius', __( 'Border radius', 'bp-team-member' ), [ { value: 'px', label: 'px', default: 0 }, { value: '%', label: '%', default: 50 } ] ) }
-				{ unit( 'socialGap', __( 'Space between icons', 'bp-team-member' ), [ { value: 'px', label: 'px', default: 8 } ] ) }
+				{ themeRange( 'socialIconSize', __( 'Icon size (px)', 'bp-team-member' ), 8, 40, 14, 'px' ) }
+				{ themeRange( 'socialSize', __( 'Button size (px)', 'bp-team-member' ), 16, 80, 34, 'px' ) }
+				{ themeRange( 'socialBorderWidth', __( 'Border width (px)', 'bp-team-member' ), 0, 10, 1, 'px' ) }
+				{ themeRange( 'socialRadius', __( 'Border radius (%)', 'bp-team-member' ), 0, 50, 50, '%' ) }
+				{ themeRange( 'socialGap', __( 'Space between icons (px)', 'bp-team-member' ), 0, 40, 8, 'px' ) }
 			</PanelBody>
 
 			<PanelBody className="bPlPanelBody" title={ __( 'Ribbon', 'bp-team-member' ) } initialOpen={ false }>
@@ -418,7 +436,7 @@ const Style = ( { attributes, setAttributes } ) => {
 
 			{ pagination && (
 				<PanelBody className="bPlPanelBody" title={ __( 'Pagination', 'bp-team-member' ) } initialOpen={ false }>
-					{ ( 'normal-pagination' === pgType || 'ajax-pagination' === pgType ) && (
+					{ 'normal-pagination' === pgType && (
 						<>
 							<Section>{ __( 'Normal', 'bp-team-member' ) }</Section>
 							{ color( 'pgColor', __( 'Text color', 'bp-team-member' ) ) }

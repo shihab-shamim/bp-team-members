@@ -793,11 +793,13 @@ $bptm-ta-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 		font-weight: 700;
 	}
 
+	// Hidden row (description / extras / social): animates its real height with a grid row
+	// (0fr → 1fr) instead of max-height, so short content slides open as smoothly as long content.
 	.bptm-ta-hover {
-		max-height: 0;
-		overflow: hidden;
+		display: grid;
+		grid-template-rows: 0fr;
 		opacity: 0;
-		transition: max-height 0.45s $bptm-ta-ease, opacity 0.35s ease;
+		transition: grid-template-rows 0.45s $bptm-ta-ease, opacity 0.35s ease;
 
 		.bptm-social {
 			margin-top: 12px;
@@ -806,6 +808,19 @@ $bptm-ta-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 		.bptm-social a {
 			border-radius: 6px;
 		}
+	}
+
+	// Clips the content while the row grows (never shows a scrollbar itself).
+	.bptm-ta-hover-inner {
+		min-height: 0;
+		overflow: hidden;
+	}
+
+	// Same 300px cap as before: very long content scrolls here. This box keeps its full
+	// height during the animation, so a scrollbar only appears when content is really > 300px.
+	.bptm-ta-hover-scroll {
+		max-height: 300px;
+		overflow: auto;
 	}
 
 	&#{$bptm-ta-hover} {
@@ -822,8 +837,7 @@ $bptm-ta-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 		}
 
 		.bptm-ta-hover {
-			max-height: 300px;
-			overflow: auto;
+			grid-template-rows: 1fr;
 			opacity: 1;
 		}
 	}
@@ -836,8 +850,17 @@ $bptm-ta-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 		}
 
 		.bptm-ta-hover {
-			max-height: none;
+			grid-template-rows: 1fr;
 			opacity: 1;
+		}
+
+		.bptm-ta-hover-inner {
+			overflow: visible;
+		}
+
+		.bptm-ta-hover-scroll {
+			max-height: none;
+			overflow: visible;
 		}
 	}
 }

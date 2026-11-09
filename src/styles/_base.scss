@@ -511,7 +511,7 @@ $bptm-bp-mobile: 575px;
 		z-index: 1;
 	}
 
-	// Loading state (ajax pagination / filter).
+	// Loading state (filter / load more).
 	&.is-loading .bptm-stage .bptm-items {
 		opacity: 0.45;
 		pointer-events: none;

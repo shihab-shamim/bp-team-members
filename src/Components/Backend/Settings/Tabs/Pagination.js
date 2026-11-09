@@ -41,7 +41,7 @@ const Pagination = ( { attributes, setAttributes } ) => {
 			{ attributes.paginationEnabled && (
 				<>
 					<Select { ...f } name="paginationType" label={ __( 'Pagination type', 'bp-team-member' ) } options={ paginationTypeOptions } />
-					{ [ 'normal-pagination', 'ajax-pagination' ].includes( type ) && (
+					{ 'normal-pagination' === type && (
 						<NumberField { ...f } name="perPage" label={ __( 'Members per page', 'bp-team-member' ) } min={ 1 } />
 					) }
 					{ [ 'load-more-button', 'load-more-scroll' ].includes( type ) && (

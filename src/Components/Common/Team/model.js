@@ -26,7 +26,7 @@ const ENUMS = {
 	filterColumns: [ 'two', 'three' ],
 	filterCatPosition: [ 'center', 'left', 'right' ],
 	filterStyle: [ 'default', 'style-one', 'style-two', 'style-three', 'style-four', 'style-five' ],
-	paginationType: [ 'normal-pagination', 'ajax-pagination', 'load-more-button', 'load-more-scroll' ],
+	paginationType: [ 'normal-pagination', 'load-more-button', 'load-more-scroll' ],
 	carouselNavsStyle: [ 'default', 'style-one', 'style-two', 'style-three' ],
 	carouselDotsStyle: [ 'default', 'style-one', 'style-two', 'style-three' ],
 	alignment: [ 'center', 'left', 'right' ],
@@ -256,7 +256,7 @@ export const resolveLinkType = ( atts, theme, view ) => {
 	return type;
 };
 
-/** '' | normal-pagination | ajax-pagination | load-more-button | load-more-scroll (Query::pagination_mode()). */
+/** '' | normal-pagination | load-more-button | load-more-scroll (Query::pagination_mode()). */
 export const paginationMode = ( atts, theme, view ) => {
 	if ( ! atts.paginationEnabled || 'carousel' === view || theme.grouped || false === theme.pagination ) {
 		return '';
@@ -268,9 +268,6 @@ export const paginationMode = ( atts, theme, view ) => {
 	if ( 'filter' === view ) {
 		if ( 'ajax-filter' !== atts.filterType ) {
 			return '';
-		}
-		if ( 'normal-pagination' === type ) {
-			type = 'ajax-pagination';
 		}
 	}
 	return type;

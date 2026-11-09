@@ -124,7 +124,10 @@ const gridTheme = ( id ) => ( ctx, m ) => {
 		case 'grid-4':
 		case 'grid-5': {
 			const hover = join( p.desc, p.extras, p.social );
-			return taItem( ctx, m, cls, p.img ? wrap( p.img, overlay() ) : null, badgesDiv( p.badges ), div( 'bptm-ta-info', join( p.name, p.role ), hover ? div( 'bptm-ta-hover', hover ) : null ) );
+			// Grid 5 reveals the row with a grid-row (0fr → 1fr) animation: the inner wrapper clips while it
+			// grows, and the scroll box inside it keeps the 300px cap (so no scrollbar flashes mid-animation).
+			const hoverRow = hover && 'grid-5' === id ? div( 'bptm-ta-hover', div( 'bptm-ta-hover-inner', div( 'bptm-ta-hover-scroll', hover ) ) ) : hover && div( 'bptm-ta-hover', hover );
+			return taItem( ctx, m, cls, p.img ? wrap( p.img, overlay() ) : null, badgesDiv( p.badges ), div( 'bptm-ta-info', join( p.name, p.role ), hoverRow || null ) );
 		}
 		default: // grid-6
 			return taItem( ctx, m, cls, p.img ? wrap( p.img ) : null, badgesDiv( p.badges ), div( 'bptm-ta-info', div( 'bptm-ta-info-inner', join( p.name, p.role, p.desc, p.extras, p.social ) ) ) );

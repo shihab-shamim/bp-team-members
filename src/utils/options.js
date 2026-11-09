@@ -92,7 +92,6 @@ export const positionOptions = [
 
 export const paginationTypeOptions = [
 	s( 'normal-pagination', __( 'Normal Pagination', 'bp-team-member' ) ),
-	s( 'ajax-pagination', __( 'Ajax Pagination', 'bp-team-member' ) ),
 	s( 'load-more-button', __( 'Load More Button', 'bp-team-member' ) ),
 	s( 'load-more-scroll', __( 'Load More on Scroll', 'bp-team-member' ) ),
 ];
