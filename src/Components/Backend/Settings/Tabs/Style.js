@@ -10,7 +10,7 @@
  * - itemPadding is {top,right,bottom,left}, itemShadow is a CSS box-shadow string
  *   (custom shadows also keep their ShadowControl list in itemShadowList).
  */
-import { PanelBody, RangeControl } from '@wordpress/components';
+import { Button, PanelBody, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 // bpl-tools components, imported from their own files (the Components barrel would pull every component in).
@@ -18,7 +18,6 @@ import { ColorControl } from '../../../../../../bpl-tools/Components/ColorContro
 import Typography from '../../../../../../bpl-tools/Components/Typography/Typography';
 import BoxControl from '../../../../../../bpl-tools/Components/BoxControl/BoxControl';
 import ShadowControl from '../../../../../../bpl-tools/Components/ShadowControl/ShadowControl';
-import BtnGroup from '../../../../../../bpl-tools/Components/BtnGroup/BtnGroup';
 import { getMultiShadowCSS } from '../../../../../../bpl-tools/utils/getCSS';
 
 import { Unit } from '../../Controls/Fields';
@@ -176,6 +175,8 @@ const ElementColor = ( { attributes, setAttributes, attr, typo, label = __( 'Col
 /* ---------- Shadow: presets (BtnGroup) + custom (ShadowControl) ---------- */
 
 const SHADOW_PRESETS = [
+	// '' = nothing saved: the theme's own shadow (selected by default, so one button is always active).
+	{ value: '', label: __( 'Default', 'bp-team-member' ) },
 	{ value: 'none', label: __( 'None', 'bp-team-member' ) },
 	{ value: 'sm', label: 'S' },
 	{ value: 'md', label: 'M' },
@@ -203,20 +204,34 @@ const ShadowField = ( { attributes, setAttributes } ) => {
 
 	return (
 		<>
-			<BtnGroup
-				className="mt15"
-				label={ __( 'Box shadow', 'bp-team-member' ) }
-				labelPosition="top"
-				value={ mode }
-				options={ SHADOW_PRESETS }
-				onChange={ ( v ) => {
-					if ( 'custom' === v ) {
-						setList( list.length ? list : DEFAULT_CUSTOM );
-					} else {
-						setAttributes( { itemShadow: v || '' } );
-					}
-				} }
-			/>
+			<div className="bptm-ed-presets mt15" role="group" aria-label={ __( 'Box shadow', 'bp-team-member' ) }>
+				<span className="bptm-ed-presets__label">{ __( 'Box shadow', 'bp-team-member' ) }</span>
+				<div className="bptm-ed-presets__grid">
+					{ SHADOW_PRESETS.map( ( o ) => {
+						const active = mode === o.value;
+						return (
+							<Button
+								key={ o.value || 'default' }
+								className={ 'bptm-ed-presets__btn' + ( active ? ' is-active' : '' ) }
+								variant={ active ? 'primary' : 'secondary' }
+								size="compact"
+								aria-pressed={ active }
+								onClick={ () => {
+									// Clicking the selected button again goes back to Default (same as before).
+									const v = active ? '' : o.value;
+									if ( 'custom' === v ) {
+										setList( list.length ? list : DEFAULT_CUSTOM );
+									} else {
+										setAttributes( { itemShadow: v } );
+									}
+								} }
+							>
+								{ o.label }
+							</Button>
+						);
+					} ) }
+				</div>
+			</div>
 			{ 'custom' === mode && (
 				<ShadowControl className="mt15" label={ __( 'Custom shadow', 'bp-team-member' ) } value={ list.length ? list : DEFAULT_CUSTOM } onChange={ setList } />
 			) }
@@ -272,13 +287,14 @@ const Style = ( { attributes, setAttributes } ) => {
 			/>
 		);
 	};
-	const box = ( attr, label ) => {
+	// `def` (optional): values shown while nothing is saved (display only; the theme's own padding still applies).
+	const box = ( attr, label, def ) => {
 		const v = attributes[ attr ] && 'object' === typeof attributes[ attr ] && ! Array.isArray( attributes[ attr ] ) ? attributes[ attr ] : {};
 		return (
 			<BoxControl
 				className="mt10"
 				label={ label }
-				values={ v }
+				values={ def && ! Object.keys( v ).length ? def : v }
 				units={ PADDING_UNITS }
 				onChange={ ( next ) => {
 					const out = {};
@@ -421,17 +437,16 @@ const Style = ( { attributes, setAttributes } ) => {
 
 				<Section>{ __( 'Border', 'bp-team-member' ) }</Section>
 				{ color( 'itemBorderColor', __( 'Border color', 'bp-team-member' ) ) }
-				<Unit label={ __( 'Border width', 'bp-team-member' ) } value={ attributes.itemBorderWidth } onChange={ ( v ) => setAttributes( { itemBorderWidth: v } ) } units={ [ { value: 'px', label: 'px', default: 1 } ] } />
-				<Unit label={ __( 'Border radius', 'bp-team-member' ) } value={ attributes.itemBorderRadius } onChange={ ( v ) => setAttributes( { itemBorderRadius: v } ) } />
+				{ themeRange( 'itemBorderWidth', __( 'Border width (px)', 'bp-team-member' ), 0, 10, 1, 'px' ) }
+				{ themeRange( 'itemBorderRadius', __( 'Border radius (px)', 'bp-team-member' ), 0, 50, 10, 'px' ) }
 
 				<Section>{ __( 'Spacing & shadow', 'bp-team-member' ) }</Section>
-				{ box( 'itemPadding', __( 'Padding', 'bp-team-member' ) ) }
+				{ box( 'itemPadding', __( 'Padding', 'bp-team-member' ), { top: '20px', right: '20px', bottom: '20px', left: '20px' } ) }
 				<ShadowField { ...f } />
 			</PanelBody>
 
 			<PanelBody className="bPlPanelBody" title={ __( 'Image', 'bp-team-member' ) } initialOpen={ false }>
-				<Unit label={ __( 'Border radius', 'bp-team-member' ) } value={ attributes.imageBorderRadius } onChange={ ( v ) => setAttributes( { imageBorderRadius: v } ) } />
-				{ color( 'hoverIconBg', __( 'Hover icon background', 'bp-team-member' ) ) }
+				{ themeRange( 'imageBorderRadius', __( 'Border radius (px)', 'bp-team-member' ), 0, 200, 0, 'px' ) }
 			</PanelBody>
 
 			{ pagination && (
