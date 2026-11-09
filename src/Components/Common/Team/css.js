@@ -260,6 +260,44 @@ export const dynamicCss = ( atts, domId, uid ) => {
 			add( '', direct[ a ][ 0 ], direct[ a ][ 1 ] + ':' + c );
 		}
 	} );
+	// Featured badge (cards + popup / panel / drawer): scoped rules beat every theme's own badge styles.
+	{
+		const badge = [ '.bptm-featured' ];
+		const badgeIcon = [ '.bptm-featured i' ];
+		const fc = color( atts.featuredColor );
+		if ( fc ) {
+			add( '', badge, 'color:' + fc );
+			add( '', badgeIcon, 'color:' + fc );
+		}
+		const fb = color( atts.featuredBg );
+		if ( fb ) {
+			add( '', badge, 'background:' + fb );
+		}
+		const fbw = length( atts.featuredBorderWidth );
+		const fbc = color( atts.featuredBorderColor );
+		if ( fbw || fbc ) {
+			add( '', badge, 'border-style:solid' );
+			add( '', badge, 'border-width:' + ( fbw || '1px' ) );
+		}
+		if ( fbc ) {
+			add( '', badge, 'border-color:' + fbc );
+		}
+		const fs = length( atts.featuredSize );
+		if ( fs ) {
+			add( '', badge, 'width:' + fs );
+			add( '', badge, 'height:' + fs );
+		}
+		const fis = length( atts.featuredIconSize );
+		if ( fis ) {
+			add( '', badge, 'font-size:' + fis );
+			add( '', badgeIcon, 'font-size:' + fis );
+		}
+		const fr = length( atts.featuredRadius );
+		if ( fr ) {
+			add( '', badge, 'border-radius:' + fr );
+		}
+	}
+
 	// Social icons (cards + popup / panel / drawer): scoped rules beat every theme's own social styles.
 	{
 		const link = [ '.bptm-social .bptm-social-link' ];

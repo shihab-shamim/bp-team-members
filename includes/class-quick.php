@@ -59,24 +59,6 @@ class Quick {
 	}
 
 	/**
-	 * Are any quick attributes present?
-	 *
-	 * @param array $atts Raw shortcode attributes.
-	 * @return bool
-	 */
-	public static function has_any( $atts ) {
-		if ( ! is_array( $atts ) ) {
-			return false;
-		}
-		foreach ( self::keys() as $key ) {
-			if ( isset( $atts[ $key ] ) && '' !== trim( (string) $atts[ $key ] ) ) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * Comma separated list of group names (matched case-insensitively, slugs work too).
 	 *
 	 * @param string $value Value.
@@ -310,83 +292,15 @@ class Quick {
 	}
 
 	/**
-	 * Choices for builder / widget selects.
+	 * [bp_team theme="grid-1" number="6" group="Sales" …]: a team list from inline attributes
+	 * (block defaults when none are given; the theme defaults to Grid 5).
 	 *
-	 * @return array{themes:array,groups:array,showcases:array}
-	 */
-	public static function choices() {
-		$themes = class_exists( __NAMESPACE__ . '\\Block' ) ? Block::theme_labels() : array();
-		// Groups of the default sample members (members live in the block; quick lists render the defaults).
-		$groups = array();
-		if ( class_exists( __NAMESPACE__ . '\\Block' ) ) {
-			$defaults = Block::defaults();
-			foreach ( isset( $defaults['members'] ) && is_array( $defaults['members'] ) ? $defaults['members'] : array() as $item ) {
-				foreach ( bptm_split_terms( is_array( $item ) && isset( $item['group'] ) ? $item['group'] : '' ) as $term ) {
-					$groups[ $term['name'] ] = $term['name'];
-				}
-			}
-			natcasesort( $groups );
-		}
-		return array(
-			'themes'    => $themes,
-			'groups'    => $groups,
-			'showcases' => class_exists( __NAMESPACE__ . '\\Showcase' ) ? Showcase::choices() : array(),
-		);
-	}
-
-	/**
-	 * Order-by choices.
-	 *
-	 * @return array
-	 */
-	public static function orderby_choices() {
-		return array(
-			'default' => __( 'Default order', 'bp-team-member' ),
-			'title'   => __( 'Name', 'bp-team-member' ),
-			'rand'    => __( 'Random', 'bp-team-member' ),
-		);
-	}
-
-	/**
-	 * Link type choices.
-	 *
-	 * @return array
-	 */
-	public static function link_choices() {
-		return array(
-			'default' => __( 'Default (popup)', 'bp-team-member' ),
-			'popup'   => __( 'Popup', 'bp-team-member' ),
-			'panel'   => __( 'Side panel', 'bp-team-member' ),
-			'drawer'  => __( 'Drawer', 'bp-team-member' ),
-			'custom'  => __( 'Custom URL (per member)', 'bp-team-member' ),
-			'none'    => __( 'No link', 'bp-team-member' ),
-		);
-	}
-
-	/**
-	 * Render page-builder / widget settings: a showcase (optionally with overrides) or a quick list.
-	 *
-	 * Settings keys: source (showcase|quick), showcase, theme, number, group, columns, orderby, order, link.
-	 *
-	 * @param array $settings Settings.
+	 * @param array|string $atts Attributes.
 	 * @return string
 	 */
-	public static function render_settings( array $settings ) {
-		$source   = isset( $settings['source'] ) ? sanitize_key( (string) $settings['source'] ) : '';
-		$showcase = isset( $settings['showcase'] ) ? absint( $settings['showcase'] ) : 0;
-		if ( 'quick' !== $source && $showcase ) {
-			return Showcase::render( $showcase ) . self::builder_init_script();
-		}
-		if ( 'showcase' === $source ) {
-			return '';
-		}
-		$quick = array();
-		foreach ( array( 'theme', 'number', 'group', 'columns', 'orderby', 'order', 'link', 'view' ) as $key ) {
-			if ( isset( $settings[ $key ] ) && is_scalar( $settings[ $key ] ) && '' !== (string) $settings[ $key ] ) {
-				$quick[ $key ] = (string) $settings[ $key ];
-			}
-		}
-		$attributes = self::map( $quick );
+	public static function shortcode( $atts ) {
+		$atts       = is_array( $atts ) ? $atts : array();
+		$attributes = self::map( shortcode_atts( array_fill_keys( self::keys(), '' ), $atts, 'bp_team' ) );
 		if ( empty( $attributes['theme'] ) ) {
 			$attributes['theme'] = 'grid-5';
 		}
@@ -394,4 +308,5 @@ class Quick {
 	}
 }
 
+add_shortcode( 'bp_team', array( __NAMESPACE__ . '\\Quick', 'shortcode' ) );
 add_shortcode( 'bp_team_sidebar', array( __NAMESPACE__ . '\\Quick', 'sidebar_shortcode' ) );

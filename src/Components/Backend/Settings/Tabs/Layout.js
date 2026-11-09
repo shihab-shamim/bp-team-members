@@ -63,6 +63,12 @@ const Layout = ( { attributes, setAttributes } ) => {
 
 	return (
 		<>
+		<PanelBody title={ __( 'Choose a Theme', 'bp-team-member' ) } initialOpen={ false }>
+				<p className="bptm-ed-current">
+					{ __( 'Current:', 'bp-team-member' ) } <strong>{ theme.label }</strong>
+				</p>
+				<ThemePicker value={ attributes.theme } onChange={ ( id ) => setAttributes( themeChange( attributes, id ) ) } />
+			</PanelBody>
 			<PanelBody title={ __( 'Team Members', 'bp-team-member' ) } className="bptm-ed-members-panel" initialOpen>
 				<ItemsPanel
 					attributes={ { ...attributes, members } }
@@ -82,12 +88,7 @@ const Layout = ( { attributes, setAttributes } ) => {
 				/>
 			</PanelBody>
 
-			<PanelBody title={ __( 'Theme', 'bp-team-member' ) } initialOpen={ false }>
-				<p className="bptm-ed-current">
-					{ __( 'Current:', 'bp-team-member' ) } <strong>{ theme.label }</strong>
-				</p>
-				<ThemePicker value={ attributes.theme } onChange={ ( id ) => setAttributes( themeChange( attributes, id ) ) } />
-			</PanelBody>
+			
 
 			<PanelBody title={ __( 'View & Columns', 'bp-team-member' ) } initialOpen={ false }>
 				<Segmented

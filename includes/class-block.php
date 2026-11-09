@@ -96,63 +96,6 @@ class Block {
 	}
 
 	/**
-	 * Theme id => label for admin selects (widget, page builders). The theme registry itself lives in
-	 * src/Components/Common/Team/registry.js (single source for the editor and the front end).
-	 *
-	 * @return array
-	 */
-	public static function theme_labels() {
-		$ids    = array();
-		$ranges = array(
-			'grid'       => array( 1, 6 ),
-			'circle'     => array( 1, 6 ),
-			'horizontal' => array( 1, 9 ),
-			'flip'       => array( 1, 6 ),
-			'table'      => array( 1, 5 ),
-			'list'       => array( 1, 5 ),
-		);
-		foreach ( $ranges as $prefix => $r ) {
-			for ( $i = $r[0]; $i <= $r[1]; $i++ ) {
-				$ids[ $prefix . '-' . $i ] = ucfirst( $prefix ) . ' ' . $i;
-			}
-		}
-		$extra = array(
-			'grid-7'               => 'Grid 7',
-			'grid-8'               => 'Grid 8',
-			'grid-9'               => 'Grid 9',
-			'grid-10'              => 'Grid 10 (Greyscale)',
-			'grid-11'              => 'Grid 11',
-			'grid-12'              => 'Grid 12',
-			'grid-popup'           => 'Grid Popup',
-			'grid-single'          => 'Grid Single',
-			'grid-filter-single'   => 'Grid Filter Single',
-			'grid-filter-popup'    => 'Grid Filter Popup',
-			'grid-slider'          => 'Grid Slider',
-			'grid-filter-selected' => 'Grid Filter - Selected Groups',
-			'grid-filter-vcard'    => 'Grid Filter with vCard',
-			'grid-panel'           => 'Grid Panel Slide',
-			'grid-drawer-1'        => 'Grid Drawer 1',
-			'grid-drawer-2'        => 'Grid Drawer 2',
-			'table-6'              => 'Table 6 - Underline',
-			'table-7'              => 'Table 7 - Box Border',
-			'table-8'              => 'Table 8 - Odd Even',
-			'table-9'              => 'Table 9 - Filter',
-			'table-10'             => 'Table 10 - Filter Dense',
-			'list-6'               => 'List 6',
-			'list-7'               => 'List 7',
-			'group-filter-1'       => 'Group Filter 1',
-			'sidebar-1'            => 'Sidebar 1 - Framed Photo',
-			'sidebar-2'            => 'Sidebar 2 - Round Avatar',
-			'sidebar-3'            => 'Sidebar 3 - Compact Rows',
-		);
-		$out = array();
-		foreach ( $ids + $extra as $id => $label ) {
-			$out[ $id ] = __( $label, 'bp-team-member' ); // phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText -- labels are translated in the JS registry (same strings).
-		}
-		return (array) apply_filters( 'bptm_theme_labels', $out );
-	}
-
-	/**
 	 * Attributes that differ from the block.json defaults (the browser merges the defaults back).
 	 *
 	 * @param array $attributes Attributes.
@@ -337,11 +280,6 @@ class Block {
 		if ( $editor ) {
 			$data['fonts']          = self::fonts();
 			$data['thumbnailSizes'] = self::thumbnail_sizes();
-			$data['adminUrls']      = array(
-				'settings'     => admin_url( 'edit.php?post_type=bptm_showcase&page=bptm-preferences' ),
-				'translations' => admin_url( 'edit.php?post_type=bptm_showcase&page=bptm-translations' ),
-				'showcases'    => admin_url( 'edit.php?post_type=bptm_showcase' ),
-			);
 		}
 		/**
 		 * Filters the data passed to the block scripts (window.bptmData).

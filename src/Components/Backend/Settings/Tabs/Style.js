@@ -353,6 +353,22 @@ const Style = ( { attributes, setAttributes } ) => {
 				<TypoControl { ...f } name="ribbonTypography" />
 			</PanelBody>
 
+			{ !! attributes.enableFeaturing && (
+				<PanelBody className="bPlPanelBody" title={ __( 'Featured badge', 'bp-team-member' ) } initialOpen={ false }>
+					<p className="bptm-ed-muted">{ __( 'Badge shown on featured members (cards, popup, panel and drawer).', 'bp-team-member' ) }</p>
+					<Section>{ __( 'Colors', 'bp-team-member' ) }</Section>
+					{ color( 'featuredColor', __( 'Icon color', 'bp-team-member' ) ) }
+					{ color( 'featuredBg', __( 'Background', 'bp-team-member' ) ) }
+					{ color( 'featuredBorderColor', __( 'Border color', 'bp-team-member' ) ) }
+
+					<Section>{ __( 'Size & shape', 'bp-team-member' ) }</Section>
+					{ unit( 'featuredIconSize', __( 'Icon size', 'bp-team-member' ), [ { value: 'px', label: 'px', default: 14 } ] ) }
+					{ unit( 'featuredSize', __( 'Badge size', 'bp-team-member' ), [ { value: 'px', label: 'px', default: 32 } ] ) }
+					{ unit( 'featuredBorderWidth', __( 'Border width', 'bp-team-member' ), PX ) }
+					{ unit( 'featuredRadius', __( 'Border radius', 'bp-team-member' ), [ { value: 'px', label: 'px', default: 0 }, { value: '%', label: '%', default: 50 } ] ) }
+				</PanelBody>
+			) }
+
 			<PanelBody className="bPlPanelBody" title={ __( 'Read more', 'bp-team-member' ) } initialOpen={ false }>
 				<TypoTextColor { ...f } name="readmoreTypography" />
 				<HoverColor { ...f } name="readmoreTypography" />

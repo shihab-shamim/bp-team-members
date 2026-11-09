@@ -1670,6 +1670,34 @@
     "socialGap": {
       "type": "string",
       "default": ""
+    },
+    "featuredColor": {
+      "type": "string",
+      "default": ""
+    },
+    "featuredBg": {
+      "type": "string",
+      "default": ""
+    },
+    "featuredBorderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "featuredBorderWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "featuredSize": {
+      "type": "string",
+      "default": ""
+    },
+    "featuredIconSize": {
+      "type": "string",
+      "default": ""
+    },
+    "featuredRadius": {
+      "type": "string",
+      "default": ""
     }
   },
   "supports": {
