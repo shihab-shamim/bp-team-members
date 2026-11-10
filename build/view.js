@@ -1,1 +1,6727 @@
-(()=>{"use strict";const e=window.wp.element,t=window.wp.i18n,a=["thumbnail","name","designation","details","social","ribbon","featured_badge","skills","company","address","land_phone","cell_phone","email","location","language","specialty","gender","zip","extra_one","extra_two","extra_three","extra_four","extra_five","vcard","read_more"],r=["thumbnail","name","designation","details","social","ribbon","featured_badge","read_more"],i=["initial","popup","panel","drawer"],l=["desktop","tablet","mobilePortrait","mobile"],n=["company","address","land_phone","cell_phone","email","location","language","specialty","gender","zip","extra_one","extra_two","extra_three","extra_four","extra_five"],s={popup:["default","style-one","style-two","style-three","style-four","style-five","style-six"],panel:["default","style-one","style-two","style-three","style-four","style-five"],drawer:["default","style-one","style-two","style-three","style-four","style-five"]},o=e=>{const t={};return a.forEach((a=>{t[a]=e.includes(a)})),t},c=["thumbnail","name","designation"],m=["ribbon","featured_badge"],p=[["grid-1","grid","grid",[...c,"social"]],["grid-2","grid","grid",[...c,"details","social","ribbon","featured_badge","cell_phone"]],["grid-3","grid","grid",[...c,"social",...m]],["grid-4","grid","grid",[...c,"social",...m]],["grid-5","grid","grid",[...c,"social",...m]],["grid-6","grid","grid",[...c,"social",...m]],["circle-1","circle","grid",[...c,"details","social"]],["circle-2","circle","grid",[...c,"details","social","cell_phone"]],["circle-3","circle","grid",[...c,"social"]],["circle-4","circle","grid",[...c,"details","social","cell_phone"]],["circle-5","circle","grid",[...c,"details","social"]],["circle-6","circle","grid",[...c,"details","social",...m]],["horizontal-1","horizontal","grid",[...c,"details","social"]],["horizontal-2","horizontal","grid",[...c,"details","cell_phone"]],["horizontal-3","horizontal","grid",[...c,"details",...m,"address"]],["horizontal-4","horizontal","grid",[...c,"details","social"]],["horizontal-5","horizontal","grid",[...c,"details","email"]],["horizontal-6","horizontal","grid",[...c,"details","social",...m]],["horizontal-7","horizontal","grid",[...c,"details","social",...m]],["horizontal-8","horizontal","grid",[...c,"details","social",...m]],["horizontal-9","horizontal","grid",[...c,"details","social",...m]],["flip-1","flip","grid",[...c,"details","social",...m,"cell_phone"]],["flip-2","flip","grid",[...c,"details","social","email"]],["flip-3","flip","grid",[...c,"details","social",...m,"address"]],["flip-4","flip","grid",[...c,"social","cell_phone","email"]],["flip-5","flip","grid",[...c,...m]],["flip-6","flip","grid",[...c,...m,"email","land_phone","cell_phone"]],["table-1","table","table",[...c,"details","social"],{filter:!1}],["table-2","table","table",[...c,"details","social"],{filter:!1}],["table-3","table","table",[...c,"details","social"],{filter:!1}],["table-4","table","table",[...c,"details","social"],{filter:!1}],["table-5","table","table",[...c,"details","social"],{filter:!1}],["list-1","list","list",[...c,"details","social"]],["list-2","list","list",[...c,"details","cell_phone"]],["list-3","list","list",[...c,"details","email"]],["list-4","list","list",[...c,"details","email","address"]],["list-5","list","list",[...c,"details","social"]],["grid-7","grid","grid",[...c,"details","social",...m]],["grid-8","grid","grid",[...c]],["grid-9","grid","grid",[...c,...m]],["grid-10","grid","grid",[...c,"details","social",...m]],["grid-11","grid","grid",[...c]],["grid-12","grid","grid",[...c,"social","read_more",...m]],["grid-popup","legacy","grid",[...c,...m],{forced_link:"popup"}],["grid-single","legacy","grid",[...c,...m],{forced_link:"popup"}],["grid-filter-single","legacy","grid",[...c,...m,"cell_phone","email"],{forced_link:"popup",forced_view:"filter",carousel:!1,pagination:!1}],["grid-filter-popup","legacy","grid",[...c,...m],{forced_link:"popup",forced_view:"filter",carousel:!1,pagination:!1}],["grid-slider","legacy","grid",[...c,"details","social",...m],{forced_view:"carousel",filter:!1,pagination:!1}],["grid-filter-selected","legacy","grid",[...c,...m],{forced_link:"popup",forced_view:"filter",carousel:!1,pagination:!1}],["grid-filter-vcard","legacy","grid",[...c,"cell_phone","email","vcard"],{forced_view:"filter",carousel:!1,pagination:!1}],["grid-panel","legacy","grid",[...c,...m],{forced_link:"panel",pagination:!1}],["grid-drawer-1","legacy","grid",[...c,...m],{forced_link:"drawer",carousel:!1,pagination:!1}],["grid-drawer-2","legacy","grid",[...c,...m],{forced_link:"drawer",carousel:!1,pagination:!1}],["table-6","table","table",[...c,"details","social"],{pagination:!1}],["table-7","table","table",[...c,"details","social"],{pagination:!1}],["table-8","table","table",[...c,"details","social"],{pagination:!1}],["table-9","table","table",["name","designation","cell_phone","email"],{forced_view:"filter",pagination:!1}],["table-10","table","table",["name","cell_phone","email"],{forced_view:"filter",pagination:!1}],["list-6","list","list",[...c,"details","social",...m]],["list-7","list","list",[...c,"details","social",...m]],["group-filter-1","legacy","grid",[...c,"cell_phone","email"],{forced_view:"filter",grouped:!0,carousel:!1,pagination:!1}],["sidebar-1","sidebar","list",[...c,"social"],{carousel:!1}],["sidebar-2","sidebar","list",[...c,"social"],{carousel:!1}],["sidebar-3","sidebar","list",[...c,"social"],{carousel:!1}]];let d=null;const f={"style-one":["fas fa-chevron-left","fas fa-chevron-right"],"style-two":["fas fa-arrow-left-long","fas fa-arrow-right-long"],"style-three":["fas fa-angles-left","fas fa-angles-right"],default:["fas fa-angle-left","fas fa-angle-right"]},u=JSON.parse('{"attributes":{"align":{"type":"string","default":"wide"},"alignment":{"type":"string","default":"center"},"purposeType":{"type":"string","default":"test"},"colors":{"type":"object","default":{"color":"black","bg":"#B1C5A4"}},"members":{"type":"array","default":[{"id":"m1","name":"Sophia Nguyen","designation":"Lead Product Designer","details":"Sophia has spent more than a decade working on product design and design systems. Colleagues know Sophia as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Sophia enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/sophia-nguyen.jpg","alt":"Sophia Nguyen","sizes":{"thumbnail":{"url":"assets/img/team/sophia-nguyen-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/sophia-nguyen-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/sophia-nguyen.jpg","width":600,"height":600},"full":{"url":"assets/img/team/sophia-nguyen.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0104","cellPhone":"+1 555 0205","email":"sophia.nguyen@example.com","emailCc":"","emailBcc":"","address":"24 Harbor Avenue, San Francisco","ribbon":"Top Rated","zipCode":"10084","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-dribbble","link":"https://dribbble.com/sophia.nguyen"},{"icon":"fab fa-behance","link":"https://www.behance.net/sophia.nguyen"},{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/sophia.nguyen"},{"icon":"fas fa-envelope","link":"mailto:sophia.nguyen@example.com"}],"skills":[{"skill":"UI Design","percent":96},{"skill":"Prototyping","percent":88},{"skill":"User Research","percent":82}],"group":"Design","tags":"Creative, UX","language":"English, Vietnamese","location":"San Francisco","gender":"Female","specialty":"Design","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m2","name":"Olivia Bennett","designation":"Chief Executive Officer","details":"Olivia has spent more than a decade working on company strategy and growth. Colleagues know Olivia as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Olivia enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/olivia-bennett.jpg","alt":"Olivia Bennett","sizes":{"thumbnail":{"url":"assets/img/team/olivia-bennett-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/olivia-bennett-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/olivia-bennett.jpg","width":600,"height":600},"full":{"url":"assets/img/team/olivia-bennett.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0100","cellPhone":"+1 555 0201","email":"olivia.bennett@example.com","emailCc":"","emailBcc":"","address":"10 Harbor Avenue, New York","ribbon":"CEO","zipCode":"10010","vcard":"","customUrl":"","featured":true,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/olivia.bennett"},{"icon":"fab fa-x-twitter","link":"https://x.com/olivia.bennett"},{"icon":"fab fa-facebook-f","link":"https://www.facebook.com/olivia.bennett"},{"icon":"fas fa-envelope","link":"mailto:olivia.bennett@example.com"}],"skills":[{"skill":"Leadership","percent":95},{"skill":"Strategy","percent":90},{"skill":"Public Speaking","percent":85}],"group":"Management","tags":"Leadership","language":"English, French","location":"New York","gender":"Female","specialty":"Strategy","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m3","name":"Liam Carter","designation":"Chief Technology Officer","details":"Liam has spent more than a decade working on scalable web platforms. Colleagues know Liam as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Liam enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/liam-carter.jpg","alt":"Liam Carter","sizes":{"thumbnail":{"url":"assets/img/team/liam-carter-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/liam-carter-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/liam-carter.jpg","width":600,"height":600},"full":{"url":"assets/img/team/liam-carter.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0102","cellPhone":"+1 555 0203","email":"liam.carter@example.com","emailCc":"","emailBcc":"","address":"17 Harbor Avenue, Berlin","ribbon":"CTO","zipCode":"10047","vcard":"","customUrl":"","featured":true,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/liam.carter"},{"icon":"fab fa-github","link":"https://github.com/liam.carter"},{"icon":"fab fa-x-twitter","link":"https://x.com/liam.carter"},{"icon":"fas fa-envelope","link":"mailto:liam.carter@example.com"}],"skills":[{"skill":"Architecture","percent":92},{"skill":"PHP","percent":88},{"skill":"Cloud","percent":80}],"group":"Engineering","tags":"Backend, Leadership","language":"English, German","location":"Berlin","gender":"Male","specialty":"Development","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m4","name":"Noah Williams","designation":"Senior Frontend Developer","details":"Noah has spent more than a decade working on frontend engineering and accessibility. Colleagues know Noah as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Noah enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/noah-williams.jpg","alt":"Noah Williams","sizes":{"thumbnail":{"url":"assets/img/team/noah-williams-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/noah-williams-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/noah-williams.jpg","width":600,"height":600},"full":{"url":"assets/img/team/noah-williams.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0106","cellPhone":"+1 555 0207","email":"noah.williams@example.com","emailCc":"","emailBcc":"","address":"31 Harbor Avenue, London","ribbon":"","zipCode":"10121","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-github","link":"https://github.com/noah.williams"},{"icon":"fab fa-x-twitter","link":"https://x.com/noah.williams"},{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/noah.williams"},{"icon":"fas fa-envelope","link":"mailto:noah.williams@example.com"}],"skills":[{"skill":"JavaScript","percent":94},{"skill":"React","percent":90},{"skill":"CSS","percent":86}],"group":"Engineering","tags":"Frontend, JavaScript","language":"English","location":"London","gender":"Male","specialty":"Development","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m5","name":"Emma Rodriguez","designation":"Marketing Manager","details":"Emma has spent more than a decade working on brand storytelling and digital marketing. Colleagues know Emma as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Emma enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/emma-rodriguez.jpg","alt":"Emma Rodriguez","sizes":{"thumbnail":{"url":"assets/img/team/emma-rodriguez-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/emma-rodriguez-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/emma-rodriguez.jpg","width":600,"height":600},"full":{"url":"assets/img/team/emma-rodriguez.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0108","cellPhone":"+1 555 0209","email":"emma.rodriguez@example.com","emailCc":"","emailBcc":"","address":"38 Harbor Avenue, Madrid","ribbon":"New","zipCode":"10158","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-instagram","link":"https://www.instagram.com/emma.rodriguez"},{"icon":"fab fa-facebook-f","link":"https://www.facebook.com/emma.rodriguez"},{"icon":"fab fa-x-twitter","link":"https://x.com/emma.rodriguez"},{"icon":"fas fa-envelope","link":"mailto:emma.rodriguez@example.com"}],"skills":[{"skill":"SEO","percent":85},{"skill":"Content Strategy","percent":90},{"skill":"Analytics","percent":78}],"group":"Marketing","tags":"Content, Social Media","language":"English, Spanish","location":"Madrid","gender":"Female","specialty":"Marketing","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m6","name":"James Okafor","designation":"Backend Engineer","details":"James has spent more than a decade working on APIs, databases and automation. Colleagues know James as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work James enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/james-okafor.jpg","alt":"James Okafor","sizes":{"thumbnail":{"url":"assets/img/team/james-okafor-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/james-okafor-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/james-okafor.jpg","width":600,"height":600},"full":{"url":"assets/img/team/james-okafor.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0110","cellPhone":"+1 555 0211","email":"james.okafor@example.com","emailCc":"","emailBcc":"","address":"45 Harbor Avenue, Lagos","ribbon":"","zipCode":"10195","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-github","link":"https://github.com/james.okafor"},{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/james.okafor"},{"icon":"fas fa-envelope","link":"mailto:james.okafor@example.com"}],"skills":[{"skill":"Node.js","percent":88},{"skill":"Databases","percent":84},{"skill":"DevOps","percent":75}],"group":"Engineering","tags":"API, Backend","language":"English, Yoruba","location":"Lagos","gender":"Male","specialty":"Development","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m7","name":"Ava Schmidt","designation":"HR Specialist","details":"Ava has spent more than a decade working on people operations and company culture. Colleagues know Ava as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Ava enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/ava-schmidt.jpg","alt":"Ava Schmidt","sizes":{"thumbnail":{"url":"assets/img/team/ava-schmidt-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/ava-schmidt-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/ava-schmidt.jpg","width":600,"height":600},"full":{"url":"assets/img/team/ava-schmidt.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0112","cellPhone":"+1 555 0213","email":"ava.schmidt@example.com","emailCc":"","emailBcc":"","address":"52 Harbor Avenue, Berlin","ribbon":"","zipCode":"10232","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/ava.schmidt"},{"icon":"fab fa-facebook-f","link":"https://www.facebook.com/ava.schmidt"},{"icon":"fas fa-envelope","link":"mailto:ava.schmidt@example.com"}],"skills":[{"skill":"Recruiting","percent":90},{"skill":"Communication","percent":95},{"skill":"Coaching","percent":80}],"group":"Operations","tags":"Culture, People","language":"English, German","location":"Berlin","gender":"Female","specialty":"Human Resources","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m8","name":"Lucas Martin","designation":"Customer Success Lead","details":"Lucas has spent more than a decade working on customer success and onboarding. Colleagues know Lucas as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Lucas enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/lucas-martin.jpg","alt":"Lucas Martin","sizes":{"thumbnail":{"url":"assets/img/team/lucas-martin-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/lucas-martin-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/lucas-martin.jpg","width":600,"height":600},"full":{"url":"assets/img/team/lucas-martin.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0114","cellPhone":"+1 555 0215","email":"lucas.martin@example.com","emailCc":"","emailBcc":"","address":"59 Harbor Avenue, Paris","ribbon":"Lead","zipCode":"10269","vcard":"","customUrl":"","featured":true,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/lucas.martin"},{"icon":"fab fa-x-twitter","link":"https://x.com/lucas.martin"},{"icon":"fab fa-youtube","link":"https://www.youtube.com/@lucas.martin"},{"icon":"fas fa-envelope","link":"mailto:lucas.martin@example.com"}],"skills":[{"skill":"Customer Care","percent":96},{"skill":"Training","percent":85},{"skill":"Product Knowledge","percent":88}],"group":"Support","tags":"Customer, Leadership","language":"English, French","location":"Paris","gender":"Male","specialty":"Support","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m9","name":"Mia Tanaka","designation":"UX Researcher","details":"Mia has spent more than a decade working on user research and usability testing. Colleagues know Mia as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Mia enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/mia-tanaka.jpg","alt":"Mia Tanaka","sizes":{"thumbnail":{"url":"assets/img/team/mia-tanaka-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/mia-tanaka-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/mia-tanaka.jpg","width":600,"height":600},"full":{"url":"assets/img/team/mia-tanaka.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0116","cellPhone":"+1 555 0217","email":"mia.tanaka@example.com","emailCc":"","emailBcc":"","address":"66 Harbor Avenue, Tokyo","ribbon":"","zipCode":"10306","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/mia.tanaka"},{"icon":"fab fa-dribbble","link":"https://dribbble.com/mia.tanaka"},{"icon":"fab fa-instagram","link":"https://www.instagram.com/mia.tanaka"},{"icon":"fas fa-envelope","link":"mailto:mia.tanaka@example.com"}],"skills":[{"skill":"Interviews","percent":92},{"skill":"Usability Testing","percent":89},{"skill":"Data Analysis","percent":76}],"group":"Design","tags":"Research, UX","language":"English, Japanese","location":"Tokyo","gender":"Female","specialty":"Design","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m10","name":"Ethan Brooks","designation":"Sales Executive","details":"Ethan has spent more than a decade working on business development and partnerships. Colleagues know Ethan as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Ethan enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/ethan-brooks.jpg","alt":"Ethan Brooks","sizes":{"thumbnail":{"url":"assets/img/team/ethan-brooks-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/ethan-brooks-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/ethan-brooks.jpg","width":600,"height":600},"full":{"url":"assets/img/team/ethan-brooks.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0118","cellPhone":"+1 555 0219","email":"ethan.brooks@example.com","emailCc":"","emailBcc":"","address":"73 Harbor Avenue, Toronto","ribbon":"","zipCode":"10343","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/ethan.brooks"},{"icon":"fab fa-facebook-f","link":"https://www.facebook.com/ethan.brooks"},{"icon":"fab fa-x-twitter","link":"https://x.com/ethan.brooks"},{"icon":"fas fa-envelope","link":"mailto:ethan.brooks@example.com"}],"skills":[{"skill":"Negotiation","percent":91},{"skill":"CRM","percent":84},{"skill":"Presentations","percent":87}],"group":"Sales","tags":"Business, Customer","language":"English","location":"Toronto","gender":"Male","specialty":"Sales","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""}]},"theme":{"type":"string","default":"grid-5"},"carouselEnabled":{"type":"boolean","default":false},"filterEnabled":{"type":"boolean","default":false},"filterType":{"type":"string","default":"normal-filter"},"columns":{"type":"object","default":{"desktop":4,"tablet":3,"mobilePortrait":2,"mobile":1}},"columnGap":{"type":"number","default":30},"rowGap":{"type":"number","default":30},"linkType":{"type":"string","default":"default"},"nameIsLinked":{"type":"boolean","default":true},"linkPreviewImage":{"type":"boolean","default":false},"linkTarget":{"type":"string","default":"_self"},"popupStyle":{"type":"string","default":"default"},"popupColumns":{"type":"string","default":"two"},"panelStyle":{"type":"string","default":"default"},"panelPosition":{"type":"string","default":"right"},"drawerStyle":{"type":"string","default":"default"},"thumbnailSize":{"type":"string","default":"large"},"imageFilter":{"type":"string","default":"none"},"hoverImageFilter":{"type":"string","default":"none"},"visibility":{"type":"object","default":{}},"detailsLength":{"type":"number","default":100},"allowHtmlDetails":{"type":"boolean","default":false},"descScrollControl":{"type":"boolean","default":true},"maxScrollHeight":{"type":"string","default":""},"detailsAreaHeight":{"type":"boolean","default":false},"enableScrollAnimation":{"type":"boolean","default":true},"enableFeaturing":{"type":"boolean","default":false},"showAcfFields":{"type":"boolean","default":false},"acfFieldsPosition":{"type":"string","default":"after_skills"},"numberOfMembers":{"type":"number","default":-1},"orderBy":{"type":"string","default":"default"},"order":{"type":"string","default":"ASC"},"taxonomyOrderBy":{"type":"string","default":"name"},"taxonomyOrder":{"type":"string","default":"ASC"},"taxonomyHideEmpty":{"type":"boolean","default":false},"includeGroups":{"type":"array","default":[]},"excludeGroups":{"type":"array","default":[]},"includeTags":{"type":"array","default":[]},"includeLocations":{"type":"array","default":[]},"includeLanguages":{"type":"array","default":[]},"includeSpecialties":{"type":"array","default":[]},"includeGenders":{"type":"array","default":[]},"includeExtraOne":{"type":"array","default":[]},"includeExtraTwo":{"type":"array","default":[]},"includeExtraThree":{"type":"array","default":[]},"includeExtraFour":{"type":"array","default":[]},"includeExtraFive":{"type":"array","default":[]},"searchByName":{"type":"boolean","default":true},"searchByZip":{"type":"boolean","default":true},"searchByTag":{"type":"boolean","default":false},"searchByCompany":{"type":"boolean","default":false},"filterByDesignation":{"type":"boolean","default":true},"filterByLocation":{"type":"boolean","default":true},"filterByLanguage":{"type":"boolean","default":true},"filterByGender":{"type":"boolean","default":true},"filterBySpecialty":{"type":"boolean","default":true},"filterByExtraOne":{"type":"boolean","default":false},"filterByExtraTwo":{"type":"boolean","default":false},"filterByExtraThree":{"type":"boolean","default":false},"filterByExtraFour":{"type":"boolean","default":false},"filterByExtraFive":{"type":"boolean","default":false},"enableClearFilters":{"type":"boolean","default":false},"enableMultiSelect":{"type":"boolean","default":false},"multiSelectEllipsis":{"type":"boolean","default":false},"filterAllEnabled":{"type":"boolean","default":true},"enableChildCats":{"type":"boolean","default":false},"filterAllText":{"type":"string","default":"All"},"filterColumns":{"type":"string","default":"two"},"filterCatPosition":{"type":"string","default":"center"},"filterStyle":{"type":"string","default":"default"},"paginationEnabled":{"type":"boolean","default":false},"paginationType":{"type":"string","default":"normal-pagination"},"initialItems":{"type":"number","default":6},"perPage":{"type":"number","default":6},"loadPerClick":{"type":"number","default":3},"perLoad":{"type":"number","default":3},"loadButtonText":{"type":"string","default":"Load More"},"carouselAutoplay":{"type":"boolean","default":true},"carouselAutoplayHoverPause":{"type":"boolean","default":true},"carouselLoop":{"type":"boolean","default":true},"carouselSpeed":{"type":"number","default":1000},"carouselAutoplayTimeout":{"type":"number","default":2500},"carouselItemsToScroll":{"type":"number","default":1},"carouselNavsEnabled":{"type":"boolean","default":true},"carouselDotsEnabled":{"type":"boolean","default":true},"carouselNavsStyle":{"type":"string","default":"default"},"carouselDotsStyle":{"type":"string","default":"default"},"nameColor":{"type":"string","default":""},"nameBg":{"type":"string","default":""},"roleColor":{"type":"string","default":""},"descriptionColor":{"type":"string","default":""},"descriptionLinkColor":{"type":"string","default":""},"infoColor":{"type":"string","default":""},"infoIconColor":{"type":"string","default":""},"infoLabelColor":{"type":"string","default":""},"infoBg":{"type":"string","default":""},"itemBg":{"type":"string","default":""},"itemBgHover":{"type":"string","default":""},"tooltipBg":{"type":"string","default":""},"hoverIconBg":{"type":"string","default":""},"ribbonBg":{"type":"string","default":""},"popupBg":{"type":"string","default":""},"popupCloseColor":{"type":"string","default":""},"popupCloseBg":{"type":"string","default":""},"popupCloseHoverColor":{"type":"string","default":""},"popupCloseHoverBg":{"type":"string","default":""},"popupCloseIconSize":{"type":"string","default":"20px"},"popupCloseSize":{"type":"string","default":"40px"},"popupCloseRadius":{"type":"string","default":"50%"},"popupArrowColor":{"type":"string","default":""},"popupNavBg":{"type":"string","default":""},"popupNavBorderColor":{"type":"string","default":""},"popupNavHoverColor":{"type":"string","default":""},"popupNavHoverBg":{"type":"string","default":""},"popupNavHoverBorderColor":{"type":"string","default":""},"popupNavRadius":{"type":"string","default":"50px"},"popupNavIconSize":{"type":"string","default":"14px"},"popupNavTypography":{"type":"object","default":{}},"accentColor":{"type":"string","default":""},"sliderNavColor":{"type":"string","default":""},"sliderNavBg":{"type":"string","default":""},"sliderNavHoverColor":{"type":"string","default":""},"sliderNavHoverBg":{"type":"string","default":""},"sliderDotColor":{"type":"string","default":""},"sliderDotHoverColor":{"type":"string","default":""},"filterTextColor":{"type":"string","default":""},"filterActiveTextColor":{"type":"string","default":""},"filterBgColor":{"type":"string","default":""},"filterActiveBgColor":{"type":"string","default":""},"filterBorderColor":{"type":"string","default":""},"filterActiveBorderColor":{"type":"string","default":""},"nameTypography":{"type":"object","default":{}},"roleTypography":{"type":"object","default":{}},"detailsTypography":{"type":"object","default":{}},"infoTypography":{"type":"object","default":{}},"ribbonTypography":{"type":"object","default":{}},"readmoreTypography":{"type":"object","default":{}},"itemPadding":{"type":"object","default":{}},"itemBorderRadius":{"type":"string","default":""},"itemShadow":{"type":"string","default":""},"itemShadowList":{"type":"array","default":[]},"itemBorderColor":{"type":"string","default":""},"itemBorderWidth":{"type":"string","default":""},"imageBorderRadius":{"type":"string","default":""},"pgColor":{"type":"string","default":""},"pgBg":{"type":"string","default":""},"pgBorderColor":{"type":"string","default":""},"pgHoverColor":{"type":"string","default":""},"pgHoverBg":{"type":"string","default":""},"pgHoverBorderColor":{"type":"string","default":""},"pgActiveColor":{"type":"string","default":""},"pgActiveBg":{"type":"string","default":""},"pgActiveBorderColor":{"type":"string","default":""},"pgBorderWidth":{"type":"string","default":""},"pgBorderRadius":{"type":"string","default":""},"lmColor":{"type":"string","default":""},"lmBg":{"type":"string","default":""},"lmBorderColor":{"type":"string","default":""},"lmHoverColor":{"type":"string","default":""},"lmHoverBg":{"type":"string","default":""},"lmBorderWidth":{"type":"string","default":""},"lmBorderRadius":{"type":"string","default":""},"pgLoaderColor":{"type":"string","default":""},"pgPadding":{"type":"object","default":{}},"lmPadding":{"type":"object","default":{}},"socialIconColor":{"type":"string","default":""},"socialIconHoverColor":{"type":"string","default":""},"socialBg":{"type":"string","default":""},"socialHoverBg":{"type":"string","default":""},"socialBorderColor":{"type":"string","default":""},"socialHoverBorderColor":{"type":"string","default":""},"socialIconSize":{"type":"string","default":""},"socialSize":{"type":"string","default":""},"socialBorderWidth":{"type":"string","default":""},"socialRadius":{"type":"string","default":""},"socialGap":{"type":"string","default":""},"featuredColor":{"type":"string","default":""},"featuredBg":{"type":"string","default":""},"featuredBorderColor":{"type":"string","default":""},"featuredBorderWidth":{"type":"string","default":""},"featuredSize":{"type":"string","default":""},"featuredIconSize":{"type":"string","default":""},"featuredRadius":{"type":"string","default":""}}}'),b=()=>{if("undefined"==typeof window)return{};return(window.bptmData&&"object"==typeof window.bptmData?window.bptmData:null)||(window.bptmEditor&&"object"==typeof window.bptmEditor?window.bptmEditor:{})};let g=null;const h=e=>{const a=b().translations;let r=a&&"object"==typeof a?a[e]:void 0;return r&&"object"==typeof r&&(r=r.value||r.label),"string"==typeof r&&""!==r.trim()?r:(g||(g={filter_designation:(0,t.__)("Show All Designation","bp-team-member"),search_name:(0,t.__)("Search By Name","bp-team-member"),search_company:(0,t.__)("Search By Company","bp-team-member"),search_zip:(0,t.__)("Search By Zip","bp-team-member"),search_tag:(0,t.__)("Search By Tag","bp-team-member"),company:(0,t.__)("Company","bp-team-member"),address:(0,t.__)("Address","bp-team-member"),land_phone:(0,t.__)("Land Phone","bp-team-member"),cell_phone:(0,t.__)("Cell Phone","bp-team-member"),email:(0,t.__)("Email","bp-team-member"),zip_code:(0,t.__)("Zip Code","bp-team-member"),group:(0,t.__)("Group","bp-team-member"),tag:(0,t.__)("Tag","bp-team-member"),location:(0,t.__)("Location","bp-team-member"),language:(0,t.__)("Language","bp-team-member"),specialty:(0,t.__)("Specialty","bp-team-member"),gender:(0,t.__)("Gender","bp-team-member"),extra_one:(0,t.__)("Extra One","bp-team-member"),extra_two:(0,t.__)("Extra Two","bp-team-member"),extra_three:(0,t.__)("Extra Three","bp-team-member"),extra_four:(0,t.__)("Extra Four","bp-team-member"),extra_five:(0,t.__)("Extra Five","bp-team-member"),follow_me_on:(0,t.__)("Follow Me On","bp-team-member"),skills:(0,t.__)("Skills","bp-team-member"),read_on:(0,t.__)("Read On","bp-team-member"),more:(0,t.__)("More","bp-team-member"),vcard:(0,t.__)("Download vCard","bp-team-member"),reset_filters:(0,t.__)("Reset Filters","bp-team-member"),prev:(0,t.__)("Prev","bp-team-member"),next:(0,t.__)("Next","bp-team-member"),load_more:(0,t.__)("Load More","bp-team-member"),no_members:(0,t.__)("No team member found.","bp-team-member")}),g[e]||String(e))},y=e=>{const t=h(e);return t&&t!==e?t:String(e).replace(/_/g," ").replace(/\b\w/g,(e=>e.toUpperCase()))},v={land_phone_link:!1,cell_phone_link:!1,email_link:!1,disable_google_fonts:!1,disable_lazy_load:!1,lazy_load_class:"skip-lazy",search_all_fields:!1},w=e=>{const t=b().prefs&&"object"==typeof b().prefs?b().prefs:{},a=Object.prototype.hasOwnProperty.call(t,e)?t[e]:v[e];return"lazy_load_class"===e?"string"==typeof a?a:"skip-lazy":(e=>"boolean"==typeof e?e:"number"==typeof e?e>0:"string"==typeof e?["on","yes","true","1"].includes(e.trim().toLowerCase()):!!e)(a)},k="undefined"!=typeof document&&document.currentScript&&document.currentScript.src||"",_=/\/build\/[^/]*$/.test(k)?k.replace(/build\/[^/?#]*([?#].*)?$/,""):"",x=()=>{const e=b().pluginUrl;return e&&"string"==typeof e&&/^(https?:)?\/\//i.test(e)?e.replace(/\/?$/,"/"):_};let E=null;const C=e=>{if(-1===(e=String(e)).indexOf("&"))return e;if("undefined"==typeof window||"function"!=typeof window.DOMParser)return e.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#0?39;/g,"'");E||(E=(new window.DOMParser).parseFromString("<!doctype html><textarea></textarea>","text/html"));const t=E.querySelector("textarea");return t.innerHTML=e.replace(/</g,"&lt;"),t.value},S=e=>String(e).replace(/<(script|style)[^>]*?>[\s\S]*?<\/\1\s*>/gi,"").replace(/<\/?[a-zA-Z!?][^>]*(>|$)/g,""),N=e=>{if(null==e||"boolean"==typeof e||"object"==typeof e)return"";let t,a=S(String(e));a=a.replace(/[\r\n\t ]+/g," ");do{t=a,a=a.replace(/%[a-f0-9]{2}/gi,"")}while(t!==a);return C(a.replace(/\s+/g," ").trim())},A=e=>String(e).toLowerCase(),L=e=>{e=String(e||"");let t=S(e);return t=t.normalize?t.normalize("NFD").replace(/\p{M}/gu,""):t,t=t.replace(/ß/g,"ss").replace(/æ/gi,"ae").replace(/ø/gi,"o").replace(/đ/gi,"d").replace(/ł/gi,"l").replace(/œ/gi,"oe"),t=t.toLowerCase(),t=t.replace(/&.+?;/g,"").replace(/\./g,"-"),t=Array.from(t).map((e=>e.charCodeAt(0)>127?encodeURIComponent(e).toLowerCase():e)).join(""),t=t.replace(/[^%a-z0-9 _-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").replace(/^-+|-+$/g,""),""===t&&""!==e.trim()&&(t="v-"+(e=>{let t=2166136261;for(let a=0;a<e.length;a++)t^=e.charCodeAt(a),t=Math.imul(t,16777619)>>>0;return("0000000"+t.toString(16)).slice(-8)})(e)),t},B=e=>String(e||"").replace(/%[a-fA-F0-9][a-fA-F0-9]/g,"").replace(/[^A-Za-z0-9_-]/g,""),j=["fa","fab","fas","far","fa-brands","fa-solid","fa-regular"],z=/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)+$/,P=e=>"string"==typeof e&&e.length>=6&&e.length<=254&&z.test(e)&&!/\.\./.test(e),T=e=>{const t="string"==typeof e?e.trim():"";return P(t)?t:""},M=e=>{const t=("string"==typeof e||"number"==typeof e?String(e):"").split(/[;,\s]+/).filter(Boolean);return[...new Set(t.filter(P))].join(",")},D=["http","https"],O=["http","https","mailto","tel","skype","callto","sms","viber","whatsapp"],F=["http","https","ftp","ftps","mailto","news","irc","irc6","ircs","gopher","nntp","feed","telnet","mms","rtsp","sms","svn","tel","fax","xmpp","webcal","urn"],I=(e,t=F)=>{if("string"!=typeof e)return"";let a=e.trim().replace(/ /g,"%20");if(a=Array.from(a).filter((e=>e.charCodeAt(0)>127||/[a-z0-9\-~+_.?#=!&;,/:%@$|*'()[\]]/i.test(e))).join(""),""===a)return"";if(-1!==a.indexOf(":")){const e=/^([a-z][a-z0-9+.-]*):/i.exec(a);return e&&t.includes(e[1].toLowerCase())||/^[/#?]/.test(a)&&!/^\/\/[^/]*:/.test(a)?a:""}if(/^[/#?]/.test(a)||/^[a-z0-9-]+?\.php/i.test(a))return a;const r=t.includes("http")?"http://":"";return r?r+a:""},R={p:[],br:[],strong:[],b:[],em:[],i:[],u:[],a:["href","target","rel"],ul:[],ol:[],li:[],span:[],h3:[],h4:[],h5:[],h6:[],blockquote:[]},q=["p","ul","ol","h3","h4","h5","h6","blockquote","li"],G=["script","style","template","iframe","object","embed","noscript","svg","math","head","title","textarea","select"];let H=null;const W=e=>{const t=[];return e.childNodes.forEach((e=>{if(3===e.nodeType)return void t.push(e.nodeValue);if(1!==e.nodeType)return;const a=e.tagName.toLowerCase();if(G.includes(a))return;const r=W(e);if(!Object.prototype.hasOwnProperty.call(R,a))return void t.push(...r);const i={};if(R[a].forEach((t=>{const a=e.getAttribute(t);if(null!==a)if("href"===t){const e=I(a,O);e&&(i.href=e)}else if("target"===t)/^_(blank|self|parent|top)$/.test(a)&&(i.target=a);else if("rel"===t){const e=a.toLowerCase().split(/\s+/).filter((e=>/^[a-z-]+$/.test(e))).join(" ");e&&(i.rel=e)}})),"a"===a&&"_blank"===i.target){const e=new Set((i.rel||"").split(" ").filter(Boolean));e.add("noopener"),i.rel=[...e].join(" ")}t.push({tag:a,attrs:i,children:r})})),t},U=e=>{const t=[];let a=[];const r=()=>{const e=[[]];a.forEach((t=>{"string"==typeof t?t.replace(/\r\n?/g,"\n").split(/\n[ \t]*\n+/).forEach(((t,a)=>{a>0&&e.push([]),e[e.length-1].push(t)})):e[e.length-1].push(t)})),e.forEach((e=>{for(;e.length&&"string"==typeof e[0]&&""===e[0].trim();)e.shift();for(;e.length&&"string"==typeof e[e.length-1]&&""===e[e.length-1].trim();)e.pop();if(!e.length)return;"string"==typeof e[0]&&(e[0]=e[0].replace(/^\s+/,"")),"string"==typeof e[e.length-1]&&(e[e.length-1]=e[e.length-1].replace(/\s+$/,""));const a=[];e.forEach((e=>{"string"==typeof e&&/\n/.test(e)?e.split("\n").forEach(((e,t)=>{t>0&&a.push({tag:"br",attrs:{},children:[]}),a.push(e)})):a.push(e)})),t.push({tag:"p",attrs:{},children:a})})),a=[]};return e.forEach((e=>{(e=>e&&"object"==typeof e&&q.includes(e.tag))(e)?(r(),t.push("blockquote"===e.tag?{...e,children:U(e.children)}:e)):a.push(e)})),r(),t},V=e=>e.map((e=>"string"==typeof e?e:V(e.children))).join(""),K=(t,a="n")=>t.map(((t,r)=>{if("string"==typeof t)return t;const i={key:a+r,...t.attrs};return"br"===t.tag?(0,e.createElement)("br",i):(0,e.createElement)(t.tag,i,...K(t.children,a+r+"-"))})),$=e=>U([String(e)]),J=u.attributes||{},Z={filterType:["normal-filter","ajax-filter"],linkType:["default","popup","panel","drawer","custom","none","single_page"],linkTarget:["_self","_blank"],popupColumns:["two","one"],panelPosition:["right","left","center"],imageFilter:["none","blur","brightness","contrast","grayscale","hue_rotate","invert","opacity","saturate","sepia"],hoverImageFilter:["none","blur","brightness","contrast","grayscale","hue_rotate","invert","opacity","saturate","sepia"],orderBy:["default","title","rand","name","date","ID","menu_order","modified"],order:["ASC","DESC"],taxonomyOrderBy:["name","default","slug","term_id","order","count","menu_order","term_order"],taxonomyOrder:["ASC","DESC"],filterColumns:["two","three"],filterCatPosition:["center","left","right"],filterStyle:["default","style-one","style-two","style-three","style-four","style-five"],paginationType:["normal-pagination","load-more-button","load-more-scroll"],carouselNavsStyle:["default","style-one","style-two","style-three"],carouselDotsStyle:["default","style-one","style-two","style-three"],alignment:["center","left","right"]},Y=e=>"number"==typeof e&&isFinite(e)||"string"==typeof e&&""!==e.trim()&&isFinite(Number(e)),X=e=>"boolean"==typeof e?e:"string"==typeof e?!["false","0",""].includes(e.toLowerCase()):!!e,Q=e=>String(e).replace(/[^A-Za-z0-9_-]/g,""),ee=(e,t=0)=>{if(Array.isArray(e))return t>4?[]:e.map((e=>ee(e,t+1)));if(e&&"object"==typeof e){const a={};return t>4||Object.keys(e).forEach((r=>{const i=Q(r);""!==i&&(a[i]=ee(e[r],t+1))})),a}return"boolean"==typeof e||"number"==typeof e||null===e?e:N(e)},te=(e,t)=>{const a=Array.isArray(e)?[]:{};return Object.keys(e).forEach((r=>{const i=e[r],l=Array.isArray(e)?r:Q(r);""!==l&&(i&&"object"==typeof i?t<3&&(a[l]=te(i,t+1)):"string"==typeof i?a[l]=i.length>2e4?i.slice(0,2e4):i:"boolean"!=typeof i&&"number"!=typeof i&&null!==i||(a[l]=i))})),Array.isArray(e)?a.filter((e=>void 0!==e)):a},ae=e=>{e=e&&"object"==typeof e?e:{};const t=(()=>{const e={};return Object.keys(J).forEach((t=>{const a=J[t];var r,i;Object.prototype.hasOwnProperty.call(a,"default")?e[t]=(i=a.default)&&"object"==typeof i?JSON.parse(JSON.stringify(i)):i:e[t]=null!==(r={boolean:!1,number:0,integer:0,array:[],object:{}}[a.type])&&void 0!==r?r:""})),e})();Object.keys(e).forEach((a=>{const r=e[a];if("members"!==a)if(J[a])switch(Array.isArray(J[a].type)?J[a].type[0]:J[a].type){case"boolean":t[a]=X(r);break;case"number":t[a]=Y(r)?Number(r):t[a];break;case"integer":t[a]=Y(r)?Math.trunc(Number(r)):t[a];break;case"array":Array.isArray(r)?t[a]=ee(r):t[a]="string"==typeof r&&""!==r?r.split(",").map((e=>e.trim())):[];break;case"object":t[a]=r&&"object"==typeof r&&!Array.isArray(r)?ee(r):t[a];break;default:t[a]=null!==r&&"object"!=typeof r&&void 0!==r?N(r):t[a]}else["className","anchor","align"].includes(a)&&"string"==typeof r&&(t[a]=N(r));else t.members=(e=>{if("string"==typeof e)try{e=JSON.parse(e)}catch(t){e=[]}return Array.isArray(e)?e.slice(0,500).filter((e=>e&&"object"==typeof e&&!Array.isArray(e))).map((e=>te(e,0))):[]})(r)})),Object.keys(Z).forEach((e=>{if(!Z[e].includes(t[e])){const a=J[e]&&J[e].default;t[e]=Z[e].includes(a)?a:Z[e][0]}})),["popupStyle","panelStyle","drawerStyle","thumbnailSize","theme"].forEach((e=>{t[e]=(e=>String(e||"").toLowerCase().replace(/[^a-z0-9_-]/g,""))(t[e])})),""===t.thumbnailSize&&(t.thumbnailSize="large"),t.numberOfMembers=Math.trunc(Number(t.numberOfMembers))||0,["perPage","initialItems","loadPerClick","perLoad","carouselItemsToScroll"].forEach((e=>{t[e]=Math.max(1,Math.trunc(Number(t[e]))||0)}));const a=(e,t,a)=>Math.max(t,Math.min(a,e));return t.carouselSpeed=a(Math.trunc(Number(t.carouselSpeed))||0,100,1e4),t.carouselAutoplayTimeout=a(Math.trunc(Number(t.carouselAutoplayTimeout))||0,500,6e4),t.detailsLength=Math.max(0,Math.trunc(Number(t.detailsLength))||0),t.columnGap=a(Number(t.columnGap)||0,0,200),t.rowGap=a(Number(t.rowGap)||0,0,200),t},re={desktop:"bptm-hide-desktop",tablet:"bptm-hide-tablet",mobilePortrait:"bptm-hide-mobile-portrait",mobile:"bptm-hide-mobile"},ie={group:"group",tags:"tag",language:"language",location:"location",gender:"gender",specialty:"specialty",extraOne:"extra_one",extraTwo:"extra_two",extraThree:"extra_three",extraFour:"extra_four",extraFive:"extra_five"},le=["group","location","language","gender","specialty","extra_one","extra_two","extra_three","extra_four","extra_five"],ne=(e,t)=>{e=e&&"object"==typeof e&&!Array.isArray(e)?e:{};let a=Y(e.id)?Math.max(0,Math.trunc(Number(e.id))):0,r="string"==typeof e.url?e.url.trim():"";const i="string"==typeof e.alt||"number"==typeof e.alt?N(e.alt):"";let l=e.sizes&&"object"==typeof e.sizes&&!Array.isArray(e.sizes)?e.sizes:null;if(!l&&/^assets\/img\/team\/[a-z0-9-]+\.jpg$/i.test(r)){const e=r.replace(/\.jpg$/i,"");l={thumbnail:{url:e+"-150x150.jpg"},medium:{url:e+"-300x300.jpg"}}}if(l){const e=l[t]||("full"!==t?null:l.full),a=e&&"object"==typeof e?e.url:e;"string"==typeof a&&""!==a.trim()&&(r=a.trim())}if(""!==r&&!/^(?:[a-z][a-z0-9+.-]*:|\/)/i.test(r)){const e=r.replace(/\\/g,"/").split("/").filter((e=>""!==e&&"."!==e&&".."!==e)).map((e=>{let t=e;try{t=decodeURIComponent(e)}catch(a){t=e}return encodeURIComponent(t).replace(/[!'()*]/g,(e=>"%"+e.charCodeAt(0).toString(16).toUpperCase()))}));r=e.length?x()+e.join("/"):"",a=0}return r=""!==r?I(r,D):"",""===r&&(a=0),{id:a,url:r,alt:i}},se=(e,t,a,r)=>{if(!e||"object"!=typeof e||Array.isArray(e))return null;const i=t=>"string"==typeof e[t]||"number"==typeof e[t]?N(e[t]):"",l=t=>"string"==typeof e[t]&&""!==e[t].trim()?I(e[t].trim()):"";let n=(e=>"string"==typeof e||"number"==typeof e?String(e).replace(/[^A-Za-z0-9_-]/g,"").slice(0,64):"")(e.id);""===n&&(n="m"+(r+1));const s=i("name"),o="string"==typeof e.details?e.details.replace(/\r\n?/g,"\n"):"";let c=null;if(a)c=""!==o.trim()?(e=>{const t=(e=>"undefined"==typeof window||"function"!=typeof window.DOMParser?null:(H||(H=new window.DOMParser),H.parseFromString("<!doctype html><body>"+String(e)+"</body>","text/html").body))(e);return U(t?W(t):[S(e)])})(o):[];else{const e=C(S(o));c=""!==e.trim()?$(e):[]}const m=C(S(o)).replace(/\s+/g," ").trim(),p=ne(e.image,t),d=ne(e.flipImage,t),f={};Object.keys(ie).forEach((t=>{f[ie[t]]=(e=>{if(Array.isArray(e)&&(e=e.filter((e=>"string"==typeof e||"number"==typeof e)).join(",")),"string"!=typeof e&&"number"!=typeof e)return[];const t=new Map;return String(e).split(",").forEach((e=>{const a=N(e);if(""===a)return;const r=L(a);t.has(r)||t.set(r,{id:r,name:a,slug:r,parent:0})})),[...t.values()]})(e[t])}));const u=[];(Array.isArray(e.social)?e.social:[]).forEach((e=>{if(!e||"object"!=typeof e)return;const t=(e=>{if("string"!=typeof e)return"";const t=e.trim().toLowerCase().split(/\s+/).filter(Boolean),a=[];let r=!1;for(const e of t)if(j.includes(e))a.push(e);else{if(!/^fa-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(e))return"";a.push(e),r=!0}return r?[...new Set(a)].join(" "):""})(e.icon),a=oe("string"==typeof e.link||"number"==typeof e.link?String(e.link):"",t);t&&a&&u.push({icon:t,link:a})}));const b=[];return(Array.isArray(e.skills)?e.skills:[]).forEach((e=>{if(!e||"object"!=typeof e)return;const t="string"==typeof e.skill||"number"==typeof e.skill?N(e.skill):"";if(""===t)return;const a=Y(e.percent)?Math.round(Number(e.percent)):0;b.push({skill:t,percent:Math.max(0,Math.min(100,a))})})),{id:n,name:s,slug:L(s),content:c,excerpt:m,designation:i("designation"),company:i("company"),company_website:l("companyWebsite"),land_phone:i("landPhone"),cell_phone:i("cellPhone"),email:T(e.email),email_cc:M(e.emailCc),email_bcc:M(e.emailBcc),address:i("address"),ribbon:i("ribbon"),zip_code:i("zipCode"),vcard:l("vcard"),custom_page:l("customUrl"),featured:(g=e.featured,"boolean"==typeof g?g:"number"==typeof g?g>0:"string"==typeof g?Y(g)?Number(g)>0:["on","yes","true","1"].includes(g.trim().toLowerCase()):!!g),image_id:p.id,image_url:""!==p.url?p.url:x()+"assets/img/placeholder.svg",image_alt:""!==p.alt?p.alt:s,flip_image_id:d.id,flip_image_url:d.url,social:u,skills:b,terms:f,menu_order:r};var g},oe=(e,t)=>""===(e=String(e||"").trim())?"":(P(e)?e="mailto:"+e:/^\+?[0-9 ().-]{5,}$/.test(e)&&(e=>/(?:^|\s)fa-(?:phone(?:-[a-z0-9-]+)?|square-phone(?:-[a-z0-9-]+)?|mobile(?:-[a-z0-9-]+)?)(?:\s|$)/.test(String(e).toLowerCase()))(t)&&(e="tel:"+e.replace(/[^0-9+]/g,"")),I(e,["http","https","ftp","ftps","mailto","news","irc","irc6","ircs","gopher","nntp","feed","telnet","mms","rtsp","sms","svn","tel","fax","xmpp","webcal","urn","skype","whatsapp","viber","tg","callto"])),ce=(e,t,a=", ")=>(e.terms[t]||[]).map((e=>e.name)).join(a),me=(e,t)=>(e.terms[t]||[]).map((e=>e.slug)),pe={includeGroups:"group",includeTags:"tag",includeLocations:"location",includeLanguages:"language",includeSpecialties:"specialty",includeGenders:"gender",includeExtraOne:"extra_one",includeExtraTwo:"extra_two",includeExtraThree:"extra_three",includeExtraFour:"extra_four",includeExtraFive:"extra_five"},de=e=>{"string"==typeof e&&(e=e.split(","));const t=[];return(Array.isArray(e)?e:[]).forEach((e=>{e&&"object"==typeof e&&(e=void 0!==e.value?e.value:void 0!==e.name?e.name:e.label),"string"==typeof e&&(""===(e=N(e))||t.includes(e)||t.push(e))})),t},fe=(e,t)=>{const a=A(e.name);return t.some((t=>A(t)===a||L(t)===e.slug))},ue=(e,t,a)=>(e.terms[t]||[]).some((e=>fe(e,a))),be=(e,t)=>""===t||-1!==A(e).indexOf(t),ge=e=>{const t=[e.designation,e.company,e.company_website,e.email,e.land_phone,e.cell_phone,e.address,e.zip_code,e.ribbon,e.excerpt];return Object.keys(e.terms).forEach((a=>e.terms[a].forEach((e=>t.push(e.name))))),e.skills.forEach((e=>t.push(e.skill))),t.filter((e=>""!==String(e))).join(" ")},he=(e,t,a)=>{const r=(i=e.orderBy,"name"===(i=String(i))?"title":["title","rand"].includes(i)?i:"default");var i;let l="DESC"===String(e.order).toUpperCase(),n=t.slice();if("title"===r){const e="undefined"!=typeof Intl?new Intl.Collator(void 0,{numeric:!0,sensitivity:"base"}):null;n.sort(((t,a)=>{const r=e?e.compare(t.name,a.name):t.name.localeCompare(a.name);return 0!==r?r:t.menu_order-a.menu_order}))}else if("rand"===r){const e=e=>{let t=2166136261^a;const r=String(a)+"|"+e;for(let e=0;e<r.length;e++)t^=r.charCodeAt(e),t=Math.imul(t,16777619)>>>0;return t};n.sort(((t,a)=>e(t.id)-e(a.id))),l=!1}return l&&n.reverse(),e.enableFeaturing&&(n=[...n.filter((e=>e.featured)),...n.filter((e=>!e.featured))]),n},ye=(e,t,a,r="")=>{const i=r?de(t[r]):[],l="group"===e?de(t.excludeGroups):[],n=new Map;a.forEach((t=>{(t.terms[e]||[]).forEach((e=>{n.has(e.slug)?n.get(e.slug).count++:i.length&&!fe(e,i)||l.length&&fe(e,l)||n.set(e.slug,{slug:e.slug,name:e.name,count:1})}))}));let s=[...n.values()];if(["name","slug"].includes(t.taxonomyOrderBy)){const e="undefined"!=typeof Intl?new Intl.Collator(void 0,{numeric:!0,sensitivity:"base"}):null;s.sort(((t,a)=>e?e.compare(t.name,a.name):t.name.localeCompare(a.name)))}return"DESC"===t.taxonomyOrder&&(s=s.reverse()),s},ve=JSON.parse('{"fab fa-42-group":"42.group","fab fa-500px":"500px","fab fa-accessible-icon":"Accessible Icon","fab fa-accusoft":"Accusoft","fab fa-adn":"App.net","fab fa-adversal":"Adversal","fab fa-affiliatetheme":"affiliatetheme","fab fa-airbnb":"Airbnb","fab fa-algolia":"Algolia","fab fa-alipay":"Alipay","fab fa-amazon-pay":"Amazon Pay","fab fa-amazon":"Amazon","fab fa-amilia":"Amilia","fab fa-android":"Android","fab fa-angellist":"AngelList","fab fa-angrycreative":"Angry Creative","fab fa-angular":"Angular","fab fa-app-store-ios":"iOS App Store","fab fa-app-store":"App Store","fab fa-apper":"Apper Systems AB","fab fa-apple-pay":"Apple Pay","fab fa-apple":"Apple","fab fa-artstation":"Artstation","fab fa-asymmetrik":"Asymmetrik, Ltd.","fab fa-atlassian":"Atlassian","fab fa-audible":"Audible","fab fa-autoprefixer":"Autoprefixer","fab fa-avianex":"avianex","fab fa-aviato":"Aviato","fab fa-aws":"Amazon Web Services (AWS)","fab fa-bandcamp":"Bandcamp","fab fa-battle-net":"Battle.net","fab fa-behance":"Behance","fab fa-bilibili":"Bilibili","fab fa-bimobject":"BIMobject","fab fa-bitbucket":"Bitbucket","fab fa-bitcoin":"Bitcoin","fab fa-bity":"Bity","fab fa-black-tie":"Font Awesome Black Tie","fab fa-blackberry":"BlackBerry","fab fa-blogger-b":"Blogger B","fab fa-blogger":"Blogger","fab fa-bluesky":"Bluesky","fab fa-bluetooth-b":"Bluetooth","fab fa-bluetooth":"Bluetooth","fab fa-bootstrap":"Bootstrap","fab fa-bots":"Bots","fab fa-brave-reverse":"Brave Reverse","fab fa-brave":"Brave","fab fa-btc":"BTC","fab fa-buffer":"Buffer","fab fa-buromobelexperte":"Büromöbel-Experte GmbH & Co. KG.","fab fa-buy-n-large":"Buy n Large","fab fa-buysellads":"BuySellAds","fab fa-canadian-maple-leaf":"Canadian Maple Leaf","fab fa-cc-amazon-pay":"Amazon Pay Credit Card","fab fa-cc-amex":"Cc Amex","fab fa-cc-apple-pay":"Apple Pay Credit Card","fab fa-cc-diners-club":"Diner\'s Club Credit Card","fab fa-cc-discover":"Discover Credit Card","fab fa-cc-jcb":"JCB Credit Card","fab fa-cc-mastercard":"MasterCard Credit Card","fab fa-cc-paypal":"Paypal Credit Card","fab fa-cc-stripe":"Stripe Credit Card","fab fa-cc-visa":"Visa Credit Card","fab fa-centercode":"Centercode","fab fa-centos":"Centos","fab fa-chrome":"Chrome","fab fa-chromecast":"Chromecast","fab fa-cloudflare":"Cloudflare","fab fa-cloudscale":"cloudscale.ch","fab fa-cloudsmith":"Cloudsmith","fab fa-cloudversify":"cloudversify","fab fa-cmplid":"Cmplid","fab fa-codepen":"Codepen","fab fa-codiepie":"Codie Pie","fab fa-confluence":"Confluence","fab fa-connectdevelop":"Connect Develop","fab fa-contao":"Contao","fab fa-cotton-bureau":"Cotton Bureau","fab fa-cpanel":"cPanel","fab fa-creative-commons-by":"Creative Commons Attribution","fab fa-creative-commons-nc-eu":"Creative Commons Noncommercial (Euro Sign)","fab fa-creative-commons-nc-jp":"Creative Commons Noncommercial (Yen Sign)","fab fa-creative-commons-nc":"Creative Commons Noncommercial","fab fa-creative-commons-nd":"Creative Commons No Derivative Works","fab fa-creative-commons-pd-alt":"Alternate Creative Commons Public Domain","fab fa-creative-commons-pd":"Creative Commons Public Domain","fab fa-creative-commons-remix":"Creative Commons Remix","fab fa-creative-commons-sa":"Creative Commons Share Alike","fab fa-creative-commons-sampling-plus":"Creative Commons Sampling +","fab fa-creative-commons-sampling":"Creative Commons Sampling","fab fa-creative-commons-share":"Creative Commons Share","fab fa-creative-commons-zero":"Creative Commons CC0","fab fa-creative-commons":"Creative Commons","fab fa-critical-role":"Critical Role","fab fa-css3-alt":"Alternate CSS3 Logo","fab fa-css3":"CSS 3 Logo","fab fa-cuttlefish":"Cuttlefish","fab fa-d-and-d-beyond":"D&D Beyond","fab fa-d-and-d":"Dungeons & Dragons","fab fa-dailymotion":"dailymotion","fab fa-dashcube":"DashCube","fab fa-debian":"Debian","fab fa-deezer":"Deezer","fab fa-delicious":"Delicious","fab fa-deploydog":"deploy.dog","fab fa-deskpro":"Deskpro","fab fa-dev":"DEV","fab fa-deviantart":"deviantART","fab fa-dhl":"DHL","fab fa-diaspora":"Diaspora","fab fa-digg":"Digg Logo","fab fa-digital-ocean":"Digital Ocean","fab fa-discord":"Discord","fab fa-discourse":"Discourse","fab fa-dochub":"DocHub","fab fa-docker":"Docker","fab fa-draft2digital":"Draft2digital","fab fa-dribbble":"Dribbble","fab fa-dropbox":"Dropbox","fab fa-drupal":"Drupal Logo","fab fa-dyalog":"Dyalog","fab fa-earlybirds":"Earlybirds","fab fa-ebay":"eBay","fab fa-edge-legacy":"Edge Legacy Browser","fab fa-edge":"Edge Browser","fab fa-elementor":"Elementor","fab fa-ello":"Ello","fab fa-ember":"Ember","fab fa-empire":"Galactic Empire","fab fa-envira":"Envira Gallery","fab fa-erlang":"Erlang","fab fa-ethereum":"Ethereum","fab fa-etsy":"Etsy","fab fa-evernote":"Evernote","fab fa-expeditedssl":"ExpeditedSSL","fab fa-facebook-f":"Facebook F","fab fa-facebook-messenger":"Facebook Messenger","fab fa-facebook":"Facebook","fab fa-fantasy-flight-games":"Fantasy Flight-games","fab fa-fedex":"FedEx","fab fa-fedora":"Fedora","fab fa-figma":"Figma","fab fa-firefox-browser":"Firefox Browser","fab fa-firefox":"Firefox","fab fa-first-order-alt":"Alternate First Order","fab fa-first-order":"First Order","fab fa-firstdraft":"firstdraft","fab fa-flickr":"Flickr","fab fa-flipboard":"Flipboard","fab fa-fly":"Fly","fab fa-font-awesome":"Font Awesome","fab fa-fonticons-fi":"Fonticons Fi","fab fa-fonticons":"Fonticons","fab fa-fort-awesome-alt":"Alternate Fort Awesome","fab fa-fort-awesome":"Fort Awesome","fab fa-forumbee":"Forumbee","fab fa-foursquare":"Foursquare","fab fa-free-code-camp":"freeCodeCamp","fab fa-freebsd":"FreeBSD","fab fa-fulcrum":"Fulcrum","fab fa-galactic-republic":"Galactic Republic","fab fa-galactic-senate":"Galactic Senate","fab fa-get-pocket":"Get Pocket","fab fa-gg-circle":"GG Currency Circle","fab fa-gg":"GG Currency","fab fa-git-alt":"Git Alt","fab fa-git":"Git","fab fa-github-alt":"Alternate GitHub","fab fa-github":"GitHub","fab fa-gitkraken":"GitKraken","fab fa-gitlab":"GitLab","fab fa-gitter":"Gitter","fab fa-glide-g":"Glide G","fab fa-glide":"Glide","fab fa-gofore":"Gofore","fab fa-golang":"Go","fab fa-goodreads-g":"Goodreads G","fab fa-goodreads":"Goodreads","fab fa-google-drive":"Google Drive","fab fa-google-pay":"Google Pay","fab fa-google-play":"Google Play","fab fa-google-plus-g":"Google Plus G","fab fa-google-plus":"Google Plus","fab fa-google-scholar":"Google Scholar","fab fa-google-wallet":"Google Wallet","fab fa-google":"Google Logo","fab fa-gratipay":"Gratipay (Gittip)","fab fa-grav":"Grav","fab fa-gripfire":"Gripfire, Inc.","fab fa-grunt":"Grunt","fab fa-guilded":"Guilded","fab fa-gulp":"Gulp","fab fa-hacker-news":"Hacker News","fab fa-hackerrank":"Hackerrank","fab fa-hashnode":"Hashnode","fab fa-hips":"Hips","fab fa-hire-a-helper":"HireAHelper","fab fa-hive":"Hive Blockchain Network","fab fa-hooli":"Hooli","fab fa-hornbill":"Hornbill","fab fa-hotjar":"Hotjar","fab fa-houzz":"Houzz","fab fa-html5":"HTML 5 Logo","fab fa-hubspot":"HubSpot","fab fa-ideal":"iDeal","fab fa-imdb":"IMDB","fab fa-instagram":"Instagram","fab fa-instalod":"InstaLOD","fab fa-intercom":"Intercom","fab fa-internet-explorer":"Internet-explorer","fab fa-invision":"InVision","fab fa-ioxhost":"ioxhost","fab fa-itch-io":"itch.io","fab fa-itunes-note":"Itunes Note","fab fa-itunes":"iTunes","fab fa-java":"Java","fab fa-jedi-order":"Jedi Order","fab fa-jenkins":"Jenkis","fab fa-jira":"Jira","fab fa-joget":"Joget","fab fa-joomla":"Joomla Logo","fab fa-js":"JavaScript (JS)","fab fa-jsfiddle":"jsFiddle","fab fa-jxl":"Jxl","fab fa-kaggle":"Kaggle","fab fa-keybase":"Keybase","fab fa-keycdn":"KeyCDN","fab fa-kickstarter-k":"Kickstarter K","fab fa-kickstarter":"Kickstarter","fab fa-korvue":"KORVUE","fab fa-laravel":"Laravel","fab fa-lastfm":"last.fm","fab fa-leanpub":"Leanpub","fab fa-less":"Less","fab fa-letterboxd":"Letterboxd","fab fa-line":"Line","fab fa-linkedin-in":"LinkedIn In","fab fa-linkedin":"LinkedIn","fab fa-linode":"Linode","fab fa-linux":"Linux","fab fa-lyft":"lyft","fab fa-magento":"Magento","fab fa-mailchimp":"Mailchimp","fab fa-mandalorian":"Mandalorian","fab fa-markdown":"Markdown","fab fa-mastodon":"Mastodon","fab fa-maxcdn":"MaxCDN","fab fa-mdb":"Material Design for Bootstrap","fab fa-medapps":"MedApps","fab fa-medium":"Medium","fab fa-medrt":"MRT","fab fa-meetup":"Meetup","fab fa-megaport":"Megaport","fab fa-mendeley":"Mendeley","fab fa-meta":"Meta","fab fa-microblog":"Micro.blog","fab fa-microsoft":"Microsoft","fab fa-mintbit":"Mintbit","fab fa-mix":"Mix","fab fa-mixcloud":"Mixcloud","fab fa-mixer":"Mixer","fab fa-mizuni":"Mizuni","fab fa-modx":"MODX","fab fa-monero":"Monero","fab fa-napster":"Napster","fab fa-neos":"Neos","fab fa-nfc-directional":"NFC Directional","fab fa-nfc-symbol":"Nfc Symbol","fab fa-nimblr":"Nimblr","fab fa-node-js":"Node.js JS","fab fa-node":"Node.js","fab fa-npm":"npm","fab fa-ns8":"NS8","fab fa-nutritionix":"Nutritionix","fab fa-octopus-deploy":"Octopus Deploy","fab fa-odnoklassniki":"Odnoklassniki","fab fa-odysee":"Odysee","fab fa-old-republic":"Old Republic","fab fa-opencart":"OpenCart","fab fa-openid":"OpenID","fab fa-opensuse":"Opensuse","fab fa-opera":"Opera","fab fa-optin-monster":"Optin Monster","fab fa-orcid":"ORCID","fab fa-osi":"Open Source Initiative","fab fa-padlet":"Padlet","fab fa-page4":"page4 Corporation","fab fa-pagelines":"Pagelines","fab fa-palfed":"Palfed","fab fa-patreon":"Patreon","fab fa-paypal":"Paypal","fab fa-perbyte":"PerByte","fab fa-periscope":"Periscope","fab fa-phabricator":"Phabricator","fab fa-phoenix-framework":"Phoenix Framework","fab fa-phoenix-squadron":"Phoenix Squadron","fab fa-php":"PHP","fab fa-pied-piper-alt":"Alternate Pied Piper Logo (Old)","fab fa-pied-piper-hat":"Pied Piper Hat (Old)","fab fa-pied-piper-pp":"Pied Piper PP Logo (Old)","fab fa-pied-piper":"Pied Piper Logo","fab fa-pinterest-p":"Pinterest P","fab fa-pinterest":"Pinterest","fab fa-pix":"Pix","fab fa-pixiv":"Pixiv","fab fa-playstation":"PlayStation","fab fa-product-hunt":"Product Hunt","fab fa-pushed":"Pushed","fab fa-python":"Python","fab fa-qq":"QQ","fab fa-quinscape":"QuinScape","fab fa-quora":"Quora","fab fa-r-project":"R Project","fab fa-raspberry-pi":"Raspberry Pi","fab fa-ravelry":"Ravelry","fab fa-react":"React","fab fa-reacteurope":"ReactEurope","fab fa-readme":"ReadMe","fab fa-rebel":"Rebel Alliance","fab fa-red-river":"red river","fab fa-reddit-alien":"Reddit Alien","fab fa-reddit":"Reddit","fab fa-redhat":"Redhat","fab fa-renren":"Renren","fab fa-replyd":"replyd","fab fa-researchgate":"Researchgate","fab fa-resolving":"Resolving","fab fa-rev":"Rev.io","fab fa-rocketchat":"Rocket.Chat","fab fa-rockrms":"Rockrms","fab fa-rust":"Rust","fab fa-safari":"Safari","fab fa-salesforce":"Salesforce","fab fa-sass":"Sass","fab fa-schlix":"SCHLIX","fab fa-screenpal":"Screenpal","fab fa-scribd":"Scribd","fab fa-searchengin":"Searchengin","fab fa-sellcast":"Sellcast","fab fa-sellsy":"Sellsy","fab fa-servicestack":"Servicestack","fab fa-shirtsinbulk":"Shirts in Bulk","fab fa-shoelace":"Shoelace","fab fa-shopify":"Shopify","fab fa-shopware":"Shopware","fab fa-signal-messenger":"Signal Messenger","fab fa-simplybuilt":"SimplyBuilt","fab fa-sistrix":"SISTRIX","fab fa-sith":"Sith","fab fa-sitrox":"Sitrox","fab fa-sketch":"Sketch","fab fa-skyatlas":"skyatlas","fab fa-skype":"Skype","fab fa-slack":"Slack Logo","fab fa-slideshare":"Slideshare","fab fa-snapchat":"Snapchat","fab fa-soundcloud":"SoundCloud","fab fa-sourcetree":"Sourcetree","fab fa-space-awesome":"Space Awesome","fab fa-speakap":"Speakap","fab fa-speaker-deck":"Speaker Deck","fab fa-spotify":"Spotify","fab fa-square-behance":"Square Behance","fab fa-square-dribbble":"Square Dribbble","fab fa-square-facebook":"Square Facebook","fab fa-square-font-awesome-stroke":"Square Font Awesome Stroke","fab fa-square-font-awesome":"Square Font Awesome","fab fa-square-git":"Square Git","fab fa-square-github":"Square Github","fab fa-square-gitlab":"Square Gitlab","fab fa-square-google-plus":"Square Google Plus","fab fa-square-hacker-news":"Square Hacker News","fab fa-square-instagram":"Square Instagram","fab fa-square-js":"Square Js","fab fa-square-lastfm":"Square Lastfm","fab fa-square-letterboxd":"Square Letterboxd","fab fa-square-odnoklassniki":"Square Odnoklassniki","fab fa-square-pied-piper":"Pied Piper Square Logo (Old)","fab fa-square-pinterest":"Square Pinterest","fab fa-square-reddit":"Square Reddit","fab fa-square-snapchat":"Snapchat Square","fab fa-square-steam":"Square Steam","fab fa-square-threads":"Square Threads","fab fa-square-tumblr":"Square Tumblr","fab fa-square-twitter":"Square Twitter","fab fa-square-upwork":"Square Upwork","fab fa-square-viadeo":"Square Viadeo","fab fa-square-vimeo":"Square Vimeo","fab fa-square-web-awesome-stroke":"Square Web Awesome Stroke","fab fa-square-web-awesome":"Square Web Awesome","fab fa-square-whatsapp":"Square Whatsapp","fab fa-square-x-twitter":"Square X Twitter","fab fa-square-xing":"Square Xing","fab fa-square-youtube":"Square Youtube","fab fa-squarespace":"Squarespace","fab fa-stack-exchange":"Stack Exchange","fab fa-stack-overflow":"Stack Overflow","fab fa-stackpath":"Stackpath","fab fa-staylinked":"StayLinked","fab fa-steam-symbol":"Steam Symbol","fab fa-steam":"Steam","fab fa-sticker-mule":"Sticker Mule","fab fa-strava":"Strava","fab fa-stripe-s":"Stripe S","fab fa-stripe":"Stripe","fab fa-stubber":"Stubber","fab fa-studiovinari":"Studio Vinari","fab fa-stumbleupon-circle":"StumbleUpon Circle","fab fa-stumbleupon":"StumbleUpon Logo","fab fa-superpowers":"Superpowers","fab fa-supple":"Supple","fab fa-suse":"Suse","fab fa-swift":"Swift","fab fa-symfony":"Symfony","fab fa-teamspeak":"Teamspeak","fab fa-telegram":"Telegram","fab fa-tencent-weibo":"Tencent Weibo","fab fa-the-red-yeti":"The Red Yeti","fab fa-themeco":"Themeco","fab fa-themeisle":"ThemeIsle","fab fa-think-peaks":"Think Peaks","fab fa-threads":"Threads","fab fa-tiktok":"TikTok","fab fa-trade-federation":"Trade Federation","fab fa-trello":"Trello","fab fa-tumblr":"Tumblr","fab fa-twitch":"Twitch","fab fa-twitter":"Twitter","fab fa-typo3":"Typo3","fab fa-uber":"Uber","fab fa-ubuntu":"Ubuntu","fab fa-uikit":"UIkit","fab fa-umbraco":"Umbraco","fab fa-uncharted":"Uncharted Software","fab fa-uniregistry":"Uniregistry","fab fa-unity":"Unity 3D","fab fa-unsplash":"Unsplash","fab fa-untappd":"Untappd","fab fa-ups":"UPS","fab fa-upwork":"Upwork","fab fa-usb":"USB","fab fa-usps":"United States Postal Service","fab fa-ussunnah":"us-Sunnah Foundation","fab fa-vaadin":"Vaadin","fab fa-viacoin":"Viacoin","fab fa-viadeo":"Viadeo","fab fa-viber":"Viber","fab fa-vimeo-v":"Vimeo","fab fa-vimeo":"Vimeo","fab fa-vine":"Vine","fab fa-vk":"VK","fab fa-vnv":"VNV","fab fa-vuejs":"Vue.js","fab fa-watchman-monitoring":"Watchman Monitoring","fab fa-waze":"Waze","fab fa-web-awesome":"Web Awesome","fab fa-webflow":"Webflow","fab fa-weebly":"Weebly","fab fa-weibo":"Weibo","fab fa-weixin":"Weixin (WeChat)","fab fa-whatsapp":"What\'s App","fab fa-whmcs":"WHMCS","fab fa-wikipedia-w":"Wikipedia W","fab fa-windows":"Windows","fab fa-wirsindhandwerk":"wirsindhandwerk","fab fa-wix":"Wix","fab fa-wizards-of-the-coast":"Wizards of the Coast","fab fa-wodu":"Wodu","fab fa-wolf-pack-battalion":"Wolf Pack Battalion","fab fa-wordpress-simple":"Wordpress Simple","fab fa-wordpress":"WordPress Logo","fab fa-wpbeginner":"WPBeginner","fab fa-wpexplorer":"WPExplorer","fab fa-wpforms":"WPForms","fab fa-wpressr":"wpressr","fab fa-x-twitter":"X Twitter","fab fa-xbox":"Xbox","fab fa-xing":"Xing","fab fa-y-combinator":"Y Combinator","fab fa-yahoo":"Yahoo Logo","fab fa-yammer":"Yammer","fab fa-yandex-international":"Yandex International","fab fa-yandex":"Yandex","fab fa-yarn":"Yarn","fab fa-yelp":"Yelp","fab fa-yoast":"Yoast","fab fa-youtube":"YouTube","fab fa-zhihu":"Zhihu","fas fa-address-book":"Address Book","fas fa-address-card":"Address Card","fas fa-at":"At","fas fa-blog":"Blog","fas fa-book":"Book","fas fa-book-open":"Book Open","fas fa-briefcase":"Briefcase","fas fa-building":"Building","fas fa-building-user":"Building User","fas fa-bullhorn":"Bullhorn","fas fa-calendar":"Calendar","fas fa-calendar-days":"Calendar Days","fas fa-camera":"Camera","fas fa-certificate":"Certificate","fas fa-chalkboard-user":"Chalkboard User","fas fa-circle-user":"Circle User","fas fa-circle-info":"Circle Info","fas fa-comment":"Comment","fas fa-comments":"Comments","fas fa-comment-dots":"Comment Dots","fas fa-code":"Code","fas fa-compass":"Compass","fas fa-desktop":"Desktop","fas fa-download":"Download","fas fa-earth-americas":"Earth Americas","fas fa-earth-europe":"Earth Europe","fas fa-envelope":"Envelope","fas fa-envelope-open":"Envelope Open","fas fa-envelope-open-text":"Envelope Open Text","fas fa-fax":"Fax","fas fa-file":"File","fas fa-file-lines":"File Lines","fas fa-file-pdf":"File Pdf","fas fa-flag":"Flag","fas fa-gift":"Gift","fas fa-globe":"Globe","fas fa-graduation-cap":"Graduation Cap","fas fa-hashtag":"Hashtag","fas fa-headset":"Headset","fas fa-heart":"Heart","fas fa-house":"House","fas fa-id-badge":"Id Badge","fas fa-id-card":"Id Card","fas fa-image":"Image","fas fa-inbox":"Inbox","fas fa-info":"Info","fas fa-key":"Key","fas fa-laptop":"Laptop","fas fa-laptop-code":"Laptop Code","fas fa-language":"Language","fas fa-link":"Link","fas fa-location-arrow":"Location Arrow","fas fa-location-dot":"Location Dot","fas fa-lock":"Lock","fas fa-map":"Map","fas fa-map-location-dot":"Map Location Dot","fas fa-map-pin":"Map Pin","fas fa-message":"Message","fas fa-microphone":"Microphone","fas fa-mobile":"Mobile","fas fa-mobile-screen":"Mobile Screen","fas fa-mobile-screen-button":"Mobile Screen Button","fas fa-music":"Music","fas fa-newspaper":"Newspaper","fas fa-paper-plane":"Paper Plane","fas fa-paperclip":"Paperclip","fas fa-pen":"Pen","fas fa-pen-nib":"Pen Nib","fas fa-pencil":"Pencil","fas fa-phone":"Phone","fas fa-phone-flip":"Phone Flip","fas fa-phone-volume":"Phone Volume","fas fa-photo-film":"Photo Film","fas fa-podcast":"Podcast","fas fa-print":"Print","fas fa-quote-left":"Quote Left","fas fa-rss":"Rss","fas fa-school":"School","fas fa-share":"Share","fas fa-share-nodes":"Share Nodes","fas fa-square-envelope":"Square Envelope","fas fa-square-phone":"Square Phone","fas fa-square-phone-flip":"Square Phone Flip","fas fa-square-rss":"Square Rss","fas fa-square-share-nodes":"Square Share Nodes","fas fa-star":"Star","fas fa-store":"Store","fas fa-tag":"Tag","fas fa-tags":"Tags","fas fa-trophy":"Trophy","fas fa-tv":"Tv","fas fa-user":"User","fas fa-user-doctor":"User Doctor","fas fa-user-graduate":"User Graduate","fas fa-user-tie":"User Tie","fas fa-users":"Users","fas fa-video":"Video","fas fa-wifi":"Wifi","fas fa-award":"Award","fas fa-bolt":"Bolt","fas fa-bookmark":"Bookmark","fas fa-chart-line":"Chart Line","fas fa-cloud":"Cloud","fas fa-cube":"Cube","fas fa-database":"Database","fas fa-feather":"Feather","fas fa-gamepad":"Gamepad","fas fa-handshake":"Handshake","fas fa-lightbulb":"Lightbulb","fas fa-palette":"Palette","fas fa-puzzle-piece":"Puzzle Piece","fas fa-rocket":"Rocket","fas fa-shield":"Shield","fas fa-shop":"Shop","fas fa-signature":"Signature","fas fa-suitcase":"Suitcase","fas fa-ticket":"Ticket","fas fa-wrench":"Wrench"}'),we=(...e)=>e.filter(Boolean).join(" ").replace(/\s+/g," ").trim(),ke=(...t)=>{const a=t.flat().filter((e=>null!=e&&!1!==e&&""!==e));return a.length?1===a.length?a[0]:(0,e.createElement)(e.Fragment,null,...a.map(((t,a)=>(0,e.createElement)(e.Fragment,{key:a},t)))):null},_e=["http","https","mailto","tel","skype","callto","sms","viber","whatsapp"],xe=(a,r="initial")=>{const n={...a,group:i.includes(r)?r:"initial"},{atts:s}=n,o=e=>n.clone?{}:{itemProp:e};n.withGroup=e=>xe(a,e),n.asClone=()=>xe({...a,clone:!0},n.group),n.isDetail=()=>"initial"!==n.group,n.attr=(e,t)=>Object.prototype.hasOwnProperty.call(s,e)?s[e]:t,n.show=e=>{const t=n.vis[n.group]||{};return t[e]?!!(a=t[e])&&l.some((e=>!0===a[e])):"initial"!==n.group;var a},n.vis_classes=(e,t="")=>{const a=n.vis[n.group]||{};return we(t,(r=a[e])?l.filter((e=>!1===r[e])).map((e=>re[e])).join(" "):"");var r},n.memberLinkType=e=>"custom"!==n.linkType||e.custom_page?n.linkType:"none",n.modalEnabled=()=>["popup","panel","drawer"].includes(n.linkType),n.hasLink=e=>"none"!==n.memberLinkType(e)&&!n.isDetail(),n.detailId=e=>"bptm-detail-"+n.uid+"-"+(e.id||"m0"),n.linkProps=(e,t="")=>{if(!n.hasLink(e))return null;const a=n.memberLinkType(e),r={className:we("bptm-link",t)};return["popup","panel","drawer"].includes(a)?(r.href="#"+n.detailId(e),r.className+=" bptm-open",r["data-bptm-open"]=a,r["data-bptm-id"]=e.id,r.role="button",r["aria-haspopup"]="drawer"===a?"true":"dialog",r["aria-controls"]=n.detailId(e)):(r.href=I(e.custom_page,_e),(e=>{const t=/^(?:[a-z][a-z0-9+.-]*:)?\/\/([^/?#]+)/i.exec(e);if(!t)return!0;const a="undefined"!=typeof window?window.location.host:"";return t[1].toLowerCase()===String(a).toLowerCase()})(e.custom_page)&&"_blank"!==s.linkTarget||(r.target="_blank",r.rel="noopener")),r},n.wrapLink=(t,a,r="")=>{const i=n.linkProps(t,r);return i?(0,e.createElement)("a",i,a):a},n.itemProps=(e,t=[])=>{const a=["bptm-item",...t];e.featured&&a.push("bptm-is-featured"),s.enableScrollAnimation&&"carousel"!==n.view&&a.push("bptm-anim");const r=n.memberLinkType(e);"none"!==r&&a.push("bptm-linked-"+r);const i={className:[...new Set(a.filter(Boolean))].join(" "),"data-bptm-id":e.id,"data-name":A(e.name)};return"carousel"!==n.view&&(i["data-designation"]=""!==e.designation?L(e.designation):"",i["data-company"]=A(e.company),i["data-zip"]=A(e.zip_code),i["data-tags"]=(e.terms.tag||[]).map((e=>A(e.name))).join("|"),["group","location","language","gender","specialty","extra_one","extra_two","extra_three","extra_four","extra_five"].forEach((t=>{const a=me(e,t);a.length&&(i["data-"+t.replace(/_/g,"-")]=a.join(" "))})),w("search_all_fields")&&(i["data-search"]=A(ge(e)))),n.clone||(i.itemScope=!0,i.itemType="https://schema.org/Person"),i};const c=(t,a,r,i)=>{const l={className:"",alt:S(a)};let s=r.split(/\s+/).filter(Boolean).map(B).join(" ");return w("disable_lazy_load")?(s=we(s,(()=>{const e=[];return String(w("lazy_load_class")||"").trim().split(/[\s,]+/).forEach((t=>{(t=B(t))&&!e.includes(t)&&e.push(t)})),e})().join(" ")),l.loading="eager",l["data-no-lazy"]="1"):(l.loading=(n.index||0)<4&&"carousel"!==n.view&&!n.isDetail()?"eager":"lazy",l.decoding="async"),l.className=s,i&&!n.clone&&(l.itemProp=i),t?(0,e.createElement)("img",{src:t,...l}):(0,e.createElement)("span",{className:l.className+" bptm-img-placeholder bptm-img-empty",role:"img","aria-label":l.alt})};n.image=(t,a="bptm-img",r=!0)=>{if(!n.show("thumbnail"))return null;let i=c(t.image_url,t.image_alt||t.name,a,"image");const l=n.vis_classes("thumbnail");return l&&(i=(0,e.createElement)("span",{className:"bptm-vis "+l},i)),r&&s.linkPreviewImage&&n.hasLink(t)&&(i=(0,e.createElement)("a",n.linkProps(t,"bptm-img-link"),i)),i},n.flipImage=(e,t="bptm-img bptm-flip-img")=>e.flip_image_id||e.flip_image_url?c(e.flip_image_url,e.name,t,""):null,n.name=(t,a="h3")=>{if(!n.show("name")||""===t.name)return null;a=["h1","h2","h3","h4","h5","h6","div","p","span","td","strong"].includes(a)?a:"h3";const r=(0,e.createElement)("span",o("name"),t.name),i=n.linkProps(t,"bptm-name-link");return(0,e.createElement)(a,{className:n.vis_classes("name","bptm-name")},i?(0,e.createElement)("a",i,r):r)},n.designation=(t,a="div")=>n.show("designation")&&""!==t.designation?(a=["div","p","span","td","h4","h5","h6"].includes(a)?a:"div",(0,e.createElement)(a,{className:n.vis_classes("designation","bptm-designation"),...o("jobTitle")},t.designation)):null,n.details=t=>{if(!n.show("details"))return null;let a,r="bptm-details";if(s.descScrollControl&&(r+=" bptm-scroll"),n.isDetail()||s.allowHtmlDetails){let e=t.content||[];if(""===V(e).trim()&&(e=""!==t.excerpt?$(t.excerpt):[]),""===V(e).trim())return null;a=K(e)}else{let r=""!==t.excerpt.trim()?t.excerpt:V(t.content||[]);if(r=C(S(r.replace(/\[\/?[a-z][^\]]*\]/gi,""))).replace(/[\s]+/g," ").trim(),""===r)return null;const i=Math.trunc(Number(s.detailsLength))||0,l=Array.from(r);let o;if(i>0&&l.length>i){const a=l.slice(0,i).join("").replace(/\s+$/,"")+"…",r=n.linkProps(t,"bptm-more");o=r?[a," ",(0,e.createElement)("a",{...r,key:"more"},h("more"))]:[a]}else o=[r];a=[(0,e.createElement)("p",{key:"p"},...o)]}return(0,e.createElement)("div",{className:n.vis_classes("details",r),...o("description")},...a)},n.social=(t,a="")=>{if(!n.show("social")||!t.social.length)return null;const r=[];return t.social.forEach((e=>{if(!e.icon)return;const t=(e=>{const t=e.icon||"";let a=String(e.link||"").trim();return""===a?"":-1!==t.indexOf("envelope")&&P(a)?"mailto:"+a:/fa-(phone|mobile)/.test(t)&&/^[+\d][\d\s().-]+$/.test(a)?"tel:"+a.replace(/[^\d+]/g,""):-1!==t.indexOf("whatsapp")&&/^[+\d][\d\s().-]+$/.test(a)?"https://wa.me/"+a.replace(/\D/g,""):-1===t.indexOf("skype")||/^[a-z]+:/i.test(a)?(/^[a-z][a-z0-9+.-]*:/i.test(a)||(a="https://"+a.replace(/^\/+/,"")),a):"skype:"+a+"?chat"})(e);if(""===t)return;const a=e.icon.replace(/[^a-z0-9 _-]/gi,"");let i=ve[e.icon];if(!i){let e=a;["fa-brands","fa-solid","fa-regular","fab","fas","far","fa-","-"].forEach((t=>{e=e.split(t).join(" ")})),i=e.trim().replace(/(^|[\s])([a-z])/g,((e,t,a)=>t+a.toUpperCase()))}const l=B(a.split("fa-").join("").replace(/\b(fab|fas|far|fa-brands|fa-solid|fa-regular)\b/g,"").trim());r.push([t,a,i,l])})),r.length?(0,e.createElement)("ul",{className:n.vis_classes("social","bptm-social"+(a?" bptm-social--"+B(a):""))},r.map((([t,a,r,i],l)=>{const n={className:"bptm-social-link bptm-social-"+i,href:I(t,_e),.../^https?:\/\//i.test(t)?{target:"_blank",rel:"noopener nofollow"}:{},...o("sameAs"),"aria-label":r,title:r};return(0,e.createElement)("li",{className:"bptm-social-item",key:l},(0,e.createElement)("a",n,(0,e.createElement)("i",{className:a,"aria-hidden":"true"})))}))):null},n.ribbon=t=>n.show("ribbon")&&""!==t.ribbon.trim()?(0,e.createElement)("span",{className:n.vis_classes("ribbon","bptm-ribbon")},t.ribbon):null,n.featuredBadge=a=>a.featured&&s.enableFeaturing&&n.show("featured_badge")?(0,e.createElement)("span",{className:n.vis_classes("featured_badge","bptm-featured"),title:(0,t.__)("Featured","bp-team-member")},(0,e.createElement)("i",{className:"fas fa-award","aria-hidden":"true"}),(0,e.createElement)("span",{className:"screen-reader-text"},(0,t.__)("Featured","bp-team-member"))):null,n.skills=(t,a=null)=>{if(!n.show("skills")||!t.skills.length)return null;const r=t.skills.filter((e=>""!==e.skill.trim()&&e.percent>0));if(!r.length)return null;const i=null===a?n.isDetail():!!a;return(0,e.createElement)("div",{className:n.vis_classes("skills","bptm-skills")},i?(0,e.createElement)("h4",{className:"bptm-skills-title"},h("skills")):null,r.map(((t,a)=>(0,e.createElement)("div",{className:"bptm-skill",key:a},(0,e.createElement)("div",{className:"bptm-skill-head"},(0,e.createElement)("span",{className:"bptm-skill-name"},t.skill.trim()),(0,e.createElement)("span",{className:"bptm-skill-value"},t.percent+"%")),(0,e.createElement)("div",{className:"bptm-skill-bar",role:"progressbar","aria-label":t.skill.trim(),"aria-valuenow":String(t.percent),"aria-valuemin":"0","aria-valuemax":"100"},(0,e.createElement)("span",{className:"bptm-skill-fill",style:{"--bptm-skill":t.percent+"%"}}))))))};const m=t=>(0,e.createElement)("span",{className:"bptm-email-text"},String(t).split(/(@|\.)/).map(((t,a)=>"@"===t?(0,e.createElement)(e.Fragment,{key:a},"@",(0,e.createElement)("wbr")):"."===t?(0,e.createElement)(e.Fragment,{key:a},(0,e.createElement)("wbr"),"."):t))),p=(t,a)=>{if(""===(t=String(t||"").trim()))return null;const r=(0,e.createElement)("span",o("telephone"),t);return w(a)?(0,e.createElement)("a",{href:I("tel:"+t.replace(/[^\d+]/g,""),["tel"])},r):r};return n.mailto=e=>{const t=[];return e.email_cc&&t.push("cc="+encodeURIComponent(e.email_cc).replace(/[!'()*]/g,(e=>"%"+e.charCodeAt(0).toString(16).toUpperCase()))),e.email_bcc&&t.push("bcc="+encodeURIComponent(e.email_bcc).replace(/[!'()*]/g,(e=>"%"+e.charCodeAt(0).toString(16).toUpperCase()))),"mailto:"+e.email+(t.length?"?"+t.join("&"):"")},n.metaRows=t=>{const a=[],r={address:t.address,land_phone:String(t.land_phone||"").trim(),cell_phone:String(t.cell_phone||"").trim(),email:t.email,zip:t.zip_code},i=(e,t,i,l,s)=>{if(s||null===i||!n.show(e))return;const o="string"==typeof i?i:r[e]||"";a.push({field:e,label:t,value:i,icon:l,text:String(o).trim(),classes:n.vis_classes(e,"bptm-meta-item bptm-meta-"+e.replace(/_/g,"-"))})};let l=null;if(""!==t.company||""!==t.company_website){const a=""!==t.company?t.company:t.company_website.replace(/^https?:\/\//,"");r.company=a,l=""!==t.company_website?(0,e.createElement)("a",{href:I(t.company_website),target:"_blank",rel:"nofollow noopener"},""!==t.company?a:m(a)):a,l=(0,e.createElement)("span",o("worksFor"),l)}i("company",h("company"),l,"fas fa-briefcase",null===l),i("address",h("address"),""!==t.address?(0,e.createElement)("span",o("address"),t.address):null,"fas fa-location-dot"),i("land_phone",h("land_phone"),p(t.land_phone,"land_phone_link"),"fas fa-phone"),i("cell_phone",h("cell_phone"),p(t.cell_phone,"cell_phone_link"),"fas fa-mobile-screen"),i("email",h("email"),(t=>{if(""===t.email)return null;const a=(0,e.createElement)("span",o("email"),m(t.email));return w("email_link")?(0,e.createElement)("a",{href:I(n.mailto(t),["mailto"])},a):a})(t),"fas fa-envelope");const s={location:"fas fa-map-pin",language:"fas fa-language",specialty:"fas fa-star",gender:"fas fa-venus-mars"};return["location","language","specialty","gender"].forEach((e=>{const a=ce(t,e);i(e,h(e),""!==a.trim()?a:null,s[e])})),i("zip",h("zip_code"),""!==t.zip_code?(0,e.createElement)("span",o("postalCode"),t.zip_code):null,"fas fa-map-location-dot"),["extra_one","extra_two","extra_three","extra_four","extra_five"].forEach((e=>{const a=ce(t,e);i(e,h(e),""!==a.trim()?a:null,"fas fa-circle-info")})),a},n.metaDetails=(t,a="list")=>{const r=n.metaRows(t);return r.length?"table"===(a=["list","icons","inline","table"].includes(a)?a:"list")?(0,e.createElement)("table",{className:"bptm-meta bptm-meta--table"},(0,e.createElement)("tbody",null,r.map((t=>(0,e.createElement)("tr",{className:t.classes,key:t.field},(0,e.createElement)("th",{scope:"row",className:"bptm-meta-label"},t.label),(0,e.createElement)("td",{className:"bptm-meta-value"},t.value)))))):(0,e.createElement)("ul",{className:"bptm-meta bptm-meta--"+a},r.map((t=>(0,e.createElement)("li",{className:t.classes,key:t.field},"list"!==a?(0,e.createElement)("i",{className:"bptm-meta-icon "+t.icon,"aria-hidden":"true"}):null,(0,e.createElement)("span",{className:"bptm-meta-label"+("list"!==a?" screen-reader-text":"")},t.label),(0,e.createElement)("span",{className:"bptm-meta-value"},t.value))))):null},n.vcard=t=>t.vcard&&n.show("vcard")?(0,e.createElement)("a",{className:n.vis_classes("vcard","bptm-vcard"),href:I(t.vcard),download:""},(0,e.createElement)("i",{className:"fas fa-address-card","aria-hidden":"true"})," ",(0,e.createElement)("span",null,h("vcard"))):null,n.readMore=(t,a="")=>n.show("read_more")&&n.hasLink(t)?(0,e.createElement)("div",{className:n.vis_classes("read_more","bptm-readmore")},(0,e.createElement)("a",n.linkProps(t,"bptm-readmore-btn"),a||h("read_on"))):null,n.termsText=(e,t,a=", ")=>ce(e,t,a),n},Ee={nameColor:"--bptm-name-color",nameBg:"--bptm-name-bg",roleColor:"--bptm-role-color",descriptionColor:"--bptm-desc-color",descriptionLinkColor:"--bptm-desc-link-color",infoColor:"--bptm-info-color",infoIconColor:"--bptm-info-icon-color",infoBg:"--bptm-info-bg",itemBg:"--bptm-item-bg",itemBgHover:"--bptm-item-bg-hover",tooltipBg:"--bptm-tooltip-bg",hoverIconBg:"--bptm-hover-icon-bg",ribbonBg:"--bptm-ribbon-bg",pgColor:"--bptm-pg-color",pgBg:"--bptm-pg-bg",pgBorderColor:"--bptm-pg-border",pgHoverColor:"--bptm-pg-hover-color",pgHoverBg:"--bptm-pg-hover-bg",pgHoverBorderColor:"--bptm-pg-hover-border",pgActiveColor:"--bptm-pg-active-color",pgActiveBg:"--bptm-pg-active-bg",pgActiveBorderColor:"--bptm-pg-active-border",lmColor:"--bptm-lm-color",lmBg:"--bptm-lm-bg",lmBorderColor:"--bptm-lm-border",lmHoverColor:"--bptm-lm-hover-color",lmHoverBg:"--bptm-lm-hover-bg",pgLoaderColor:"--bptm-pg-loader-color",popupBg:"--bptm-modal-bg",popupCloseColor:"--bptm-close-color",popupCloseBg:"--bptm-close-bg",popupCloseHoverColor:"--bptm-close-hover-color",popupCloseHoverBg:"--bptm-close-hover-bg",popupArrowColor:"--bptm-popup-arrow-color",popupNavBg:"--bptm-popup-nav-bg",popupNavBorderColor:"--bptm-popup-nav-border",popupNavHoverColor:"--bptm-popup-nav-hover-color",popupNavHoverBg:"--bptm-popup-nav-hover-bg",popupNavHoverBorderColor:"--bptm-popup-nav-hover-border",accentColor:"--bptm-accent",sliderNavColor:"--bptm-nav-color",sliderNavBg:"--bptm-nav-bg",sliderNavHoverColor:"--bptm-nav-hover-color",sliderNavHoverBg:"--bptm-nav-hover-bg",sliderDotColor:"--bptm-dot-color",sliderDotHoverColor:"--bptm-dot-active-color",filterTextColor:"--bptm-filter-color",filterActiveTextColor:"--bptm-filter-active-color",filterBgColor:"--bptm-filter-bg",filterActiveBgColor:"--bptm-filter-active-bg",filterBorderColor:"--bptm-filter-border",filterActiveBorderColor:"--bptm-filter-active-border",itemBorderColor:"--bptm-item-border-color"},Ce={nameTypography:["--bptm-name",[".bptm-name",".bptm-name a"],[".bptm-item:hover .bptm-name",".bptm-item:hover .bptm-name a"]],roleTypography:["--bptm-role",[".bptm-designation"],[".bptm-item:hover .bptm-designation"]],detailsTypography:["--bptm-desc",[".bptm-details",".bptm-details p"],[".bptm-item:hover .bptm-details",".bptm-item:hover .bptm-details p"]],infoTypography:["--bptm-info",[".bptm-meta",".bptm-meta a",".bptm-meta-value"],[".bptm-meta-item:hover",".bptm-meta-item:hover a"]],ribbonTypography:["--bptm-ribbon",[".bptm-ribbon"],[".bptm-item:hover .bptm-ribbon"]],readmoreTypography:["--bptm-readmore",[".bptm-readmore a",".bptm-more",".bptm-readmore-btn"],[".bptm-readmore a:hover",".bptm-more:hover",".bptm-readmore-btn:hover"]],popupNavTypography:["--bptm-popup-nav",[".bptm-modal-nav button span"],[".bptm-modal-nav button:hover span"]]},Se={none:"none",sm:"0 1px 3px rgba(15,23,42,.08), 0 1px 2px rgba(15,23,42,.06)",md:"0 6px 18px rgba(15,23,42,.10)",lg:"0 14px 40px rgba(15,23,42,.14)",xl:"0 24px 60px rgba(15,23,42,.18)"},Ne={tablet:"@media (max-width:1024px)",mobilePortrait:"@media (max-width:767px)",mobile:"@media (max-width:575px)"},Ae=e=>"number"==typeof e&&isFinite(e)||"string"==typeof e&&""!==e.trim()&&isFinite(Number(e.trim())),Le=e=>null==e||"object"==typeof e||""===(e=String(e).trim())?"":/^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(e)||/^(rgb|rgba|hsl|hsla)\(\s*[0-9.,%\s/+-]+\)$/i.test(e)||/^var\(--[a-z0-9-]+(\s*,\s*[#a-z0-9(),.%\s-]+)?\)$/i.test(e)||/^(linear|radial)-gradient\([#a-z0-9(),.%\s-]+\)$/i.test(e)?e:/^[a-z]{3,20}$/i.test(e)?e.toLowerCase():"",Be=(e,t="px")=>Ae(e)?String(Number(e))+t:null==e||"object"==typeof e||"boolean"==typeof e||""===(e=String(e).trim())?"":/^-?\d*\.?\d+(px|em|rem|%|vh|vw|vmin|vmax|ch|ex|pt)$/i.test(e)?e.toLowerCase():/^(calc|clamp|min|max)\([0-9a-z.%+\-*/,\s()]+\)$/i.test(e)||["auto","normal","inherit","initial","none"].includes(e)?e:"",je=e=>String(null==e||"object"==typeof e?"":e).replace(/[^a-zA-Z0-9 _-]/g,"").trim(),ze=(e,t,a)=>void 0!==e[t]&&null!==e[t]&&""!==e[t]?e[t]:void 0!==e[a]&&null!==e[a]&&""!==e[a]?e[a]:null,Pe=e=>e&&"object"==typeof e&&!Array.isArray(e)?e:{},Te=["Arial","Tahoma","Verdana","Helvetica","Times New Roman","Trebuchet MS","Georgia","Courier New","system-ui","sans-serif","serif","monospace","inherit"],Me=(t,...a)=>(0,e.createElement)("div",{className:t},...a),De=(e,t,a,...r)=>{if(!e.show(a))return null;switch(a){case"name":return e.name(t,...r);case"designation":return e.designation(t);case"details":return e.details(t);case"social":return e.social(t,...r);case"ribbon":return e.ribbon(t);case"featured_badge":return e.featuredBadge(t);case"skills":return e.skills(t);case"vcard":return e.vcard(t);case"read_more":return e.readMore(t)}return null},Oe=(e,t,a=!0,r=!1)=>{if(!e.show("thumbnail"))return null;let i=r?e.flipImage(t):null;return i||(i=e.image(t,"bptm-img",a)),i},Fe=(e,t,a="icons")=>{const r=ke(e.metaDetails(t,a),De(e,t,"skills"),De(e,t,"vcard"),De(e,t,"read_more"));return r?Me("bptm-ta-extras",r):null},Ie=(e,t,a="h3")=>({img:Oe(e,t),name:De(e,t,"name",a),role:De(e,t,"designation"),desc:De(e,t,"details"),social:De(e,t,"social"),badges:ke(De(e,t,"ribbon"),De(e,t,"featured_badge")),extras:Fe(e,t)}),Re=(e,t,a)=>{const r=["bptm-ta","bptm-ta-"+a,"bptm-ta-"+t];return"grid"!==a&&"circle"!==a||r.push("bptm-tap-reveal"),e.show("thumbnail")||r.push("bptm-ta-no-thumb"),r},qe=()=>(0,e.createElement)("span",{className:"bptm-ta-overlay","aria-hidden":"true"}),Ge=e=>e?Me("bptm-ta-badges",e):null,He=(t,a,r,...i)=>(0,e.createElement)("div",t.itemProps(a,r),Me("bptm-ta-card",...i)),We=De,Ue=(e,t)=>ke(De(e,t,"ribbon"),De(e,t,"featured_badge")),Ve=(e,t,a=!0,r=!1)=>{if(!e.show("thumbnail"))return null;if(r){const a=e.image(t,"bptm-img",!1);return a?e.wrapLink(t,a,"bptm-img-link"):null}return e.image(t,"bptm-img",a)},Ke=(t,a,r="h3",i="")=>t.show("name")&&a.name?(r=["h2","h3","h4","div","span"].includes(r)?r:"h3",(0,e.createElement)(r,{className:t.vis_classes("name",we("bptm-name",i))},(0,e.createElement)("span",t.clone?{}:{itemProp:"name"},a.name))):null,$e=(t,a,r="")=>t.show("designation")&&a.designation?(0,e.createElement)("div",{className:t.vis_classes("designation",we("bptm-designation",r)),...t.clone?{}:{itemProp:"jobTitle"}},a.designation):null,Je=(t,a,r=null,i="bptm-contacts",l=!1)=>{const s=((e,t)=>{const a={};return e.metaRows(t).forEach((e=>{a[e.field]=e})),a})(t,a),o=(r||n).map((t=>((t,a,r)=>{const i=t[a];return i?(0,e.createElement)("div",{className:"bptm-contact bptm-contact--"+a.replace(/_/g,"-")+" "+i.classes,key:a},(0,e.createElement)("i",{className:i.icon,"aria-hidden":"true"}),(0,e.createElement)("span",{className:"bptm-contact-text"},r?(0,e.createElement)("span",{className:"bptm-contact-label"},i.label+":"):null,r?" ":null,(0,e.createElement)("span",{className:"bptm-contact-value"},i.value))):null})(s,t,l))).filter(Boolean);return o.length?(0,e.createElement)("div",{className:i},...o):null},Ze=(e,t,a=[])=>{const r=ke(Je(e,t,n.filter((e=>!a.includes(e))),"bptm-contacts bptm-meta",!0),a.includes("skills")?null:De(e,t,"skills"),a.includes("vcard")?null:De(e,t,"vcard"),a.includes("read_more")?null:De(e,t,"read_more"));return r?Me("bptm-tb-extras",r):null},Ye=(e,t,a,r=[])=>{const i=["bptm-tb","bptm-tb-"+a,"bptm-tb-"+t,...r];return e.show("thumbnail")||i.push("bptm-tb-no-thumb"),i},Xe=(t,a,r,...i)=>(0,e.createElement)("div",t.itemProps(a,r),Me("bptm-tb-card",...i)),Qe=(...e)=>Me("bptm-img-wrap bptm-tb-media",...e),et=e=>(t,a)=>{const r=Ve(t,a),i=ke(De(t,a,"details"),De(t,a,"social"));return Xe(t,a,Ye(t,e,"legacy",["bptm-tb-hovercard"]),r?Qe(r,Ue(t,a),i?Me("bptm-tb-hover",Me("bptm-tb-hover-inner",i)):null):null,Me("bptm-tb-info",r?null:ke(Ue(t,a),i),De(t,a,"name","h3"),De(t,a,"designation"),Ze(t,a)))},tt={"grid-popup":"fas fa-expand-alt","grid-single":"fas fa-external-link-alt","grid-filter-popup":"fas fa-expand-alt","grid-filter-selected":"fas fa-expand-alt","grid-panel":"fas fa-arrow-right","grid-drawer-2":"fas fa-chevron-down"},at=t=>(a,r)=>{const i=Ve(a,r,!1),l=ke(Ke(a,r,"h3"),$e(a,r)),n=a.linkProps(r,"bptm-tb-cover-link"),s=Qe(i,n?(0,e.createElement)("span",{className:"bptm-tb-indicator","aria-hidden":"true"},(0,e.createElement)("i",{className:tt[t]})):null,l?Me("bptm-tb-caption",l):null);return Xe(a,r,Ye(a,t,"legacy",["bptm-tb-overlay-card"]),n?(0,e.createElement)("a",n,s):s,Ue(a,r),ke(De(a,r,"details"),Ze(a,r),De(a,r,"social")))},rt=e=>(t,a)=>{const r=Ve(t,a,!0,!0),i=ke(De(t,a,"name","h3"),De(t,a,"designation")),l=["cell_phone","email"];return Xe(t,a,Ye(t,e,"legacy",["bptm-tb-banner-card"]),Qe(r,Ue(t,a),i?Me("bptm-tb-caption",i):null),Je(t,a,l,"bptm-contacts bptm-tb-contact-box"),De(t,a,"details"),De(t,a,"social"),Ze(t,a,l))},it=(e,t=!1)=>(a,r)=>{const i=t?Ve(a,r,!0,!0):Ve(a,r);return Xe(a,r,Ye(a,e,"legacy"),i?Qe(i,Ue(a,r)):null,Me("bptm-tb-info",i?null:Ue(a,r),De(a,r,"name","h3"),De(a,r,"designation"),De(a,r,"details"),De(a,r,"social"),Ze(a,r)))},lt={"grid-7":et("grid-7"),"grid-slider":et("grid-slider"),"grid-8":(e,t)=>{const a=Ve(e,t,!0,!0),r=ke(De(e,t,"name","h3"),De(e,t,"designation"));return Xe(e,t,Ye(e,"grid-8","legacy"),a?Qe(a,Ue(e,t)):null,r?Me("bptm-tb-tip",r):null,ke(De(e,t,"details"),Ze(e,t),De(e,t,"social")))},"grid-9":(e,t)=>{const a=Ve(e,t,!0,!0),r=ke(De(e,t,"name","h3"),De(e,t,"designation"));return Xe(e,t,Ye(e,"grid-9","legacy"),Qe(ke(a,Ue(e,t)),r?Me("bptm-tb-infocard",r):null),ke(De(e,t,"details"),Ze(e,t),De(e,t,"social")))},"grid-10":it("grid-10"),"grid-11":it("grid-11"),"grid-drawer-1":it("grid-drawer-1",!0),"grid-12":(e,t)=>{const a=Ve(e,t),r=De(e,t,"read_more"),i=De(e,t,"social");return Xe(e,t,Ye(e,"grid-12","legacy"),a?Qe(a,Ue(e,t)):null,Me("bptm-tb-info",Me("bptm-tb-info-top",a?null:Ue(e,t),De(e,t,"name","h3"),De(e,t,"designation"),De(e,t,"details"),Ze(e,t,["read_more"])),r||i?Me("bptm-tb-foot",ke(r,i)):null))},"grid-popup":at("grid-popup"),"grid-single":at("grid-single"),"grid-filter-popup":at("grid-filter-popup"),"grid-filter-selected":at("grid-filter-selected"),"grid-panel":at("grid-panel"),"grid-drawer-2":at("grid-drawer-2"),"grid-filter-single":rt("grid-filter-single"),"group-filter-1":rt("group-filter-1"),"grid-filter-vcard":(e,t)=>{const a=Ve(e,t,!0,!0),r=["cell_phone","email"],i=De(e,t,"vcard");return Xe(e,t,Ye(e,"grid-filter-vcard","legacy"),a?Qe(a,Ue(e,t)):null,Me("bptm-tb-info",a?null:Ue(e,t),De(e,t,"name","h3"),De(e,t,"designation"),Je(e,t,r,"bptm-contacts bptm-tb-contacts"),De(e,t,"details"),De(e,t,"social"),Ze(e,t,[...r,"vcard"]),i?Me("bptm-tb-vcard",i):null))}},nt={"list-2":["cell_phone"],"list-3":["email"],"list-4":["email","address"]},st=()=>({thumbnail:[(0,t.__)("Image","bp-team-member"),"thumbnail"],name:[(0,t.__)("Name","bp-team-member"),"name"],designation:[(0,t.__)("Position","bp-team-member"),"designation"],details:[(0,t.__)("Description","bp-team-member"),"details"],company:[h("company"),"company"],email:[h("email"),"email"],cell_phone:[h("cell_phone"),"cell_phone"],land_phone:[h("land_phone"),"land_phone"],address:[h("address"),"address"],location:[y("location"),"location"],social:[(0,t.__)("Social","bp-team-member"),"social"]}),ot=e=>["table-9","table-10"].includes(e)?["thumbnail","name","designation","company","email","cell_phone","land_phone","address","location","social"]:["thumbnail","name","designation","company","details","email","cell_phone","land_phone","address","location","social"],ct=(e,t)=>{const a=st(),r=ot(t).filter((t=>a[t]&&e.show(a[t][1])));return r.length?r:["name"]},mt=({ctx:t,id:a})=>{const r=st(),i=ct(t,a),l=String(t.uid||"").replace(/[^A-Za-z0-9_-]/g,""),n=Be(t.attr("itemBorderWidth","")),s=Le(t.attr("itemBorderColor",""));let o=null;if(l&&(n||s)){const a=Be(t.attr("itemBorderRadius",""));let r="--bptm-tb-bw:"+(n||"1px")+";--bptm-tb-bc:"+(s||"currentColor")+";";a&&(r+="--bptm-tb-br:"+a+";"),r=r.replace(/[<>{}]/g,""),o=(0,e.createElement)("style",{key:"s"},'.bptm-wrap:has(.bptm-thead[data-bptm-uid="'+l+'"]){'+r+"}")}return[o,(0,e.createElement)("thead",{key:"h",className:"bptm-thead","data-bptm-cols":String(i.length),...l?{"data-bptm-uid":l}:{}},(0,e.createElement)("tr",null,i.map((a=>(0,e.createElement)("th",{key:a,scope:"col",className:t.vis_classes(r[a][1],"bptm-th bptm-col-"+a.replace(/_/g,"-"))},r[a][0])))))]},pt=t=>{const a=t.id;if("table"===t.layout)return(t=>(a,r)=>{const i=ct(a,t);let l=null,n=null;return["table-9","table-10"].includes(t)&&(n=De(a,r,"details"),l=i.includes("name")?"name":i[0]),(0,e.createElement)("tr",a.itemProps(r,Ye(a,t,"table",["bptm-trow",(s=i.length,s>=10?"bptm-tb-cols-xl":s>=8?"bptm-tb-cols-l":s>=6?"bptm-tb-cols-m":"bptm-tb-cols-s")])),i.map((i=>((t,a,r,i,l)=>{const n=st(),s=n[r]?n[r][0]:"";let o=null,c="";switch(r){case"thumbnail":{const e=Ve(t,a,!0,!0);o=e?Me("bptm-img-wrap",e):null;break}case"name":o=ke(De(t,a,"name","h3"),Ue(t,a),Ze(t,a,ot(i))),c=a.name||"";break;case"designation":o=De(t,a,"designation"),c=a.designation||"";break;case"details":o=De(t,a,"details");break;case"social":o=De(t,a,"social");break;default:{const i=t.metaRows(a).find((e=>e.field===r));i&&(o=(0,e.createElement)("span",{className:"bptm-contact bptm-contact--"+r.replace(/_/g,"-")},(0,e.createElement)("i",{className:i.icon,"aria-hidden":"true"}),(0,e.createElement)("span",{className:"bptm-contact-value"},i.value)),c=i.text||"")}}const m=ke(o,l),p=n[r]?n[r][1]:r;return(0,e.createElement)("td",{key:r,className:t.vis_classes(p,"bptm-td bptm-col-"+r.replace(/_/g,"-")+(o?"":" bptm-td-empty")),"data-label":s,...""!==c?{"data-sort-value":c}:{}},m)})(a,r,i,t,i===l?n:null))));var s})(a);const r=(e=>/^(grid-[1-6]|circle-\d|horizontal-\d|flip-\d)$/.test(e)?"ta":/^sidebar-\d$/.test(e)?"sidebar":"tb")(a);return"sidebar"===r?(t=>(a,r)=>{const i=a.image(r,"bptm-img"),l=ke(a.ribbon(r),a.featuredBadge(r));return(0,e.createElement)("div",a.itemProps(r,["bptm-sb","bptm-sb-"+t,i?"bptm-sb-has-img":"bptm-sb-no-img"]),Me("bptm-sb-card bptm-tb-card",i?(0,e.createElement)("div",{className:a.vis_classes("thumbnail","bptm-img-wrap bptm-sb-media")},i):null,Me("bptm-sb-info",l,a.name(r,"h4"),a.designation(r),a.details(r),a.metaDetails(r,"icons"),a.skills(r),a.social(r,"small"),a.vcard(r),a.readMore(r))))})(a):"ta"===r?/^grid-/.test(a)?(t=>(a,r)=>{const i=Ie(a,r),l=Re(a,t,"grid"),n=(...t)=>(0,e.createElement)("div",{className:a.vis_classes("thumbnail","bptm-img-wrap")},...t);switch(t){case"grid-1":return He(a,r,l,i.img?n(i.img,qe(),i.social?Me("bptm-ta-hover",i.social):null):null,Ge(i.badges),Me("bptm-ta-info",ke(i.name,i.role,i.desc),!i.img&&i.social?i.social:null,i.extras));case"grid-2":return He(a,r,l,i.img?n(i.img,qe(),i.social?Me("bptm-ta-hover",i.social):null,Ge(i.badges)):Ge(i.badges),Me("bptm-ta-info",ke(i.name,i.role,i.desc,i.extras),!i.img&&i.social?i.social:null));case"grid-3":return He(a,r,l,(0,e.createElement)("div",{className:a.vis_classes("thumbnail","bptm-ta-media")},i.img?n(i.img,qe()):null,i.social?Me("bptm-ta-share",i.social,(0,e.createElement)("span",{className:"bptm-ta-share-btn","aria-hidden":"true"},(0,e.createElement)("i",{className:"fas fa-share-alt"}))):null),Ge(i.badges),Me("bptm-ta-info",ke(i.name,i.role,i.desc,i.extras)));case"grid-4":case"grid-5":{const e=ke(i.desc,i.extras,i.social),s=e&&"grid-5"===t?Me("bptm-ta-hover",Me("bptm-ta-hover-inner",Me("bptm-ta-hover-scroll",e))):e&&Me("bptm-ta-hover",e);return He(a,r,l,i.img?n(i.img,qe()):null,Ge(i.badges),Me("bptm-ta-info",ke(i.name,i.role),s||null))}default:return He(a,r,l,i.img?n(i.img):null,Ge(i.badges),Me("bptm-ta-info",Me("bptm-ta-info-inner",ke(i.name,i.role,i.desc,i.extras,i.social))))}})(a):/^circle-/.test(a)?(t=>(a,r)=>{const i=Ie(a,r),l=Number(t.slice(-1));let n,s=null;return l>=2&&l<=4?s=i.social:l>=5&&(s=ke(i.desc,i.social)),n=1===l?ke(i.name,i.role,i.desc,i.extras,i.social):l<=4?ke(i.name,i.role,i.desc,i.extras):ke(i.name,i.role,i.extras),He(a,r,Re(a,t,"circle"),i.img?(0,e.createElement)("div",{className:a.vis_classes("thumbnail","bptm-ta-media")},(0,e.createElement)("div",{className:a.vis_classes("thumbnail","bptm-img-wrap")},i.img,qe(),s?Me("bptm-ta-hover",s):null)):null,Ge(i.badges),Me("bptm-ta-info",n,!i.img&&s?Me("bptm-ta-static",s):null))})(a):/^horizontal-/.test(a)?(t=>(a,r)=>{const i=Ie(a,r);return He(a,r,Re(a,t,"horizontal"),i.img?(0,e.createElement)("div",{className:a.vis_classes("thumbnail","bptm-ta-media")},(0,e.createElement)("div",{className:a.vis_classes("thumbnail","bptm-img-wrap")},i.img)):null,Me("bptm-ta-info",ke(i.name,i.role,i.desc,i.extras,i.social)),Ge(i.badges))})(a):(t=>(a,r)=>{const i=Ie(a,r),l=Re(a,t,"flip"),n=t=>(0,e.createElement)("div",{className:a.vis_classes("thumbnail","bptm-img-wrap")},t);if("flip-5"===t){const t=Oe(a,r,!1),s=ke(i.name,i.role,i.desc,i.extras,i.social);return He(a,r,l,i.img?n(i.img):null,Ge(i.badges),Me("bptm-ta-info",Me("bptm-ta-info-inner",t?(0,e.createElement)("div",{className:"bptm-ta-avatar","aria-hidden":"true"},t):null,s)))}if("flip-6"===t){const t=Oe(a,r,!1,!0),s=ke(i.name,i.role,i.desc,i.extras,i.social);i.img&&s&&l.push("bptm-ta-has-flip");const o=i.name?r.name:"",c=i.role?r.designation:"";return He(a,r,l,...i.img?[Me("bptm-ta-flipbox",Me("bptm-ta-face bptm-ta-front",n(i.img),i.name||i.role?(0,e.createElement)("div",{className:"bptm-ta-caption","aria-hidden":"true"},o?(0,e.createElement)("span",{className:"bptm-ta-caption-name"},o):null,c?(0,e.createElement)("span",{className:"bptm-ta-caption-role"},c):null):null,Ge(i.badges)),s?Me("bptm-ta-face bptm-ta-back",(0,e.createElement)("div",{className:"bptm-ta-back-img","aria-hidden":"true"},t),Me("bptm-ta-back-inner",s)):null)]:[Ge(i.badges),Me("bptm-ta-info",Me("bptm-ta-static",s))])}const s="flip-4"===t?ke(i.name,i.role,i.desc,i.extras,i.social):ke(i.desc,i.extras,i.social),o="flip-4"===t?null:ke(i.name,i.role);return i.img&&s&&l.push("bptm-ta-has-flip"),He(a,r,l,i.img?Me("bptm-ta-flipbox",Me("bptm-ta-face bptm-ta-front",n(i.img),Ge(i.badges)),s?Me("bptm-ta-face bptm-ta-back",Me("bptm-ta-back-inner",s)):null):Ge(i.badges),o||!i.img&&s?Me("bptm-ta-info",o,i.img?null:Me("bptm-ta-static",s)):null)})(a):/^list-/.test(a)?(e=>(t,a)=>{const r=nt[e]||[],i=Ve(t,a,!0,!0),l=Ue(t,a);return Xe(t,a,Ye(t,e,"list"),i?Qe(ke(i,l)):null,Me("bptm-tb-info",i?null:l,De(t,a,"name","h3"),De(t,a,"designation"),De(t,a,"details"),Je(t,a,r,"bptm-contacts bptm-tb-contacts"),De(t,a,"social"),Ze(t,a,r)))})(a):lt[a]||lt["grid-10"]},dt=(t,...a)=>(0,e.createElement)("div",{className:t},...a),ft=(t,a,r=!0)=>{const i=We(t,a,"social");return i?(0,e.createElement)("div",{className:t.vis_classes("social","bptm-dv-social")},r?(0,e.createElement)("h4",{className:"bptm-dv-heading"},h("follow_me_on")):null,i):null},ut=["img","flip","badges","name","role","desc","social","social_plain","meta","skills"],bt=(e,t,a)=>{a=a?ut.filter((e=>a.includes(e))):ut;const r={};[...ut,"tail"].forEach((e=>{r[e]=null})),a.forEach((a=>{switch(a){case"img":{const a=Ve(e,t,!1);r.img=a?dt("bptm-img-wrap bptm-dv-img",a):null;break}case"flip":r.flip=e.show("thumbnail")?e.flipImage(t):null;break;case"badges":r.badges=Ue(e,t);break;case"name":r.name=Ke(e,t,"h2","bptm-dv-name");break;case"role":r.role=$e(e,t,"bptm-dv-role");break;case"desc":{const a=We(e,t,"details");r.desc=a?dt("bptm-dv-desc",a):null;break}case"social":r.social=ft(e,t);break;case"social_plain":r.social_plain=ft(e,t,!1);break;case"meta":{const a=e.metaDetails(t,"list");r.meta=a?dt("bptm-dv-meta",a):null;break}case"skills":{const a=We(e,t,"skills");r.skills=a?dt("bptm-dv-skills",a):null;break}}})),r.badges_block=r.badges?dt("bptm-dv-badges",r.badges):null,r.badges_block&&!r.img&&a.includes("name")&&(r.name=ke(r.badges_block,r.name));const i=We(e,t,"vcard");return r.tail=i?dt("bptm-dv-tail",i):null,r},gt=(e,t,a,r=[])=>{const i=["bptm-dv","bptm-dv-"+t,"bptm-dv-"+t+"--"+a,...r];return e.show("thumbnail")||i.push("bptm-dv--no-img"),i.map(B).join(" ")},ht=e=>e.img?dt("bptm-dv-media",ke(e.img,e.badges)):null,yt={popup:{default:(e,t)=>{const a=bt(e,t,["img","badges","name","role","social_plain","desc","meta","skills"]);return"one"==("one"===e.attr("popupColumns","two")?"one":"two")?dt(gt(e,"popup","default",["bptm-dv--cols-one"]),ht(a),dt("bptm-dv-body",ke(a.name,a.role,a.social_plain,a.desc,a.meta,a.skills,a.tail))):dt(gt(e,"popup","default",["bptm-dv--cols-two"]),dt("bptm-dv-side",ht(a),a.meta),dt("bptm-dv-body",ke(a.name,a.role,a.social_plain,a.desc,a.skills,a.tail)))},"style-one":(e,t)=>{const a=bt(e,t,["img","badges","name","role","desc","social","meta","skills"]);return dt(gt(e,"popup","style-one"),dt("bptm-dv-side",ht(a)),dt("bptm-dv-body",ke(a.name,a.role,a.desc,a.social,a.meta,a.skills,a.tail)))},"style-two":(e,t)=>{const a=bt(e,t,["img","badges","name","role","desc","meta","social","skills"]);return dt(gt(e,"popup","style-two"),dt("bptm-dv-side",ht(a)),dt("bptm-dv-body bptm-dv-body--scroll",ke(a.name,a.role,a.desc,a.meta,a.social,a.skills,a.tail)))},"style-three":(a,r)=>{const i=bt(a,r,["img","badges","name","role","desc","meta","skills","social"]);return dt(gt(a,"popup","style-three"),dt("bptm-dv-side",ht(i),ke(i.name,i.role,i.desc)),dt("bptm-dv-body",i.meta?(0,e.createElement)("h4",{className:"bptm-dv-heading"},(0,t.__)("Contact Info","bp-team-member")):null,i.meta,ke(i.skills,i.social,i.tail)))},"style-four":(e,t)=>{const a=bt(e,t,["img","badges","name","role","desc","social","meta","skills"]);return dt(gt(e,"popup","style-four"),dt("bptm-dv-side",ht(a)),dt("bptm-dv-body",ke(a.name,a.role,a.desc,a.social,a.meta,a.skills,a.tail)))},"style-five":(e,t)=>vt(e,t,"popup","style-five"),"style-six":(e,t)=>{const a=bt(e,t,["img","badges","name","role","social_plain","desc","meta","skills","flip"]);return"one"==("one"===e.attr("popupColumns","two")?"one":"two")?dt(gt(e,"popup","style-six",["bptm-dv--cols-one"]),ht(a),dt("bptm-dv-body",ke(a.name,a.role,a.social_plain,a.desc,a.meta,a.skills,a.tail))):dt(gt(e,"popup","style-six",["bptm-dv--cols-two"]),dt("bptm-dv-side",ht(a)),dt("bptm-dv-body",dt("bptm-dv-head",dt("bptm-dv-head-text",ke(a.name,a.role)),a.flip?dt("bptm-dv-avatar",a.flip):null),ke(a.desc,a.social_plain,a.meta,a.skills,a.tail)))}},panel:{default:(e,t)=>{const a=bt(e,t,["social_plain","name","role","img","badges","desc","meta","skills"]);return dt(gt(e,"panel","default"),a.social_plain?dt("bptm-panel-strip",a.social_plain):null,dt("bptm-panel-main",a.name?dt("bptm-panel-titlebar",a.name):null,a.role?dt("bptm-panel-rolebar",a.role):null,ht(a),dt("bptm-dv-body",ke(a.desc,a.meta,a.skills,a.tail))))},"style-one":(e,t)=>{const a=bt(e,t,["img","badges","name","role","desc","social","meta","skills"]);return dt(gt(e,"panel","style-one"),ht(a),dt("bptm-dv-body",ke(a.name,a.role,a.desc,a.social,a.meta,a.skills,a.tail)))},"style-two":(e,t)=>{const a=bt(e,t,["name","role","img","badges","desc","meta","social","skills"]);return dt(gt(e,"panel","style-two"),a.name||a.role?dt("bptm-panel-band",ke(a.name,a.role)):null,ht(a),dt("bptm-dv-body",ke(a.desc,a.meta,a.social,a.skills,a.tail)))},"style-three":(e,t)=>{const a=bt(e,t,["img","badges","name","role","desc","meta","social","skills"]);return dt(gt(e,"panel","style-three"),ht(a),dt("bptm-dv-body",ke(a.name,a.role,a.desc,a.meta,a.social,a.skills,a.tail)))},"style-four":(e,t)=>{const a=bt(e,t,["img","badges","name","role","desc","meta","social","skills"]);return dt(gt(e,"panel","style-four"),ht(a),a.name||a.role?dt("bptm-panel-band",ke(a.name,a.role)):null,dt("bptm-dv-body",ke(a.desc,a.meta,a.social,a.skills,a.tail)))},"style-five":(e,t)=>{const a=bt(e,t,["img","badges","name","role","social_plain","desc","meta","skills"]);return dt(gt(e,"panel","style-five"),ht(a),dt("bptm-dv-body",dt("bptm-dv-head",dt("bptm-dv-head-text",ke(a.name,a.role)),a.social_plain),ke(a.desc,a.meta,a.skills,a.tail)))}},drawer:{default:(e,t)=>wt(e,t,"default",["img","badges","name","role","desc","meta","social_plain","skills"],(e=>ke(e.meta,e.social_plain,e.skills,e.tail))),"style-one":(e,t)=>{const a=bt(e,t,["img","badges","name","role","desc","social","meta","skills"]);return dt(gt(e,"drawer","style-one"),dt("bptm-dv-side",ht(a)),dt("bptm-dv-body",ke(a.name,a.role,a.desc,a.social,a.meta,a.skills,a.tail)))},"style-two":(e,t)=>{const a=bt(e,t,["img","badges","name","role","desc","meta","social","skills"]);return dt(gt(e,"drawer","style-two"),dt("bptm-dv-side",ht(a)),dt("bptm-dv-body",ke(a.name,a.role,a.desc,a.meta,a.social,a.skills,a.tail)))},"style-three":(e,t)=>wt(e,t,"style-three",["img","badges","meta","social","skills","name","role","desc"],(e=>ke(e.meta,e.social,e.skills,e.tail))),"style-four":(e,t)=>{const a=bt(e,t,["img","badges","name","role","desc","social","meta","skills"]);return dt(gt(e,"drawer","style-four"),dt("bptm-dv-side",ht(a)),dt("bptm-dv-body",ke(a.name,a.role,a.desc,a.social,a.meta,a.skills,a.tail)))},"style-five":(e,t)=>vt(e,t,"drawer","style-five")}};function vt(e,t,a,r){const i=bt(e,t,["meta","social","skills","img","badges","name","role","desc"]),l=ke(i.meta,i.social),n=ke(i.skills,i.tail);return dt(gt(e,a,r),dt("bptm-dv-side",ht(i)),dt("bptm-dv-body",dt("bptm-dv-top",ke(i.name,i.role,i.desc)),l||n?dt("bptm-dv-split",l?dt("bptm-dv-split-col",l):null,n?dt("bptm-dv-split-col",n):null):null))}function wt(e,t,a,r,i){const l=bt(e,t,r),n=i(l),s=l.img?dt("bptm-dv-ident",l.img,dt("bptm-dv-ident-text",ke(l.badges_block,l.name,l.role))):ke(l.name,l.role);return dt(gt(e,"drawer",a),dt("bptm-dv-body",ke(s,l.desc)),n?dt("bptm-dv-aside",n):null)}const kt=(e,t)=>{const a=String(e[{popup:"popupStyle",panel:"panelStyle",drawer:"drawerStyle"}[t]]||"default");return s[t].includes(a)?a:"default"},_t=({ctx:t,m:a,type:r})=>{if(!["popup","panel","drawer"].includes(r))return null;const i=kt(t.atts,r),l=t.withGroup(r),n=(yt[r][i]||yt[r].default)(l,a);let s="bptm-detail bptm-detail--"+r+" bptm-"+r+"-"+i;return"popup"===r&&(s+=" bptm-popup-cols-"+("one"===t.attr("popupColumns")?"one":"two")),(0,e.createElement)("div",{id:t.detailId(a),className:s,"data-bptm-detail":a.id,"data-bptm-type":r,"data-bptm-style":i,itemScope:!0,itemType:"https://schema.org/Person"},n)};class xt{constructor(e,t,a,r){this.stage=e,this.doc=e.ownerDocument,this.win=this.doc.defaultView||window,this.cfg=t,this.i18n=a||{},this.onClones=r,this.index=0,this.pos=0,this.clones=0,this.hovering=!1,this.focused=!1,this.timer=null,this.sig="",this.dotsCount=-1,this.bind()}get viewport(){return this.stage.querySelector(".bptm-carousel-viewport")}get track(){return this.stage.querySelector(".bptm-carousel-track")}slides(){const e=this.track;return e?Array.from(e.children).filter((e=>e.classList.contains("bptm-item")&&!e.classList.contains("bptm-clone"))):[]}perView(){const e=this.cfg.cols||{},t=Math.max(1,parseInt(e[(e=>{const t=e.innerWidth||e.document.documentElement.clientWidth;return t>=1025?"d":t>=768?"t":t>=576?"mp":"m"})(this.win)],10)||1),a=this.viewport,r=a?a.clientWidth:0;if(!r)return t;const i=this.minSlideWidth(),l=this.gapPx(),n=Math.floor((r+l)/(i+l));return Math.max(1,Math.min(t,n))}minSlideWidth(){const e=this.win.getComputedStyle(this.stage.closest(".bptm-wrap")||this.stage),t=e.getPropertyValue("--bptm-carousel-min").trim()||e.getPropertyValue("--bptm-min-col").trim(),a=t?this.toPx(t):0;return a>0?a:150}toPx(e){const t=/^(-?[\d.]+)(px|rem|em)?$/i.exec(e);if(t){const e=parseFloat(t[1]),a=(t[2]||"px").toLowerCase();if("px"===a)return e;const r="rem"===a?this.doc.documentElement:this.stage;return e*(parseFloat(this.win.getComputedStyle(r).fontSize)||16)}const a=this.doc.createElement("div");a.style.cssText="position:absolute;visibility:hidden;height:0;padding:0;border:0;width:"+e,this.viewport.appendChild(a);const r=a.getBoundingClientRect().width;return a.remove(),r}get active(){return this.count>this.pv}get step(){return Math.max(1,Math.min(parseInt(this.cfg.scroll,10)||1,this.pv))}get loop(){return!!this.cfg.loop&&this.active}get maxIndex(){return Math.max(0,this.count-this.pv)}sync(e){this.count=this.slides().length,this.pv=this.perView();const t=this.loop?this.pv+this.step:0;if(t!==e)return this.onClones(t),!1;this.clones=e;const a=[this.count,this.pv,this.clones,JSON.stringify(this.cfg)].join("|");return this.stage.classList.toggle("is-static",!this.active),this.stage.style.setProperty("--bptm-per-view",String(this.pv)),a!==this.sig?(this.sig=a,this.index=Math.min(this.index,this.loop?this.count-1:this.maxIndex),this.buildDots(),this.go(this.index,!1),this.restart()):this.updateUI(),!0}bind(){const e=this.stage;this.onPrev=()=>{this.prev(),this.restart()},this.onNext=()=>{this.next(),this.restart()},this.onClick=e=>{if(e.target.closest(".bptm-nav-prev"))this.onPrev();else if(e.target.closest(".bptm-nav-next"))this.onNext();else{const t=e.target.closest(".bptm-dot");if(t&&t.parentElement&&t.parentElement.classList.contains("bptm-carousel-dots")){const e=Array.from(t.parentElement.children).indexOf(t);this.go(this.loop?e*this.step:Math.min(e*this.step,this.maxIndex)),this.restart()}}},this.onTransitionEnd=e=>{e.target===this.track&&"transform"===e.propertyName&&this.settle()},this.onEnter=()=>{this.hovering=!0},this.onLeave=()=>{this.hovering=!1},this.onFocusIn=()=>{this.focused=!0},this.onFocusOut=t=>{e.contains(t.relatedTarget)||(this.focused=!1)},this.onKey=e=>{if(e.target.matches&&e.target.matches("input, select, textarea"))return;const t=this.isRTL();"ArrowLeft"===e.key?(e.preventDefault(),(t?this.onNext:this.onPrev)()):"ArrowRight"===e.key&&(e.preventDefault(),(t?this.onPrev:this.onNext)())},e.addEventListener("click",this.onClick),e.addEventListener("transitionend",this.onTransitionEnd),e.addEventListener("mouseenter",this.onEnter),e.addEventListener("mouseleave",this.onLeave),e.addEventListener("focusin",this.onFocusIn),e.addEventListener("focusout",this.onFocusOut),e.addEventListener("keydown",this.onKey),this.bindSwipe();let t=this.win.innerWidth;this.onResize=()=>{e.isConnected&&(this.perView()!==this.pv?(this.sig="",this.sync(this.clones)):this.win.innerWidth!==t&&this.go(this.index,!1),t=this.win.innerWidth)},"function"==typeof this.win.ResizeObserver&&(this.ro=new this.win.ResizeObserver((()=>this.onResize())),this.ro.observe(this.viewport)),this.onWinResize=((e,t,a)=>{let r;const i=(...a)=>{e.clearTimeout(r),r=e.setTimeout((()=>t(...a)),120)};return i.cancel=()=>e.clearTimeout(r),i})(this.win,(()=>this.onResize())),this.win.addEventListener("resize",this.onWinResize),this.mqls=[],"function"==typeof this.win.matchMedia&&["(min-width: 1025px)","(min-width: 768px)","(min-width: 576px)"].forEach((e=>{const t=this.win.matchMedia(e);"function"==typeof t.addEventListener&&t.addEventListener("change",this.onWinResize),this.mqls.push(t)})),this.onVisibility=()=>{this.doc.hidden?this.stop():this.restart()},this.doc.addEventListener("visibilitychange",this.onVisibility)}bindSwipe(){const e=this.viewport;let t=0,a=0,r=0,i=!1,l=!1,n=null;this.onDown=e=>{!this.active||"mouse"===e.pointerType&&0!==e.button||e.target.closest("input, select, textarea, button")||(i=!0,l=!1,r=0,t=e.clientX,a=e.clientY,n=e.pointerId)},this.onMove=e=>{if(!i||e.pointerId!==n)return;const s=e.clientX-t,o=e.clientY-a;if(!l){if(Math.abs(s)<6)return;if(Math.abs(o)>Math.abs(s))return void(i=!1);l=!0,this.stage.classList.add("is-dragging");try{this.viewport.setPointerCapture(n)}catch(e){}}r=s,this.translate(this.offsetFor(this.pos)+r,!1)},this.onUp=()=>{if(!i)return;if(i=!1,this.stage.classList.remove("is-dragging"),!l)return;const e=Math.min(80,this.slideWidth()/4),t=this.isRTL();r<-e?(t?this.onPrev:this.onNext)():r>e?(t?this.onNext:this.onPrev)():this.go(this.index,!0);const a=e=>{e.preventDefault(),e.stopPropagation()};this.viewport.addEventListener("click",a,{capture:!0,once:!0}),this.win.setTimeout((()=>this.viewport&&this.viewport.removeEventListener("click",a,{capture:!0})),50)},this.onDragStart=e=>e.preventDefault(),e.addEventListener("pointerdown",this.onDown),e.addEventListener("pointermove",this.onMove),e.addEventListener("pointerup",this.onUp),e.addEventListener("pointercancel",this.onUp),e.addEventListener("dragstart",this.onDragStart),this.swipeVp=e}isRTL(){return"rtl"===this.win.getComputedStyle(this.stage).direction}slideWidth(){const e=this.track&&this.track.firstElementChild;return e?e.getBoundingClientRect().width:0}gapPx(){const e=this.track,t=e?parseFloat(this.win.getComputedStyle(e).columnGap):NaN;return isNaN(t)?Number(this.cfg.gap)||0:t}offsetFor(e){const t=e*(this.slideWidth()+this.gapPx());return this.isRTL()?t:-t}reduced(){return"function"==typeof this.win.matchMedia&&this.win.matchMedia("(prefers-reduced-motion: reduce)").matches}translate(e,t){const a=this.track;if(!a)return;const r=this.reduced()?0:Math.max(0,parseInt(this.cfg.speed,10)||0);a.style.transitionDuration=t?r+"ms":"0ms",a.style.transform="translate3d("+e+"px,0,0)",t&&0===r&&this.win.requestAnimationFrame((()=>this.settle()))}go(e,t=!0){if(!this.active)return this.index=0,this.pos=0,this.translate(0,!1),void this.updateUI();if(this.loop){const t=-this.clones,a=this.count+this.clones-this.pv;e=Math.max(t,Math.min(a,e)),this.pos=e+this.clones}else e=Math.max(0,Math.min(this.maxIndex,e)),this.pos=e;this.index=e,this.translate(this.offsetFor(this.pos),t),this.updateUI()}settle(){if(this.loop&&(this.index<0||this.index>=this.count)){const e=(this.index%this.count+this.count)%this.count;this.go(e,!1),this.track.offsetWidth}}next(){this.active&&(this.loop?(this.settle(),this.go(this.index+this.step)):this.index>=this.maxIndex?this.go(0):this.go(this.index+this.step))}prev(){this.active&&(this.loop?(this.settle(),this.go(this.index-this.step)):this.index<=0?this.go(this.maxIndex):this.go(this.index-this.step))}pageCount(){return this.active?this.loop?Math.ceil(this.count/this.step):Math.ceil(this.maxIndex/this.step)+1:0}currentPage(){if(this.loop){const e=(this.index%this.count+this.count)%this.count;return Math.min(this.pageCount()-1,Math.floor(e/this.step))}return this.index>=this.maxIndex?this.pageCount()-1:Math.floor(this.index/this.step)}buildDots(){const e=this.stage.querySelector(".bptm-carousel-dots");if(!e)return;const t=this.pageCount();if(e.hidden=t<=1,t!==this.dotsCount||e.children.length!==t){this.dotsCount=t,e.textContent="";for(let i=0;i<t;i++){const t=this.doc.createElement("button");t.type="button",t.className="bptm-dot",t.setAttribute("role","tab"),t.setAttribute("aria-label",(a=this.i18n.slide||"Go to slide %d",r=i+1,String(a||"").replace(/%d|%s/,String(r)))),e.appendChild(t)}var a,r}}updateUI(){const e=this.stage.querySelector(".bptm-carousel-navs");e&&(e.hidden=!this.active);const t=this.stage.querySelector(".bptm-carousel-dots");if(t){t.hidden=this.pageCount()<=1;const e=this.currentPage();Array.from(t.children).forEach(((t,a)=>{const r=a===e;t.classList.toggle("is-active",r),t.setAttribute("aria-selected",r?"true":"false")}))}const a=this.track;a&&Array.from(a.children).forEach(((e,t)=>{if(!e.classList.contains("bptm-item"))return;const a=t>=this.pos&&t<this.pos+this.pv;e.classList.toggle("is-visible",a),e.classList.contains("bptm-clone")?e.setAttribute("inert",""):a?(e.removeAttribute("inert"),e.removeAttribute("aria-hidden")):(e.setAttribute("inert",""),e.setAttribute("aria-hidden","true"))}))}stop(){this.timer&&(this.win.clearInterval(this.timer),this.timer=null)}restart(){if(this.stop(),!this.cfg.autoplay||!this.active)return;const e=Math.max(500,parseInt(this.cfg.timeout,10)||2500),t=Math.max(0,parseInt(this.cfg.speed,10)||0);this.timer=this.win.setInterval((()=>{this.stage.isConnected?this.doc.hidden||this.focused||this.cfg.hoverPause&&this.hovering||this.stage.closest(".bptm-modal-open-host")||this.next():this.stop()}),e+t)}destroy(){this.stop();const e=this.stage;e.removeEventListener("click",this.onClick),e.removeEventListener("transitionend",this.onTransitionEnd),e.removeEventListener("mouseenter",this.onEnter),e.removeEventListener("mouseleave",this.onLeave),e.removeEventListener("focusin",this.onFocusIn),e.removeEventListener("focusout",this.onFocusOut),e.removeEventListener("keydown",this.onKey);const t=this.swipeVp;t&&(t.removeEventListener("pointerdown",this.onDown),t.removeEventListener("pointermove",this.onMove),t.removeEventListener("pointerup",this.onUp),t.removeEventListener("pointercancel",this.onUp),t.removeEventListener("dragstart",this.onDragStart)),this.ro&&this.ro.disconnect(),this.onWinResize.cancel(),this.win.removeEventListener("resize",this.onWinResize),this.mqls.forEach((e=>"function"==typeof e.removeEventListener&&e.removeEventListener("change",this.onWinResize))),this.doc.removeEventListener("visibilitychange",this.onVisibility)}}const Et=(0,e.createElement)("svg",{viewBox:"0 0 24 24",width:"20",height:"20","aria-hidden":"true",focusable:"false"},(0,e.createElement)("path",{d:"M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7a1 1 0 1 0-1.4 1.4l4.9 4.9-4.9 4.9a1 1 0 1 0 1.4 1.4l4.9-4.9 4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4z",fill:"currentColor"})),Ct=new WeakMap,St=({type:a,uid:r,panelPosition:i,drawerStyle:l,modal:n,content:s,navHidden:o,onStep:c,detailStyle:m})=>{const{state:p,close:d,shellRef:f}=n,u=(0,e.useRef)(null),b=p.visible;(0,e.useEffect)((()=>{if(!b||null===p.id||p.closing)return;const e=u.current;if(!e)return;e.scrollTop=0;const t=f.current&&f.current.querySelector(".bptm-modal-dialog");if(t&&(t.scrollTop=0),e.focus({preventScroll:"drawer"===a}),"drawer"===a&&f.current){const e=f.current.ownerDocument.defaultView||window,t=f.current.getBoundingClientRect();(t.bottom>e.innerHeight||t.top<0)&&f.current.scrollIntoView({behavior:"smooth",block:"nearest"})}}),[p.id,b]);const g=e=>{e.target.closest("[data-bptm-close]")?(e.preventDefault(),d()):e.target.closest("[data-bptm-prev]")?(e.preventDefault(),c(-1)):e.target.closest("[data-bptm-next]")&&(e.preventDefault(),c(1))},y=e=>{if("Escape"===e.key)return e.preventDefault(),e.stopPropagation(),void d();const t=f.current;if(!t)return;const r=t.ownerDocument.defaultView||window;if("ArrowLeft"!==e.key&&"ArrowRight"!==e.key||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)){if("Tab"===e.key&&"drawer"!==a){const a=t.querySelector(".bptm-modal-dialog")||t,r=(i=a,Array.from(i.querySelectorAll('a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), iframe, [tabindex]:not([tabindex="-1"]), [contenteditable="true"]')).filter((e=>!e.closest("[hidden], [inert]")&&(e.offsetWidth||e.offsetHeight||e.getClientRects().length))));if(!r.length)return void e.preventDefault();const l=r[0],n=r[r.length-1],s=t.ownerDocument.activeElement;!e.shiftKey||s!==l&&a.contains(s)?e.shiftKey||s!==n||(e.preventDefault(),l.focus()):(e.preventDefault(),n.focus())}var i}else{const a="rtl"===r.getComputedStyle(t).direction,i="ArrowRight"===e.key?1:-1;c(a?-i:i)}},v=b&&null!==p.id?{"data-bptm-style":m}:{},w=(0,e.createElement)("div",{className:"bptm-modal-content",tabIndex:-1,ref:u},s);if("drawer"===a)return(0,e.createElement)("div",{className:"bptm-drawer bptm-drawer--"+String(l||"default").replace(/[^A-Za-z0-9_-]/g,"")+(p.isOpen?" is-open":""),"data-bptm-for":r,role:"region","aria-label":(0,t.__)("Member details","bp-team-member"),hidden:!b,ref:f,onClick:g,onKeyDown:y,...v},(0,e.createElement)("div",{className:"bptm-drawer-arrow","aria-hidden":"true"}),(0,e.createElement)("div",{className:"bptm-drawer-inner"},(0,e.createElement)("button",{type:"button",className:"bptm-modal-close","data-bptm-close":"","aria-label":(0,t.__)("Close","bp-team-member")},Et),w,(0,e.createElement)("div",{className:"bptm-modal-nav",hidden:o},(0,e.createElement)("button",{type:"button",className:"bptm-modal-prev","data-bptm-prev":"","aria-label":h("prev")},(0,e.createElement)("i",{className:"fas fa-angle-left","aria-hidden":"true"})),(0,e.createElement)("button",{type:"button",className:"bptm-modal-next","data-bptm-next":"","aria-label":h("next")},(0,e.createElement)("i",{className:"fas fa-angle-right","aria-hidden":"true"})))));let k="";return"panel"===a&&(k=" bptm-panel-"+(["left","right","center"].includes(i)?i:"right")),(0,e.createElement)("div",{className:"bptm-modal bptm-modal--"+a+k+(p.isOpen?" is-open":""),"data-bptm-for":r,hidden:!b,ref:f,onClick:g,onKeyDown:y,...v},(0,e.createElement)("div",{className:"bptm-modal-overlay","data-bptm-close":""}),(0,e.createElement)("div",{className:"bptm-modal-dialog",role:"dialog","aria-modal":"true","aria-label":(0,t.__)("Member details","bp-team-member")},(0,e.createElement)("button",{type:"button",className:"bptm-modal-close","data-bptm-close":"","aria-label":(0,t.__)("Close","bp-team-member")},Et),w,(0,e.createElement)("div",{className:"bptm-modal-nav",hidden:o},(0,e.createElement)("button",{type:"button",className:"bptm-modal-prev","data-bptm-prev":"","aria-label":h("prev")},(0,e.createElement)("i",{className:"fas fa-angle-left","aria-hidden":"true"}),(0,e.createElement)("span",null,h("prev"))),(0,e.createElement)("button",{type:"button",className:"bptm-modal-next","data-bptm-next":"","aria-label":h("next")},(0,e.createElement)("span",null,h("next")),(0,e.createElement)("i",{className:"fas fa-angle-right","aria-hidden":"true"})))))},Nt={search:["searchByName","search_name"],company:["searchByCompany","search_company"],zip:["searchByZip","search_zip"],tag:["searchByTag","search_tag"]},At={designation:["filterByDesignation","","field"],location:["filterByLocation","includeLocations","terms"],language:["filterByLanguage","includeLanguages","terms"],gender:["filterByGender","includeGenders","terms"],specialty:["filterBySpecialty","includeSpecialties","terms"],extra_one:["filterByExtraOne","includeExtraOne","terms"],extra_two:["filterByExtraTwo","includeExtraTwo","terms"],extra_three:["filterByExtraThree","includeExtraThree","terms"],extra_four:["filterByExtraFour","includeExtraFour","terms"],extra_five:["filterByExtraFive","includeExtraFive","terms"]},Lt=["search","company","zip","tag","designation","location","language","gender","specialty","extra_one","extra_two","extra_three","extra_four","extra_five"],Bt=({id:a,label:r,options:i,value:l,onChange:n,ellipsis:s,openKey:o,setOpenKey:c,fieldKey:m})=>{const p=(0,e.useRef)(null),d=(0,e.useRef)(null),f=o===m,u=i.filter((e=>l.includes(e.value))).map((e=>e.label));let b=r;return u.length&&(b=s||u.length<=2?u.join(", "):(0,t.sprintf)((0,t.__)("%d selected","bp-team-member"),u.length)),(0,e.useEffect)((()=>{if(!f||!p.current)return;const e=p.current.ownerDocument,t=e=>{p.current&&!p.current.contains(e.target)&&c(null)};return e.addEventListener("click",t),()=>e.removeEventListener("click",t)}),[f,c]),(0,e.createElement)("div",{className:"bptm-ms"+(s?" bptm-ms--ellipsis":"")+(f?" is-open":""),ref:p,onKeyDown:e=>{if("Escape"===e.key&&f)e.stopPropagation(),c(null),d.current&&d.current.focus();else if("ArrowDown"===e.key&&!f&&e.target===d.current){e.preventDefault(),c(m);const t=p.current;(t.ownerDocument.defaultView||window).requestAnimationFrame((()=>{const e=t.querySelector(".bptm-ms-menu input");e&&e.focus()}))}}},(0,e.createElement)("button",{type:"button",className:"bptm-ms-toggle bptm-select","aria-haspopup":"listbox","aria-expanded":f?"true":"false","aria-controls":a+"-ms","aria-label":r,title:u.length?u.join(", "):void 0,ref:d,onClick:()=>c(f?null:m)},(0,e.createElement)("span",{className:"bptm-ms-label"+(u.length?"":" is-placeholder")},b),(0,e.createElement)("i",{className:"fas fa-angle-down bptm-ms-caret","aria-hidden":"true"})),(0,e.createElement)("div",{className:"bptm-ms-menu",id:a+"-ms",role:"group","aria-label":r,hidden:!f},i.map(((t,a)=>(0,e.createElement)("label",{className:"bptm-ms-option",key:t.value,style:{"--bptm-depth":"0"}},(0,e.createElement)("input",{type:"checkbox",value:t.value,"data-index":String(a+1),checked:l.includes(t.value),onChange:e=>n(e.target.checked?[...l,t.value]:l.filter((e=>e!==t.value)))}),(0,e.createElement)("span",null,t.label))))))},jt=({id:t,fieldKey:a,label:r,value:i,onChange:l,delay:n})=>{const[s,o]=(0,e.useState)(i),c=(0,e.useRef)(null),m=(0,e.useRef)(null);(0,e.useEffect)((()=>{o(i)}),[i]),(0,e.useEffect)((()=>()=>c.current&&clearTimeout(c.current)),[]);const p=(e,t)=>{c.current&&clearTimeout(c.current),t?l(e):c.current=setTimeout((()=>l(e)),n)};return(0,e.createElement)("input",{type:"search",id:t,className:"bptm-search","data-bptm-search":a,placeholder:r,autoComplete:"off",ref:m,value:s,onChange:e=>{o(e.target.value),p(e.target.value,!1)},onKeyDown:e=>{"Enter"===e.key&&(e.preventDefault(),p(e.target.value,!0))}})},zt=({atts:a,terms:r,group:i,onGroup:l})=>{if(!r.length)return null;const n=!!a.filterAllEnabled,s=B(a.filterStyle||"default"),o=B(a.filterCatPosition||"center"),c=String(a.filterAllText||"").trim()?a.filterAllText:(0,t.__)("All","bp-team-member"),m=[];return n&&m.push({slug:"*",name:c}),r.forEach((e=>m.push(e))),(0,e.createElement)("nav",{className:"bptm-cats-wrap bptm-cats-pos-"+o,"aria-label":(0,t.sprintf)((0,t.__)("Filter by %s","bp-team-member"),y("group"))},(0,e.createElement)("ul",{className:"bptm-cats bptm-cats--"+s},m.map((t=>{const a=i===t.slug;return(0,e.createElement)("li",{className:"bptm-cat-item"+(a?" is-active":""),key:t.slug},(0,e.createElement)("button",{type:"button",className:"bptm-cat","data-filter":t.slug,"aria-pressed":a?"true":"false",onClick:e=>{e.preventDefault(),l(t.slug)}},(0,e.createElement)("span",null,t.name)))}))))},Pt=({atts:t,uid:a,controls:r,state:i,onSelect:l,onSearch:n,onReset:s,resetVisible:o,status:c,ajax:m})=>{const[p,d]=(0,e.useState)(null),f=!!t.enableMultiSelect,u=!!t.enableClearFilters;if(!r.length&&!u)return null;const b="three"===t.filterColumns?3:2;return(0,e.createElement)("div",{className:"bptm-filters bptm-filter-cols-"+b+(f?" bptm-filters--multi":""),role:"search"},r.length?(0,e.createElement)("div",{className:"bptm-filters-grid"},r.map((r=>{const s="bptm-f-"+a+"-"+r.key;let o;if("search"===r.type)o=[(0,e.createElement)("span",{key:"i",className:"bptm-search-icon fas fa-magnifying-glass","aria-hidden":"true"}),(0,e.createElement)(jt,{key:"s",id:s,fieldKey:r.key,label:r.label,value:i.searches[r.key]||"",onChange:e=>n(r.key,e),delay:m?350:120})];else{const a=i.selects[r.key]||[],n=(0,e.createElement)("select",{key:"sel",id:s,className:"bptm-select","data-bptm-filter":r.key,"data-placeholder":r.label,...f?{multiple:!0,hidden:!0,tabIndex:-1,value:a,onChange:()=>{}}:{value:a[0]||"*",onChange:e=>l(r.key,"*"===e.target.value?[]:[e.target.value])}},(0,e.createElement)("option",{value:"*"},r.label),r.options.map((t=>(0,e.createElement)("option",{key:t.value,value:t.value,"data-value":t.raw,"data-depth":"0"},t.label))));o=f?[n,(0,e.createElement)(Bt,{key:"ms",id:s,fieldKey:r.key,label:r.label,options:r.options,value:a,ellipsis:!!t.multiSelectEllipsis,openKey:p,setOpenKey:d,onChange:e=>l(r.key,e)})]:[n]}return(0,e.createElement)("div",{key:r.key,className:"bptm-filter bptm-filter--"+r.type+" bptm-filter-"+r.key.replace(/_/g,"-")},(0,e.createElement)("label",{className:"screen-reader-text",htmlFor:f&&"select"===r.type?"":s},r.label),...o)}))):null,u?(0,e.createElement)("div",{className:"bptm-reset-wrap"},(0,e.createElement)("button",{type:"button",className:"bptm-reset",hidden:!o,onClick:s},(0,e.createElement)("i",{className:"fas fa-rotate-left","aria-hidden":"true"})," ",(0,e.createElement)("span",null,h("reset_filters")))):null,(0,e.createElement)("div",{className:"bptm-filter-status screen-reader-text","aria-live":"polite"},c))},Tt=(e,t,a,r)=>{if(r||!e||!e.location||!/^https?:$/.test(e.location.protocol))return 1===a?"?":"?"+encodeURIComponent(t)+"="+a;try{const r=new e.URL(e.location.href);return r.hash="",r.searchParams.delete(t),a>1&&r.searchParams.set(t,String(a)),r.toString()}catch(e){return 1===a?"?":"?"+encodeURIComponent(t)+"="+a}},Mt=({page:a,max:r,pageVar:i,win:l,isEditor:n,onPage:s})=>{const o=Math.min(Math.max(1,a),Math.max(1,r)),c=[];for(let e=1;e<=r;e++)1===e||r===e||Math.abs(e-o)<=1?c.push(e):"…"!==c[c.length-1]&&c.push("…");const m=(t,a,r,o)=>(0,e.createElement)("a",{className:a,href:Tt(l,i,t,n),"data-page":String(t),onClick:e=>{e.metaKey||e.ctrlKey||e.shiftKey||1===e.button||(e.preventDefault(),s(t,e.currentTarget))},...r},o);return(0,e.createElement)("nav",{className:"bptm-pagination bptm-pagination--normal","aria-label":(0,t.__)("Team members pages","bp-team-member"),hidden:r<=1},(0,e.createElement)("ul",{className:"bptm-pages"},(0,e.createElement)("li",null,o>1?m(o-1,"bptm-page bptm-page-prev",{rel:"prev","aria-label":h("prev")},(0,e.createElement)("i",{className:"fas fa-angle-left","aria-hidden":"true"})):(0,e.createElement)("span",{className:"bptm-page bptm-page-prev is-disabled","aria-hidden":"true"},(0,e.createElement)("i",{className:"fas fa-angle-left"}))),c.map(((t,a)=>(0,e.createElement)("li",{key:a},"…"===t?(0,e.createElement)("span",{className:"bptm-page bptm-page-dots","aria-hidden":"true"},"…"):t===o?(0,e.createElement)("span",{className:"bptm-page is-current","aria-current":"page"},String(t)):m(t,"bptm-page",{},String(t))))),(0,e.createElement)("li",null,o<r?m(o+1,"bptm-page bptm-page-next",{rel:"next","aria-label":h("next")},(0,e.createElement)("i",{className:"fas fa-angle-right","aria-hidden":"true"})):(0,e.createElement)("span",{className:"bptm-page bptm-page-next is-disabled","aria-hidden":"true"},(0,e.createElement)("i",{className:"fas fa-angle-right"})))))},Dt=({text:t,more:a,onMore:r})=>(0,e.createElement)("div",{className:"bptm-loadmore-wrap",hidden:!a},(0,e.createElement)("button",{type:"button",className:"bptm-loadmore",onClick:e=>{e.preventDefault(),r()}},(0,e.createElement)("span",{className:"bptm-loadmore-text"},t),(0,e.createElement)("span",{className:"bptm-spinner","aria-hidden":"true"}))),Ot=({more:a,sentinelRef:r})=>(0,e.createElement)("div",{className:"bptm-infinite",hidden:!a,ref:r},(0,e.createElement)("span",{className:"bptm-spinner","aria-hidden":"true"}),(0,e.createElement)("span",{className:"screen-reader-text"},(0,t.__)("Loading more members","bp-team-member"))),Ft=e=>e&&e.ownerDocument&&e.ownerDocument.defaultView||window,It=e=>{if(!e||!e.classList.contains("bptm-equal-details"))return void(e&&e.querySelectorAll(".bptm-items > .bptm-item .bptm-details").forEach((e=>{e.style.minHeight&&(e.style.minHeight="")})));const t=e.classList.contains("bptm-view-carousel"),a=new Map;e.querySelectorAll(".bptm-items > .bptm-item").forEach((e=>{const r=e.hidden?null:e.querySelector(".bptm-details");if(!r)return;r.style.minHeight="";const i=t?0:e.offsetTop;a.has(i)||a.set(i,[]),a.get(i).push(r)})),a.forEach((e=>{const t=Math.max(...e.map((e=>e.offsetHeight)));t>0&&e.length>1&&e.forEach((e=>{e.style.minHeight=t+"px"}))}))},Rt=e=>{e.querySelectorAll(".bptm-item:not(.bptm-clone) .bptm-details.bptm-scroll").forEach((e=>{if(e.closest(".bptm-drawer, .bptm-modal, .bptm-clone"))return;const t=e.scrollHeight>e.clientHeight+2;e.classList.toggle("is-scrollable",t),t?(e.setAttribute("tabindex","0"),e.bptmScrollBound||(e.bptmScrollBound=!0,e.addEventListener("scroll",(()=>e.classList.toggle("is-end",e.scrollTop+e.clientHeight>=e.scrollHeight-2)),{passive:!0}))):e.removeAttribute("tabindex")}))},qt={group:null,selects:{},searches:{}},Gt=(e,t)=>{try{const a=new e.URL(e.location.href).searchParams.get(t),r=parseInt(a,10);return r>0?r:1}catch(e){return 1}},Ht=({attributes:n,uid:s,domId:c,isEditor:m=!1,host:u=null,wrapperClass:g=""})=>{const y=(0,e.useRef)(null),v=(0,e.useRef)(u);v.current=u;const k=u?v:y,_=(0,e.useRef)(Math.floor(999998*Math.random())+1),x=(0,e.useRef)(new Set),E=k.current&&k.current.ownerDocument.defaultView||("undefined"!=typeof window?window:null),C=(0,e.useMemo)((()=>ae(n)),[n]),S=(0,e.useMemo)((()=>(e=>{const a=(()=>{if(d)return d;const e={"grid-1":(0,t.__)("Grid 1","bp-team-member"),"grid-2":(0,t.__)("Grid 2","bp-team-member"),"grid-3":(0,t.__)("Grid 3","bp-team-member"),"grid-4":(0,t.__)("Grid 4","bp-team-member"),"grid-5":(0,t.__)("Grid 5","bp-team-member"),"grid-6":(0,t.__)("Grid 6","bp-team-member"),"circle-1":(0,t.__)("Circle 1","bp-team-member"),"circle-2":(0,t.__)("Circle 2","bp-team-member"),"circle-3":(0,t.__)("Circle 3","bp-team-member"),"circle-4":(0,t.__)("Circle 4","bp-team-member"),"circle-5":(0,t.__)("Circle 5","bp-team-member"),"circle-6":(0,t.__)("Circle 6","bp-team-member"),"horizontal-1":(0,t.__)("Horizontal 1","bp-team-member"),"horizontal-2":(0,t.__)("Horizontal 2","bp-team-member"),"horizontal-3":(0,t.__)("Horizontal 3","bp-team-member"),"horizontal-4":(0,t.__)("Horizontal 4","bp-team-member"),"horizontal-5":(0,t.__)("Horizontal 5","bp-team-member"),"horizontal-6":(0,t.__)("Horizontal 6","bp-team-member"),"horizontal-7":(0,t.__)("Horizontal 7","bp-team-member"),"horizontal-8":(0,t.__)("Horizontal 8","bp-team-member"),"horizontal-9":(0,t.__)("Horizontal 9","bp-team-member"),"flip-1":(0,t.__)("Flip 1","bp-team-member"),"flip-2":(0,t.__)("Flip 2","bp-team-member"),"flip-3":(0,t.__)("Flip 3","bp-team-member"),"flip-4":(0,t.__)("Flip 4","bp-team-member"),"flip-5":(0,t.__)("Flip 5","bp-team-member"),"flip-6":(0,t.__)("Flip 6","bp-team-member"),"table-1":(0,t.__)("Table 1","bp-team-member"),"table-2":(0,t.__)("Table 2","bp-team-member"),"table-3":(0,t.__)("Table 3","bp-team-member"),"table-4":(0,t.__)("Table 4","bp-team-member"),"table-5":(0,t.__)("Table 5","bp-team-member"),"list-1":(0,t.__)("List 1","bp-team-member"),"list-2":(0,t.__)("List 2","bp-team-member"),"list-3":(0,t.__)("List 3","bp-team-member"),"list-4":(0,t.__)("List 4","bp-team-member"),"list-5":(0,t.__)("List 5","bp-team-member"),"grid-7":(0,t.__)("Grid 7","bp-team-member"),"grid-8":(0,t.__)("Grid 8","bp-team-member"),"grid-9":(0,t.__)("Grid 9","bp-team-member"),"grid-10":(0,t.__)("Grid 10 (Greyscale)","bp-team-member"),"grid-11":(0,t.__)("Grid 11","bp-team-member"),"grid-12":(0,t.__)("Grid 12","bp-team-member"),"grid-popup":(0,t.__)("Grid Popup","bp-team-member"),"grid-single":(0,t.__)("Grid Single","bp-team-member"),"grid-filter-single":(0,t.__)("Grid Filter Single","bp-team-member"),"grid-filter-popup":(0,t.__)("Grid Filter Popup","bp-team-member"),"grid-slider":(0,t.__)("Grid Slider","bp-team-member"),"grid-filter-selected":(0,t.__)("Grid Filter - Selected Groups","bp-team-member"),"grid-filter-vcard":(0,t.__)("Grid Filter with vCard","bp-team-member"),"grid-panel":(0,t.__)("Grid Panel Slide","bp-team-member"),"grid-drawer-1":(0,t.__)("Grid Drawer 1","bp-team-member"),"grid-drawer-2":(0,t.__)("Grid Drawer 2","bp-team-member"),"table-6":(0,t.__)("Table 6 - Underline","bp-team-member"),"table-7":(0,t.__)("Table 7 - Box Border","bp-team-member"),"table-8":(0,t.__)("Table 8 - Odd Even","bp-team-member"),"table-9":(0,t.__)("Table 9 - Filter","bp-team-member"),"table-10":(0,t.__)("Table 10 - Filter Dense","bp-team-member"),"list-6":(0,t.__)("List 6","bp-team-member"),"list-7":(0,t.__)("List 7","bp-team-member"),"group-filter-1":(0,t.__)("Group Filter 1","bp-team-member"),"sidebar-1":(0,t.__)("Sidebar 1 - Framed Photo","bp-team-member"),"sidebar-2":(0,t.__)("Sidebar 2 - Round Avatar","bp-team-member"),"sidebar-3":(0,t.__)("Sidebar 3 - Compact Rows","bp-team-member")};return d=p.map((([t,a,r,i,l={}])=>({id:t,value:t,label:e[t]||t,group:a,layout:r,carousel:!("table"===r||"list"===r),filter:!0,forced_link:null,forced_view:null,grouped:!1,pagination:!0,visibility:o(i),...l}))),d})(),r=String(e||"").toLowerCase().replace(/[^a-z0-9_-]/g,"");return a.find((e=>e.id===r))||a.find((e=>"grid-5"===e.id))})(C.theme)),[C.theme]),N=((e,t)=>"carousel"===t.forced_view?"carousel":"filter"===t.forced_view?"filter":e.carouselEnabled&&t.carousel&&"table"!==t.layout&&!t.grouped?"carousel":e.filterEnabled&&t.filter?"filter":"grid")(C,S),j=((e,t,a)=>{if(!e.nameIsLinked)return"none";let r=String(e.linkType||""),i=String(t.forced_link||"");return"single_page"===i&&(i="popup"),i&&("default"===r||["panel","drawer"].includes(i))&&(r=i),"default"!==r&&""!==r||(r="popup"),"single_page"===r&&(r="custom"),["popup","panel","drawer","custom","none"].includes(r)||(r="popup"),"drawer"!==r||"carousel"!==a&&"table"!==t.layout||(r="popup"),r})(C,S,N),z=((e,t,a)=>{if(!e.paginationEnabled||"carousel"===a||t.grouped||!1===t.pagination)return"";let r=String(e.paginationType);return Z.paginationType.includes(r)||(r="normal-pagination"),"filter"===a&&"ajax-filter"!==e.filterType?"":r})(C,S,N),P=(0,e.useMemo)((()=>((e,t)=>{const n=(e=>{const t={};a.forEach((e=>{t[e]=r.includes(e)}));const i=e.visibility||{};Array.isArray(i)?i.forEach((e=>{e in t&&(t[e]=!0)})):Object.keys(i).forEach((e=>{e in t&&(t[e]=!!i[e])}));const l={};return a.forEach((e=>{l[e]="read_more"!==e})),{initial:t,popup:l,panel:l,drawer:l}})(t);e=e&&"object"==typeof e&&!Array.isArray(e)?e:{};const s={};i.forEach((t=>{e[t]&&"object"==typeof e[t]&&!Array.isArray(e[t])&&(s[t]={...e[t]})})),Object.keys(e).forEach((t=>{i.includes(t)||(s.initial=s.initial||{},s.initial[t]=e[t])}));const o={};return i.forEach((e=>{o[e]={},Object.keys(n[e]).forEach((t=>{const a=s[e]?s[e][t]:void 0;o[e][t]=((e,t)=>{const a={};if(e&&"object"==typeof e&&!Array.isArray(e)){const r={...e};return void 0!==r.mobile_landscape&&void 0===r.mobilePortrait&&(r.mobilePortrait=r.mobile_landscape),l.forEach((e=>{a[e]=void 0!==r[e]&&null!==r[e]?X(r[e]):t})),a}return l.forEach((r=>{a[r]=null==e?!!t:X(e)})),a})(a,n[e][t])}))})),o})(C.visibility,S)),[C.visibility,S]),T=(0,e.useMemo)((()=>(e=>{const t=Array.isArray(e.members)?e.members.slice(0,500):[],a=e.thumbnailSize||"large",r=!!e.allowHtmlDetails,i=new Set,l=[];return t.forEach(((e,t)=>{const n=se(e,a,r,t);if(!n)return;const s=n.id;let o=s,c=1;for(;i.has(o);)c++,o=s+"-"+c;i.add(o),n.id=o,l.push(n)})),l})(C)),[C]),{base:M,pool:D}=(0,e.useMemo)((()=>((e,t,a)=>{const r=((e,t)=>{Object.keys(pe).forEach((a=>{const r=de(e[a]);r.length&&(t=t.filter((e=>ue(e,pe[a],r))))}));const a=de(e.excludeGroups);return a.length&&(t=t.filter((e=>!ue(e,"group",a)))),t})(e,t);let i=he(e,r,a);const l=Math.trunc(Number(e.numberOfMembers))||0;return l>0&&(i=i.slice(0,l)),{base:r,pool:i}})(C,T,_.current)),[C,T]),O="bptm-page-"+s,F=(0,e.useMemo)((()=>xe({atts:C,theme:S,uid:s,view:N,linkType:j,vis:P,isEditor:m})),[C,S,s,N,j,P,m]),I=(0,e.useMemo)((()=>F.asClone()),[F]),R=(0,e.useMemo)((()=>pt(S)),[S]),q="filter"===N,G=q&&"ajax-filter"===C.filterType,H=(0,e.useMemo)((()=>q?((e,t)=>ye("group",e,t,"includeGroups"))(C,D):[]),[q,C,D]),W=(0,e.useMemo)((()=>q?((e,t)=>{const a=[];return Lt.forEach((r=>{if(Nt[r])return void(e[Nt[r][0]]&&a.push({type:"search",key:r,label:h(Nt[r][1])}));const[i,l,n]=At[r];if(!e[i])return;let s,o;"field"===n?(s=(e=>{const t=new Map;e.forEach((e=>{const a=e.designation.trim();if(""!==a){const e=L(a);t.has(e)||t.set(e,a)}}));const a="undefined"!=typeof Intl?new Intl.Collator(void 0,{numeric:!0,sensitivity:"base"}):null;return[...t.entries()].sort(((e,t)=>a?a.compare(e[1],t[1]):e[1].localeCompare(t[1])))})(t).map((([e,t])=>({value:e,label:t,raw:t}))),o=h("filter_designation")):(s=ye(r,e,t,l).map((e=>({value:e.slug,label:e.name,raw:e.slug}))),o=h(r)),s.length&&a.push({type:"select",key:r,label:o,options:s})})),a})(C,D):[]),[q,C,D]),[U,V]=(0,e.useState)(qt),[K,$]=(0,e.useState)(!1),J=C.filterAllEnabled||!H.length?"*":H[0].slug;let Y=U.group;(null===Y||"*"===Y&&!C.filterAllEnabled||"*"!==Y&&!H.some((e=>e.slug===Y)))&&(Y=J);const Q={};W.forEach((e=>{if("select"===e.type&&U.selects[e.key]){const t=U.selects[e.key].filter((t=>e.options.some((e=>e.value===t))));t.length&&(Q[e.key]=t)}}));const ee={};W.forEach((e=>{"search"===e.type&&U.searches[e.key]&&U.searches[e.key].trim()&&(ee[e.key]=U.searches[e.key].trim())}));const te={..."*"!==Y?{group:Y}:{},...Q,...ee},re=Object.keys(te).filter((e=>!("group"===e&&!C.filterAllEnabled&&Y===J))).length>0,[ie,ne]=(0,e.useState)((()=>!m&&E&&"normal-pagination"===z?Gt(E,O):1)),[oe,ce]=(0,e.useState)(0);let fe=D,ve=null;if(q&&!G)ve=new Set,D.forEach((e=>{((e,t)=>{if(t.group&&!me(e,"group").map(A).includes(t.group))return!1;if(t.designation&&t.designation.length&&!t.designation.includes(""!==e.designation?L(e.designation):""))return!1;for(const a of le){if("group"===a||!t[a]||!t[a].length)continue;const r=me(e,a).map(A);if(!t[a].some((e=>r.includes(A(String(e))))))return!1}if(t.search){const a=A(t.search),r=-1!==A(e.name).indexOf(a),i=w("search_all_fields")&&-1!==A(ge(e)).indexOf(a);if(!r&&!i)return!1}if(t.company&&-1===A(e.company).indexOf(A(t.company)))return!1;if(t.zip&&-1===A(e.zip_code).indexOf(A(t.zip)))return!1;if(t.tag){const a=A(t.tag);if(!(e.terms.tag||[]).some((e=>-1!==A(e.name).indexOf(a))))return!1}return!0})(e,te)||ve.add(e.id)}));else if(G&&Object.keys(te).length){const e={...te};e.group&&(e.group=[e.group]),e.designation&&(e.designation=e.designation.map((e=>{const t=W.find((e=>"designation"===e.key)),a=t?t.options.find((t=>t.value===e)):null;return a?a.raw:e}))),fe=he(C,((e,t)=>{if(le.forEach((a=>{const r=(t[a]||[]).map((e=>L(String(e)))).filter(Boolean);r.length&&(e=e.filter((e=>me(e,a).some((e=>r.includes(e))))))})),t.designation&&t.designation.length){const a=t.designation.map((e=>L(String(e))));e=e.filter((e=>a.includes(L(e.designation))))}const a=t.search?A(String(t.search).trim()):"";if(a){const t=w("search_all_fields");e=e.filter((e=>be(e.name,a)||t&&be(ge(e),a)))}[["company","company"],["zip","zip_code"]].forEach((([a,r])=>{const i=t[a]?A(String(t[a]).trim()):"";i&&(e=e.filter((e=>""!==e[r]&&be(e[r],i))))}));const r=t.tag?A(String(t.tag).trim()):"";return r&&(e=e.filter((e=>(e.terms.tag||[]).some((e=>be(e.name,r)))))),e})(M,e),_.current);const t=Math.trunc(Number(C.numberOfMembers))||0;t>0&&(fe=fe.slice(0,t))}const ke=fe.length;let _e=fe,Me=1,De=1,Oe=!1;if("normal-pagination"===z){const e=Math.max(1,C.perPage);Me=Math.max(1,Math.ceil(ke/e)),De=Math.min(Math.max(1,ie),Me),_e=fe.slice((De-1)*e,De*e),Me=e>0?Math.ceil(ke/e):1}else if("load-more-button"===z||"load-more-scroll"===z){const e="load-more-button"===z?C.loadPerClick:C.perLoad,t=Math.max(1,C.initialItems)+oe*Math.max(1,e);_e=fe.slice(0,t),Oe=t<ke}const Fe=ve?_e.filter((e=>!ve.has(e.id))).length:_e.length,Ie=["popup","panel","drawer"].includes(j),Re=(({type:t,rootRef:a})=>{const[r,i]=(0,e.useState)({id:null,visible:!1,isOpen:!1}),l=(0,e.useRef)(null),n=(0,e.useRef)(null),s=(0,e.useRef)(null),o=(0,e.useRef)(!1),c=(0,e.useRef)(r);c.current=r;const m=()=>a.current?a.current.ownerDocument:document,p=()=>m().defaultView||window,d=()=>{const e=c.current;if(!e.visible||null===e.id)return;const t=l.current,r=t&&parseFloat(p().getComputedStyle(t).getPropertyValue("--bptm-modal-speed"))||0,m="function"==typeof p().matchMedia&&p().matchMedia("(prefers-reduced-motion: reduce)").matches,d=n.current&&n.current.isConnected?n.current:null,f=e.id;o.current=!0,r>0&&!m?(i({id:f,visible:!0,isOpen:!1,closing:!0}),s.current=p().setTimeout((()=>{s.current=null,i({id:null,visible:!1,isOpen:!1})}),r)):i({id:null,visible:!1,isOpen:!1});const u=a.current,b=u?u.querySelector('.bptm-item[data-bptm-id="'+String(f).replace(/["\\]/g,"")+'"] [data-bptm-open]'):null,g=d||b;g&&g.focus({preventScroll:!0}),n.current=null};(0,e.useEffect)((()=>{if(r.visible&&!r.isOpen&&!r.closing&&null!==r.id){const e=p();let t=0;const a=e.requestAnimationFrame((()=>{t=e.requestAnimationFrame((()=>i((e=>e.visible&&!e.closing?{...e,isOpen:!0}:e))))}));return()=>{e.cancelAnimationFrame(a),e.cancelAnimationFrame(t)}}}),[r.visible,r.isOpen,r.closing,r.id]);const f=r.visible&&!r.closing;return(0,e.useEffect)((()=>{if(!f||!a.current)return;const e=m(),r=a.current;if("drawer"!==t){(e=>{const t=(Ct.get(e)||0)+1;if(Ct.set(e,t),t>1)return;const a=e.documentElement,r=e.defaultView||window;a.style.setProperty("--bptm-scrollbar",r.innerWidth-a.clientWidth+"px"),a.classList.add("bptm-scroll-lock")})(e),r.classList.add("bptm-modal-open-host");const t=e=>{const t=l.current;if(t&&!o.current&&!t.contains(e.target)){const e=t.querySelector(".bptm-modal-content");e&&e.focus()}},a=e=>{"Escape"===e.key&&d()};return e.addEventListener("focusin",t),e.addEventListener("keydown",a),()=>{e.removeEventListener("focusin",t),e.removeEventListener("keydown",a),r.classList.remove("bptm-modal-open-host"),(e=>{const t=Math.max(0,(Ct.get(e)||0)-1);Ct.set(e,t),0===t&&(e.documentElement.classList.remove("bptm-scroll-lock"),e.documentElement.style.removeProperty("--bptm-scrollbar"))})(e)}}const i=t=>{"Escape"!==t.key||t.defaultPrevented||e.querySelector(".bptm-modal.is-open:not([hidden])")||d()};return e.addEventListener("keydown",i),()=>e.removeEventListener("keydown",i)}),[f,t]),(0,e.useEffect)((()=>()=>{s.current&&p().clearTimeout(s.current)}),[]),{state:r,open:(e,t)=>{t&&(n.current=t),o.current=!1,s.current&&(p().clearTimeout(s.current),s.current=null);const a=c.current.visible&&c.current.isOpen;i({id:e,visible:!0,isOpen:a})},close:d,shellRef:l}})({type:j,rootRef:k}),qe=Re.state.visible?Re.state.id:null,Ge=_e.filter((e=>(!ve||!ve.has(e.id))&&["popup","panel","drawer"].includes(F.memberLinkType(e)))).map((e=>e.id)),[He,We]=(0,e.useState)(-1),Ue=(0,e.useRef)(null),Ve=String(g||we("wp-block-tsb-team-members",C.className)).split(/\s+/).map(B).filter(Boolean).join(" "),Ke=we(Ve,"bptm-wrap","bptm-theme-"+S.id,"bptm-group-"+B(S.group),"bptm-layout-"+S.layout,"bptm-view-"+N,"bptm-link-"+j,"bptm-align-"+B(C.alignment),"none"!==C.imageFilter?"bptm-imgfx-"+C.imageFilter:"","none"!==C.hoverImageFilter?"bptm-imghfx-"+C.hoverImageFilter:"",C.enableScrollAnimation?"bptm-has-anim":"",C.detailsAreaHeight?"bptm-equal-details":"",S.grouped?"bptm-grouped":"","bptm-js",Ie&&"drawer"!==j&&qe&&!Re.state.closing?"bptm-modal-open-host":"");(0,e.useLayoutEffect)((()=>{u&&(u.className!==Ke&&(u.className=Ke),u.setAttribute("data-bptm-uid",s),c&&u.id!==c&&(u.id=c))}));const $e=(0,e.useMemo)((()=>((e,t,a)=>{const r=["#"+(i=t,"undefined"!=typeof window&&window.CSS&&"function"==typeof window.CSS.escape?window.CSS.escape(i):String(i).replace(/[^A-Za-z0-9_-]/g,"")),'.bptm-modal[data-bptm-for="'+String(a).replace(/[^A-Za-z0-9_-]/g,"")+'"]'];var i;const l=[],n=(e,t)=>{const a=l.findIndex((t=>t[0]===e));a>=0?l[a][1]=t:l.push([e,t])},s={"":new Map};Object.values(Ne).forEach((e=>{s[e]=new Map}));const o=(e,t,a)=>{const i=[];t.forEach((e=>r.forEach((t=>i.push(""===e?t:t+" "+e)))));const l=i.join(",");s[e].has(l)||s[e].set(l,[]),s[e].get(l).push(a)},c=Pe(e.columns);[["desktop","d"],["tablet","t"],["mobilePortrait","mp"],["mobile","m"]].forEach((([e,t])=>{const a=Math.trunc(Number(c[e]));a>0&&n("--bptm-cols-"+t,String(Math.min(12,a)))})),void 0!==e.columnGap&&""!==e.columnGap&&n("--bptm-gap",Be(e.columnGap)),void 0!==e.rowGap&&""!==e.rowGap&&n("--bptm-row-gap",Be(e.rowGap)),Object.keys(Ee).forEach((t=>{const a=Le(e[t]);a&&n(Ee[t],a)}));const m={nameColor:[[".bptm-name",".bptm-name a"],"color"],nameBg:[[".bptm-name"],"background"],roleColor:[[".bptm-designation"],"color"],descriptionColor:[[".bptm-details",".bptm-details p"],"color"],descriptionLinkColor:[[".bptm-details a",".bptm-more"],"color"],infoColor:[[".bptm-meta",".bptm-meta a"],"color"],infoIconColor:[[".bptm-meta-icon"],"color"],infoLabelColor:[[".bptm-meta-label"],"color"],ribbonBg:[[".bptm-ribbon"],"background"]};Object.keys(m).forEach((t=>{const a=Le(e[t]);a&&o("",m[t][0],m[t][1]+":"+a)}));{const t=[".bptm-featured"],a=[".bptm-featured i"],r=Le(e.featuredColor);r&&(o("",t,"color:"+r),o("",a,"color:"+r));const i=Le(e.featuredBg);i&&o("",t,"background:"+i);const l=Be(e.featuredBorderWidth),n=Le(e.featuredBorderColor);(l||n)&&(o("",t,"border-style:solid"),o("",t,"border-width:"+(l||"1px"))),n&&o("",t,"border-color:"+n);const s=Be(e.featuredSize);s&&(o("",t,"width:"+s),o("",t,"height:"+s));const c=Be(e.featuredIconSize);c&&(o("",t,"font-size:"+c),o("",a,"font-size:"+c));const m=Be(e.featuredRadius);m&&o("",t,"border-radius:"+m)}{const t=[".bptm-social .bptm-social-link"],a=[".bptm-social .bptm-social-link i"],r=[".bptm-social .bptm-social-link:hover",".bptm-social .bptm-social-link:focus-visible"],i=[".bptm-social .bptm-social-link:hover i",".bptm-social .bptm-social-link:focus-visible i"],l=Le(e.socialIconColor);l&&(o("",t,"color:"+l),o("",a,"color:"+l));const s=Le(e.socialBg);s&&(o("",t,"background:"+s),n("--bptm-social-bg",s));const c=Le(e.socialBorderColor),m=Be(e.socialBorderWidth);m&&(o("",t,"border-width:"+m),o("",t,"border-style:solid")),c&&(o("",t,"border-color:"+c),m||o("",t,"border-style:solid"));const p=Le(e.socialIconHoverColor);p&&(o("",r,"color:"+p),o("",i,"color:"+p));const d=Le(e.socialHoverBg);d&&(o("",r,"background:"+d),n("--bptm-social-hover-bg",d));const f=Le(e.socialHoverBorderColor);f&&o("",r,"border-color:"+f);const u=Be(e.socialSize);u&&(n("--bptm-social-size",u),o("",t,"width:"+u),o("",t,"height:"+u),o("",t,"min-width:"+u));const b=Be(e.socialIconSize);b&&(o("",t,"font-size:"+b),o("",a,"font-size:"+b));const g=Be(e.socialRadius);g&&o("",t,"border-radius:"+g);const h=Be(e.socialGap);h&&o("",[".bptm-social"],"gap:"+h)}let p=Le(e.itemBg);p&&o("",["tr.bptm-item > td"],"background:"+p),p=Le(e.itemBgHover),p&&o("",["tr.bptm-item:hover > td"],"background:"+p);const d=[".bptm-item > .bptm-ta-card",".bptm-item > .bptm-tb-card"],f=Pe(e.itemPadding);if(Object.keys(f).length){const e=["top","right","bottom","left"].map((e=>{const t=void 0!==f[e]?Be(f[e]):"";return""===t?"0":t})),t=Object.keys(f).some((e=>""!==String(null===f[e]||void 0===f[e]||"object"==typeof f[e]?"":f[e])));("0 0 0 0"!==e.join(" ")||t)&&n("--bptm-item-padding",e.join(" "))}[["popupCloseIconSize","--bptm-close-icon-size"],["popupCloseSize","--bptm-close-size"],["popupCloseRadius","--bptm-close-radius"]].forEach((([t,a])=>{const r=Be(e[t]);r&&n(a,r)})),[["pgBorderWidth","--bptm-pg-border-width"],["pgBorderRadius","--bptm-pg-radius"],["lmBorderWidth","--bptm-lm-border-width"],["lmBorderRadius","--bptm-lm-radius"]].forEach((([t,a])=>{const r=Be(e[t]);r&&n(a,r)}));const u=e=>{const t=Pe(e);return Object.keys(t).length?["top","right","bottom","left"].map((e=>{const a=void 0!==t[e]?Be(t[e]):"";return""===a?"0":a})).join(" "):""},b=u(e.pgPadding);b&&(n("--bptm-pg-padding",b),n("--bptm-pg-height","auto"));const g=u(e.lmPadding);g&&n("--bptm-lm-padding",g),(Le(e.lmHoverBg)||Le(e.lmHoverColor))&&n("--bptm-lm-hover-filter","none");const h=Be(e.popupNavIconSize);h&&o("",[".bptm-modal-nav button i"],"font-size:"+h);const y=Be(e.popupNavRadius);y&&n("--bptm-popup-nav-radius",y);const v=Be(e.itemBorderRadius);v&&n("--bptm-radius",v);const w="string"==typeof e.itemShadow?e.itemShadow.trim():"";if(w){const e=Se[w]||(/^[#a-z0-9(),.%\s-]+$/i.test(w)?w:"");e&&n("--bptm-shadow",e)}const k=Be(e.itemBorderWidth),_=Le(e.itemBorderColor);(k||_)&&(v&&o("",d,"border-radius:"+v),o("",d,"border:"+(k||"1px")+" solid "+(_||"currentColor")));const x=Be(e.imageBorderRadius);x&&(n("--bptm-img-radius",x),o("",[".bptm-img",".bptm-img-wrap"],"border-radius:"+x)),e.alignment&&["left","center","right","start","end"].includes(e.alignment)&&n("--bptm-align",e.alignment);const E=Be(e.maxScrollHeight);E&&n("--bptm-desc-max-h",E),Object.keys(Ce).forEach((t=>{const a=Pe(e[t]);if(!Object.keys(a).length)return;const[r,i,l]=Ce[t],s=[],c=(m=ze(a,"fontFamily","font_family"),""===(m=je(m))||"default"===m.toLowerCase()?"":"'"+m+"', sans-serif");var m;c&&s.push(["font-family",c]);const p=ze(a,"fontWeight","weight");null!==p&&/^(\d{3}|normal|bold|lighter|bolder)$/.test(String(p))&&s.push(["font-weight",String(p)]);const d=ze(a,"fontStyle","style");null!==d&&["normal","italic","oblique"].includes(d)&&s.push(["font-style",d]);const f=ze(a,"textTransform","transform");null!==f&&["none","uppercase","lowercase","capitalize"].includes(f)&&s.push(["text-transform",f]);const u=ze(a,"textDecoration","decoration");null!==u&&["none","underline","overline","line-through"].includes(u)&&s.push(["text-decoration",u]);const b=ze(a,"lineHeight","line_height");if(null!==b&&"object"!=typeof b){const e=Ae(b)?String(Number(b)):Be(b);e&&s.push(["line-height",e])}const g=ze(a,"letterSpacing","letter_spacing");if(null!==g&&"object"!=typeof g){const e=Be(g);e&&s.push(["letter-spacing",e])}const h=Le(ze(a,"color","color"));h&&s.push(["color",h]);const y=ze(a,"fontSize","size"),v={};if(y&&"object"==typeof y&&!Array.isArray(y))["desktop","tablet","mobilePortrait","mobile"].forEach((e=>{const t="mobilePortrait"===e&&void 0!==y.mobile_landscape?y.mobile_landscape:null;let a=void 0!==y[e]?y[e]:t;a=null===a?"":Be(a),a&&(v[e]=a)})),v.desktop&&s.push(["font-size",v.desktop]);else if(null!==y){const e=Be(y);e&&s.push(["font-size",e])}s.forEach((([e,t])=>{n(r+"-"+e,t),o("",i,e+":"+t)})),Object.keys(v).forEach((e=>{"desktop"!==e&&o(Ne[e],i,"font-size:"+v[e])}));const w=Le(ze(a,"hoverColor","hover_color"));w&&o("",l,"color:"+w)}));let C="";return l.length&&(C+=r.join(",")+"{"+l.map((([e,t])=>e+":"+t)).join(";")+"}"),["",...Object.values(Ne)].forEach((e=>{if(!s[e].size)return;let t="";s[e].forEach(((e,a)=>{t+=a+"{"+[...new Set(e)].join(";")+"}"})),C+=""===e?t:e+"{"+t+"}"})),C.replace(/<\//g,"").replace(/</g,"")})(C,c,s)),[C,c,s]);((t,a)=>{(0,e.useEffect)((()=>{const e=t.current;if(!e||!a)return;const r=e.ownerDocument;let i=0;for(let e=0;e<a.length;e++)i=Math.imul(31,i)+a.charCodeAt(e)|0;const l="bptm-gf-"+(i>>>0).toString(16)+"-css";if(r.getElementById(l))return;const n=r.createElement("link");n.rel="stylesheet",n.id=l,n.href=a,n.media="all",(r.head||r.documentElement).appendChild(n)}),[t,a])})(k,(e=>{if(w("disable_google_fonts"))return"";const t=Array.isArray(b().fonts)?b().fonts:[],a=(e=>{const t=[];return Object.keys(Ce).forEach((a=>{const r=Pe(e[a]),i=!1===r.isUploadFont?"":ze(r,"fontFamily","font_family"),l=i?je(i):"";l&&!t.includes(l)&&t.push(l)})),t})(e).filter((e=>""!==e&&!Te.includes(e)&&"default"!==e.toLowerCase()&&(!t.length||t.includes(e)))).sort();return a.length?"https://fonts.googleapis.com/css?family="+a.map((e=>e.replace(/ /g,"+")+":300,400,500,600,700,800,400italic,700italic")).join("|")+"&display=swap":""})(C)),((t,a)=>{const r=(0,e.useRef)(null);(0,e.useLayoutEffect)((()=>{const e=t.current;if(!e)return;const i=Array.from(e.querySelectorAll(".bptm-anim:not(.bptm-in)"));if(!i.length)return;const l=Ft(e);"function"==typeof l.matchMedia&&l.matchMedia("(prefers-reduced-motion: reduce)").matches||"function"!=typeof l.IntersectionObserver?i.forEach((e=>{e.classList.add("bptm-in"),a.add(e.getAttribute("data-bptm-id"))})):(r.current||(r.current=new l.IntersectionObserver((e=>{let t=0;e.forEach((e=>{if(e.isIntersecting){const i=e.target;i.style.setProperty("--bptm-anim-delay",70*Math.min(t,8)+"ms"),t++,i.classList.add("bptm-in"),a.add(i.getAttribute("data-bptm-id")),r.current.unobserve(i)}}))}),{rootMargin:"0px 0px -40px 0px",threshold:.05})),i.forEach((e=>r.current.observe(e))))})),(0,e.useEffect)((()=>()=>{r.current&&(r.current.disconnect(),r.current=null)}),[])})(k,x.current),(t=>{(0,e.useEffect)((()=>{const e=t.current;if(!e)return;const a=Ft(e),r=t=>{const r=e.classList.contains("bptm-group-flip"),i=t.target.closest(".bptm-item");i&&e.contains(i)&&"function"==typeof a.matchMedia&&a.matchMedia("(hover: none)").matches&&(r||i.classList.contains("bptm-tap-reveal"))&&(i.classList.contains("is-flipped")?t.target.closest("a, button")||i.classList.remove("is-flipped"):(t.preventDefault(),t.stopPropagation(),e.querySelectorAll(".bptm-item.is-flipped").forEach((e=>e.classList.remove("is-flipped"))),i.classList.add("is-flipped")))},i=t=>{const a=t.target.closest&&t.target.closest(".bptm-item");e.classList.contains("bptm-group-flip")&&a&&("Enter"===t.key||" "===t.key)&&t.target===a&&(t.preventDefault(),a.classList.toggle("is-flipped"))};return e.addEventListener("click",r,!0),e.addEventListener("keydown",i),()=>{e.removeEventListener("click",r,!0),e.removeEventListener("keydown",i)}}),[t])})(k);const Je="carousel"===N?{autoplay:!!C.carouselAutoplay,hoverPause:!!C.carouselAutoplayHoverPause,loop:!!C.carouselLoop,speed:C.carouselSpeed,timeout:C.carouselAutoplayTimeout,scroll:C.carouselItemsToScroll,navs:!!C.carouselNavsEnabled,dots:!!C.carouselDotsEnabled,cols:{d:Math.max(1,parseInt(C.columns&&C.columns.desktop,10)||4),t:Math.max(1,parseInt(C.columns&&C.columns.tablet,10)||3),mp:Math.max(1,parseInt(C.columns&&C.columns.mobilePortrait,10)||2),m:Math.max(1,parseInt(C.columns&&C.columns.mobile,10)||1)},gap:C.columnGap}:null,Ze=(0,e.useRef)(null),Ye=((t,a,r,i)=>{const[l,n]=(0,e.useState)(0),s=(0,e.useRef)(null),o=(0,e.useRef)(l);return o.current=l,(0,e.useLayoutEffect)((()=>{if(!a||!t.current)return;const e=new xt(t.current,r,i,(e=>{e!==o.current&&n(e)}));return s.current=e,()=>{e.destroy(),s.current=null}}),[a]),(0,e.useLayoutEffect)((()=>{const e=s.current;e&&a&&(e.cfg=r,e.i18n=i,e.stage!==t.current&&t.current&&(e.destroy(),s.current=new xt(t.current,r,i,e.onClones)),s.current.sync(o.current))})),a?l:0})(Ze,"carousel"===N&&_e.length>0,Je||{},{slide:(0,t.__)("Go to slide %d","bp-team-member")}),Xe=()=>k.current?k.current.querySelector(".bptm-stage .bptm-items")||k.current.querySelector(".bptm-items"):null,Qe=(0,e.useCallback)((e=>{const t=e?e.parentElement:null;if(!t)return;const a=e.offsetTop;let r=e,i=e.nextElementSibling;for(;i;){if(i.classList.contains("bptm-item")&&!i.classList.contains("bptm-drawer")&&!i.hidden){if(Math.abs(i.offsetTop-a)>2)break;r=i}i=i.nextElementSibling}const l=Array.from(t.children).filter((e=>!e.classList.contains("bptm-drawer")));Ue.current=e,We(l.indexOf(r))}),[]),et=(0,e.useRef)();et.current={modal:Re,linkType:j,placeDrawer:Qe},(0,e.useEffect)((()=>{const e=k.current;if(!e)return;const t=t=>{const a=t.target.closest&&t.target.closest("[data-bptm-open]");if(!a||!e.contains(a)||a.closest(".bptm-modal, .bptm-drawer"))return;const r=et.current,i=a.getAttribute("data-bptm-id");if(!i||a.getAttribute("data-bptm-open")!==r.linkType)return;t.preventDefault();const l=a.closest(".bptm-item");if("drawer"===r.linkType&&r.modal.state.id===i&&r.modal.state.visible&&!r.modal.state.closing)return r.modal.close(),void e.dispatchEvent(new(e.ownerDocument.defaultView||window).CustomEvent("bptm:close",{bubbles:!0}));"drawer"===r.linkType&&l&&r.placeDrawer(l),r.modal.open(i,a),e.dispatchEvent(new(e.ownerDocument.defaultView||window).CustomEvent("bptm:open",{bubbles:!0,detail:{id:i,type:r.linkType}}))};return e.addEventListener("click",t),()=>e.removeEventListener("click",t)}),[u]),(0,e.useEffect)((()=>{!qe||Ge.includes(qe)||Re.state.closing||Re.close()})),(0,e.useLayoutEffect)((()=>{if("drawer"!==j||!qe)return;const e=Xe(),t=Re.shellRef.current,a=e?e.querySelector(':scope > .bptm-item[data-bptm-id="'+qe+'"]:not(.bptm-clone)'):null;if(!e||!t||!a)return;const r=e.getBoundingClientRect(),i=a.getBoundingClientRect();t.style.setProperty("--bptm-drawer-arrow",Math.round(i.left+i.width/2-r.left)+"px")})),((t,a)=>{const r=(0,e.useRef)(a);r.current=a,(0,e.useLayoutEffect)((()=>{const e=t.current;e&&(Rt(e),It(e))})),(0,e.useEffect)((()=>{const e=t.current;if(!e)return;const a=Ft(e);let i=0;const l=()=>{a.clearTimeout(i),i=a.setTimeout((()=>{e.isConnected&&(It(e),Rt(e),r.current&&r.current())}),150)};a.addEventListener("resize",l);const n=()=>It(e);"complete"!==e.ownerDocument.readyState&&a.addEventListener("load",n,{once:!0});const s=e=>{e.target&&"IMG"===e.target.tagName&&l()};return e.addEventListener("load",s,!0),e.ownerDocument.fonts&&e.ownerDocument.fonts.ready&&e.ownerDocument.fonts.ready.then((()=>e.isConnected&&It(e))),()=>{a.clearTimeout(i),a.removeEventListener("resize",l),a.removeEventListener("load",n),e.removeEventListener("load",s,!0)}}),[t])})(k,(()=>{"drawer"===j&&qe&&Ue.current&&(Ue.current.hidden||!Ue.current.isConnected?Re.close():Qe(Ue.current))}));const tt=(0,e.useRef)(null);(0,e.useLayoutEffect)((()=>{const e=tt.current;tt.current=ve,e&&ve&&k.current&&(e.forEach((e=>{ve.has(e)||k.current.querySelectorAll('.bptm-items > .bptm-item[data-bptm-id="'+e+'"]').forEach((e=>{e.classList.remove("bptm-filter-in"),e.offsetWidth,e.classList.add("bptm-filter-in")}))})),"drawer"===j&&qe&&ve.has(qe)?Re.close():"drawer"===j&&qe&&Ue.current&&Ue.current.isConnected&&Qe(Ue.current))}));(0,e.useEffect)((()=>{if(m||!E||"normal-pagination"!==z||"filter"===N)return;const e=()=>ne(Gt(E,O));return E.addEventListener("popstate",e),()=>E.removeEventListener("popstate",e)}),[m,E,z,N,O]);const at=(0,e.useRef)(null),rt=(0,e.useRef)(Oe);rt.current=Oe,(0,e.useEffect)((()=>{const e=at.current;if("load-more-scroll"!==z||!e||!Oe)return;const t=e.ownerDocument.defaultView||window;if("function"!=typeof t.IntersectionObserver){const t=()=>ce((e=>e+1));return e.addEventListener("click",t),()=>e.removeEventListener("click",t)}const a=new t.IntersectionObserver((e=>{e.forEach((e=>{e.isIntersecting&&rt.current&&ce((e=>e+1))}))}),{rootMargin:"0px 0px 300px 0px"});return a.observe(e),()=>a.disconnect()}),[z,Oe,_e.length]);const it=()=>{$(!0),G&&(ne(1),ce(0))},lt=qe&&!Re.state.closing?qe:null,nt=(t,a,r="")=>(0,e.cloneElement)(t,{key:r+a.id,className:we(t.props.className,x.current.has(a.id)&&-1!==t.props.className.indexOf("bptm-anim")?"bptm-in":"",lt===a.id?"is-current":""),...ve&&ve.has(a.id)?{hidden:!0}:{}}),st=[];if(S.grouped){const a=ye("group",C,D,"includeGroups").map((e=>({...e,members:[]}))),r=[];_e.forEach((e=>{let t=!1;(e.terms.group||[]).forEach((r=>{const i=a.find((e=>e.slug===r.slug));i&&(i.members.push(e),t=!0)})),t||r.push(e)}));const i=a.filter((e=>e.members.length));r.length&&i.push({slug:"",name:(0,t.__)("Others","bp-team-member"),members:r});let l=0;i.forEach((t=>{const a=ve&&t.members.every((e=>ve.has(e.id)));st.push((0,e.createElement)("div",{key:"g-"+t.slug,className:"bptm-group-title","data-group":t.slug,hidden:!!a},(0,e.createElement)("h3",null,t.name))),t.members.forEach((e=>{F.index=l++,st.push(nt(R(F,e),e,"g-"+t.slug+"-"))}))}))}else _e.forEach(((e,t)=>{F.index=t,st.push(nt(R(F,e),e))}));const ot="drawer"===j&&Re.state.visible&&He>=0&&He<st.length,ct=Re.state.id?D.find((e=>e.id===Re.state.id))||fe.find((e=>e.id===Re.state.id)):null,dt=Ie?(0,e.createElement)(St,{key:"shell",type:j,uid:s,panelPosition:C.panelPosition,drawerStyle:C.drawerStyle,modal:Re,navHidden:!!Re.state.visible&&Ge.length<2,onStep:e=>{if(Ge.length<2)return;let t=Ge.indexOf(Re.state.id);t=(t+e+Ge.length)%Ge.length;const a=Ge[t],r=Xe(),i=r?r.querySelector(':scope > .bptm-item[data-bptm-id="'+a+'"]:not(.bptm-clone)'):null;"drawer"===j&&i&&Qe(i),Re.open(a,null);const l=k.current;l&&l.dispatchEvent(new(l.ownerDocument.defaultView||window).CustomEvent("bptm:open",{bubbles:!0,detail:{id:a,type:j}}))},detailStyle:kt(C,j),content:ct?(0,e.createElement)(_t,{ctx:F,m:ct,type:j}):null}):null;let ft;if(ot&&st.splice(He+1,0,dt),_e.length||G&&Object.keys(te).length)if("table"===S.layout){const t=_e.length?null:(0,e.createElement)("tr",{className:"bptm-no-members-row",key:"empty"},(0,e.createElement)("td",{colSpan:20},(0,e.createElement)("div",{className:"bptm-no-members",role:"status"},h("no_members"))));ft=(0,e.createElement)("div",{className:"bptm-stage bptm-table-wrap"},(0,e.createElement)("table",{className:"bptm-table"},(0,e.createElement)(mt,{ctx:F,id:S.id}),(0,e.createElement)("tbody",{className:"bptm-items","aria-live":"polite"},t||st)))}else if("carousel"===N){const a=!!C.carouselNavsEnabled,r=!!C.carouselDotsEnabled,i=f[C.carouselNavsStyle]||f.default,l=_e.length,n=[],s=[];for(let t=0;t<Ye&&l;t++)[[n,((l-Ye+t)%l+l)%l,"cb"],[s,t%l,"ca"]].forEach((([a,r,i])=>{I.index=r;const l=R(I,_e[r]);a.push((0,e.cloneElement)(l,{key:i+t,className:we(l.props.className,"bptm-clone"),"aria-hidden":"true"}))}));ft=(0,e.createElement)("div",{className:we("bptm-stage bptm-carousel","bptm-navs-"+C.carouselNavsStyle,"bptm-dots-"+C.carouselDotsStyle,a&&"bptm-has-navs",r&&"bptm-has-dots"),role:"region","aria-roledescription":"carousel","aria-label":(0,t.__)("Team members","bp-team-member"),ref:Ze},(0,e.createElement)("div",{className:"bptm-carousel-viewport"},(0,e.createElement)("div",{className:"bptm-items bptm-carousel-track"},n,st,s)),a?(0,e.createElement)("div",{className:"bptm-carousel-navs"},(0,e.createElement)("button",{type:"button",className:"bptm-nav bptm-nav-prev","aria-label":h("prev")},(0,e.createElement)("i",{className:i[0],"aria-hidden":"true"})),(0,e.createElement)("button",{type:"button",className:"bptm-nav bptm-nav-next","aria-label":h("next")},(0,e.createElement)("i",{className:i[1],"aria-hidden":"true"}))):null,r?(0,e.createElement)("div",{className:"bptm-carousel-dots",role:"tablist","aria-label":(0,t.__)("Choose slide","bp-team-member")}):null)}else{const t=_e.length?st:(0,e.createElement)("div",{className:"bptm-no-members",role:"status"},h("no_members")),a=ve&&!Fe?(0,e.createElement)("div",{className:"bptm-no-members bptm-no-results",role:"status"},h("no_members")):null;ft=(0,e.createElement)("div",{className:"bptm-stage"},(0,e.createElement)("div",{className:we("bptm-items","list"===S.layout?"bptm-items--list":""),"aria-live":"polite"},t),a)}else ft=(0,e.createElement)("div",{className:"bptm-stage"},(0,e.createElement)("div",{className:"bptm-no-members",role:"status"},h("no_members")));let ut=null;z&&(ut="normal-pagination"===z?(0,e.createElement)(Mt,{page:De,max:Me,pageVar:O,win:E,isEditor:m,onPage:e=>{ne(e);const t=k.current;if(!m&&"normal-pagination"===z&&"filter"!==N&&E&&E.history&&"function"==typeof E.history.pushState)try{E.history.pushState({bptmPage:e},"",Tt(E,O,e,!1))}catch(e){}t&&(t.ownerDocument.defaultView||window).requestAnimationFrame((()=>{t.getBoundingClientRect().top<0&&t.scrollIntoView({behavior:"smooth",block:"start"});const e=t.querySelector(".bptm-items [data-bptm-open], .bptm-items a");e&&e.focus({preventScroll:!0})}))}}):"load-more-button"===z?(0,e.createElement)(Dt,{text:String(C.loadButtonText||"").trim()||h("load_more"),more:Oe,onMore:()=>ce((e=>e+1))}):(0,e.createElement)(Ot,{more:Oe,sentinelRef:at}));const bt=((t,a,r,i,l)=>{const[n,s]=(0,e.useState)(null);return(0,e.useLayoutEffect)((()=>{const e=t.current;if(!a||!e)return;const r=e.ownerDocument,n=r.createElement("div");n.setAttribute("data-bptm-portal",i),"rtl"===(r.defaultView||window).getComputedStyle(e).direction&&n.setAttribute("dir","rtl");const o=e=>{e.target&&e.target.closest&&e.target.closest("a[href]")&&e.preventDefault()};return l&&n.addEventListener("click",o),(r.body||r.documentElement).appendChild(n),s(n),()=>{n.removeEventListener("click",o),n.remove(),s(null)}}),[a,i]),(0,e.useLayoutEffect)((()=>{if(n){const e=String(r).split(/\s+/).filter((e=>/^bptm-(wrap|theme-|group-|layout-|link-|align-|imgfx-|imghfx-)/.test(e)||"wp-block-tsb-team-members"===e));n.className=e.concat(["bptm-portal"]).join(" ")}})),n})(k,Ie&&"drawer"!==j,Ke,s,m);let gt=null;Ie&&"drawer"!==j?gt=bt?(0,e.createPortal)(dt,bt):null:"drawer"!==j||ot||(gt=dt);const ht=(0,e.createElement)(e.Fragment,null,$e?(0,e.createElement)("style",{className:"bptm-dynamic-css"},$e):null,q?(0,e.createElement)(zt,{atts:C,terms:H,group:Y,onGroup:e=>{V((t=>({...t,group:e}))),it()}}):null,q?(0,e.createElement)(Pt,{atts:C,uid:s,controls:W,state:{selects:Q,searches:U.searches},onSelect:(e,t)=>{V((a=>({...a,selects:{...a.selects,[e]:t}}))),it()},onSearch:(e,t)=>{V((a=>({...a,searches:{...a.searches,[e]:t}}))),it()},onReset:()=>{V({group:J,selects:{},searches:{}}),it()},resetVisible:re,ajax:G,status:K||!C.filterAllEnabled&&H.length?Fe?String(ve?Fe:ke):h("no_members"):""}):null,ft,ut,gt);return u?ht:(0,e.createElement)("div",{id:c,className:Ke,"data-bptm-uid":s,ref:y},ht)},Wt=".wp-block-tsb-team-members[data-attributes]",Ut=new Map,Vt=()=>Math.random().toString(16).slice(2,10);function Kt(t){Ut.forEach(((e,t)=>{t.isConnected||(e.root.unmount(),Ut.delete(t))}));const a=t&&"function"==typeof t.querySelectorAll?t:document,r=Array.from(a.querySelectorAll(Wt));return a.matches&&a.matches(Wt)&&r.unshift(a),r.forEach((t=>{try{!function(t){if(Ut.has(t))return;let a={};try{a=JSON.parse(t.getAttribute("data-attributes")||"{}")||{}}catch(e){a={}}a&&"object"==typeof a&&!Array.isArray(a)||(a={});const r=String(t.getAttribute("data-bptm-uid")||Vt()).replace(/[^a-z0-9-]/gi,"").toLowerCase()||Vt(),i=t.id||"bptm-"+r,l=t.className,n=(0,e.createRoot)(t);Ut.set(t,{root:n,attributes:a}),n.render((0,e.createElement)(Ht,{attributes:a,uid:r,domId:i,host:t,wrapperClass:l}))}(t)}catch(e){console.error("Team Builder – Grid, List, Carousel & Popup:",e)}})),r}const $t=window.BPTM&&"object"==typeof window.BPTM?window.BPTM:{};$t.init=Kt,$t.get=e=>{const t=Ut.get(e);return t?{attributes:t.attributes}:null},window.BPTM=$t,"loading"===document.readyState?document.addEventListener("DOMContentLoaded",(()=>Kt(document))):Kt(document)})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/Components/Common/Team/Filters.js":
+/*!***********************************************!*\
+  !*** ./src/Components/Common/Team/Filters.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CatFilters: () => (/* binding */ CatFilters),
+/* harmony export */   DROPDOWNS: () => (/* binding */ DROPDOWNS),
+/* harmony export */   FILTER_ORDER: () => (/* binding */ FILTER_ORDER),
+/* harmony export */   FilterControls: () => (/* binding */ FilterControls),
+/* harmony export */   SEARCHES: () => (/* binding */ SEARCHES),
+/* harmony export */   catTerms: () => (/* binding */ catTerms),
+/* harmony export */   filterControls: () => (/* binding */ filterControls)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _bridge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bridge */ "./src/Components/Common/Team/bridge.js");
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./model */ "./src/Components/Common/Team/model.js");
+/* harmony import */ var _sanitize__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sanitize */ "./src/Components/Common/Team/sanitize.js");
+/**
+ * Filter UI: category tabs, search inputs, dropdowns (single or accessible multi-select with ellipsis),
+ * reset button and live status (ports of templates/partials/cat-filters.php + filters.php and the
+ * former vanilla filter behaviour). State lives in TeamMembers; this component only renders it.
+ */
+
+
+
+
+
+const SEARCHES = {
+  search: ['searchByName', 'search_name'],
+  company: ['searchByCompany', 'search_company'],
+  zip: ['searchByZip', 'search_zip'],
+  tag: ['searchByTag', 'search_tag']
+};
+const DROPDOWNS = {
+  designation: ['filterByDesignation', '', 'field'],
+  location: ['filterByLocation', 'includeLocations', 'terms'],
+  language: ['filterByLanguage', 'includeLanguages', 'terms'],
+  gender: ['filterByGender', 'includeGenders', 'terms'],
+  specialty: ['filterBySpecialty', 'includeSpecialties', 'terms'],
+  extra_one: ['filterByExtraOne', 'includeExtraOne', 'terms'],
+  extra_two: ['filterByExtraTwo', 'includeExtraTwo', 'terms'],
+  extra_three: ['filterByExtraThree', 'includeExtraThree', 'terms'],
+  extra_four: ['filterByExtraFour', 'includeExtraFour', 'terms'],
+  extra_five: ['filterByExtraFive', 'includeExtraFive', 'terms']
+};
+const FILTER_ORDER = ['search', 'company', 'zip', 'tag', 'designation', 'location', 'language', 'gender', 'specialty', 'extra_one', 'extra_two', 'extra_three', 'extra_four', 'extra_five'];
+
+/** Category tabs data. */
+const catTerms = (atts, pool) => (0,_model__WEBPACK_IMPORTED_MODULE_3__.filterTerms)('group', atts, pool, 'includeGroups');
+
+/**
+ * Controls to render: [{ type: search|select, key, label, options: [{ value, label, raw }] }].
+ *
+ * @param {Object}   atts Attributes.
+ * @param {Object[]} pool Members.
+ * @return {Object[]} Controls.
+ */
+const filterControls = (atts, pool) => {
+  const out = [];
+  FILTER_ORDER.forEach(key => {
+    if (SEARCHES[key]) {
+      if (atts[SEARCHES[key][0]]) {
+        out.push({
+          type: 'search',
+          key,
+          label: (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)(SEARCHES[key][1])
+        });
+      }
+      return;
+    }
+    const [toggle, include, kind] = DROPDOWNS[key];
+    if (!atts[toggle]) {
+      return;
+    }
+    let options;
+    let label;
+    if ('field' === kind) {
+      options = (0,_model__WEBPACK_IMPORTED_MODULE_3__.designations)(pool).map(([slug, lbl]) => ({
+        value: slug,
+        label: lbl,
+        raw: lbl
+      }));
+      label = (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)('filter_designation');
+    } else {
+      options = (0,_model__WEBPACK_IMPORTED_MODULE_3__.filterTerms)(key, atts, pool, include).map(x => ({
+        value: x.slug,
+        label: x.name,
+        raw: x.slug
+      }));
+      label = (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)(key);
+    }
+    if (options.length) {
+      out.push({
+        type: 'select',
+        key,
+        label,
+        options
+      });
+    }
+  });
+  return out;
+};
+const MultiSelect = ({
+  id,
+  label,
+  options,
+  value,
+  onChange,
+  ellipsis,
+  openKey,
+  setOpenKey,
+  fieldKey
+}) => {
+  const wrapRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const toggleRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const open = openKey === fieldKey;
+  const names = options.filter(o => value.includes(o.value)).map(o => o.label);
+  let text = label;
+  if (names.length) {
+    text = ellipsis || names.length <= 2 ? names.join(', ') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)( /* translators: %d: number of selected options */(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('%d selected', 'bp-team-member'), names.length);
+  }
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (!open || !wrapRef.current) {
+      return undefined;
+    }
+    const doc = wrapRef.current.ownerDocument;
+    const onDoc = e => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+        setOpenKey(null);
+      }
+    };
+    doc.addEventListener('click', onDoc);
+    return () => doc.removeEventListener('click', onDoc);
+  }, [open, setOpenKey]);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-ms' + (ellipsis ? ' bptm-ms--ellipsis' : '') + (open ? ' is-open' : ''),
+    ref: wrapRef,
+    onKeyDown: e => {
+      if ('Escape' === e.key && open) {
+        e.stopPropagation();
+        setOpenKey(null);
+        if (toggleRef.current) {
+          toggleRef.current.focus();
+        }
+      } else if ('ArrowDown' === e.key && !open && e.target === toggleRef.current) {
+        e.preventDefault();
+        setOpenKey(fieldKey);
+        const w = wrapRef.current;
+        (w.ownerDocument.defaultView || window).requestAnimationFrame(() => {
+          const first = w.querySelector('.bptm-ms-menu input');
+          if (first) {
+            first.focus();
+          }
+        });
+      }
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+    type: 'button',
+    className: 'bptm-ms-toggle bptm-select',
+    'aria-haspopup': 'listbox',
+    'aria-expanded': open ? 'true' : 'false',
+    'aria-controls': id + '-ms',
+    'aria-label': label,
+    title: names.length ? names.join(', ') : undefined,
+    ref: toggleRef,
+    onClick: () => setOpenKey(open ? null : fieldKey)
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: 'bptm-ms-label' + (names.length ? '' : ' is-placeholder')
+  }, text), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+    className: 'fas fa-angle-down bptm-ms-caret',
+    'aria-hidden': 'true'
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-ms-menu',
+    id: id + '-ms',
+    role: 'group',
+    'aria-label': label,
+    hidden: !open
+  }, options.map((o, k) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('label', {
+    className: 'bptm-ms-option',
+    key: o.value,
+    style: {
+      '--bptm-depth': '0'
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('input', {
+    type: 'checkbox',
+    value: o.value,
+    'data-index': String(k + 1),
+    checked: value.includes(o.value),
+    onChange: e => onChange(e.target.checked ? [...value, o.value] : value.filter(v => v !== o.value))
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', null, o.label)))));
+};
+const SearchInput = ({
+  id,
+  fieldKey,
+  label,
+  value,
+  onChange,
+  delay
+}) => {
+  const [local, setLocal] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(value);
+  const timer = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setLocal(value);
+  }, [value]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => () => timer.current && clearTimeout(timer.current), []);
+  const commit = (v, now) => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+    if (now) {
+      onChange(v);
+      return;
+    }
+    timer.current = setTimeout(() => onChange(v), delay);
+  };
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('input', {
+    type: 'search',
+    id,
+    className: 'bptm-search',
+    'data-bptm-search': fieldKey,
+    placeholder: label,
+    autoComplete: 'off',
+    ref,
+    value: local,
+    onChange: e => {
+      setLocal(e.target.value);
+      commit(e.target.value, false);
+    },
+    onKeyDown: e => {
+      if ('Enter' === e.key) {
+        e.preventDefault();
+        commit(e.target.value, true);
+      }
+    }
+  });
+};
+
+/**
+ * Category tabs.
+ *
+ * @param {Object} props Props.
+ * @return {Element|null} Tabs.
+ */
+const CatFilters = ({
+  atts,
+  terms,
+  group,
+  onGroup
+}) => {
+  if (!terms.length) {
+    return null;
+  }
+  const all = !!atts.filterAllEnabled;
+  const style = (0,_sanitize__WEBPACK_IMPORTED_MODULE_4__.htmlClass)(atts.filterStyle || 'default');
+  const pos = (0,_sanitize__WEBPACK_IMPORTED_MODULE_4__.htmlClass)(atts.filterCatPosition || 'center');
+  const allText = String(atts.filterAllText || '').trim() ? atts.filterAllText : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('All', 'bp-team-member');
+  const items = [];
+  if (all) {
+    items.push({
+      slug: '*',
+      name: allText
+    });
+  }
+  terms.forEach(x => items.push(x));
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('nav', {
+    className: 'bptm-cats-wrap bptm-cats-pos-' + pos,
+    'aria-label': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)( /* translators: %s: group label */(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Filter by %s', 'bp-team-member'), (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.termLabel)('group'))
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('ul', {
+    className: 'bptm-cats bptm-cats--' + style
+  }, items.map(x => {
+    const active = group === x.slug;
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('li', {
+      className: 'bptm-cat-item' + (active ? ' is-active' : ''),
+      key: x.slug
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+      type: 'button',
+      className: 'bptm-cat',
+      'data-filter': x.slug,
+      'aria-pressed': active ? 'true' : 'false',
+      onClick: e => {
+        e.preventDefault();
+        onGroup(x.slug);
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', null, x.name)));
+  })));
+};
+
+/**
+ * Search / dropdown controls + reset + status.
+ *
+ * @param {Object} props Props.
+ * @return {Element|null} Controls.
+ */
+const FilterControls = ({
+  atts,
+  uid,
+  controls,
+  state,
+  onSelect,
+  onSearch,
+  onReset,
+  resetVisible,
+  status,
+  ajax
+}) => {
+  const [openKey, setOpenKey] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const multi = !!atts.enableMultiSelect;
+  const reset = !!atts.enableClearFilters;
+  if (!controls.length && !reset) {
+    return null;
+  }
+  const cols = 'three' === atts.filterColumns ? 3 : 2;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-filters bptm-filter-cols-' + cols + (multi ? ' bptm-filters--multi' : ''),
+    role: 'search'
+  }, controls.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-filters-grid'
+  }, controls.map(c => {
+    const fid = 'bptm-f-' + uid + '-' + c.key;
+    let field;
+    if ('search' === c.type) {
+      field = [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+        key: 'i',
+        className: 'bptm-search-icon fas fa-magnifying-glass',
+        'aria-hidden': 'true'
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SearchInput, {
+        key: 's',
+        id: fid,
+        fieldKey: c.key,
+        label: c.label,
+        value: state.searches[c.key] || '',
+        onChange: v => onSearch(c.key, v),
+        delay: ajax ? 350 : 120
+      })];
+    } else {
+      const value = state.selects[c.key] || [];
+      const select = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('select', {
+        key: 'sel',
+        id: fid,
+        className: 'bptm-select',
+        'data-bptm-filter': c.key,
+        'data-placeholder': c.label,
+        ...(multi ? {
+          multiple: true,
+          hidden: true,
+          tabIndex: -1,
+          value,
+          onChange: () => {}
+        } : {
+          value: value[0] || '*',
+          onChange: e => onSelect(c.key, '*' === e.target.value ? [] : [e.target.value])
+        })
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('option', {
+        value: '*'
+      }, c.label), c.options.map(o => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('option', {
+        key: o.value,
+        value: o.value,
+        'data-value': o.raw,
+        'data-depth': '0'
+      }, o.label)));
+      field = multi ? [select, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MultiSelect, {
+        key: 'ms',
+        id: fid,
+        fieldKey: c.key,
+        label: c.label,
+        options: c.options,
+        value,
+        ellipsis: !!atts.multiSelectEllipsis,
+        openKey,
+        setOpenKey,
+        onChange: v => onSelect(c.key, v)
+      })] : [select];
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      key: c.key,
+      className: 'bptm-filter bptm-filter--' + c.type + ' bptm-filter-' + c.key.replace(/_/g, '-')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('label', {
+      className: 'screen-reader-text',
+      htmlFor: multi && 'select' === c.type ? '' : fid
+    }, c.label), ...field);
+  })) : null, reset ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-reset-wrap'
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+    type: 'button',
+    className: 'bptm-reset',
+    hidden: !resetVisible,
+    onClick: onReset
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+    className: 'fas fa-rotate-left',
+    'aria-hidden': 'true'
+  }), ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', null, (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)('reset_filters')))) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-filter-status screen-reader-text',
+    'aria-live': 'polite'
+  }, status));
+};
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/Pagination.js":
+/*!**************************************************!*\
+  !*** ./src/Components/Common/Team/Pagination.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Infinite: () => (/* binding */ Infinite),
+/* harmony export */   LoadMore: () => (/* binding */ LoadMore),
+/* harmony export */   Numbered: () => (/* binding */ Numbered),
+/* harmony export */   pageUrl: () => (/* binding */ pageUrl)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _bridge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bridge */ "./src/Components/Common/Team/bridge.js");
+/**
+ * Pagination UI (port of templates/partials/pagination.php): numbered links,
+ * load-more button and the infinite-scroll sentinel. Paging itself is client-side state.
+ */
+
+
+
+
+/**
+ * Page link URL: the current URL with `var=n` (page 1 drops it); '?…' in the editor.
+ *
+ * @param {Object}  win      Window.
+ * @param {string}  pageVar  Query var.
+ * @param {number}  n        Page.
+ * @param {boolean} isEditor Editor.
+ * @return {string} URL.
+ */
+const pageUrl = (win, pageVar, n, isEditor) => {
+  if (isEditor || !win || !win.location || !/^https?:$/.test(win.location.protocol)) {
+    return 1 === n ? '?' : '?' + encodeURIComponent(pageVar) + '=' + n;
+  }
+  try {
+    const u = new win.URL(win.location.href);
+    u.hash = '';
+    u.searchParams.delete(pageVar);
+    if (n > 1) {
+      u.searchParams.set(pageVar, String(n));
+    }
+    return u.toString();
+  } catch (e) {
+    return 1 === n ? '?' : '?' + encodeURIComponent(pageVar) + '=' + n;
+  }
+};
+const Numbered = ({
+  page,
+  max,
+  pageVar,
+  win,
+  isEditor,
+  onPage
+}) => {
+  const cur = Math.min(Math.max(1, page), Math.max(1, max));
+  const pages = [];
+  for (let i = 1; i <= max; i++) {
+    if (1 === i || max === i || Math.abs(i - cur) <= 1) {
+      pages.push(i);
+    } else if ('…' !== pages[pages.length - 1]) {
+      pages.push('…');
+    }
+  }
+  const link = (n, cls, extra, children) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', {
+    className: cls,
+    href: pageUrl(win, pageVar, n, isEditor),
+    'data-page': String(n),
+    onClick: e => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || 1 === e.button) {
+        return;
+      }
+      e.preventDefault();
+      onPage(n, e.currentTarget);
+    },
+    ...extra
+  }, children);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('nav', {
+    className: 'bptm-pagination bptm-pagination--normal',
+    'aria-label': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Team members pages', 'bp-team-member'),
+    hidden: max <= 1
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('ul', {
+    className: 'bptm-pages'
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('li', null, cur > 1 ? link(cur - 1, 'bptm-page bptm-page-prev', {
+    rel: 'prev',
+    'aria-label': (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)('prev')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+    className: 'fas fa-angle-left',
+    'aria-hidden': 'true'
+  })) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: 'bptm-page bptm-page-prev is-disabled',
+    'aria-hidden': 'true'
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+    className: 'fas fa-angle-left'
+  }))), pages.map((p, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('li', {
+    key: i
+  }, '…' === p ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: 'bptm-page bptm-page-dots',
+    'aria-hidden': 'true'
+  }, '…') : p === cur ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: 'bptm-page is-current',
+    'aria-current': 'page'
+  }, String(p)) : link(p, 'bptm-page', {}, String(p)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('li', null, cur < max ? link(cur + 1, 'bptm-page bptm-page-next', {
+    rel: 'next',
+    'aria-label': (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)('next')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+    className: 'fas fa-angle-right',
+    'aria-hidden': 'true'
+  })) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: 'bptm-page bptm-page-next is-disabled',
+    'aria-hidden': 'true'
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+    className: 'fas fa-angle-right'
+  })))));
+};
+const LoadMore = ({
+  text,
+  more,
+  onMore
+}) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+  className: 'bptm-loadmore-wrap',
+  hidden: !more
+}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+  type: 'button',
+  className: 'bptm-loadmore',
+  onClick: e => {
+    e.preventDefault();
+    onMore();
+  }
+}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+  className: 'bptm-loadmore-text'
+}, text), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+  className: 'bptm-spinner',
+  'aria-hidden': 'true'
+})));
+const Infinite = ({
+  more,
+  sentinelRef
+}) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+  className: 'bptm-infinite',
+  hidden: !more,
+  ref: sentinelRef
+}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+  className: 'bptm-spinner',
+  'aria-hidden': 'true'
+}), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+  className: 'screen-reader-text'
+}, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Loading more members', 'bp-team-member')));
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/TeamMembers.js":
+/*!***************************************************!*\
+  !*** ./src/Components/Common/Team/TeamMembers.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _registry__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registry */ "./src/Components/Common/Team/registry.js");
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./model */ "./src/Components/Common/Team/model.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./context */ "./src/Components/Common/Team/context.js");
+/* harmony import */ var _themes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./themes */ "./src/Components/Common/Team/themes.js");
+/* harmony import */ var _details__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./details */ "./src/Components/Common/Team/details.js");
+/* harmony import */ var _css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./css */ "./src/Components/Common/Team/css.js");
+/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./carousel */ "./src/Components/Common/Team/carousel.js");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modal */ "./src/Components/Common/Team/modal.js");
+/* harmony import */ var _Filters__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Filters */ "./src/Components/Common/Team/Filters.js");
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Pagination */ "./src/Components/Common/Team/Pagination.js");
+/* harmony import */ var _effects__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./effects */ "./src/Components/Common/Team/effects.js");
+/* harmony import */ var _bridge__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./bridge */ "./src/Components/Common/Team/bridge.js");
+/* harmony import */ var _sanitize__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./sanitize */ "./src/Components/Common/Team/sanitize.js");
+/**
+ * <TeamMembers />: the whole block, rendered in the browser from the block attributes.
+ * Used by the editor preview (isEditor) and the front end (src/view.js, `host` = the server wrapper div).
+ *
+ * Markup and class names match the former PHP renderer, so build/view.css applies unchanged.
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const EMPTY_FILTERS = {
+  group: null,
+  selects: {},
+  searches: {}
+};
+const readPageFromUrl = (win, pageVar) => {
+  try {
+    const v = new win.URL(win.location.href).searchParams.get(pageVar);
+    const n = parseInt(v, 10);
+    return n > 0 ? n : 1;
+  } catch (e) {
+    return 1;
+  }
+};
+const TeamMembers = ({
+  attributes,
+  uid,
+  domId,
+  isEditor = false,
+  host = null,
+  wrapperClass = ''
+}) => {
+  const ownRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const hostRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(host);
+  hostRef.current = host;
+  const rootRef = host ? hostRef : ownRef;
+  const seed = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(Math.floor(Math.random() * 999998) + 1);
+  const seen = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(new Set());
+  const win = rootRef.current && rootRef.current.ownerDocument.defaultView || ('undefined' !== typeof window ? window : null);
+
+  /* ---------------- Data ---------------- */
+  const atts = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_model__WEBPACK_IMPORTED_MODULE_3__.sanitizeAttributes)(attributes), [attributes]);
+  const theme = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_registry__WEBPACK_IMPORTED_MODULE_2__.getThemeDef)(atts.theme), [atts.theme]);
+  const view = (0,_model__WEBPACK_IMPORTED_MODULE_3__.resolveView)(atts, theme);
+  const linkType = (0,_model__WEBPACK_IMPORTED_MODULE_3__.resolveLinkType)(atts, theme, view);
+  const mode = (0,_model__WEBPACK_IMPORTED_MODULE_3__.paginationMode)(atts, theme, view);
+  const vis = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_model__WEBPACK_IMPORTED_MODULE_3__.resolveVisibility)(atts.visibility, theme), [atts.visibility, theme]);
+  const members = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_model__WEBPACK_IMPORTED_MODULE_3__.buildMembers)(atts), [atts]);
+  const {
+    base,
+    pool
+  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_model__WEBPACK_IMPORTED_MODULE_3__.queryPool)(atts, members, seed.current), [atts, members]);
+  const pageVar = 'bptm-page-' + uid;
+  const baseCtx = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_context__WEBPACK_IMPORTED_MODULE_4__.makeContext)({
+    atts,
+    theme,
+    uid,
+    view,
+    linkType,
+    vis,
+    isEditor
+  }), [atts, theme, uid, view, linkType, vis, isEditor]);
+  const cloneCtx = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => baseCtx.asClone(), [baseCtx]);
+  const renderItem = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_themes__WEBPACK_IMPORTED_MODULE_5__.itemRenderer)(theme), [theme]);
+
+  /* ---------------- Filters ---------------- */
+  const isFilter = 'filter' === view;
+  const ajaxFilter = isFilter && 'ajax-filter' === atts.filterType;
+  const terms = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => isFilter ? (0,_Filters__WEBPACK_IMPORTED_MODULE_10__.catTerms)(atts, pool) : [], [isFilter, atts, pool]);
+  const controls = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => isFilter ? (0,_Filters__WEBPACK_IMPORTED_MODULE_10__.filterControls)(atts, pool) : [], [isFilter, atts, pool]);
+  const [fstate, setFstate] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(EMPTY_FILTERS);
+  const [changedOnce, setChangedOnce] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const firstGroup = atts.filterAllEnabled || !terms.length ? '*' : terms[0].slug;
+  let group = fstate.group;
+  if (null === group || '*' === group && !atts.filterAllEnabled || '*' !== group && !terms.some(x => x.slug === group)) {
+    group = firstGroup;
+  }
+  const selects = {};
+  controls.forEach(c => {
+    if ('select' === c.type && fstate.selects[c.key]) {
+      const v = fstate.selects[c.key].filter(x => c.options.some(o => o.value === x));
+      if (v.length) {
+        selects[c.key] = v;
+      }
+    }
+  });
+  const searches = {};
+  controls.forEach(c => {
+    if ('search' === c.type && fstate.searches[c.key] && fstate.searches[c.key].trim()) {
+      searches[c.key] = fstate.searches[c.key].trim();
+    }
+  });
+  const clientState = {
+    ...('*' !== group ? {
+      group
+    } : {}),
+    ...selects,
+    ...searches
+  };
+  const filterActive = Object.keys(clientState).filter(k => !('group' === k && !atts.filterAllEnabled && group === firstGroup)).length > 0;
+
+  /* ---------------- Pagination ---------------- */
+  const [page, setPage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(() => !isEditor && win && 'normal-pagination' === mode ? readPageFromUrl(win, pageVar) : 1);
+  const [loads, setLoads] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const resetPaging = () => {
+    setPage(1);
+    setLoads(0);
+  };
+
+  /* ---------------- List ---------------- */
+  let list = pool;
+  let hiddenIds = null;
+  if (isFilter && !ajaxFilter) {
+    hiddenIds = new Set();
+    pool.forEach(m => {
+      if (!(0,_model__WEBPACK_IMPORTED_MODULE_3__.clientMatches)(m, clientState)) {
+        hiddenIds.add(m.id);
+      }
+    });
+  } else if (ajaxFilter && Object.keys(clientState).length) {
+    const serverState = {
+      ...clientState
+    };
+    if (serverState.group) {
+      serverState.group = [serverState.group];
+    }
+    if (serverState.designation) {
+      serverState.designation = serverState.designation.map(slug => {
+        const c = controls.find(x => 'designation' === x.key);
+        const o = c ? c.options.find(x => x.value === slug) : null;
+        return o ? o.raw : slug;
+      });
+    }
+    list = (0,_model__WEBPACK_IMPORTED_MODULE_3__.orderMembers)(atts, (0,_model__WEBPACK_IMPORTED_MODULE_3__.applyRuntimeFilters)(base, serverState), seed.current);
+    const num = Math.trunc(Number(atts.numberOfMembers)) || 0;
+    if (num > 0) {
+      list = list.slice(0, num);
+    }
+  }
+  const total = list.length;
+  let shown = list;
+  let maxPages = 1;
+  let curPage = 1;
+  let more = false;
+  if ('normal-pagination' === mode) {
+    const pp = Math.max(1, atts.perPage);
+    maxPages = Math.max(1, Math.ceil(total / pp));
+    curPage = Math.min(Math.max(1, page), maxPages);
+    shown = list.slice((curPage - 1) * pp, curPage * pp);
+    maxPages = pp > 0 ? Math.ceil(total / pp) : 1;
+  } else if ('load-more-button' === mode || 'load-more-scroll' === mode) {
+    const step = 'load-more-button' === mode ? atts.loadPerClick : atts.perLoad;
+    const count = Math.max(1, atts.initialItems) + loads * Math.max(1, step);
+    shown = list.slice(0, count);
+    more = count < total;
+  }
+  const shownCount = hiddenIds ? shown.filter(m => !hiddenIds.has(m.id)).length : shown.length;
+
+  /* ---------------- Modal ---------------- */
+  const modalOn = ['popup', 'panel', 'drawer'].includes(linkType);
+  const modal = (0,_modal__WEBPACK_IMPORTED_MODULE_9__.useModal)({
+    type: linkType,
+    rootRef
+  });
+  const openId = modal.state.visible ? modal.state.id : null;
+  const openable = shown.filter(m => (!hiddenIds || !hiddenIds.has(m.id)) && ['popup', 'panel', 'drawer'].includes(baseCtx.memberLinkType(m))).map(m => m.id);
+  const [drawerAt, setDrawerAt] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+  const drawerItemRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+
+  /* ---------------- Classes ---------------- */
+  const baseClass = String(wrapperClass || (0,_context__WEBPACK_IMPORTED_MODULE_4__.cx)('wp-block-tsb-team-members', atts.className)).split(/\s+/).map(_sanitize__WEBPACK_IMPORTED_MODULE_14__.htmlClass).filter(Boolean).join(' ');
+  const rootClass = (0,_context__WEBPACK_IMPORTED_MODULE_4__.cx)(baseClass, 'bptm-wrap', 'bptm-theme-' + theme.id, 'bptm-group-' + (0,_sanitize__WEBPACK_IMPORTED_MODULE_14__.htmlClass)(theme.group), 'bptm-layout-' + theme.layout, 'bptm-view-' + view, 'bptm-link-' + linkType, 'bptm-align-' + (0,_sanitize__WEBPACK_IMPORTED_MODULE_14__.htmlClass)(atts.alignment), 'none' !== atts.imageFilter ? 'bptm-imgfx-' + atts.imageFilter : '', 'none' !== atts.hoverImageFilter ? 'bptm-imghfx-' + atts.hoverImageFilter : '', atts.enableScrollAnimation ? 'bptm-has-anim' : '', atts.detailsAreaHeight ? 'bptm-equal-details' : '', theme.grouped ? 'bptm-grouped' : '', 'bptm-js', modalOn && 'drawer' !== linkType && openId && !modal.state.closing ? 'bptm-modal-open-host' : '');
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    if (host) {
+      if (host.className !== rootClass) {
+        host.className = rootClass;
+      }
+      host.setAttribute('data-bptm-uid', uid);
+      if (domId && host.id !== domId) {
+        host.id = domId;
+      }
+    }
+  });
+
+  /* ---------------- Effects ---------------- */
+  const css = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_css__WEBPACK_IMPORTED_MODULE_7__.dynamicCss)(atts, domId, uid), [atts, domId, uid]);
+  (0,_effects__WEBPACK_IMPORTED_MODULE_12__.useFontLink)(rootRef, (0,_css__WEBPACK_IMPORTED_MODULE_7__.googleFontsUrl)(atts));
+  (0,_effects__WEBPACK_IMPORTED_MODULE_12__.useScrollAnimation)(rootRef, seen.current);
+  (0,_effects__WEBPACK_IMPORTED_MODULE_12__.useTapReveal)(rootRef);
+  const carouselCfg = 'carousel' === view ? {
+    autoplay: !!atts.carouselAutoplay,
+    hoverPause: !!atts.carouselAutoplayHoverPause,
+    loop: !!atts.carouselLoop,
+    speed: atts.carouselSpeed,
+    timeout: atts.carouselAutoplayTimeout,
+    scroll: atts.carouselItemsToScroll,
+    navs: !!atts.carouselNavsEnabled,
+    dots: !!atts.carouselDotsEnabled,
+    cols: {
+      d: Math.max(1, parseInt(atts.columns && atts.columns.desktop, 10) || 4),
+      t: Math.max(1, parseInt(atts.columns && atts.columns.tablet, 10) || 3),
+      mp: Math.max(1, parseInt(atts.columns && atts.columns.mobilePortrait, 10) || 2),
+      m: Math.max(1, parseInt(atts.columns && atts.columns.mobile, 10) || 1)
+    },
+    gap: atts.columnGap
+  } : null;
+  const stageRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const clones = (0,_carousel__WEBPACK_IMPORTED_MODULE_8__.useCarousel)(stageRef, 'carousel' === view && shown.length > 0, carouselCfg || {}, {
+    slide: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Go to slide %d', 'bp-team-member')
+  });
+
+  /* ---------------- Drawer placement ---------------- */
+  const containerEl = () => rootRef.current ? rootRef.current.querySelector('.bptm-stage .bptm-items') || rootRef.current.querySelector('.bptm-items') : null;
+  const placeDrawer = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(item => {
+    const c = item ? item.parentElement : null;
+    if (!c) {
+      return;
+    }
+    const top = item.offsetTop;
+    let last = item;
+    let n = item.nextElementSibling;
+    while (n) {
+      if (n.classList.contains('bptm-item') && !n.classList.contains('bptm-drawer') && !n.hidden) {
+        if (Math.abs(n.offsetTop - top) > 2) {
+          break;
+        }
+        last = n;
+      }
+      n = n.nextElementSibling;
+    }
+    const kids = Array.from(c.children).filter(k => !k.classList.contains('bptm-drawer'));
+    drawerItemRef.current = item;
+    setDrawerAt(kids.indexOf(last));
+  }, []);
+  const step = dir => {
+    if (openable.length < 2) {
+      return;
+    }
+    let i = openable.indexOf(modal.state.id);
+    i = (i + dir + openable.length) % openable.length;
+    const id = openable[i];
+    const c = containerEl();
+    const item = c ? c.querySelector(':scope > .bptm-item[data-bptm-id="' + id + '"]:not(.bptm-clone)') : null;
+    if ('drawer' === linkType && item) {
+      placeDrawer(item);
+    }
+    modal.open(id, null);
+    const root = rootRef.current;
+    if (root) {
+      root.dispatchEvent(new (root.ownerDocument.defaultView || window).CustomEvent('bptm:open', {
+        bubbles: true,
+        detail: {
+          id,
+          type: linkType
+        }
+      }));
+    }
+  };
+
+  // Open triggers (native listener so it also works when React renders into the server wrapper).
+  const latest = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  latest.current = {
+    modal,
+    linkType,
+    placeDrawer
+  };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const root = rootRef.current;
+    if (!root) {
+      return undefined;
+    }
+    const onClick = e => {
+      const a = e.target.closest && e.target.closest('[data-bptm-open]');
+      if (!a || !root.contains(a) || a.closest('.bptm-modal, .bptm-drawer')) {
+        return;
+      }
+      const L = latest.current;
+      const id = a.getAttribute('data-bptm-id');
+      if (!id || a.getAttribute('data-bptm-open') !== L.linkType) {
+        return;
+      }
+      e.preventDefault();
+      const item = a.closest('.bptm-item');
+      if ('drawer' === L.linkType && L.modal.state.id === id && L.modal.state.visible && !L.modal.state.closing) {
+        L.modal.close();
+        root.dispatchEvent(new (root.ownerDocument.defaultView || window).CustomEvent('bptm:close', {
+          bubbles: true
+        }));
+        return;
+      }
+      if ('drawer' === L.linkType && item) {
+        L.placeDrawer(item);
+      }
+      L.modal.open(id, a);
+      root.dispatchEvent(new (root.ownerDocument.defaultView || window).CustomEvent('bptm:open', {
+        bubbles: true,
+        detail: {
+          id,
+          type: L.linkType
+        }
+      }));
+    };
+    root.addEventListener('click', onClick);
+    return () => root.removeEventListener('click', onClick);
+  }, [host]);
+
+  // Close the detail when its member disappears (filters, paging, editor changes).
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (openId && !openable.includes(openId) && !modal.state.closing) {
+      modal.close();
+    }
+  });
+
+  // Drawer arrow position + re-placement after layout changes.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    if ('drawer' !== linkType || !openId) {
+      return;
+    }
+    const c = containerEl();
+    const shell = modal.shellRef.current;
+    const item = c ? c.querySelector(':scope > .bptm-item[data-bptm-id="' + openId + '"]:not(.bptm-clone)') : null;
+    if (!c || !shell || !item) {
+      return;
+    }
+    const cr = c.getBoundingClientRect();
+    const ir = item.getBoundingClientRect();
+    shell.style.setProperty('--bptm-drawer-arrow', Math.round(ir.left + ir.width / 2 - cr.left) + 'px');
+  });
+  (0,_effects__WEBPACK_IMPORTED_MODULE_12__.useLayoutHelpers)(rootRef, () => {
+    if ('drawer' === linkType && openId && drawerItemRef.current) {
+      if (drawerItemRef.current.hidden || !drawerItemRef.current.isConnected) {
+        modal.close();
+      } else {
+        placeDrawer(drawerItemRef.current);
+      }
+    }
+  });
+
+  // Filter-in animation for items that become visible again.
+  const prevHidden = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    const prev = prevHidden.current;
+    prevHidden.current = hiddenIds;
+    if (!prev || !hiddenIds || !rootRef.current) {
+      return;
+    }
+    prev.forEach(id => {
+      if (!hiddenIds.has(id)) {
+        rootRef.current.querySelectorAll('.bptm-items > .bptm-item[data-bptm-id="' + id + '"]').forEach(el => {
+          el.classList.remove('bptm-filter-in');
+          void el.offsetWidth; // eslint-disable-line no-void
+          el.classList.add('bptm-filter-in');
+        });
+      }
+    });
+    if ('drawer' === linkType && openId && hiddenIds.has(openId)) {
+      modal.close();
+    } else if ('drawer' === linkType && openId && drawerItemRef.current && drawerItemRef.current.isConnected) {
+      placeDrawer(drawerItemRef.current);
+    }
+  });
+
+  /* ---------------- Pagination behaviour ---------------- */
+  const goPage = n => {
+    setPage(n);
+    const root = rootRef.current;
+    if (!isEditor && 'normal-pagination' === mode && 'filter' !== view && win && win.history && 'function' === typeof win.history.pushState) {
+      try {
+        win.history.pushState({
+          bptmPage: n
+        }, '', (0,_Pagination__WEBPACK_IMPORTED_MODULE_11__.pageUrl)(win, pageVar, n, false));
+      } catch (e) {
+        // Ignore (sandboxed documents).
+      }
+    }
+    if (root) {
+      (root.ownerDocument.defaultView || window).requestAnimationFrame(() => {
+        const r = root.getBoundingClientRect();
+        if (r.top < 0) {
+          root.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+        const first = root.querySelector('.bptm-items [data-bptm-open], .bptm-items a');
+        if (first) {
+          first.focus({
+            preventScroll: true
+          });
+        }
+      });
+    }
+  };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (isEditor || !win || 'normal-pagination' !== mode || 'filter' === view) {
+      return undefined;
+    }
+    const onPop = () => setPage(readPageFromUrl(win, pageVar));
+    win.addEventListener('popstate', onPop);
+    return () => win.removeEventListener('popstate', onPop);
+  }, [isEditor, win, mode, view, pageVar]);
+  const sentinelRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const moreRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(more);
+  moreRef.current = more;
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const s = sentinelRef.current;
+    if ('load-more-scroll' !== mode || !s || !more) {
+      return undefined;
+    }
+    const w = s.ownerDocument.defaultView || window;
+    if ('function' !== typeof w.IntersectionObserver) {
+      const onClick = () => setLoads(n => n + 1);
+      s.addEventListener('click', onClick);
+      return () => s.removeEventListener('click', onClick);
+    }
+    const io = new w.IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting && moreRef.current) {
+          setLoads(n => n + 1);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px 300px 0px'
+    });
+    io.observe(s);
+    return () => io.disconnect();
+  }, [mode, more, shown.length]);
+
+  /* ---------------- Filter handlers ---------------- */
+  const touch = () => {
+    setChangedOnce(true);
+    if (ajaxFilter) {
+      resetPaging();
+    }
+  };
+  const onGroup = slug => {
+    setFstate(s => ({
+      ...s,
+      group: slug
+    }));
+    touch();
+  };
+  const onSelect = (key, values) => {
+    setFstate(s => ({
+      ...s,
+      selects: {
+        ...s.selects,
+        [key]: values
+      }
+    }));
+    touch();
+  };
+  const onSearch = (key, value) => {
+    setFstate(s => ({
+      ...s,
+      searches: {
+        ...s.searches,
+        [key]: value
+      }
+    }));
+    touch();
+  };
+  const onReset = () => {
+    setFstate({
+      group: firstGroup,
+      selects: {},
+      searches: {}
+    });
+    touch();
+  };
+
+  /* ---------------- Render: items ---------------- */
+  const curId = openId && !modal.state.closing ? openId : null;
+  const decorate = (el, m, extraKey = '') => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.cloneElement)(el, {
+    key: extraKey + m.id,
+    className: (0,_context__WEBPACK_IMPORTED_MODULE_4__.cx)(el.props.className, seen.current.has(m.id) && el.props.className.indexOf('bptm-anim') !== -1 ? 'bptm-in' : '', curId === m.id ? 'is-current' : ''),
+    ...(hiddenIds && hiddenIds.has(m.id) ? {
+      hidden: true
+    } : {})
+  });
+  const itemEls = [];
+  if (theme.grouped) {
+    const groups = (0,_model__WEBPACK_IMPORTED_MODULE_3__.filterTerms)('group', atts, pool, 'includeGroups').map(g => ({
+      ...g,
+      members: []
+    }));
+    const other = [];
+    shown.forEach(m => {
+      let placed = false;
+      (m.terms.group || []).forEach(x => {
+        const g = groups.find(gg => gg.slug === x.slug);
+        if (g) {
+          g.members.push(m);
+          placed = true;
+        }
+      });
+      if (!placed) {
+        other.push(m);
+      }
+    });
+    const all = groups.filter(g => g.members.length);
+    if (other.length) {
+      all.push({
+        slug: '',
+        name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Others', 'bp-team-member'),
+        members: other
+      });
+    }
+    let idx = 0;
+    all.forEach(g => {
+      const allHidden = hiddenIds && g.members.every(m => hiddenIds.has(m.id));
+      itemEls.push((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+        key: 'g-' + g.slug,
+        className: 'bptm-group-title',
+        'data-group': g.slug,
+        hidden: !!allHidden
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('h3', null, g.name)));
+      g.members.forEach(m => {
+        baseCtx.index = idx++;
+        itemEls.push(decorate(renderItem(baseCtx, m), m, 'g-' + g.slug + '-'));
+      });
+    });
+  } else {
+    shown.forEach((m, i) => {
+      baseCtx.index = i;
+      itemEls.push(decorate(renderItem(baseCtx, m), m));
+    });
+  }
+  const showDrawerInline = 'drawer' === linkType && modal.state.visible && drawerAt >= 0 && drawerAt < itemEls.length;
+  const detailMember = modal.state.id ? pool.find(m => m.id === modal.state.id) || list.find(m => m.id === modal.state.id) : null;
+  const shell = modalOn ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_modal__WEBPACK_IMPORTED_MODULE_9__.ModalShell, {
+    key: 'shell',
+    type: linkType,
+    uid,
+    panelPosition: atts.panelPosition,
+    drawerStyle: atts.drawerStyle,
+    modal,
+    navHidden: !!modal.state.visible && openable.length < 2,
+    onStep: step,
+    detailStyle: (0,_details__WEBPACK_IMPORTED_MODULE_6__.detailStyle)(atts, linkType),
+    content: detailMember ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_details__WEBPACK_IMPORTED_MODULE_6__.DetailPayload, {
+      ctx: baseCtx,
+      m: detailMember,
+      type: linkType
+    }) : null
+  }) : null;
+  if (showDrawerInline) {
+    itemEls.splice(drawerAt + 1, 0, shell);
+  }
+  let itemsBlock;
+  if (!shown.length && (!ajaxFilter || !Object.keys(clientState).length)) {
+    itemsBlock = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-stage'
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-no-members',
+      role: 'status'
+    }, (0,_bridge__WEBPACK_IMPORTED_MODULE_13__.t)('no_members')));
+  } else if ('table' === theme.layout) {
+    const empty = !shown.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('tr', {
+      className: 'bptm-no-members-row',
+      key: 'empty'
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('td', {
+      colSpan: 20
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-no-members',
+      role: 'status'
+    }, (0,_bridge__WEBPACK_IMPORTED_MODULE_13__.t)('no_members')))) : null;
+    itemsBlock = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-stage bptm-table-wrap'
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('table', {
+      className: 'bptm-table'
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_themes__WEBPACK_IMPORTED_MODULE_5__.TableHead, {
+      ctx: baseCtx,
+      id: theme.id
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('tbody', {
+      className: 'bptm-items',
+      'aria-live': 'polite'
+    }, empty || itemEls)));
+  } else if ('carousel' === view) {
+    const navs = !!atts.carouselNavsEnabled;
+    const dots = !!atts.carouselDotsEnabled;
+    const icons = _registry__WEBPACK_IMPORTED_MODULE_2__.NAV_ICONS[atts.carouselNavsStyle] || _registry__WEBPACK_IMPORTED_MODULE_2__.NAV_ICONS.default;
+    const n = shown.length;
+    const before = [];
+    const after = [];
+    for (let k = 0; k < clones && n; k++) {
+      const bi = ((n - clones + k) % n + n) % n;
+      [[before, bi, 'cb'], [after, k % n, 'ca']].forEach(([arr, idx, pre]) => {
+        cloneCtx.index = idx;
+        const el = renderItem(cloneCtx, shown[idx]);
+        arr.push((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.cloneElement)(el, {
+          key: pre + k,
+          className: (0,_context__WEBPACK_IMPORTED_MODULE_4__.cx)(el.props.className, 'bptm-clone'),
+          'aria-hidden': 'true'
+        }));
+      });
+    }
+    itemsBlock = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: (0,_context__WEBPACK_IMPORTED_MODULE_4__.cx)('bptm-stage bptm-carousel', 'bptm-navs-' + atts.carouselNavsStyle, 'bptm-dots-' + atts.carouselDotsStyle, navs && 'bptm-has-navs', dots && 'bptm-has-dots'),
+      role: 'region',
+      'aria-roledescription': 'carousel',
+      'aria-label': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Team members', 'bp-team-member'),
+      ref: stageRef
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-carousel-viewport'
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-items bptm-carousel-track'
+    }, before, itemEls, after)), navs ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-carousel-navs'
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+      type: 'button',
+      className: 'bptm-nav bptm-nav-prev',
+      'aria-label': (0,_bridge__WEBPACK_IMPORTED_MODULE_13__.t)('prev')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+      className: icons[0],
+      'aria-hidden': 'true'
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+      type: 'button',
+      className: 'bptm-nav bptm-nav-next',
+      'aria-label': (0,_bridge__WEBPACK_IMPORTED_MODULE_13__.t)('next')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+      className: icons[1],
+      'aria-hidden': 'true'
+    }))) : null, dots ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-carousel-dots',
+      role: 'tablist',
+      'aria-label': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose slide', 'bp-team-member')
+    }) : null);
+  } else {
+    const inner = !shown.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-no-members',
+      role: 'status'
+    }, (0,_bridge__WEBPACK_IMPORTED_MODULE_13__.t)('no_members')) : itemEls;
+    const noResults = hiddenIds && !shownCount ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-no-members bptm-no-results',
+      role: 'status'
+    }, (0,_bridge__WEBPACK_IMPORTED_MODULE_13__.t)('no_members')) : null;
+    itemsBlock = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-stage'
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: (0,_context__WEBPACK_IMPORTED_MODULE_4__.cx)('bptm-items', 'list' === theme.layout ? 'bptm-items--list' : ''),
+      'aria-live': 'polite'
+    }, inner), noResults);
+  }
+
+  /* ---------------- Render: pagination ---------------- */
+  let pagination = null;
+  if (mode) {
+    if ('normal-pagination' === mode) {
+      pagination = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Pagination__WEBPACK_IMPORTED_MODULE_11__.Numbered, {
+        page: curPage,
+        max: maxPages,
+        pageVar,
+        win,
+        isEditor,
+        onPage: goPage
+      });
+    } else if ('load-more-button' === mode) {
+      pagination = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Pagination__WEBPACK_IMPORTED_MODULE_11__.LoadMore, {
+        text: String(atts.loadButtonText || '').trim() || (0,_bridge__WEBPACK_IMPORTED_MODULE_13__.t)('load_more'),
+        more,
+        onMore: () => setLoads(n => n + 1)
+      });
+    } else {
+      pagination = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Pagination__WEBPACK_IMPORTED_MODULE_11__.Infinite, {
+        more,
+        sentinelRef
+      });
+    }
+  }
+
+  /* ---------------- Render: modal ---------------- */
+  const portalEl = (0,_modal__WEBPACK_IMPORTED_MODULE_9__.usePortal)(rootRef, modalOn && 'drawer' !== linkType, rootClass, uid, isEditor);
+  let modalEl = null;
+  if (modalOn && 'drawer' !== linkType) {
+    modalEl = portalEl ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createPortal)(shell, portalEl) : null;
+  } else if ('drawer' === linkType && !showDrawerInline) {
+    modalEl = shell;
+  }
+  const children = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, css ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('style', {
+    className: 'bptm-dynamic-css'
+  }, css) : null, isFilter ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Filters__WEBPACK_IMPORTED_MODULE_10__.CatFilters, {
+    atts,
+    terms,
+    group,
+    onGroup
+  }) : null, isFilter ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Filters__WEBPACK_IMPORTED_MODULE_10__.FilterControls, {
+    atts,
+    uid,
+    controls,
+    state: {
+      selects,
+      searches: fstate.searches
+    },
+    onSelect,
+    onSearch,
+    onReset,
+    resetVisible: filterActive,
+    ajax: ajaxFilter,
+    status: changedOnce || !atts.filterAllEnabled && terms.length ? shownCount ? String(hiddenIds ? shownCount : total) : (0,_bridge__WEBPACK_IMPORTED_MODULE_13__.t)('no_members') : ''
+  }) : null, itemsBlock, pagination, modalEl);
+  if (host) {
+    return children;
+  }
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    id: domId,
+    className: rootClass,
+    'data-bptm-uid': uid,
+    ref: ownRef
+  }, children);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TeamMembers);
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/bridge.js":
+/*!**********************************************!*\
+  !*** ./src/Components/Common/Team/bridge.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   bridge: () => (/* binding */ bridge),
+/* harmony export */   knownFonts: () => (/* binding */ knownFonts),
+/* harmony export */   pluginUrl: () => (/* binding */ pluginUrl),
+/* harmony export */   pref: () => (/* binding */ pref),
+/* harmony export */   t: () => (/* binding */ t),
+/* harmony export */   termLabel: () => (/* binding */ termLabel)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * Data PHP hands to the scripts (no rendering happens on the server):
+ * window.bptmData = { pluginUrl, translations, prefs, fonts (editor), thumbnailSizes (editor), adminUrls (editor) }.
+ * Older editor builds localized window.bptmEditor; it is read as a fallback.
+ */
+
+const raw = () => {
+  if ('undefined' === typeof window) {
+    return {};
+  }
+  const d = window.bptmData && 'object' === typeof window.bptmData ? window.bptmData : null;
+  if (d) {
+    return d;
+  }
+  return window.bptmEditor && 'object' === typeof window.bptmEditor ? window.bptmEditor : {};
+};
+const bridge = () => raw();
+
+/** Built-in English defaults of the replaceable front-end strings (used when the bridge is missing). */
+const DEFAULT_TRANSLATIONS = () => ({
+  filter_designation: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show All Designation', 'bp-team-member'),
+  search_name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Search By Name', 'bp-team-member'),
+  search_company: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Search By Company', 'bp-team-member'),
+  search_zip: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Search By Zip', 'bp-team-member'),
+  search_tag: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Search By Tag', 'bp-team-member'),
+  company: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Company', 'bp-team-member'),
+  address: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Address', 'bp-team-member'),
+  land_phone: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Land Phone', 'bp-team-member'),
+  cell_phone: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Cell Phone', 'bp-team-member'),
+  email: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Email', 'bp-team-member'),
+  zip_code: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Zip Code', 'bp-team-member'),
+  group: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Group', 'bp-team-member'),
+  tag: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Tag', 'bp-team-member'),
+  location: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Location', 'bp-team-member'),
+  language: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Language', 'bp-team-member'),
+  specialty: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Specialty', 'bp-team-member'),
+  gender: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Gender', 'bp-team-member'),
+  extra_one: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Extra One', 'bp-team-member'),
+  extra_two: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Extra Two', 'bp-team-member'),
+  extra_three: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Extra Three', 'bp-team-member'),
+  extra_four: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Extra Four', 'bp-team-member'),
+  extra_five: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Extra Five', 'bp-team-member'),
+  follow_me_on: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Follow Me On', 'bp-team-member'),
+  skills: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Skills', 'bp-team-member'),
+  read_on: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Read On', 'bp-team-member'),
+  more: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('More', 'bp-team-member'),
+  vcard: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Download vCard', 'bp-team-member'),
+  reset_filters: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Reset Filters', 'bp-team-member'),
+  prev: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Prev', 'bp-team-member'),
+  next: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Next', 'bp-team-member'),
+  load_more: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Load More', 'bp-team-member'),
+  no_members: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No team member found.', 'bp-team-member')
+});
+let defaults = null;
+
+/**
+ * Replaceable front-end string (Settings → Translations; multilingual mode is resolved by PHP).
+ *
+ * @param {string} key Key.
+ * @return {string} Text ('' never: falls back to the default, then the key).
+ */
+const t = key => {
+  const tr = raw().translations;
+  let v = tr && 'object' === typeof tr ? tr[key] : undefined;
+  if (v && 'object' === typeof v) {
+    v = v.value || v.label;
+  }
+  if ('string' === typeof v && '' !== v.trim()) {
+    return v;
+  }
+  if (!defaults) {
+    defaults = DEFAULT_TRANSLATIONS();
+  }
+  return defaults[key] || String(key);
+};
+
+/** Label of a term key (group, tag, location, … extra_five). */
+const termLabel = key => {
+  const v = t(key);
+  return v && v !== key ? v : String(key).replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+};
+const isOn = v => {
+  if ('boolean' === typeof v) {
+    return v;
+  }
+  if ('number' === typeof v) {
+    return v > 0;
+  }
+  if ('string' === typeof v) {
+    return ['on', 'yes', 'true', '1'].includes(v.trim().toLowerCase());
+  }
+  return !!v;
+};
+const PREF_DEFAULTS = {
+  land_phone_link: false,
+  cell_phone_link: false,
+  email_link: false,
+  disable_google_fonts: false,
+  disable_lazy_load: false,
+  lazy_load_class: 'skip-lazy',
+  search_all_fields: false
+};
+
+/**
+ * Preference value (booleans normalised; lazy_load_class stays a string).
+ *
+ * @param {string} key Key.
+ * @return {*} Value.
+ */
+const pref = key => {
+  const prefs = raw().prefs && 'object' === typeof raw().prefs ? raw().prefs : {};
+  const v = Object.prototype.hasOwnProperty.call(prefs, key) ? prefs[key] : PREF_DEFAULTS[key];
+  if ('lazy_load_class' === key) {
+    return 'string' === typeof v ? v : 'skip-lazy';
+  }
+  return isOn(v);
+};
+
+// Fallback plugin URL derived from this bundle's URL (…/bp-team-member/build/view.js|index.js),
+// read at module load while document.currentScript still points at it.
+const SCRIPT_SRC = 'undefined' !== typeof document && document.currentScript ? document.currentScript.src || '' : '';
+const SCRIPT_PLUGIN_URL = /\/build\/[^/]*$/.test(SCRIPT_SRC) ? SCRIPT_SRC.replace(/build\/[^/?#]*([?#].*)?$/, '') : '';
+
+/** Plugin root URL with a trailing slash. */
+const pluginUrl = () => {
+  const url = raw().pluginUrl;
+  if (url && 'string' === typeof url && /^(https?:)?\/\//i.test(url)) {
+    return url.replace(/\/?$/, '/');
+  }
+  return SCRIPT_PLUGIN_URL;
+};
+
+/** Google font families known to the editor (empty on the front end). */
+const knownFonts = () => Array.isArray(raw().fonts) ? raw().fonts : [];
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/carousel.js":
+/*!************************************************!*\
+  !*** ./src/Components/Common/Team/carousel.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   deviceKey: () => (/* binding */ deviceKey),
+/* harmony export */   useCarousel: () => (/* binding */ useCarousel)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * Carousel engine (port of the former vanilla carousel): responsive slides per view, autoplay with
+ * hover / focus pause, loop (clones) or rewind, speed, timeout, items to scroll, navs, dots, swipe,
+ * keyboard. React renders the slides and their clones; the engine only measures, translates the track
+ * and keeps classes / attributes in sync. Everything uses the element's own window / document, so it
+ * works inside the block editor canvas iframe.
+ */
+
+const sprintf = (str, n) => String(str || '').replace(/%d|%s/, String(n));
+const debounce = (win, fn, wait) => {
+  let tm;
+  const f = (...args) => {
+    win.clearTimeout(tm);
+    tm = win.setTimeout(() => fn(...args), wait);
+  };
+  f.cancel = () => win.clearTimeout(tm);
+  return f;
+};
+const deviceKey = win => {
+  const w = win.innerWidth || win.document.documentElement.clientWidth;
+  if (w >= 1025) {
+    return 'd';
+  }
+  if (w >= 768) {
+    return 't';
+  }
+  if (w >= 576) {
+    return 'mp';
+  }
+  return 'm';
+};
+class Engine {
+  constructor(stage, cfg, i18n, onClones) {
+    this.stage = stage;
+    this.doc = stage.ownerDocument;
+    this.win = this.doc.defaultView || window;
+    this.cfg = cfg;
+    this.i18n = i18n || {};
+    this.onClones = onClones;
+    this.index = 0;
+    this.pos = 0;
+    this.clones = 0;
+    this.hovering = false;
+    this.focused = false;
+    this.timer = null;
+    this.sig = '';
+    this.dotsCount = -1;
+    this.bind();
+  }
+  get viewport() {
+    return this.stage.querySelector('.bptm-carousel-viewport');
+  }
+  get track() {
+    return this.stage.querySelector('.bptm-carousel-track');
+  }
+  slides() {
+    const tr = this.track;
+    return tr ? Array.from(tr.children).filter(el => el.classList.contains('bptm-item') && !el.classList.contains('bptm-clone')) : [];
+  }
+  perView() {
+    const c = this.cfg.cols || {};
+    const v = Math.max(1, parseInt(c[deviceKey(this.win)], 10) || 1);
+    const vp = this.viewport;
+    const width = vp ? vp.clientWidth : 0;
+    if (!width) {
+      return v;
+    }
+    const min = this.minSlideWidth();
+    const gap = this.gapPx();
+    const fit = Math.floor((width + gap) / (min + gap));
+    return Math.max(1, Math.min(v, fit));
+  }
+  minSlideWidth() {
+    const style = this.win.getComputedStyle(this.stage.closest('.bptm-wrap') || this.stage);
+    const raw = style.getPropertyValue('--bptm-carousel-min').trim() || style.getPropertyValue('--bptm-min-col').trim();
+    const px = raw ? this.toPx(raw) : 0;
+    return px > 0 ? px : 150;
+  }
+  toPx(value) {
+    const m = /^(-?[\d.]+)(px|rem|em)?$/i.exec(value);
+    if (m) {
+      const n = parseFloat(m[1]);
+      const unit = (m[2] || 'px').toLowerCase();
+      if ('px' === unit) {
+        return n;
+      }
+      const el = 'rem' === unit ? this.doc.documentElement : this.stage;
+      return n * (parseFloat(this.win.getComputedStyle(el).fontSize) || 16);
+    }
+    const probe = this.doc.createElement('div');
+    probe.style.cssText = 'position:absolute;visibility:hidden;height:0;padding:0;border:0;width:' + value;
+    this.viewport.appendChild(probe);
+    const w = probe.getBoundingClientRect().width;
+    probe.remove();
+    return w;
+  }
+  get active() {
+    return this.count > this.pv;
+  }
+  get step() {
+    return Math.max(1, Math.min(parseInt(this.cfg.scroll, 10) || 1, this.pv));
+  }
+  get loop() {
+    return !!this.cfg.loop && this.active;
+  }
+  get maxIndex() {
+    return Math.max(0, this.count - this.pv);
+  }
+
+  /**
+   * Called after every React commit. Re-measures; when the layout changed, asks React for the right
+   * number of clones (returns false while a re-render is pending) and re-positions.
+   *
+   * @param {number} rendered Clones currently rendered on each side.
+   * @return {boolean} Settled.
+   */
+  sync(rendered) {
+    this.count = this.slides().length;
+    this.pv = this.perView();
+    const need = this.loop ? this.pv + this.step : 0;
+    if (need !== rendered) {
+      this.onClones(need);
+      return false;
+    }
+    this.clones = rendered;
+    const sig = [this.count, this.pv, this.clones, JSON.stringify(this.cfg)].join('|');
+    this.stage.classList.toggle('is-static', !this.active);
+    this.stage.style.setProperty('--bptm-per-view', String(this.pv));
+    if (sig !== this.sig) {
+      this.sig = sig;
+      this.index = Math.min(this.index, this.loop ? this.count - 1 : this.maxIndex);
+      this.buildDots();
+      this.go(this.index, false);
+      this.restart();
+    } else {
+      this.updateUI();
+    }
+    return true;
+  }
+  bind() {
+    const s = this.stage;
+    this.onPrev = () => {
+      this.prev();
+      this.restart();
+    };
+    this.onNext = () => {
+      this.next();
+      this.restart();
+    };
+    this.onClick = e => {
+      if (e.target.closest('.bptm-nav-prev')) {
+        this.onPrev();
+      } else if (e.target.closest('.bptm-nav-next')) {
+        this.onNext();
+      } else {
+        const dot = e.target.closest('.bptm-dot');
+        if (dot && dot.parentElement && dot.parentElement.classList.contains('bptm-carousel-dots')) {
+          const p = Array.from(dot.parentElement.children).indexOf(dot);
+          this.go(this.loop ? p * this.step : Math.min(p * this.step, this.maxIndex));
+          this.restart();
+        }
+      }
+    };
+    this.onTransitionEnd = e => {
+      if (e.target === this.track && 'transform' === e.propertyName) {
+        this.settle();
+      }
+    };
+    this.onEnter = () => {
+      this.hovering = true;
+    };
+    this.onLeave = () => {
+      this.hovering = false;
+    };
+    this.onFocusIn = () => {
+      this.focused = true;
+    };
+    this.onFocusOut = e => {
+      if (!s.contains(e.relatedTarget)) {
+        this.focused = false;
+      }
+    };
+    this.onKey = e => {
+      if (e.target.matches && e.target.matches('input, select, textarea')) {
+        return;
+      }
+      const rtl = this.isRTL();
+      if ('ArrowLeft' === e.key) {
+        e.preventDefault();
+        (rtl ? this.onNext : this.onPrev)();
+      } else if ('ArrowRight' === e.key) {
+        e.preventDefault();
+        (rtl ? this.onPrev : this.onNext)();
+      }
+    };
+    s.addEventListener('click', this.onClick);
+    s.addEventListener('transitionend', this.onTransitionEnd);
+    s.addEventListener('mouseenter', this.onEnter);
+    s.addEventListener('mouseleave', this.onLeave);
+    s.addEventListener('focusin', this.onFocusIn);
+    s.addEventListener('focusout', this.onFocusOut);
+    s.addEventListener('keydown', this.onKey);
+    this.bindSwipe();
+    let rw = this.win.innerWidth;
+    this.onResize = () => {
+      if (!s.isConnected) {
+        return;
+      }
+      const pv = this.perView();
+      if (pv !== this.pv) {
+        this.sig = '';
+        this.sync(this.clones);
+      } else if (this.win.innerWidth !== rw) {
+        this.go(this.index, false);
+      }
+      rw = this.win.innerWidth;
+    };
+    if ('function' === typeof this.win.ResizeObserver) {
+      this.ro = new this.win.ResizeObserver(() => this.onResize());
+      this.ro.observe(this.viewport);
+    }
+    this.onWinResize = debounce(this.win, () => this.onResize(), 120);
+    this.win.addEventListener('resize', this.onWinResize);
+    this.mqls = [];
+    if ('function' === typeof this.win.matchMedia) {
+      ['(min-width: 1025px)', '(min-width: 768px)', '(min-width: 576px)'].forEach(q => {
+        const mql = this.win.matchMedia(q);
+        if ('function' === typeof mql.addEventListener) {
+          mql.addEventListener('change', this.onWinResize);
+        }
+        this.mqls.push(mql);
+      });
+    }
+    this.onVisibility = () => {
+      if (this.doc.hidden) {
+        this.stop();
+      } else {
+        this.restart();
+      }
+    };
+    this.doc.addEventListener('visibilitychange', this.onVisibility);
+  }
+  bindSwipe() {
+    const vp = this.viewport;
+    let startX = 0;
+    let startY = 0;
+    let dx = 0;
+    let dragging = false;
+    let moved = false;
+    let pid = null;
+    this.onDown = e => {
+      if (!this.active || 'mouse' === e.pointerType && 0 !== e.button) {
+        return;
+      }
+      if (e.target.closest('input, select, textarea, button')) {
+        return;
+      }
+      dragging = true;
+      moved = false;
+      dx = 0;
+      startX = e.clientX;
+      startY = e.clientY;
+      pid = e.pointerId;
+    };
+    this.onMove = e => {
+      if (!dragging || e.pointerId !== pid) {
+        return;
+      }
+      const x = e.clientX - startX;
+      const y = e.clientY - startY;
+      if (!moved) {
+        if (Math.abs(x) < 6) {
+          return;
+        }
+        if (Math.abs(y) > Math.abs(x)) {
+          dragging = false;
+          return;
+        }
+        moved = true;
+        this.stage.classList.add('is-dragging');
+        try {
+          this.viewport.setPointerCapture(pid);
+        } catch (err) {
+          // Ignore.
+        }
+      }
+      dx = x;
+      this.translate(this.offsetFor(this.pos) + dx, false);
+    };
+    this.onUp = () => {
+      if (!dragging) {
+        return;
+      }
+      dragging = false;
+      this.stage.classList.remove('is-dragging');
+      if (!moved) {
+        return;
+      }
+      const threshold = Math.min(80, this.slideWidth() / 4);
+      const rtl = this.isRTL();
+      if (dx < -threshold) {
+        (rtl ? this.onPrev : this.onNext)();
+      } else if (dx > threshold) {
+        (rtl ? this.onNext : this.onPrev)();
+      } else {
+        this.go(this.index, true);
+      }
+      const block = ev => {
+        ev.preventDefault();
+        ev.stopPropagation();
+      };
+      this.viewport.addEventListener('click', block, {
+        capture: true,
+        once: true
+      });
+      this.win.setTimeout(() => this.viewport && this.viewport.removeEventListener('click', block, {
+        capture: true
+      }), 50);
+    };
+    this.onDragStart = e => e.preventDefault();
+    vp.addEventListener('pointerdown', this.onDown);
+    vp.addEventListener('pointermove', this.onMove);
+    vp.addEventListener('pointerup', this.onUp);
+    vp.addEventListener('pointercancel', this.onUp);
+    vp.addEventListener('dragstart', this.onDragStart);
+    this.swipeVp = vp;
+  }
+  isRTL() {
+    return 'rtl' === this.win.getComputedStyle(this.stage).direction;
+  }
+  slideWidth() {
+    const first = this.track && this.track.firstElementChild;
+    return first ? first.getBoundingClientRect().width : 0;
+  }
+  gapPx() {
+    const tr = this.track;
+    const g = tr ? parseFloat(this.win.getComputedStyle(tr).columnGap) : NaN;
+    return isNaN(g) ? Number(this.cfg.gap) || 0 : g;
+  }
+  offsetFor(pos) {
+    const px = pos * (this.slideWidth() + this.gapPx());
+    return this.isRTL() ? px : -px;
+  }
+  reduced() {
+    return 'function' === typeof this.win.matchMedia && this.win.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+  translate(x, animate) {
+    const tr = this.track;
+    if (!tr) {
+      return;
+    }
+    const speed = this.reduced() ? 0 : Math.max(0, parseInt(this.cfg.speed, 10) || 0);
+    tr.style.transitionDuration = animate ? speed + 'ms' : '0ms';
+    tr.style.transform = 'translate3d(' + x + 'px,0,0)';
+    if (animate && 0 === speed) {
+      this.win.requestAnimationFrame(() => this.settle());
+    }
+  }
+  go(i, animate = true) {
+    if (!this.active) {
+      this.index = 0;
+      this.pos = 0;
+      this.translate(0, false);
+      this.updateUI();
+      return;
+    }
+    if (this.loop) {
+      const min = -this.clones;
+      const max = this.count + this.clones - this.pv;
+      i = Math.max(min, Math.min(max, i));
+      this.pos = i + this.clones;
+    } else {
+      i = Math.max(0, Math.min(this.maxIndex, i));
+      this.pos = i;
+    }
+    this.index = i;
+    this.translate(this.offsetFor(this.pos), animate);
+    this.updateUI();
+  }
+  settle() {
+    if (!this.loop) {
+      return;
+    }
+    if (this.index < 0 || this.index >= this.count) {
+      const norm = (this.index % this.count + this.count) % this.count;
+      this.go(norm, false);
+      void this.track.offsetWidth; // eslint-disable-line no-void
+    }
+  }
+  next() {
+    if (!this.active) {
+      return;
+    }
+    if (this.loop) {
+      this.settle();
+      this.go(this.index + this.step);
+    } else if (this.index >= this.maxIndex) {
+      this.go(0);
+    } else {
+      this.go(this.index + this.step);
+    }
+  }
+  prev() {
+    if (!this.active) {
+      return;
+    }
+    if (this.loop) {
+      this.settle();
+      this.go(this.index - this.step);
+    } else if (this.index <= 0) {
+      this.go(this.maxIndex);
+    } else {
+      this.go(this.index - this.step);
+    }
+  }
+  pageCount() {
+    if (!this.active) {
+      return 0;
+    }
+    return this.loop ? Math.ceil(this.count / this.step) : Math.ceil(this.maxIndex / this.step) + 1;
+  }
+  currentPage() {
+    if (this.loop) {
+      const norm = (this.index % this.count + this.count) % this.count;
+      return Math.min(this.pageCount() - 1, Math.floor(norm / this.step));
+    }
+    if (this.index >= this.maxIndex) {
+      return this.pageCount() - 1;
+    }
+    return Math.floor(this.index / this.step);
+  }
+
+  /** Dots live in a React-rendered, childless container: React never touches its children. */
+  buildDots() {
+    const dots = this.stage.querySelector('.bptm-carousel-dots');
+    if (!dots) {
+      return;
+    }
+    const pages = this.pageCount();
+    dots.hidden = pages <= 1;
+    if (pages === this.dotsCount && dots.children.length === pages) {
+      return;
+    }
+    this.dotsCount = pages;
+    dots.textContent = '';
+    for (let p = 0; p < pages; p++) {
+      const b = this.doc.createElement('button');
+      b.type = 'button';
+      b.className = 'bptm-dot';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', sprintf(this.i18n.slide || 'Go to slide %d', p + 1));
+      dots.appendChild(b);
+    }
+  }
+  updateUI() {
+    const navs = this.stage.querySelector('.bptm-carousel-navs');
+    if (navs) {
+      navs.hidden = !this.active;
+    }
+    const dots = this.stage.querySelector('.bptm-carousel-dots');
+    if (dots) {
+      dots.hidden = this.pageCount() <= 1;
+      const page = this.currentPage();
+      Array.from(dots.children).forEach((d, p) => {
+        const on = p === page;
+        d.classList.toggle('is-active', on);
+        d.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+    }
+    const tr = this.track;
+    if (!tr) {
+      return;
+    }
+    Array.from(tr.children).forEach((el, k) => {
+      if (!el.classList.contains('bptm-item')) {
+        return;
+      }
+      const visible = k >= this.pos && k < this.pos + this.pv;
+      el.classList.toggle('is-visible', visible);
+      if (el.classList.contains('bptm-clone')) {
+        el.setAttribute('inert', '');
+        return;
+      }
+      if (visible) {
+        el.removeAttribute('inert');
+        el.removeAttribute('aria-hidden');
+      } else {
+        el.setAttribute('inert', '');
+        el.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+  stop() {
+    if (this.timer) {
+      this.win.clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+  restart() {
+    this.stop();
+    if (!this.cfg.autoplay || !this.active) {
+      return;
+    }
+    const timeout = Math.max(500, parseInt(this.cfg.timeout, 10) || 2500);
+    const speed = Math.max(0, parseInt(this.cfg.speed, 10) || 0);
+    this.timer = this.win.setInterval(() => {
+      if (!this.stage.isConnected) {
+        this.stop();
+        return;
+      }
+      if (this.doc.hidden || this.focused || this.cfg.hoverPause && this.hovering || this.stage.closest('.bptm-modal-open-host')) {
+        return;
+      }
+      this.next();
+    }, timeout + speed);
+  }
+  destroy() {
+    this.stop();
+    const s = this.stage;
+    s.removeEventListener('click', this.onClick);
+    s.removeEventListener('transitionend', this.onTransitionEnd);
+    s.removeEventListener('mouseenter', this.onEnter);
+    s.removeEventListener('mouseleave', this.onLeave);
+    s.removeEventListener('focusin', this.onFocusIn);
+    s.removeEventListener('focusout', this.onFocusOut);
+    s.removeEventListener('keydown', this.onKey);
+    const vp = this.swipeVp;
+    if (vp) {
+      vp.removeEventListener('pointerdown', this.onDown);
+      vp.removeEventListener('pointermove', this.onMove);
+      vp.removeEventListener('pointerup', this.onUp);
+      vp.removeEventListener('pointercancel', this.onUp);
+      vp.removeEventListener('dragstart', this.onDragStart);
+    }
+    if (this.ro) {
+      this.ro.disconnect();
+    }
+    this.onWinResize.cancel();
+    this.win.removeEventListener('resize', this.onWinResize);
+    this.mqls.forEach(mql => 'function' === typeof mql.removeEventListener && mql.removeEventListener('change', this.onWinResize));
+    this.doc.removeEventListener('visibilitychange', this.onVisibility);
+  }
+}
+
+/**
+ * Carousel hook: returns the number of clones React must render on each side.
+ *
+ * @param {Object}  ref     Ref of the `.bptm-carousel` stage element.
+ * @param {boolean} enabled View is carousel.
+ * @param {Object}  cfg     Engine config.
+ * @param {Object}  i18n    Strings.
+ * @return {number} Clones per side.
+ */
+const useCarousel = (ref, enabled, cfg, i18n) => {
+  const [clones, setClones] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const engine = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const clonesRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(clones);
+  clonesRef.current = clones;
+
+  // Create / destroy with the stage element.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    if (!enabled || !ref.current) {
+      return undefined;
+    }
+    const eng = new Engine(ref.current, cfg, i18n, n => {
+      if (n !== clonesRef.current) {
+        setClones(n);
+      }
+    });
+    engine.current = eng;
+    return () => {
+      eng.destroy();
+      engine.current = null;
+    };
+  }, [enabled]);
+
+  // After every commit: keep config current and re-sync (cheap when nothing changed).
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    const eng = engine.current;
+    if (!eng || !enabled) {
+      return;
+    }
+    eng.cfg = cfg;
+    eng.i18n = i18n;
+    if (eng.stage !== ref.current && ref.current) {
+      eng.destroy();
+      engine.current = new Engine(ref.current, cfg, i18n, eng.onClones);
+    }
+    engine.current.sync(clonesRef.current);
+  });
+  return enabled ? clones : 0;
+};
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/context.js":
+/*!***********************************************!*\
+  !*** ./src/Components/Common/Team/context.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   cx: () => (/* binding */ cx),
+/* harmony export */   join: () => (/* binding */ join),
+/* harmony export */   makeContext: () => (/* binding */ makeContext)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./model */ "./src/Components/Common/Team/model.js");
+/* harmony import */ var _bridge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./bridge */ "./src/Components/Common/Team/bridge.js");
+/* harmony import */ var _sanitize__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sanitize */ "./src/Components/Common/Team/sanitize.js");
+/* harmony import */ var _socialIcons_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./socialIcons.json */ "./src/Components/Common/Team/socialIcons.json");
+/* harmony import */ var _registry__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./registry */ "./src/Components/Common/Team/registry.js");
+/**
+ * Render context (port of the former PHP Context): one per instance + visibility group.
+ * Helpers return React nodes, or null when the part is hidden / empty (templates test truthiness,
+ * exactly like the PHP templates tested for '').
+ */
+
+
+
+
+
+
+
+const cx = (...parts) => parts.filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+
+/** Fragment of non-empty parts (null when every part is empty). */
+const join = (...parts) => {
+  const list = parts.flat().filter(p => null !== p && undefined !== p && false !== p && '' !== p);
+  if (!list.length) {
+    return null;
+  }
+  return list.length === 1 ? list[0] : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, ...list.map((p, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: i
+  }, p)));
+};
+const LINK_HREF_PROTOCOLS = ['http', 'https', 'mailto', 'tel', 'skype', 'callto', 'sms', 'viber', 'whatsapp'];
+
+/**
+ * Create a context.
+ *
+ * @param {Object} base { atts, theme, uid, view, linkType, vis, isEditor }.
+ * @param {string} group Visibility group: initial | popup | panel | drawer.
+ * @return {Object} Context.
+ */
+const makeContext = (base, group = 'initial') => {
+  const ctx = {
+    ...base,
+    group: _registry__WEBPACK_IMPORTED_MODULE_6__.VIS_GROUPS.includes(group) ? group : 'initial'
+  };
+  const {
+    atts
+  } = ctx;
+  const ip = name => ctx.clone ? {} : {
+    itemProp: name
+  };
+  ctx.withGroup = g => makeContext(base, g);
+  ctx.asClone = () => makeContext({
+    ...base,
+    clone: true
+  }, ctx.group);
+  ctx.isDetail = () => 'initial' !== ctx.group;
+  ctx.attr = (k, d) => Object.prototype.hasOwnProperty.call(atts, k) ? atts[k] : d;
+  ctx.show = field => {
+    const g = ctx.vis[ctx.group] || {};
+    if (!g[field]) {
+      return 'initial' !== ctx.group;
+    }
+    return (0,_model__WEBPACK_IMPORTED_MODULE_2__.anyDevice)(g[field]);
+  };
+  ctx.vis_classes = (field, extra = '') => {
+    const g = ctx.vis[ctx.group] || {};
+    return cx(extra, (0,_model__WEBPACK_IMPORTED_MODULE_2__.hideClasses)(g[field]));
+  };
+
+  /* ---------------- Links ---------------- */
+  ctx.memberLinkType = m => 'custom' === ctx.linkType && !m.custom_page ? 'none' : ctx.linkType;
+  ctx.modalEnabled = () => ['popup', 'panel', 'drawer'].includes(ctx.linkType);
+  ctx.hasLink = m => 'none' !== ctx.memberLinkType(m) && !ctx.isDetail();
+  ctx.detailId = m => 'bptm-detail-' + ctx.uid + '-' + (m.id || 'm0');
+  const isInternal = u => {
+    const mm = /^(?:[a-z][a-z0-9+.-]*:)?\/\/([^/?#]+)/i.exec(u);
+    if (!mm) {
+      return true;
+    }
+    const host = 'undefined' !== typeof window ? window.location.host : '';
+    return mm[1].toLowerCase() === String(host).toLowerCase();
+  };
+
+  /** Props of the member link (null when not linked). */
+  ctx.linkProps = (m, cls = '') => {
+    if (!ctx.hasLink(m)) {
+      return null;
+    }
+    const type = ctx.memberLinkType(m);
+    const p = {
+      className: cx('bptm-link', cls)
+    };
+    if (['popup', 'panel', 'drawer'].includes(type)) {
+      p.href = '#' + ctx.detailId(m);
+      p.className += ' bptm-open';
+      p['data-bptm-open'] = type;
+      p['data-bptm-id'] = m.id;
+      p.role = 'button';
+      p['aria-haspopup'] = 'drawer' === type ? 'true' : 'dialog';
+      p['aria-controls'] = ctx.detailId(m);
+    } else {
+      p.href = _sanitize__WEBPACK_IMPORTED_MODULE_4__.url(m.custom_page, LINK_HREF_PROTOCOLS);
+      if (!isInternal(m.custom_page) || '_blank' === atts.linkTarget) {
+        p.target = '_blank';
+        p.rel = 'noopener';
+      }
+    }
+    return p;
+  };
+  ctx.wrapLink = (m, children, cls = '') => {
+    const p = ctx.linkProps(m, cls);
+    return p ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', p, children) : children;
+  };
+
+  /* ---------------- Item wrapper ---------------- */
+  /** Props for the item root (classes, filter data, schema). */
+  ctx.itemProps = (m, extra = []) => {
+    const classes = ['bptm-item', ...extra];
+    if (m.featured) {
+      classes.push('bptm-is-featured');
+    }
+    if (atts.enableScrollAnimation && 'carousel' !== ctx.view) {
+      classes.push('bptm-anim');
+    }
+    const type = ctx.memberLinkType(m);
+    if ('none' !== type) {
+      classes.push('bptm-linked-' + type);
+    }
+    const p = {
+      className: [...new Set(classes.filter(Boolean))].join(' '),
+      'data-bptm-id': m.id,
+      'data-name': _sanitize__WEBPACK_IMPORTED_MODULE_4__.lower(m.name)
+    };
+    if ('carousel' !== ctx.view) {
+      p['data-designation'] = '' !== m.designation ? _sanitize__WEBPACK_IMPORTED_MODULE_4__.termSlug(m.designation) : '';
+      p['data-company'] = _sanitize__WEBPACK_IMPORTED_MODULE_4__.lower(m.company);
+      p['data-zip'] = _sanitize__WEBPACK_IMPORTED_MODULE_4__.lower(m.zip_code);
+      p['data-tags'] = (m.terms.tag || []).map(x => _sanitize__WEBPACK_IMPORTED_MODULE_4__.lower(x.name)).join('|');
+      ['group', 'location', 'language', 'gender', 'specialty', 'extra_one', 'extra_two', 'extra_three', 'extra_four', 'extra_five'].forEach(k => {
+        const slugs = (0,_model__WEBPACK_IMPORTED_MODULE_2__.termSlugs)(m, k);
+        if (slugs.length) {
+          p['data-' + k.replace(/_/g, '-')] = slugs.join(' ');
+        }
+      });
+      if ((0,_bridge__WEBPACK_IMPORTED_MODULE_3__.pref)('search_all_fields')) {
+        p['data-search'] = _sanitize__WEBPACK_IMPORTED_MODULE_4__.lower((0,_model__WEBPACK_IMPORTED_MODULE_2__.searchText)(m));
+      }
+    }
+    if (!ctx.clone) {
+      p.itemScope = true;
+      p.itemType = 'https://schema.org/Person';
+    }
+    return p;
+  };
+
+  /* ---------------- Images ---------------- */
+  const noLazyClasses = () => {
+    const out = [];
+    String((0,_bridge__WEBPACK_IMPORTED_MODULE_3__.pref)('lazy_load_class') || '').trim().split(/[\s,]+/).forEach(c => {
+      c = _sanitize__WEBPACK_IMPORTED_MODULE_4__.htmlClass(c);
+      if (c && !out.includes(c)) {
+        out.push(c);
+      }
+    });
+    return out;
+  };
+  const imgTag = (u, alt, cls, itemprop) => {
+    const p = {
+      className: '',
+      alt: _sanitize__WEBPACK_IMPORTED_MODULE_4__.stripTags(alt)
+    };
+    let classes = cls.split(/\s+/).filter(Boolean).map(_sanitize__WEBPACK_IMPORTED_MODULE_4__.htmlClass).join(' ');
+    if ((0,_bridge__WEBPACK_IMPORTED_MODULE_3__.pref)('disable_lazy_load')) {
+      classes = cx(classes, noLazyClasses().join(' '));
+      p.loading = 'eager';
+      p['data-no-lazy'] = '1';
+    } else {
+      p.loading = (ctx.index || 0) < 4 && 'carousel' !== ctx.view && !ctx.isDetail() ? 'eager' : 'lazy';
+      p.decoding = 'async';
+    }
+    p.className = classes;
+    if (itemprop && !ctx.clone) {
+      p.itemProp = itemprop;
+    }
+    if (!u) {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+        className: p.className + ' bptm-img-placeholder bptm-img-empty',
+        role: 'img',
+        'aria-label': p.alt
+      });
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('img', {
+      src: u,
+      ...p
+    });
+  };
+
+  /** Thumbnail (wrapped in the member link when "Link Image" is on). */
+  ctx.image = (m, cls = 'bptm-img', linkable = true) => {
+    if (!ctx.show('thumbnail')) {
+      return null;
+    }
+    let img = imgTag(m.image_url, m.image_alt || m.name, cls, 'image');
+    const vc = ctx.vis_classes('thumbnail');
+    if (vc) {
+      img = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+        className: 'bptm-vis ' + vc
+      }, img);
+    }
+    if (linkable && atts.linkPreviewImage && ctx.hasLink(m)) {
+      img = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', ctx.linkProps(m, 'bptm-img-link'), img);
+    }
+    return img;
+  };
+
+  /** Flip (back side) image; null when the member has none. */
+  ctx.flipImage = (m, cls = 'bptm-img bptm-flip-img') => {
+    if (!m.flip_image_id && !m.flip_image_url) {
+      return null;
+    }
+    return imgTag(m.flip_image_url, m.name, cls, '');
+  };
+
+  /* ---------------- Text parts ---------------- */
+  ctx.name = (m, tag = 'h3') => {
+    if (!ctx.show('name') || '' === m.name) {
+      return null;
+    }
+    tag = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'p', 'span', 'td', 'strong'].includes(tag) ? tag : 'h3';
+    const inner = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', ip('name'), m.name);
+    const lp = ctx.linkProps(m, 'bptm-name-link');
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(tag, {
+      className: ctx.vis_classes('name', 'bptm-name')
+    }, lp ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', lp, inner) : inner);
+  };
+  ctx.designation = (m, tag = 'div') => {
+    if (!ctx.show('designation') || '' === m.designation) {
+      return null;
+    }
+    tag = ['div', 'p', 'span', 'td', 'h4', 'h5', 'h6'].includes(tag) ? tag : 'div';
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(tag, {
+      className: ctx.vis_classes('designation', 'bptm-designation'),
+      ...ip('jobTitle')
+    }, m.designation);
+  };
+  ctx.details = m => {
+    if (!ctx.show('details')) {
+      return null;
+    }
+    let classes = 'bptm-details';
+    if (atts.descScrollControl) {
+      classes += ' bptm-scroll';
+    }
+    let inner;
+    if (ctx.isDetail() || atts.allowHtmlDetails) {
+      let nodes = m.content || [];
+      if ('' === _sanitize__WEBPACK_IMPORTED_MODULE_4__.nodesText(nodes).trim()) {
+        nodes = '' !== m.excerpt ? _sanitize__WEBPACK_IMPORTED_MODULE_4__.textParagraphs(m.excerpt) : [];
+      }
+      if ('' === _sanitize__WEBPACK_IMPORTED_MODULE_4__.nodesText(nodes).trim()) {
+        return null;
+      }
+      inner = _sanitize__WEBPACK_IMPORTED_MODULE_4__.nodesToReact(nodes);
+    } else {
+      let txt = '' !== m.excerpt.trim() ? m.excerpt : _sanitize__WEBPACK_IMPORTED_MODULE_4__.nodesText(m.content || []);
+      txt = _sanitize__WEBPACK_IMPORTED_MODULE_4__.decodeEntities(_sanitize__WEBPACK_IMPORTED_MODULE_4__.stripTags(txt.replace(/\[\/?[a-z][^\]]*\]/gi, ''))).replace(/[\s]+/g, ' ').trim();
+      if ('' === txt) {
+        return null;
+      }
+      const max = Math.trunc(Number(atts.detailsLength)) || 0;
+      const chars = Array.from(txt);
+      let p;
+      if (max > 0 && chars.length > max) {
+        const cut = chars.slice(0, max).join('').replace(/\s+$/, '') + '…';
+        const lp = ctx.linkProps(m, 'bptm-more');
+        p = lp ? [cut, ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', {
+          ...lp,
+          key: 'more'
+        }, (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)('more'))] : [cut];
+      } else {
+        p = [txt];
+      }
+      inner = [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('p', {
+        key: 'p'
+      }, ...p)];
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: ctx.vis_classes('details', classes),
+      ...ip('description')
+    }, ...inner);
+  };
+
+  /* ---------------- Social ---------------- */
+  ctx.social = (m, style = '') => {
+    if (!ctx.show('social') || !m.social.length) {
+      return null;
+    }
+    const items = [];
+    m.social.forEach(s => {
+      if (!s.icon) {
+        return;
+      }
+      const href = (0,_model__WEBPACK_IMPORTED_MODULE_2__.socialHref)(s);
+      if ('' === href) {
+        return;
+      }
+      const icon = s.icon.replace(/[^a-z0-9 _-]/gi, '');
+      let label = _socialIcons_json__WEBPACK_IMPORTED_MODULE_5__[s.icon];
+      if (!label) {
+        let l = icon;
+        ['fa-brands', 'fa-solid', 'fa-regular', 'fab', 'fas', 'far', 'fa-', '-'].forEach(x => {
+          l = l.split(x).join(' ');
+        });
+        label = l.trim().replace(/(^|[\s])([a-z])/g, (mm, a, b) => a + b.toUpperCase());
+      }
+      const slug = _sanitize__WEBPACK_IMPORTED_MODULE_4__.htmlClass(icon.split('fa-').join('').replace(/\b(fab|fas|far|fa-brands|fa-solid|fa-regular)\b/g, '').trim());
+      items.push([href, icon, label, slug]);
+    });
+    if (!items.length) {
+      return null;
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('ul', {
+      className: ctx.vis_classes('social', 'bptm-social' + (style ? ' bptm-social--' + _sanitize__WEBPACK_IMPORTED_MODULE_4__.htmlClass(style) : ''))
+    }, items.map(([href, icon, label, slug], i) => {
+      const safe = _sanitize__WEBPACK_IMPORTED_MODULE_4__.url(href, LINK_HREF_PROTOCOLS);
+      const web = /^https?:\/\//i.test(href);
+      const ap = {
+        className: 'bptm-social-link bptm-social-' + slug,
+        href: safe,
+        ...(web ? {
+          target: '_blank',
+          rel: 'noopener nofollow'
+        } : {}),
+        ...ip('sameAs'),
+        'aria-label': label,
+        title: label
+      };
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('li', {
+        className: 'bptm-social-item',
+        key: i
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', ap, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+        className: icon,
+        'aria-hidden': 'true'
+      })));
+    }));
+  };
+  ctx.ribbon = m => {
+    if (!ctx.show('ribbon') || '' === m.ribbon.trim()) {
+      return null;
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: ctx.vis_classes('ribbon', 'bptm-ribbon')
+    }, m.ribbon);
+  };
+  ctx.featuredBadge = m => {
+    if (!m.featured || !atts.enableFeaturing || !ctx.show('featured_badge')) {
+      return null;
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: ctx.vis_classes('featured_badge', 'bptm-featured'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Featured', 'bp-team-member')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+      className: 'fas fa-award',
+      'aria-hidden': 'true'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: 'screen-reader-text'
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Featured', 'bp-team-member')));
+  };
+  ctx.skills = (m, title = null) => {
+    if (!ctx.show('skills') || !m.skills.length) {
+      return null;
+    }
+    const list = m.skills.filter(s => '' !== s.skill.trim() && s.percent > 0);
+    if (!list.length) {
+      return null;
+    }
+    const showTitle = null === title ? ctx.isDetail() : !!title;
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: ctx.vis_classes('skills', 'bptm-skills')
+    }, showTitle ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('h4', {
+      className: 'bptm-skills-title'
+    }, (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)('skills')) : null, list.map((s, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-skill',
+      key: i
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-skill-head'
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: 'bptm-skill-name'
+    }, s.skill.trim()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: 'bptm-skill-value'
+    }, s.percent + '%')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-skill-bar',
+      role: 'progressbar',
+      'aria-label': s.skill.trim(),
+      'aria-valuenow': String(s.percent),
+      'aria-valuemin': '0',
+      'aria-valuemax': '100'
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: 'bptm-skill-fill',
+      style: {
+        '--bptm-skill': s.percent + '%'
+      }
+    })))));
+  };
+
+  /* ---------------- Meta ---------------- */
+  const breakable = txt => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: 'bptm-email-text'
+  }, String(txt).split(/(@|\.)/).map((part, i) => {
+    if ('@' === part) {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        key: i
+      }, '@', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('wbr'));
+    }
+    if ('.' === part) {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        key: i
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('wbr'), '.');
+    }
+    return part;
+  }));
+  const phone = (num, prefKey) => {
+    num = String(num || '').trim();
+    if ('' === num) {
+      return null;
+    }
+    const txt = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', ip('telephone'), num);
+    if ((0,_bridge__WEBPACK_IMPORTED_MODULE_3__.pref)(prefKey)) {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', {
+        href: _sanitize__WEBPACK_IMPORTED_MODULE_4__.url('tel:' + num.replace(/[^\d+]/g, ''), ['tel'])
+      }, txt);
+    }
+    return txt;
+  };
+  ctx.mailto = m => {
+    const q = [];
+    if (m.email_cc) {
+      q.push('cc=' + encodeURIComponent(m.email_cc).replace(/[!'()*]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase()));
+    }
+    if (m.email_bcc) {
+      q.push('bcc=' + encodeURIComponent(m.email_bcc).replace(/[!'()*]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase()));
+    }
+    return 'mailto:' + m.email + (q.length ? '?' + q.join('&') : '');
+  };
+  const emailValue = m => {
+    if ('' === m.email) {
+      return null;
+    }
+    const txt = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', ip('email'), breakable(m.email));
+    if (!(0,_bridge__WEBPACK_IMPORTED_MODULE_3__.pref)('email_link')) {
+      return txt;
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', {
+      href: _sanitize__WEBPACK_IMPORTED_MODULE_4__.url(ctx.mailto(m), ['mailto'])
+    }, txt);
+  };
+
+  /** Visible meta rows in display order: [{ field, label, value (node), icon, classes }]. */
+  ctx.metaRows = m => {
+    const rows = [];
+    const texts = {
+      address: m.address,
+      land_phone: String(m.land_phone || '').trim(),
+      cell_phone: String(m.cell_phone || '').trim(),
+      email: m.email,
+      zip: m.zip_code
+    };
+    const add = (field, label, value, icon, empty) => {
+      if (empty || null === value || !ctx.show(field)) {
+        return;
+      }
+      const text = 'string' === typeof value ? value : texts[field] || '';
+      rows.push({
+        field,
+        label,
+        value,
+        icon,
+        text: String(text).trim(),
+        classes: ctx.vis_classes(field, 'bptm-meta-item bptm-meta-' + field.replace(/_/g, '-'))
+      });
+    };
+    let company = null;
+    if ('' !== m.company || '' !== m.company_website) {
+      const txt = '' !== m.company ? m.company : m.company_website.replace(/^https?:\/\//, '');
+      texts.company = txt;
+      company = '' !== m.company_website ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', {
+        href: _sanitize__WEBPACK_IMPORTED_MODULE_4__.url(m.company_website),
+        target: '_blank',
+        rel: 'nofollow noopener'
+      }, '' !== m.company ? txt : breakable(txt)) : txt;
+      company = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', ip('worksFor'), company);
+    }
+    add('company', (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)('company'), company, 'fas fa-briefcase', null === company);
+    add('address', (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)('address'), '' !== m.address ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', ip('address'), m.address) : null, 'fas fa-location-dot');
+    add('land_phone', (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)('land_phone'), phone(m.land_phone, 'land_phone_link'), 'fas fa-phone');
+    add('cell_phone', (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)('cell_phone'), phone(m.cell_phone, 'cell_phone_link'), 'fas fa-mobile-screen');
+    add('email', (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)('email'), emailValue(m), 'fas fa-envelope');
+    const icons = {
+      location: 'fas fa-map-pin',
+      language: 'fas fa-language',
+      specialty: 'fas fa-star',
+      gender: 'fas fa-venus-mars'
+    };
+    ['location', 'language', 'specialty', 'gender'].forEach(k => {
+      const v = (0,_model__WEBPACK_IMPORTED_MODULE_2__.termNames)(m, k);
+      add(k, (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)(k), '' !== v.trim() ? v : null, icons[k]);
+    });
+    add('zip', (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)('zip_code'), '' !== m.zip_code ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', ip('postalCode'), m.zip_code) : null, 'fas fa-map-location-dot');
+    ['extra_one', 'extra_two', 'extra_three', 'extra_four', 'extra_five'].forEach(k => {
+      const v = (0,_model__WEBPACK_IMPORTED_MODULE_2__.termNames)(m, k);
+      add(k, (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)(k), '' !== v.trim() ? v : null, 'fas fa-circle-info');
+    });
+    return rows;
+  };
+  ctx.metaDetails = (m, variant = 'list') => {
+    const rows = ctx.metaRows(m);
+    if (!rows.length) {
+      return null;
+    }
+    variant = ['list', 'icons', 'inline', 'table'].includes(variant) ? variant : 'list';
+    if ('table' === variant) {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('table', {
+        className: 'bptm-meta bptm-meta--table'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('tbody', null, rows.map(r => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('tr', {
+        className: r.classes,
+        key: r.field
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('th', {
+        scope: 'row',
+        className: 'bptm-meta-label'
+      }, r.label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('td', {
+        className: 'bptm-meta-value'
+      }, r.value)))));
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('ul', {
+      className: 'bptm-meta bptm-meta--' + variant
+    }, rows.map(r => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('li', {
+      className: r.classes,
+      key: r.field
+    }, 'list' !== variant ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+      className: 'bptm-meta-icon ' + r.icon,
+      'aria-hidden': 'true'
+    }) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: 'bptm-meta-label' + ('list' !== variant ? ' screen-reader-text' : '')
+    }, r.label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: 'bptm-meta-value'
+    }, r.value))));
+  };
+  ctx.vcard = m => {
+    if (!m.vcard || !ctx.show('vcard')) {
+      return null;
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', {
+      className: ctx.vis_classes('vcard', 'bptm-vcard'),
+      href: _sanitize__WEBPACK_IMPORTED_MODULE_4__.url(m.vcard),
+      download: ''
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+      className: 'fas fa-address-card',
+      'aria-hidden': 'true'
+    }), ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', null, (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)('vcard')));
+  };
+  ctx.readMore = (m, txt = '') => {
+    if (!ctx.show('read_more') || !ctx.hasLink(m)) {
+      return null;
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: ctx.vis_classes('read_more', 'bptm-readmore')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', ctx.linkProps(m, 'bptm-readmore-btn'), txt || (0,_bridge__WEBPACK_IMPORTED_MODULE_3__.t)('read_on')));
+  };
+  ctx.termsText = (m, k, sep = ', ') => (0,_model__WEBPACK_IMPORTED_MODULE_2__.termNames)(m, k, sep);
+  return ctx;
+};
+
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/css.js":
+/*!*******************************************!*\
+  !*** ./src/Components/Common/Team/css.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   COLOR_VARS: () => (/* binding */ COLOR_VARS),
+/* harmony export */   color: () => (/* binding */ color),
+/* harmony export */   dynamicCss: () => (/* binding */ dynamicCss),
+/* harmony export */   fontFamily: () => (/* binding */ fontFamily),
+/* harmony export */   googleFontsUrl: () => (/* binding */ googleFontsUrl),
+/* harmony export */   length: () => (/* binding */ length),
+/* harmony export */   usedFonts: () => (/* binding */ usedFonts)
+/* harmony export */ });
+/* harmony import */ var _bridge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bridge */ "./src/Components/Common/Team/bridge.js");
+/**
+ * Scoped dynamic CSS generated from the block's style attributes (port of the former PHP Style class).
+ * Every value is validated (colours, lengths, font names, keywords) so attributes cannot break out of
+ * the <style> element; '<' is stripped from the final text as a last guard.
+ */
+
+const COLOR_VARS = {
+  nameColor: '--bptm-name-color',
+  nameBg: '--bptm-name-bg',
+  roleColor: '--bptm-role-color',
+  descriptionColor: '--bptm-desc-color',
+  descriptionLinkColor: '--bptm-desc-link-color',
+  infoColor: '--bptm-info-color',
+  infoIconColor: '--bptm-info-icon-color',
+  infoBg: '--bptm-info-bg',
+  itemBg: '--bptm-item-bg',
+  itemBgHover: '--bptm-item-bg-hover',
+  tooltipBg: '--bptm-tooltip-bg',
+  hoverIconBg: '--bptm-hover-icon-bg',
+  ribbonBg: '--bptm-ribbon-bg',
+  pgColor: '--bptm-pg-color',
+  pgBg: '--bptm-pg-bg',
+  pgBorderColor: '--bptm-pg-border',
+  pgHoverColor: '--bptm-pg-hover-color',
+  pgHoverBg: '--bptm-pg-hover-bg',
+  pgHoverBorderColor: '--bptm-pg-hover-border',
+  pgActiveColor: '--bptm-pg-active-color',
+  pgActiveBg: '--bptm-pg-active-bg',
+  pgActiveBorderColor: '--bptm-pg-active-border',
+  lmColor: '--bptm-lm-color',
+  lmBg: '--bptm-lm-bg',
+  lmBorderColor: '--bptm-lm-border',
+  lmHoverColor: '--bptm-lm-hover-color',
+  lmHoverBg: '--bptm-lm-hover-bg',
+  pgLoaderColor: '--bptm-pg-loader-color',
+  popupBg: '--bptm-modal-bg',
+  popupCloseColor: '--bptm-close-color',
+  popupCloseBg: '--bptm-close-bg',
+  popupCloseHoverColor: '--bptm-close-hover-color',
+  popupCloseHoverBg: '--bptm-close-hover-bg',
+  popupArrowColor: '--bptm-popup-arrow-color',
+  popupNavBg: '--bptm-popup-nav-bg',
+  popupNavBorderColor: '--bptm-popup-nav-border',
+  popupNavHoverColor: '--bptm-popup-nav-hover-color',
+  popupNavHoverBg: '--bptm-popup-nav-hover-bg',
+  popupNavHoverBorderColor: '--bptm-popup-nav-hover-border',
+  accentColor: '--bptm-accent',
+  sliderNavColor: '--bptm-nav-color',
+  sliderNavBg: '--bptm-nav-bg',
+  sliderNavHoverColor: '--bptm-nav-hover-color',
+  sliderNavHoverBg: '--bptm-nav-hover-bg',
+  sliderDotColor: '--bptm-dot-color',
+  sliderDotHoverColor: '--bptm-dot-active-color',
+  filterTextColor: '--bptm-filter-color',
+  filterActiveTextColor: '--bptm-filter-active-color',
+  filterBgColor: '--bptm-filter-bg',
+  filterActiveBgColor: '--bptm-filter-active-bg',
+  filterBorderColor: '--bptm-filter-border',
+  filterActiveBorderColor: '--bptm-filter-active-border',
+  itemBorderColor: '--bptm-item-border-color'
+};
+const TYPO = {
+  nameTypography: ['--bptm-name', ['.bptm-name', '.bptm-name a'], ['.bptm-item:hover .bptm-name', '.bptm-item:hover .bptm-name a']],
+  roleTypography: ['--bptm-role', ['.bptm-designation'], ['.bptm-item:hover .bptm-designation']],
+  detailsTypography: ['--bptm-desc', ['.bptm-details', '.bptm-details p'], ['.bptm-item:hover .bptm-details', '.bptm-item:hover .bptm-details p']],
+  infoTypography: ['--bptm-info', ['.bptm-meta', '.bptm-meta a', '.bptm-meta-value'], ['.bptm-meta-item:hover', '.bptm-meta-item:hover a']],
+  ribbonTypography: ['--bptm-ribbon', ['.bptm-ribbon'], ['.bptm-item:hover .bptm-ribbon']],
+  readmoreTypography: ['--bptm-readmore', ['.bptm-readmore a', '.bptm-more', '.bptm-readmore-btn'], ['.bptm-readmore a:hover', '.bptm-more:hover', '.bptm-readmore-btn:hover']],
+  popupNavTypography: ['--bptm-popup-nav', ['.bptm-modal-nav button span'], ['.bptm-modal-nav button:hover span']]
+};
+const SHADOWS = {
+  none: 'none',
+  sm: '0 1px 3px rgba(15,23,42,.08), 0 1px 2px rgba(15,23,42,.06)',
+  md: '0 6px 18px rgba(15,23,42,.10)',
+  lg: '0 14px 40px rgba(15,23,42,.14)',
+  xl: '0 24px 60px rgba(15,23,42,.18)'
+};
+const MEDIA = {
+  tablet: '@media (max-width:1024px)',
+  mobilePortrait: '@media (max-width:767px)',
+  mobile: '@media (max-width:575px)'
+};
+const isNum = v => 'number' === typeof v && isFinite(v) || 'string' === typeof v && '' !== v.trim() && isFinite(Number(v.trim()));
+
+/** CSS colour or ''. */
+const color = c => {
+  if (null === c || undefined === c || 'object' === typeof c) {
+    return '';
+  }
+  c = String(c).trim();
+  if ('' === c) {
+    return '';
+  }
+  if (/^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(c)) {
+    return c;
+  }
+  if (/^(rgb|rgba|hsl|hsla)\(\s*[0-9.,%\s/+-]+\)$/i.test(c)) {
+    return c;
+  }
+  if (/^var\(--[a-z0-9-]+(\s*,\s*[#a-z0-9(),.%\s-]+)?\)$/i.test(c)) {
+    return c;
+  }
+  if (/^(linear|radial)-gradient\([#a-z0-9(),.%\s-]+\)$/i.test(c)) {
+    return c;
+  }
+  if (/^[a-z]{3,20}$/i.test(c)) {
+    return c.toLowerCase();
+  }
+  return '';
+};
+
+/** CSS length (bare numbers get `unit`) or ''. */
+const length = (v, unit = 'px') => {
+  if (isNum(v)) {
+    return String(Number(v)) + unit;
+  }
+  if (null === v || undefined === v || 'object' === typeof v || 'boolean' === typeof v) {
+    return '';
+  }
+  v = String(v).trim();
+  if ('' === v) {
+    return '';
+  }
+  if (/^-?\d*\.?\d+(px|em|rem|%|vh|vw|vmin|vmax|ch|ex|pt)$/i.test(v)) {
+    return v.toLowerCase();
+  }
+  if (/^(calc|clamp|min|max)\([0-9a-z.%+\-*/,\s()]+\)$/i.test(v)) {
+    return v;
+  }
+  return ['auto', 'normal', 'inherit', 'initial', 'none'].includes(v) ? v : '';
+};
+const cleanFamily = f => String(null === f || undefined === f || 'object' === typeof f ? '' : f).replace(/[^a-zA-Z0-9 _-]/g, '').trim();
+const fontFamily = f => {
+  f = cleanFamily(f);
+  if ('' === f || 'default' === f.toLowerCase()) {
+    return '';
+  }
+  return "'" + f + "', sans-serif";
+};
+const tget = (t, camel, snake) => {
+  if (undefined !== t[camel] && null !== t[camel] && '' !== t[camel]) {
+    return t[camel];
+  }
+  return undefined !== t[snake] && null !== t[snake] && '' !== t[snake] ? t[snake] : null;
+};
+const obj = v => v && 'object' === typeof v && !Array.isArray(v) ? v : {};
+
+/** Font families used by the typography attributes. */
+const usedFonts = atts => {
+  const out = [];
+  Object.keys(TYPO).forEach(k => {
+    const t = obj(atts[k]);
+    // bpl-tools Typography "Load Google Font" toggle: off = use the family without loading it.
+    const f = false === t.isUploadFont ? '' : tget(t, 'fontFamily', 'font_family');
+    const c = f ? cleanFamily(f) : '';
+    if (c && !out.includes(c)) {
+      out.push(c);
+    }
+  });
+  return out;
+};
+const SYSTEM = ['Arial', 'Tahoma', 'Verdana', 'Helvetica', 'Times New Roman', 'Trebuchet MS', 'Georgia', 'Courier New', 'system-ui', 'sans-serif', 'serif', 'monospace', 'inherit'];
+
+/**
+ * Google Fonts stylesheet URL for the used families ('' when none / disabled).
+ *
+ * @param {Object} atts Attributes.
+ * @return {string} URL.
+ */
+const googleFontsUrl = atts => {
+  if ((0,_bridge__WEBPACK_IMPORTED_MODULE_0__.pref)('disable_google_fonts')) {
+    return '';
+  }
+  const known = (0,_bridge__WEBPACK_IMPORTED_MODULE_0__.knownFonts)();
+  const fams = usedFonts(atts).filter(f => '' !== f && !SYSTEM.includes(f) && 'default' !== f.toLowerCase() && (!known.length || known.includes(f))).sort();
+  if (!fams.length) {
+    return '';
+  }
+  // The v1 CSS API tolerates weights a family does not have (css2 rejects the whole request).
+  return 'https://fonts.googleapis.com/css?family=' + fams.map(f => f.replace(/ /g, '+') + ':300,400,500,600,700,800,400italic,700italic').join('|') + '&display=swap';
+};
+const cssId = id => 'undefined' !== typeof window && window.CSS && 'function' === typeof window.CSS.escape ? window.CSS.escape(id) : String(id).replace(/[^A-Za-z0-9_-]/g, '');
+
+/**
+ * Dynamic CSS of one instance.
+ *
+ * @param {Object} atts  Sanitized attributes.
+ * @param {string} domId Wrapper id.
+ * @param {string} uid   Instance uid (modal scope).
+ * @return {string} CSS.
+ */
+const dynamicCss = (atts, domId, uid) => {
+  const scopes = ['#' + cssId(domId), '.bptm-modal[data-bptm-for="' + String(uid).replace(/[^A-Za-z0-9_-]/g, '') + '"]'];
+  const vars = [];
+  const setVar = (k, v) => {
+    const i = vars.findIndex(x => x[0] === k);
+    if (i >= 0) {
+      vars[i][1] = v;
+    } else {
+      vars.push([k, v]);
+    }
+  };
+  const rules = {
+    '': new Map()
+  };
+  Object.values(MEDIA).forEach(m => {
+    rules[m] = new Map();
+  });
+  const add = (media, selectors, decl) => {
+    const full = [];
+    selectors.forEach(sel => scopes.forEach(sc => full.push('' === sel ? sc : sc + ' ' + sel)));
+    const k = full.join(',');
+    if (!rules[media].has(k)) {
+      rules[media].set(k, []);
+    }
+    rules[media].get(k).push(decl);
+  };
+  const cols = obj(atts.columns);
+  [['desktop', 'd'], ['tablet', 't'], ['mobilePortrait', 'mp'], ['mobile', 'm']].forEach(([k, s]) => {
+    const n = Math.trunc(Number(cols[k]));
+    if (n > 0) {
+      setVar('--bptm-cols-' + s, String(Math.min(12, n)));
+    }
+  });
+  if (undefined !== atts.columnGap && '' !== atts.columnGap) {
+    setVar('--bptm-gap', length(atts.columnGap));
+  }
+  if (undefined !== atts.rowGap && '' !== atts.rowGap) {
+    setVar('--bptm-row-gap', length(atts.rowGap));
+  }
+  Object.keys(COLOR_VARS).forEach(a => {
+    const c = color(atts[a]);
+    if (c) {
+      setVar(COLOR_VARS[a], c);
+    }
+  });
+  const direct = {
+    nameColor: [['.bptm-name', '.bptm-name a'], 'color'],
+    nameBg: [['.bptm-name'], 'background'],
+    roleColor: [['.bptm-designation'], 'color'],
+    descriptionColor: [['.bptm-details', '.bptm-details p'], 'color'],
+    descriptionLinkColor: [['.bptm-details a', '.bptm-more'], 'color'],
+    infoColor: [['.bptm-meta', '.bptm-meta a'], 'color'],
+    infoIconColor: [['.bptm-meta-icon'], 'color'],
+    infoLabelColor: [['.bptm-meta-label'], 'color'],
+    ribbonBg: [['.bptm-ribbon'], 'background']
+  };
+  Object.keys(direct).forEach(a => {
+    const c = color(atts[a]);
+    if (c) {
+      add('', direct[a][0], direct[a][1] + ':' + c);
+    }
+  });
+  // Featured badge (cards + popup / panel / drawer): scoped rules beat every theme's own badge styles.
+  {
+    const badge = ['.bptm-featured'];
+    const badgeIcon = ['.bptm-featured i'];
+    const fc = color(atts.featuredColor);
+    if (fc) {
+      add('', badge, 'color:' + fc);
+      add('', badgeIcon, 'color:' + fc);
+    }
+    const fb = color(atts.featuredBg);
+    if (fb) {
+      add('', badge, 'background:' + fb);
+    }
+    const fbw = length(atts.featuredBorderWidth);
+    const fbc = color(atts.featuredBorderColor);
+    if (fbw || fbc) {
+      add('', badge, 'border-style:solid');
+      add('', badge, 'border-width:' + (fbw || '1px'));
+    }
+    if (fbc) {
+      add('', badge, 'border-color:' + fbc);
+    }
+    const fs = length(atts.featuredSize);
+    if (fs) {
+      add('', badge, 'width:' + fs);
+      add('', badge, 'height:' + fs);
+    }
+    const fis = length(atts.featuredIconSize);
+    if (fis) {
+      add('', badge, 'font-size:' + fis);
+      add('', badgeIcon, 'font-size:' + fis);
+    }
+    const fr = length(atts.featuredRadius);
+    if (fr) {
+      add('', badge, 'border-radius:' + fr);
+    }
+  }
+
+  // Social icons (cards + popup / panel / drawer): scoped rules beat every theme's own social styles.
+  {
+    const link = ['.bptm-social .bptm-social-link'];
+    const icon = ['.bptm-social .bptm-social-link i'];
+    const hov = ['.bptm-social .bptm-social-link:hover', '.bptm-social .bptm-social-link:focus-visible'];
+    const hovIcon = ['.bptm-social .bptm-social-link:hover i', '.bptm-social .bptm-social-link:focus-visible i'];
+    const ic = color(atts.socialIconColor);
+    if (ic) {
+      add('', link, 'color:' + ic);
+      add('', icon, 'color:' + ic);
+    }
+    const bg = color(atts.socialBg);
+    if (bg) {
+      add('', link, 'background:' + bg);
+      setVar('--bptm-social-bg', bg);
+    }
+    const bc = color(atts.socialBorderColor);
+    const bw = length(atts.socialBorderWidth);
+    if (bw) {
+      add('', link, 'border-width:' + bw);
+      add('', link, 'border-style:solid');
+    }
+    if (bc) {
+      add('', link, 'border-color:' + bc);
+      if (!bw) {
+        add('', link, 'border-style:solid');
+      }
+    }
+    const hc = color(atts.socialIconHoverColor);
+    if (hc) {
+      add('', hov, 'color:' + hc);
+      add('', hovIcon, 'color:' + hc);
+    }
+    const hb = color(atts.socialHoverBg);
+    if (hb) {
+      add('', hov, 'background:' + hb);
+      setVar('--bptm-social-hover-bg', hb);
+    }
+    const hbc = color(atts.socialHoverBorderColor);
+    if (hbc) {
+      add('', hov, 'border-color:' + hbc);
+    }
+    const size = length(atts.socialSize);
+    if (size) {
+      setVar('--bptm-social-size', size);
+      add('', link, 'width:' + size);
+      add('', link, 'height:' + size);
+      add('', link, 'min-width:' + size);
+    }
+    const is = length(atts.socialIconSize);
+    if (is) {
+      add('', link, 'font-size:' + is);
+      add('', icon, 'font-size:' + is);
+    }
+    const rad = length(atts.socialRadius);
+    if (rad) {
+      add('', link, 'border-radius:' + rad);
+    }
+    const gap = length(atts.socialGap);
+    if (gap) {
+      add('', ['.bptm-social'], 'gap:' + gap);
+    }
+  }
+  let c = color(atts.itemBg);
+  if (c) {
+    add('', ['tr.bptm-item > td'], 'background:' + c);
+  }
+  c = color(atts.itemBgHover);
+  if (c) {
+    add('', ['tr.bptm-item:hover > td'], 'background:' + c);
+  }
+  const card = ['.bptm-item > .bptm-ta-card', '.bptm-item > .bptm-tb-card'];
+  const pad = obj(atts.itemPadding);
+  if (Object.keys(pad).length) {
+    const p = ['top', 'right', 'bottom', 'left'].map(side => {
+      const v = undefined !== pad[side] ? length(pad[side]) : '';
+      return '' === v ? '0' : v;
+    });
+    const anySet = Object.keys(pad).some(k => '' !== String(null === pad[k] || undefined === pad[k] || 'object' === typeof pad[k] ? '' : pad[k]));
+    if ('0 0 0 0' !== p.join(' ') || anySet) {
+      setVar('--bptm-item-padding', p.join(' '));
+    }
+  }
+  [['popupCloseIconSize', '--bptm-close-icon-size'], ['popupCloseSize', '--bptm-close-size'], ['popupCloseRadius', '--bptm-close-radius']].forEach(([a, v]) => {
+    const len = length(atts[a]);
+    if (len) {
+      setVar(v, len);
+    }
+  });
+  // Pagination (numbers + load more): sizes and padding.
+  [['pgBorderWidth', '--bptm-pg-border-width'], ['pgBorderRadius', '--bptm-pg-radius'], ['lmBorderWidth', '--bptm-lm-border-width'], ['lmBorderRadius', '--bptm-lm-radius']].forEach(([a, v]) => {
+    const len = length(atts[a]);
+    if (len) {
+      setVar(v, len);
+    }
+  });
+  const boxValue = box => {
+    const b = obj(box);
+    if (!Object.keys(b).length) {
+      return '';
+    }
+    return ['top', 'right', 'bottom', 'left'].map(side => {
+      const v = undefined !== b[side] ? length(b[side]) : '';
+      return '' === v ? '0' : v;
+    }).join(' ');
+  };
+  const pgPad = boxValue(atts.pgPadding);
+  if (pgPad) {
+    setVar('--bptm-pg-padding', pgPad);
+    setVar('--bptm-pg-height', 'auto');
+  }
+  const lmPad = boxValue(atts.lmPadding);
+  if (lmPad) {
+    setVar('--bptm-lm-padding', lmPad);
+  }
+  if (color(atts.lmHoverBg) || color(atts.lmHoverColor)) {
+    setVar('--bptm-lm-hover-filter', 'none');
+  }
+  const navIcon = length(atts.popupNavIconSize);
+  if (navIcon) {
+    add('', ['.bptm-modal-nav button i'], 'font-size:' + navIcon);
+  }
+  const navR = length(atts.popupNavRadius);
+  if (navR) {
+    setVar('--bptm-popup-nav-radius', navR);
+  }
+  const r = length(atts.itemBorderRadius);
+  if (r) {
+    setVar('--bptm-radius', r);
+  }
+  const sh = 'string' === typeof atts.itemShadow ? atts.itemShadow.trim() : '';
+  if (sh) {
+    const val = SHADOWS[sh] || (/^[#a-z0-9(),.%\s-]+$/i.test(sh) ? sh : '');
+    if (val) {
+      setVar('--bptm-shadow', val);
+    }
+  }
+  const bw = length(atts.itemBorderWidth);
+  const bc = color(atts.itemBorderColor);
+  if (bw || bc) {
+    if (r) {
+      add('', card, 'border-radius:' + r);
+    }
+    add('', card, 'border:' + (bw || '1px') + ' solid ' + (bc || 'currentColor'));
+  }
+  const ir = length(atts.imageBorderRadius);
+  if (ir) {
+    setVar('--bptm-img-radius', ir);
+    add('', ['.bptm-img', '.bptm-img-wrap'], 'border-radius:' + ir);
+  }
+  if (atts.alignment && ['left', 'center', 'right', 'start', 'end'].includes(atts.alignment)) {
+    setVar('--bptm-align', atts.alignment);
+  }
+  const mh = length(atts.maxScrollHeight);
+  if (mh) {
+    setVar('--bptm-desc-max-h', mh);
+  }
+  Object.keys(TYPO).forEach(a => {
+    const t = obj(atts[a]);
+    if (!Object.keys(t).length) {
+      return;
+    }
+    const [prefix, els, hover] = TYPO[a];
+    const decl = [];
+    const fam = fontFamily(tget(t, 'fontFamily', 'font_family'));
+    if (fam) {
+      decl.push(['font-family', fam]);
+    }
+    const w = tget(t, 'fontWeight', 'weight');
+    if (null !== w && /^(\d{3}|normal|bold|lighter|bolder)$/.test(String(w))) {
+      decl.push(['font-weight', String(w)]);
+    }
+    const st = tget(t, 'fontStyle', 'style');
+    if (null !== st && ['normal', 'italic', 'oblique'].includes(st)) {
+      decl.push(['font-style', st]);
+    }
+    const tt = tget(t, 'textTransform', 'transform');
+    if (null !== tt && ['none', 'uppercase', 'lowercase', 'capitalize'].includes(tt)) {
+      decl.push(['text-transform', tt]);
+    }
+    const td = tget(t, 'textDecoration', 'decoration');
+    if (null !== td && ['none', 'underline', 'overline', 'line-through'].includes(td)) {
+      decl.push(['text-decoration', td]);
+    }
+    const lh = tget(t, 'lineHeight', 'line_height');
+    if (null !== lh && 'object' !== typeof lh) {
+      const lhv = isNum(lh) ? String(Number(lh)) : length(lh);
+      if (lhv) {
+        decl.push(['line-height', lhv]);
+      }
+    }
+    const ls = tget(t, 'letterSpacing', 'letter_spacing');
+    if (null !== ls && 'object' !== typeof ls) {
+      const lsv = length(ls);
+      if (lsv) {
+        decl.push(['letter-spacing', lsv]);
+      }
+    }
+    const col = color(tget(t, 'color', 'color'));
+    if (col) {
+      decl.push(['color', col]);
+    }
+    const size = tget(t, 'fontSize', 'size');
+    const resp = {};
+    if (size && 'object' === typeof size && !Array.isArray(size)) {
+      ['desktop', 'tablet', 'mobilePortrait', 'mobile'].forEach(d => {
+        const alias = 'mobilePortrait' === d && undefined !== size.mobile_landscape ? size.mobile_landscape : null;
+        let v = undefined !== size[d] ? size[d] : alias;
+        v = null === v ? '' : length(v);
+        if (v) {
+          resp[d] = v;
+        }
+      });
+      if (resp.desktop) {
+        decl.push(['font-size', resp.desktop]);
+      }
+    } else if (null !== size) {
+      const v = length(size);
+      if (v) {
+        decl.push(['font-size', v]);
+      }
+    }
+    decl.forEach(([prop, val]) => {
+      setVar(prefix + '-' + prop, val);
+      add('', els, prop + ':' + val);
+    });
+    Object.keys(resp).forEach(d => {
+      if ('desktop' !== d) {
+        add(MEDIA[d], els, 'font-size:' + resp[d]);
+      }
+    });
+    const hc = color(tget(t, 'hoverColor', 'hover_color'));
+    if (hc) {
+      add('', hover, 'color:' + hc);
+    }
+  });
+  let css = '';
+  if (vars.length) {
+    css += scopes.join(',') + '{' + vars.map(([k, v]) => k + ':' + v).join(';') + '}';
+  }
+  ['', ...Object.values(MEDIA)].forEach(media => {
+    if (!rules[media].size) {
+      return;
+    }
+    let block = '';
+    rules[media].forEach((decls, sel) => {
+      block += sel + '{' + [...new Set(decls)].join(';') + '}';
+    });
+    css += '' === media ? block : media + '{' + block + '}';
+  });
+  return css.replace(/<\//g, '').replace(/</g, '');
+};
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/details.js":
+/*!***********************************************!*\
+  !*** ./src/Components/Common/Team/details.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DetailPayload: () => (/* binding */ DetailPayload),
+/* harmony export */   detailStyle: () => (/* binding */ detailStyle)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./context */ "./src/Components/Common/Team/context.js");
+/* harmony import */ var _themes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./themes */ "./src/Components/Common/Team/themes.js");
+/* harmony import */ var _registry__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./registry */ "./src/Components/Common/Team/registry.js");
+/* harmony import */ var _bridge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./bridge */ "./src/Components/Common/Team/bridge.js");
+/* harmony import */ var _sanitize__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./sanitize */ "./src/Components/Common/Team/sanitize.js");
+/**
+ * Detail views for popup / panel / drawer (ports of templates/{popups,panels,drawers}/*.php)
+ * and the detail payload wrapper (former Context::modal_payload()).
+ */
+
+
+
+
+
+
+
+const div = (className, ...children) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+  className
+}, ...children);
+const detailSocial = (ctx, m, label = true) => {
+  const social = (0,_themes__WEBPACK_IMPORTED_MODULE_3__.tbPart)(ctx, m, 'social');
+  if (!social) {
+    return null;
+  }
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: ctx.vis_classes('social', 'bptm-dv-social')
+  }, label ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('h4', {
+    className: 'bptm-dv-heading'
+  }, (0,_bridge__WEBPACK_IMPORTED_MODULE_5__.t)('follow_me_on')) : null, social);
+};
+const ALL = ['img', 'flip', 'badges', 'name', 'role', 'desc', 'social', 'social_plain', 'meta', 'skills'];
+
+/** Parts of a detail view (bptm_tb_detail_parts()). */
+const parts = (ctx, m, use) => {
+  use = use ? ALL.filter(k => use.includes(k)) : ALL;
+  const out = {};
+  [...ALL, 'tail'].forEach(k => {
+    out[k] = null;
+  });
+  use.forEach(k => {
+    switch (k) {
+      case 'img':
+        {
+          const img = (0,_themes__WEBPACK_IMPORTED_MODULE_3__.tbImage)(ctx, m, false);
+          out.img = img ? div('bptm-img-wrap bptm-dv-img', img) : null;
+          break;
+        }
+      case 'flip':
+        out.flip = ctx.show('thumbnail') ? ctx.flipImage(m) : null;
+        break;
+      case 'badges':
+        out.badges = (0,_themes__WEBPACK_IMPORTED_MODULE_3__.tbBadges)(ctx, m);
+        break;
+      case 'name':
+        out.name = (0,_themes__WEBPACK_IMPORTED_MODULE_3__.tbPlainName)(ctx, m, 'h2', 'bptm-dv-name');
+        break;
+      case 'role':
+        out.role = (0,_themes__WEBPACK_IMPORTED_MODULE_3__.tbPlainDesignation)(ctx, m, 'bptm-dv-role');
+        break;
+      case 'desc':
+        {
+          const d = (0,_themes__WEBPACK_IMPORTED_MODULE_3__.tbPart)(ctx, m, 'details');
+          out.desc = d ? div('bptm-dv-desc', d) : null;
+          break;
+        }
+      case 'social':
+        out.social = detailSocial(ctx, m);
+        break;
+      case 'social_plain':
+        out.social_plain = detailSocial(ctx, m, false);
+        break;
+      case 'meta':
+        {
+          const meta = ctx.metaDetails(m, 'list');
+          out.meta = meta ? div('bptm-dv-meta', meta) : null;
+          break;
+        }
+      case 'skills':
+        {
+          const sk = (0,_themes__WEBPACK_IMPORTED_MODULE_3__.tbPart)(ctx, m, 'skills');
+          out.skills = sk ? div('bptm-dv-skills', sk) : null;
+          break;
+        }
+    }
+  });
+  out.badges_block = out.badges ? div('bptm-dv-badges', out.badges) : null;
+  if (out.badges_block && !out.img && use.includes('name')) {
+    out.name = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(out.badges_block, out.name);
+  }
+  const tail = (0,_themes__WEBPACK_IMPORTED_MODULE_3__.tbPart)(ctx, m, 'vcard');
+  out.tail = tail ? div('bptm-dv-tail', tail) : null;
+  return out;
+};
+const rootClass = (ctx, kind, style, extra = []) => {
+  const c = ['bptm-dv', 'bptm-dv-' + kind, 'bptm-dv-' + kind + '--' + style, ...extra];
+  if (!ctx.show('thumbnail')) {
+    c.push('bptm-dv--no-img');
+  }
+  return c.map(_sanitize__WEBPACK_IMPORTED_MODULE_6__.htmlClass).join(' ');
+};
+const mediaDiv = d => d.img ? div('bptm-dv-media', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.img, d.badges)) : null;
+
+/** Templates: kind => style => ( ctx, m ) => element. */
+const T = {
+  popup: {
+    default: (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'social_plain', 'desc', 'meta', 'skills']);
+      const cols = 'one' === ctx.attr('popupColumns', 'two') ? 'one' : 'two';
+      if ('one' === cols) {
+        return div(rootClass(ctx, 'popup', 'default', ['bptm-dv--cols-one']), mediaDiv(d), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.social_plain, d.desc, d.meta, d.skills, d.tail)));
+      }
+      return div(rootClass(ctx, 'popup', 'default', ['bptm-dv--cols-two']), div('bptm-dv-side', mediaDiv(d), d.meta), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.social_plain, d.desc, d.skills, d.tail)));
+    },
+    'style-one': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'desc', 'social', 'meta', 'skills']);
+      return div(rootClass(ctx, 'popup', 'style-one'), div('bptm-dv-side', mediaDiv(d)), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.desc, d.social, d.meta, d.skills, d.tail)));
+    },
+    'style-two': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'desc', 'meta', 'social', 'skills']);
+      return div(rootClass(ctx, 'popup', 'style-two'), div('bptm-dv-side', mediaDiv(d)), div('bptm-dv-body bptm-dv-body--scroll', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.desc, d.meta, d.social, d.skills, d.tail)));
+    },
+    'style-three': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'desc', 'meta', 'skills', 'social']);
+      return div(rootClass(ctx, 'popup', 'style-three'), div('bptm-dv-side', mediaDiv(d), (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.desc)), div('bptm-dv-body', d.meta ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('h4', {
+        className: 'bptm-dv-heading'
+      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Contact Info', 'bp-team-member')) : null, d.meta, (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.skills, d.social, d.tail)));
+    },
+    'style-four': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'desc', 'social', 'meta', 'skills']);
+      return div(rootClass(ctx, 'popup', 'style-four'), div('bptm-dv-side', mediaDiv(d)), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.desc, d.social, d.meta, d.skills, d.tail)));
+    },
+    'style-five': (ctx, m) => split(ctx, m, 'popup', 'style-five'),
+    'style-six': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'social_plain', 'desc', 'meta', 'skills', 'flip']);
+      const cols = 'one' === ctx.attr('popupColumns', 'two') ? 'one' : 'two';
+      if ('one' === cols) {
+        return div(rootClass(ctx, 'popup', 'style-six', ['bptm-dv--cols-one']), mediaDiv(d), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.social_plain, d.desc, d.meta, d.skills, d.tail)));
+      }
+      return div(rootClass(ctx, 'popup', 'style-six', ['bptm-dv--cols-two']), div('bptm-dv-side', mediaDiv(d)), div('bptm-dv-body', div('bptm-dv-head', div('bptm-dv-head-text', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role)), d.flip ? div('bptm-dv-avatar', d.flip) : null), (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.desc, d.social_plain, d.meta, d.skills, d.tail)));
+    }
+  },
+  panel: {
+    default: (ctx, m) => {
+      const d = parts(ctx, m, ['social_plain', 'name', 'role', 'img', 'badges', 'desc', 'meta', 'skills']);
+      return div(rootClass(ctx, 'panel', 'default'), d.social_plain ? div('bptm-panel-strip', d.social_plain) : null, div('bptm-panel-main', d.name ? div('bptm-panel-titlebar', d.name) : null, d.role ? div('bptm-panel-rolebar', d.role) : null, mediaDiv(d), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.desc, d.meta, d.skills, d.tail))));
+    },
+    'style-one': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'desc', 'social', 'meta', 'skills']);
+      return div(rootClass(ctx, 'panel', 'style-one'), mediaDiv(d), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.desc, d.social, d.meta, d.skills, d.tail)));
+    },
+    'style-two': (ctx, m) => {
+      const d = parts(ctx, m, ['name', 'role', 'img', 'badges', 'desc', 'meta', 'social', 'skills']);
+      return div(rootClass(ctx, 'panel', 'style-two'), d.name || d.role ? div('bptm-panel-band', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role)) : null, mediaDiv(d), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.desc, d.meta, d.social, d.skills, d.tail)));
+    },
+    'style-three': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'desc', 'meta', 'social', 'skills']);
+      return div(rootClass(ctx, 'panel', 'style-three'), mediaDiv(d), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.desc, d.meta, d.social, d.skills, d.tail)));
+    },
+    'style-four': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'desc', 'meta', 'social', 'skills']);
+      return div(rootClass(ctx, 'panel', 'style-four'), mediaDiv(d), d.name || d.role ? div('bptm-panel-band', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role)) : null, div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.desc, d.meta, d.social, d.skills, d.tail)));
+    },
+    'style-five': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'social_plain', 'desc', 'meta', 'skills']);
+      return div(rootClass(ctx, 'panel', 'style-five'), mediaDiv(d), div('bptm-dv-body', div('bptm-dv-head', div('bptm-dv-head-text', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role)), d.social_plain), (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.desc, d.meta, d.skills, d.tail)));
+    }
+  },
+  drawer: {
+    default: (ctx, m) => ident(ctx, m, 'default', ['img', 'badges', 'name', 'role', 'desc', 'meta', 'social_plain', 'skills'], d => (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.meta, d.social_plain, d.skills, d.tail)),
+    'style-one': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'desc', 'social', 'meta', 'skills']);
+      return div(rootClass(ctx, 'drawer', 'style-one'), div('bptm-dv-side', mediaDiv(d)), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.desc, d.social, d.meta, d.skills, d.tail)));
+    },
+    'style-two': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'desc', 'meta', 'social', 'skills']);
+      return div(rootClass(ctx, 'drawer', 'style-two'), div('bptm-dv-side', mediaDiv(d)), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.desc, d.meta, d.social, d.skills, d.tail)));
+    },
+    'style-three': (ctx, m) => ident(ctx, m, 'style-three', ['img', 'badges', 'meta', 'social', 'skills', 'name', 'role', 'desc'], d => (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.meta, d.social, d.skills, d.tail)),
+    'style-four': (ctx, m) => {
+      const d = parts(ctx, m, ['img', 'badges', 'name', 'role', 'desc', 'social', 'meta', 'skills']);
+      return div(rootClass(ctx, 'drawer', 'style-four'), div('bptm-dv-side', mediaDiv(d)), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.desc, d.social, d.meta, d.skills, d.tail)));
+    },
+    'style-five': (ctx, m) => split(ctx, m, 'drawer', 'style-five')
+  }
+};
+
+/** Popup / drawer style-five: media side + top text + two split columns. */
+function split(ctx, m, kind, style) {
+  const d = parts(ctx, m, ['meta', 'social', 'skills', 'img', 'badges', 'name', 'role', 'desc']);
+  const left = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.meta, d.social);
+  const right = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.skills, d.tail);
+  return div(rootClass(ctx, kind, style), div('bptm-dv-side', mediaDiv(d)), div('bptm-dv-body', div('bptm-dv-top', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role, d.desc)), left || right ? div('bptm-dv-split', left ? div('bptm-dv-split-col', left) : null, right ? div('bptm-dv-split-col', right) : null) : null));
+}
+
+/** Drawer default / style-three: small avatar beside the name, aside column. */
+function ident(ctx, m, style, use, right) {
+  const d = parts(ctx, m, use);
+  const r = right(d);
+  const id = d.img ? div('bptm-dv-ident', d.img, div('bptm-dv-ident-text', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.badges_block, d.name, d.role))) : (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(d.name, d.role);
+  return div(rootClass(ctx, 'drawer', style), div('bptm-dv-body', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(id, d.desc)), r ? div('bptm-dv-aside', r) : null);
+}
+
+/**
+ * Style used for a detail type.
+ *
+ * @param {Object} atts Attributes.
+ * @param {string} type popup|panel|drawer.
+ * @return {string} Style.
+ */
+const detailStyle = (atts, type) => {
+  const key = {
+    popup: 'popupStyle',
+    panel: 'panelStyle',
+    drawer: 'drawerStyle'
+  }[type];
+  const s = String(atts[key] || 'default');
+  return _registry__WEBPACK_IMPORTED_MODULE_4__.DETAIL_STYLES[type].includes(s) ? s : 'default';
+};
+
+/**
+ * Detail payload of one member (open in a popup / panel / drawer).
+ *
+ * @param {Object} props { ctx (initial group), m, type }.
+ * @return {Element|null} Element.
+ */
+const DetailPayload = ({
+  ctx,
+  m,
+  type
+}) => {
+  if (!['popup', 'panel', 'drawer'].includes(type)) {
+    return null;
+  }
+  const style = detailStyle(ctx.atts, type);
+  const dctx = ctx.withGroup(type);
+  const inner = (T[type][style] || T[type].default)(dctx, m);
+  let classes = 'bptm-detail bptm-detail--' + type + ' bptm-' + type + '-' + style;
+  if ('popup' === type) {
+    classes += ' bptm-popup-cols-' + ('one' === ctx.attr('popupColumns') ? 'one' : 'two');
+  }
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    id: ctx.detailId(m),
+    className: classes,
+    'data-bptm-detail': m.id,
+    'data-bptm-type': type,
+    'data-bptm-style': style,
+    itemScope: true,
+    itemType: 'https://schema.org/Person'
+  }, inner);
+};
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/effects.js":
+/*!***********************************************!*\
+  !*** ./src/Components/Common/Team/effects.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   equalize: () => (/* binding */ equalize),
+/* harmony export */   scrollables: () => (/* binding */ scrollables),
+/* harmony export */   useFontLink: () => (/* binding */ useFontLink),
+/* harmony export */   useLayoutHelpers: () => (/* binding */ useLayoutHelpers),
+/* harmony export */   useScrollAnimation: () => (/* binding */ useScrollAnimation),
+/* harmony export */   useTapReveal: () => (/* binding */ useTapReveal)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * Item effects: scroll-in animation, tap-to-reveal / flip on touch devices, equal description heights,
+ * scrollable descriptions, Google font links. All use the root element's own window / document.
+ */
+
+const winOf = el => el && el.ownerDocument && el.ownerDocument.defaultView || window;
+
+/**
+ * Scroll animation: `.bptm-anim` items get `.bptm-in` once they enter the viewport. Ids that already
+ * animated are remembered (so re-renders keep them visible and never replay the animation).
+ *
+ * @param {Object} rootRef Root ref.
+ * @param {Set}    seen    Ids that are in (mutable, owned by the component).
+ */
+const useScrollAnimation = (rootRef, seen) => {
+  const io = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    const root = rootRef.current;
+    if (!root) {
+      return;
+    }
+    const items = Array.from(root.querySelectorAll('.bptm-anim:not(.bptm-in)'));
+    if (!items.length) {
+      return;
+    }
+    const win = winOf(root);
+    const reduced = 'function' === typeof win.matchMedia && win.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || 'function' !== typeof win.IntersectionObserver) {
+      items.forEach(el => {
+        el.classList.add('bptm-in');
+        seen.add(el.getAttribute('data-bptm-id'));
+      });
+      return;
+    }
+    if (!io.current) {
+      io.current = new win.IntersectionObserver(entries => {
+        let n = 0;
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            const el = en.target;
+            el.style.setProperty('--bptm-anim-delay', Math.min(n, 8) * 70 + 'ms');
+            n++;
+            el.classList.add('bptm-in');
+            seen.add(el.getAttribute('data-bptm-id'));
+            io.current.unobserve(el);
+          }
+        });
+      }, {
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.05
+      });
+    }
+    items.forEach(el => io.current.observe(el));
+  });
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => () => {
+    if (io.current) {
+      io.current.disconnect();
+      io.current = null;
+    }
+  }, []);
+};
+
+/**
+ * Touch devices have no hover: the first tap on a flip / tap-reveal card reveals it, links stay usable once revealed.
+ *
+ * @param {Object} rootRef Root ref.
+ */
+const useTapReveal = rootRef => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const root = rootRef.current;
+    if (!root) {
+      return undefined;
+    }
+    const win = winOf(root);
+    const coarse = () => 'function' === typeof win.matchMedia && win.matchMedia('(hover: none)').matches;
+    const onClick = e => {
+      const flipGroup = root.classList.contains('bptm-group-flip');
+      const item = e.target.closest('.bptm-item');
+      if (!item || !root.contains(item) || !coarse()) {
+        return;
+      }
+      if (!flipGroup && !item.classList.contains('bptm-tap-reveal')) {
+        return;
+      }
+      if (!item.classList.contains('is-flipped')) {
+        e.preventDefault();
+        e.stopPropagation();
+        root.querySelectorAll('.bptm-item.is-flipped').forEach(el => el.classList.remove('is-flipped'));
+        item.classList.add('is-flipped');
+      } else if (!e.target.closest('a, button')) {
+        item.classList.remove('is-flipped');
+      }
+    };
+    const onKey = e => {
+      const item = e.target.closest && e.target.closest('.bptm-item');
+      if (root.classList.contains('bptm-group-flip') && item && ('Enter' === e.key || ' ' === e.key) && e.target === item) {
+        e.preventDefault();
+        item.classList.toggle('is-flipped');
+      }
+    };
+    root.addEventListener('click', onClick, true);
+    root.addEventListener('keydown', onKey);
+    return () => {
+      root.removeEventListener('click', onClick, true);
+      root.removeEventListener('keydown', onKey);
+    };
+  }, [rootRef]);
+};
+
+/** Equalise description heights across visible items (per grid row; every slide in a carousel). */
+const equalize = root => {
+  if (!root || !root.classList.contains('bptm-equal-details')) {
+    if (root) {
+      root.querySelectorAll('.bptm-items > .bptm-item .bptm-details').forEach(el => {
+        if (el.style.minHeight) {
+          el.style.minHeight = '';
+        }
+      });
+    }
+    return;
+  }
+  const carousel = root.classList.contains('bptm-view-carousel');
+  const rows = new Map();
+  root.querySelectorAll('.bptm-items > .bptm-item').forEach(it => {
+    const el = it.hidden ? null : it.querySelector('.bptm-details');
+    if (!el) {
+      return;
+    }
+    el.style.minHeight = '';
+    const k = carousel ? 0 : it.offsetTop;
+    if (!rows.has(k)) {
+      rows.set(k, []);
+    }
+    rows.get(k).push(el);
+  });
+  rows.forEach(row => {
+    const max = Math.max(...row.map(el => el.offsetHeight));
+    if (max > 0 && row.length > 1) {
+      row.forEach(el => {
+        el.style.minHeight = max + 'px';
+      });
+    }
+  });
+};
+
+/** Scroll-controlled descriptions that overflow get keyboard access and a shadow hint. */
+const scrollables = scope => {
+  // Cards only (as before): not carousel clones, not popup / panel / drawer details.
+  scope.querySelectorAll('.bptm-item:not(.bptm-clone) .bptm-details.bptm-scroll').forEach(el => {
+    if (el.closest('.bptm-drawer, .bptm-modal, .bptm-clone')) {
+      return;
+    }
+    const over = el.scrollHeight > el.clientHeight + 2;
+    el.classList.toggle('is-scrollable', over);
+    if (over) {
+      el.setAttribute('tabindex', '0');
+      if (!el.bptmScrollBound) {
+        el.bptmScrollBound = true;
+        el.addEventListener('scroll', () => el.classList.toggle('is-end', el.scrollTop + el.clientHeight >= el.scrollHeight - 2), {
+          passive: true
+        });
+      }
+    } else {
+      el.removeAttribute('tabindex');
+    }
+  });
+};
+
+/**
+ * Layout helpers after every commit + on resize / load / font load.
+ *
+ * @param {Object}   rootRef Root ref.
+ * @param {Function} extra   Extra callback on resize (drawer relayout).
+ */
+const useLayoutHelpers = (rootRef, extra) => {
+  const extraRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(extra);
+  extraRef.current = extra;
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    const root = rootRef.current;
+    if (root) {
+      scrollables(root);
+      equalize(root);
+    }
+  });
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const root = rootRef.current;
+    if (!root) {
+      return undefined;
+    }
+    const win = winOf(root);
+    let tm = 0;
+    const run = () => {
+      win.clearTimeout(tm);
+      tm = win.setTimeout(() => {
+        if (!root.isConnected) {
+          return;
+        }
+        equalize(root);
+        scrollables(root);
+        if (extraRef.current) {
+          extraRef.current();
+        }
+      }, 150);
+    };
+    win.addEventListener('resize', run);
+    const onLoad = () => equalize(root);
+    if ('complete' !== root.ownerDocument.readyState) {
+      win.addEventListener('load', onLoad, {
+        once: true
+      });
+    }
+    // Lazy images / fonts change heights after the first paint.
+    const onImg = e => {
+      if (e.target && 'IMG' === e.target.tagName) {
+        run();
+      }
+    };
+    root.addEventListener('load', onImg, true);
+    if (root.ownerDocument.fonts && root.ownerDocument.fonts.ready) {
+      root.ownerDocument.fonts.ready.then(() => root.isConnected && equalize(root));
+    }
+    return () => {
+      win.clearTimeout(tm);
+      win.removeEventListener('resize', run);
+      win.removeEventListener('load', onLoad);
+      root.removeEventListener('load', onImg, true);
+    };
+  }, [rootRef]);
+};
+
+/**
+ * Google Fonts stylesheet link in the root's document <head> (deduplicated by URL across blocks).
+ *
+ * @param {Object} rootRef Root ref.
+ * @param {string} url     Stylesheet URL ('' = none).
+ */
+const useFontLink = (rootRef, url) => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const root = rootRef.current;
+    if (!root || !url) {
+      return;
+    }
+    const doc = root.ownerDocument;
+    let hsh = 0;
+    for (let i = 0; i < url.length; i++) {
+      hsh = Math.imul(31, hsh) + url.charCodeAt(i) | 0;
+    }
+    const id = 'bptm-gf-' + (hsh >>> 0).toString(16) + '-css';
+    if (doc.getElementById(id)) {
+      return;
+    }
+    const link = doc.createElement('link');
+    link.rel = 'stylesheet';
+    link.id = id;
+    link.href = url;
+    link.media = 'all';
+    (doc.head || doc.documentElement).appendChild(link);
+  }, [rootRef, url]);
+};
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/modal.js":
+/*!*********************************************!*\
+  !*** ./src/Components/Common/Team/modal.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ModalShell: () => (/* binding */ ModalShell),
+/* harmony export */   createPortal: () => (/* reexport safe */ _wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createPortal),
+/* harmony export */   focusables: () => (/* binding */ focusables),
+/* harmony export */   lockScroll: () => (/* binding */ lockScroll),
+/* harmony export */   unlockScroll: () => (/* binding */ unlockScroll),
+/* harmony export */   useModal: () => (/* binding */ useModal),
+/* harmony export */   usePortal: () => (/* binding */ usePortal)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _bridge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bridge */ "./src/Components/Common/Team/bridge.js");
+/**
+ * Popup / panel (dialog shells portalled to <body>) and the inline drawer shell.
+ * ESC + overlay close, focus trap, focus restore, body scroll lock, prev / next across openable
+ * members, arrow keys. Uses the root element's own document / window (editor canvas iframe safe).
+ */
+
+
+
+const CLOSE_SVG = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('svg', {
+  viewBox: '0 0 24 24',
+  width: '20',
+  height: '20',
+  'aria-hidden': 'true',
+  focusable: 'false'
+}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('path', {
+  d: 'M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7a1 1 0 1 0-1.4 1.4l4.9 4.9-4.9 4.9a1 1 0 1 0 1.4 1.4l4.9-4.9 4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4z',
+  fill: 'currentColor'
+}));
+const FOCUSABLE = 'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), iframe, [tabindex]:not([tabindex="-1"]), [contenteditable="true"]';
+const focusables = ctx => Array.from(ctx.querySelectorAll(FOCUSABLE)).filter(el => !el.closest('[hidden], [inert]') && (el.offsetWidth || el.offsetHeight || el.getClientRects().length));
+
+/* Body scroll lock, reference counted per document. */
+const locks = new WeakMap();
+const lockScroll = doc => {
+  const n = (locks.get(doc) || 0) + 1;
+  locks.set(doc, n);
+  if (n > 1) {
+    return;
+  }
+  const html = doc.documentElement;
+  const win = doc.defaultView || window;
+  html.style.setProperty('--bptm-scrollbar', win.innerWidth - html.clientWidth + 'px');
+  html.classList.add('bptm-scroll-lock');
+};
+const unlockScroll = doc => {
+  const n = Math.max(0, (locks.get(doc) || 0) - 1);
+  locks.set(doc, n);
+  if (0 === n) {
+    doc.documentElement.classList.remove('bptm-scroll-lock');
+    doc.documentElement.style.removeProperty('--bptm-scrollbar');
+  }
+};
+
+/**
+ * Portal container (`.bptm-wrap.bptm-portal` at the end of <body>) keeping the root's theme classes.
+ *
+ * @param {Object}  rootRef  Root element ref.
+ * @param {boolean} enabled  Popup / panel in use.
+ * @param {string}  classes  Root classes.
+ * @param {string}  uid      Instance uid.
+ * @param {boolean} isEditor Editor canvas (links never navigate).
+ * @return {Element|null} Container.
+ */
+const usePortal = (rootRef, enabled, classes, uid, isEditor) => {
+  const [el, setEl] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    const root = rootRef.current;
+    if (!enabled || !root) {
+      return undefined;
+    }
+    const doc = root.ownerDocument;
+    const portal = doc.createElement('div');
+    portal.setAttribute('data-bptm-portal', uid);
+    const win = doc.defaultView || window;
+    if ('rtl' === win.getComputedStyle(root).direction) {
+      portal.setAttribute('dir', 'rtl');
+    }
+    const stop = e => {
+      const a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (a) {
+        e.preventDefault();
+      }
+    };
+    if (isEditor) {
+      portal.addEventListener('click', stop);
+    }
+    (doc.body || doc.documentElement).appendChild(portal);
+    setEl(portal);
+    return () => {
+      portal.removeEventListener('click', stop);
+      portal.remove();
+      setEl(null);
+    };
+  }, [enabled, uid]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    if (el) {
+      const keep = String(classes).split(/\s+/).filter(c => /^bptm-(wrap|theme-|group-|layout-|link-|align-|imgfx-|imghfx-)/.test(c) || 'wp-block-tsb-team-members' === c);
+      el.className = keep.concat(['bptm-portal']).join(' ');
+    }
+  });
+  return el;
+};
+
+/**
+ * Modal controller state + behaviour.
+ *
+ * @param {Object} opts { type, rootRef, openable: () => string[], onRequestDrawerPlace }.
+ * @return {Object} API.
+ */
+const useModal = ({
+  type,
+  rootRef
+}) => {
+  const [state, setState] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    id: null,
+    visible: false,
+    isOpen: false
+  });
+  const shellRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const lastFocus = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const closeTimer = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  // Set while closing so the focus trap lets focus go back to the trigger.
+  const closing = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+  const stateRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(state);
+  stateRef.current = state;
+  const doc = () => rootRef.current ? rootRef.current.ownerDocument : document;
+  const win = () => doc().defaultView || window;
+  const open = (id, trigger) => {
+    if (trigger) {
+      lastFocus.current = trigger;
+    }
+    closing.current = false;
+    if (closeTimer.current) {
+      win().clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    const wasOpen = stateRef.current.visible && stateRef.current.isOpen;
+    setState({
+      id,
+      visible: true,
+      isOpen: wasOpen
+    });
+  };
+  const close = () => {
+    const s = stateRef.current;
+    if (!s.visible || null === s.id) {
+      return;
+    }
+    const shell = shellRef.current;
+    const dur = shell ? parseFloat(win().getComputedStyle(shell).getPropertyValue('--bptm-modal-speed')) || 0 : 0;
+    const reduced = 'function' === typeof win().matchMedia && win().matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const back = lastFocus.current && lastFocus.current.isConnected ? lastFocus.current : null;
+    const closedId = s.id;
+    closing.current = true;
+    if (dur > 0 && !reduced) {
+      setState({
+        id: closedId,
+        visible: true,
+        isOpen: false,
+        closing: true
+      });
+      closeTimer.current = win().setTimeout(() => {
+        closeTimer.current = null;
+        setState({
+          id: null,
+          visible: false,
+          isOpen: false
+        });
+      }, dur);
+    } else {
+      setState({
+        id: null,
+        visible: false,
+        isOpen: false
+      });
+    }
+    const root = rootRef.current;
+    const fallback = root ? root.querySelector('.bptm-item[data-bptm-id="' + String(closedId).replace(/["\\]/g, '') + '"] [data-bptm-open]') : null;
+    const target = back || fallback;
+    if (target) {
+      target.focus({
+        preventScroll: true
+      });
+    }
+    lastFocus.current = null;
+  };
+
+  // Enter transition: add `is-open` two frames after the shell became visible.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (state.visible && !state.isOpen && !state.closing && null !== state.id) {
+      const w = win();
+      let r2 = 0;
+      const r1 = w.requestAnimationFrame(() => {
+        r2 = w.requestAnimationFrame(() => setState(s => s.visible && !s.closing ? {
+          ...s,
+          isOpen: true
+        } : s));
+      });
+      return () => {
+        w.cancelAnimationFrame(r1);
+        w.cancelAnimationFrame(r2);
+      };
+    }
+    return undefined;
+  }, [state.visible, state.isOpen, state.closing, state.id]);
+
+  // Scroll lock + host class for dialogs; document-level ESC / focus containment.
+  const active = state.visible && !state.closing;
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (!active || !rootRef.current) {
+      return undefined;
+    }
+    const d = doc();
+    const root = rootRef.current;
+    if ('drawer' !== type) {
+      lockScroll(d);
+      root.classList.add('bptm-modal-open-host');
+      const onFocus = e => {
+        const shell = shellRef.current;
+        if (shell && !closing.current && !shell.contains(e.target)) {
+          const c = shell.querySelector('.bptm-modal-content');
+          if (c) {
+            c.focus();
+          }
+        }
+      };
+      const onKey = e => {
+        if ('Escape' === e.key) {
+          close();
+        }
+      };
+      d.addEventListener('focusin', onFocus);
+      d.addEventListener('keydown', onKey);
+      return () => {
+        d.removeEventListener('focusin', onFocus);
+        d.removeEventListener('keydown', onKey);
+        root.classList.remove('bptm-modal-open-host');
+        unlockScroll(d);
+      };
+    }
+    const onDrawerKey = e => {
+      if ('Escape' !== e.key || e.defaultPrevented) {
+        return;
+      }
+      if (d.querySelector('.bptm-modal.is-open:not([hidden])')) {
+        return;
+      }
+      close();
+    };
+    d.addEventListener('keydown', onDrawerKey);
+    return () => d.removeEventListener('keydown', onDrawerKey);
+  }, [active, type]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => () => {
+    if (closeTimer.current) {
+      win().clearTimeout(closeTimer.current);
+    }
+  }, []);
+  return {
+    state,
+    open,
+    close,
+    shellRef
+  };
+};
+
+/**
+ * Popup / panel dialog shell or drawer shell.
+ *
+ * @param {Object} props Props.
+ * @return {Element} Shell.
+ */
+const ModalShell = ({
+  type,
+  uid,
+  panelPosition,
+  drawerStyle,
+  modal,
+  content,
+  navHidden,
+  onStep,
+  detailStyle
+}) => {
+  const {
+    state,
+    close,
+    shellRef
+  } = modal;
+  const contentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const shown = state.visible;
+
+  // Focus the content when a member opens / changes; reset scroll.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (!shown || null === state.id || state.closing) {
+      return;
+    }
+    const c = contentRef.current;
+    if (!c) {
+      return;
+    }
+    c.scrollTop = 0;
+    const dialog = shellRef.current && shellRef.current.querySelector('.bptm-modal-dialog');
+    if (dialog) {
+      dialog.scrollTop = 0;
+    }
+    c.focus({
+      preventScroll: 'drawer' === type
+    });
+    if ('drawer' === type && shellRef.current) {
+      const w = shellRef.current.ownerDocument.defaultView || window;
+      const r = shellRef.current.getBoundingClientRect();
+      if (r.bottom > w.innerHeight || r.top < 0) {
+        shellRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      }
+    }
+  }, [state.id, shown]);
+  const onClick = e => {
+    if (e.target.closest('[data-bptm-close]')) {
+      e.preventDefault();
+      close();
+    } else if (e.target.closest('[data-bptm-prev]')) {
+      e.preventDefault();
+      onStep(-1);
+    } else if (e.target.closest('[data-bptm-next]')) {
+      e.preventDefault();
+      onStep(1);
+    }
+  };
+  const onKeyDown = e => {
+    if ('Escape' === e.key) {
+      e.preventDefault();
+      e.stopPropagation();
+      close();
+      return;
+    }
+    const shell = shellRef.current;
+    if (!shell) {
+      return;
+    }
+    const w = shell.ownerDocument.defaultView || window;
+    if (('ArrowLeft' === e.key || 'ArrowRight' === e.key) && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) {
+      const rtl = 'rtl' === w.getComputedStyle(shell).direction;
+      const dir = 'ArrowRight' === e.key ? 1 : -1;
+      onStep(rtl ? -dir : dir);
+      return;
+    }
+    if ('Tab' === e.key && 'drawer' !== type) {
+      const dialog = shell.querySelector('.bptm-modal-dialog') || shell;
+      const f = focusables(dialog);
+      if (!f.length) {
+        e.preventDefault();
+        return;
+      }
+      const first = f[0];
+      const last = f[f.length - 1];
+      const activeEl = shell.ownerDocument.activeElement;
+      if (e.shiftKey && (activeEl === first || !dialog.contains(activeEl))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && activeEl === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  };
+  const styleAttr = shown && null !== state.id ? {
+    'data-bptm-style': detailStyle
+  } : {};
+  const contentEl = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-modal-content',
+    tabIndex: -1,
+    ref: contentRef
+  }, content);
+  if ('drawer' === type) {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-drawer bptm-drawer--' + String(drawerStyle || 'default').replace(/[^A-Za-z0-9_-]/g, '') + (state.isOpen ? ' is-open' : ''),
+      'data-bptm-for': uid,
+      role: 'region',
+      'aria-label': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Member details', 'bp-team-member'),
+      hidden: !shown,
+      ref: shellRef,
+      onClick,
+      onKeyDown,
+      ...styleAttr
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-drawer-arrow',
+      'aria-hidden': 'true'
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-drawer-inner'
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+      type: 'button',
+      className: 'bptm-modal-close',
+      'data-bptm-close': '',
+      'aria-label': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Close', 'bp-team-member')
+    }, CLOSE_SVG), contentEl, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-modal-nav',
+      hidden: navHidden
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+      type: 'button',
+      className: 'bptm-modal-prev',
+      'data-bptm-prev': '',
+      'aria-label': (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)('prev')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+      className: 'fas fa-angle-left',
+      'aria-hidden': 'true'
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+      type: 'button',
+      className: 'bptm-modal-next',
+      'data-bptm-next': '',
+      'aria-label': (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)('next')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+      className: 'fas fa-angle-right',
+      'aria-hidden': 'true'
+    })))));
+  }
+  let side = '';
+  if ('panel' === type) {
+    side = ' bptm-panel-' + (['left', 'right', 'center'].includes(panelPosition) ? panelPosition : 'right');
+  }
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-modal bptm-modal--' + type + side + (state.isOpen ? ' is-open' : ''),
+    'data-bptm-for': uid,
+    hidden: !shown,
+    ref: shellRef,
+    onClick,
+    onKeyDown,
+    ...styleAttr
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-modal-overlay',
+    'data-bptm-close': ''
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-modal-dialog',
+    role: 'dialog',
+    'aria-modal': 'true',
+    'aria-label': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Member details', 'bp-team-member')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+    type: 'button',
+    className: 'bptm-modal-close',
+    'data-bptm-close': '',
+    'aria-label': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Close', 'bp-team-member')
+  }, CLOSE_SVG), contentEl, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-modal-nav',
+    hidden: navHidden
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+    type: 'button',
+    className: 'bptm-modal-prev',
+    'data-bptm-prev': '',
+    'aria-label': (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)('prev')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+    className: 'fas fa-angle-left',
+    'aria-hidden': 'true'
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', null, (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)('prev'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('button', {
+    type: 'button',
+    className: 'bptm-modal-next',
+    'data-bptm-next': '',
+    'aria-label': (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)('next')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', null, (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.t)('next')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+    className: 'fas fa-angle-right',
+    'aria-hidden': 'true'
+  })))));
+};
+
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/model.js":
+/*!*********************************************!*\
+  !*** ./src/Components/Common/Team/model.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FILTER_TAX: () => (/* binding */ FILTER_TAX),
+/* harmony export */   INCLUDE_MAP: () => (/* binding */ INCLUDE_MAP),
+/* harmony export */   MAX_MEMBERS: () => (/* binding */ MAX_MEMBERS),
+/* harmony export */   TERM_FIELDS: () => (/* binding */ TERM_FIELDS),
+/* harmony export */   anyDevice: () => (/* binding */ anyDevice),
+/* harmony export */   applyRuntimeFilters: () => (/* binding */ applyRuntimeFilters),
+/* harmony export */   buildMembers: () => (/* binding */ buildMembers),
+/* harmony export */   cleanMembers: () => (/* binding */ cleanMembers),
+/* harmony export */   clientMatches: () => (/* binding */ clientMatches),
+/* harmony export */   defaults: () => (/* binding */ defaults),
+/* harmony export */   designations: () => (/* binding */ designations),
+/* harmony export */   filterTerms: () => (/* binding */ filterTerms),
+/* harmony export */   getThemeDef: () => (/* reexport safe */ _registry__WEBPACK_IMPORTED_MODULE_1__.getThemeDef),
+/* harmony export */   hideClasses: () => (/* binding */ hideClasses),
+/* harmony export */   isOn: () => (/* binding */ isOn),
+/* harmony export */   memberFromItem: () => (/* binding */ memberFromItem),
+/* harmony export */   normOrderBy: () => (/* binding */ normOrderBy),
+/* harmony export */   orderMembers: () => (/* binding */ orderMembers),
+/* harmony export */   paginationMode: () => (/* binding */ paginationMode),
+/* harmony export */   placeholderUrl: () => (/* binding */ placeholderUrl),
+/* harmony export */   queryPool: () => (/* binding */ queryPool),
+/* harmony export */   resolveImage: () => (/* binding */ resolveImage),
+/* harmony export */   resolveLinkType: () => (/* binding */ resolveLinkType),
+/* harmony export */   resolveView: () => (/* binding */ resolveView),
+/* harmony export */   resolveVisibility: () => (/* binding */ resolveVisibility),
+/* harmony export */   sanitizeAttributes: () => (/* binding */ sanitizeAttributes),
+/* harmony export */   searchText: () => (/* binding */ searchText),
+/* harmony export */   socialHref: () => (/* binding */ socialHref),
+/* harmony export */   socialLink: () => (/* binding */ socialLink),
+/* harmony export */   splitTerms: () => (/* binding */ splitTerms),
+/* harmony export */   termMatches: () => (/* binding */ termMatches),
+/* harmony export */   termNames: () => (/* binding */ termNames),
+/* harmony export */   termSlugs: () => (/* binding */ termSlugs),
+/* harmony export */   termValues: () => (/* binding */ termValues),
+/* harmony export */   visibilityDefaults: () => (/* binding */ visibilityDefaults)
+/* harmony export */ });
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../block.json */ "./src/block.json");
+/* harmony import */ var _registry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registry */ "./src/Components/Common/Team/registry.js");
+/* harmony import */ var _bridge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bridge */ "./src/Components/Common/Team/bridge.js");
+/* harmony import */ var _sanitize__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sanitize */ "./src/Components/Common/Team/sanitize.js");
+/**
+ * Pure data layer (ports of the former PHP Renderer::sanitize, bptm_member_from_item, Query, Filters,
+ * Visibility and Context link logic). Everything here works on untrusted block attributes.
+ */
+
+
+
+
+const MAX_MEMBERS = 500;
+const SCHEMA = _block_json__WEBPACK_IMPORTED_MODULE_0__.attributes || {};
+const ENUMS = {
+  filterType: ['normal-filter', 'ajax-filter'],
+  linkType: ['default', 'popup', 'panel', 'drawer', 'custom', 'none', 'single_page'],
+  linkTarget: ['_self', '_blank'],
+  popupColumns: ['two', 'one'],
+  panelPosition: ['right', 'left', 'center'],
+  imageFilter: ['none', 'blur', 'brightness', 'contrast', 'grayscale', 'hue_rotate', 'invert', 'opacity', 'saturate', 'sepia'],
+  hoverImageFilter: ['none', 'blur', 'brightness', 'contrast', 'grayscale', 'hue_rotate', 'invert', 'opacity', 'saturate', 'sepia'],
+  orderBy: ['default', 'title', 'rand', 'name', 'date', 'ID', 'menu_order', 'modified'],
+  order: ['ASC', 'DESC'],
+  taxonomyOrderBy: ['name', 'default', 'slug', 'term_id', 'order', 'count', 'menu_order', 'term_order'],
+  taxonomyOrder: ['ASC', 'DESC'],
+  filterColumns: ['two', 'three'],
+  filterCatPosition: ['center', 'left', 'right'],
+  filterStyle: ['default', 'style-one', 'style-two', 'style-three', 'style-four', 'style-five'],
+  paginationType: ['normal-pagination', 'load-more-button', 'load-more-scroll'],
+  carouselNavsStyle: ['default', 'style-one', 'style-two', 'style-three'],
+  carouselDotsStyle: ['default', 'style-one', 'style-two', 'style-three'],
+  alignment: ['center', 'left', 'right']
+};
+const clone = v => v && 'object' === typeof v ? JSON.parse(JSON.stringify(v)) : v;
+const isNumeric = v => 'number' === typeof v && isFinite(v) || 'string' === typeof v && '' !== v.trim() && isFinite(Number(v));
+const toBool = v => {
+  if ('boolean' === typeof v) {
+    return v;
+  }
+  if ('string' === typeof v) {
+    return !['false', '0', ''].includes(v.toLowerCase());
+  }
+  return !!v;
+};
+
+/** bptm_is_on(). */
+const isOn = v => {
+  if ('boolean' === typeof v) {
+    return v;
+  }
+  if ('number' === typeof v) {
+    return v > 0;
+  }
+  if ('string' === typeof v) {
+    return isNumeric(v) ? Number(v) > 0 : ['on', 'yes', 'true', '1'].includes(v.trim().toLowerCase());
+  }
+  return !!v;
+};
+const cleanKey = k => String(k).replace(/[^A-Za-z0-9_-]/g, '');
+
+/** Structural clean-up of nested values: scalar leaves, max depth (strings sanitized). */
+const cleanDeep = (v, depth = 0) => {
+  if (Array.isArray(v)) {
+    return depth > 4 ? [] : v.map(x => cleanDeep(x, depth + 1));
+  }
+  if (v && 'object' === typeof v) {
+    const out = {};
+    if (depth > 4) {
+      return out;
+    }
+    Object.keys(v).forEach(k => {
+      const ck = cleanKey(k);
+      if ('' !== ck) {
+        out[ck] = cleanDeep(v[k], depth + 1);
+      }
+    });
+    return out;
+  }
+  if ('boolean' === typeof v || 'number' === typeof v || null === v) {
+    return v;
+  }
+  return _sanitize__WEBPACK_IMPORTED_MODULE_3__.text(v);
+};
+
+/** Members: list of plain objects, string leaves capped at 20000 chars, max 3 levels. */
+const cleanRaw = (obj, depth) => {
+  const out = Array.isArray(obj) ? [] : {};
+  Object.keys(obj).forEach(k => {
+    const v = obj[k];
+    const ck = Array.isArray(obj) ? k : cleanKey(k);
+    if ('' === ck) {
+      return;
+    }
+    if (v && 'object' === typeof v) {
+      if (depth < 3) {
+        out[ck] = cleanRaw(v, depth + 1);
+      }
+    } else if ('string' === typeof v) {
+      out[ck] = v.length > 20000 ? v.slice(0, 20000) : v;
+    } else if ('boolean' === typeof v || 'number' === typeof v || null === v) {
+      out[ck] = v;
+    }
+  });
+  return Array.isArray(obj) ? out.filter(x => undefined !== x) : out;
+};
+const cleanMembers = val => {
+  if ('string' === typeof val) {
+    try {
+      val = JSON.parse(val);
+    } catch (e) {
+      val = [];
+    }
+  }
+  if (!Array.isArray(val)) {
+    return [];
+  }
+  return val.slice(0, MAX_MEMBERS).filter(m => m && 'object' === typeof m && !Array.isArray(m)).map(m => cleanRaw(m, 0));
+};
+
+/** Default attribute values from block.json. */
+const defaults = () => {
+  const out = {};
+  Object.keys(SCHEMA).forEach(k => {
+    const def = SCHEMA[k];
+    if (Object.prototype.hasOwnProperty.call(def, 'default')) {
+      out[k] = clone(def.default);
+    } else {
+      var _boolean$number$integ;
+      out[k] = (_boolean$number$integ = {
+        boolean: false,
+        number: 0,
+        integer: 0,
+        array: [],
+        object: {}
+      }[def.type]) !== null && _boolean$number$integ !== void 0 ? _boolean$number$integ : '';
+    }
+  });
+  return out;
+};
+
+/**
+ * Merge defaults, coerce types, validate enums and clamp numbers (Renderer::sanitize()).
+ *
+ * @param {Object} atts Raw attributes.
+ * @return {Object} Sanitized attributes.
+ */
+const sanitizeAttributes = atts => {
+  atts = atts && 'object' === typeof atts ? atts : {};
+  const out = defaults();
+  Object.keys(atts).forEach(k => {
+    const v = atts[k];
+    if ('members' === k) {
+      out.members = cleanMembers(v);
+      return;
+    }
+    if (!SCHEMA[k]) {
+      if (['className', 'anchor', 'align'].includes(k) && 'string' === typeof v) {
+        out[k] = _sanitize__WEBPACK_IMPORTED_MODULE_3__.text(v);
+      }
+      return;
+    }
+    const type = Array.isArray(SCHEMA[k].type) ? SCHEMA[k].type[0] : SCHEMA[k].type;
+    switch (type) {
+      case 'boolean':
+        out[k] = toBool(v);
+        break;
+      case 'number':
+        out[k] = isNumeric(v) ? Number(v) : out[k];
+        break;
+      case 'integer':
+        out[k] = isNumeric(v) ? Math.trunc(Number(v)) : out[k];
+        break;
+      case 'array':
+        if (Array.isArray(v)) {
+          out[k] = cleanDeep(v);
+        } else {
+          out[k] = 'string' === typeof v && '' !== v ? v.split(',').map(s => s.trim()) : [];
+        }
+        break;
+      case 'object':
+        out[k] = v && 'object' === typeof v && !Array.isArray(v) ? cleanDeep(v) : out[k];
+        break;
+      default:
+        out[k] = null !== v && 'object' !== typeof v && undefined !== v ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.text(v) : out[k];
+    }
+  });
+  Object.keys(ENUMS).forEach(k => {
+    if (!ENUMS[k].includes(out[k])) {
+      const d = SCHEMA[k] && SCHEMA[k].default;
+      out[k] = ENUMS[k].includes(d) ? d : ENUMS[k][0];
+    }
+  });
+  ['popupStyle', 'panelStyle', 'drawerStyle', 'thumbnailSize', 'theme'].forEach(k => {
+    out[k] = _sanitize__WEBPACK_IMPORTED_MODULE_3__.key(out[k]);
+  });
+  if ('' === out.thumbnailSize) {
+    out.thumbnailSize = 'large';
+  }
+  out.numberOfMembers = Math.trunc(Number(out.numberOfMembers)) || 0;
+  ['perPage', 'initialItems', 'loadPerClick', 'perLoad', 'carouselItemsToScroll'].forEach(k => {
+    out[k] = Math.max(1, Math.trunc(Number(out[k])) || 0);
+  });
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  out.carouselSpeed = clamp(Math.trunc(Number(out.carouselSpeed)) || 0, 100, 10000);
+  out.carouselAutoplayTimeout = clamp(Math.trunc(Number(out.carouselAutoplayTimeout)) || 0, 500, 60000);
+  out.detailsLength = Math.max(0, Math.trunc(Number(out.detailsLength)) || 0);
+  out.columnGap = clamp(Number(out.columnGap) || 0, 0, 200);
+  out.rowGap = clamp(Number(out.rowGap) || 0, 0, 200);
+  return out;
+};
+
+/* ------------------------------------------------------------------ */
+/* View / link / pagination decisions                                  */
+/* ------------------------------------------------------------------ */
+
+/** grid | carousel | filter (Renderer::view()). */
+const resolveView = (atts, theme) => {
+  if ('carousel' === theme.forced_view) {
+    return 'carousel';
+  }
+  if ('filter' === theme.forced_view) {
+    return 'filter';
+  }
+  if (atts.carouselEnabled && theme.carousel && 'table' !== theme.layout && !theme.grouped) {
+    return 'carousel';
+  }
+  if (atts.filterEnabled && theme.filter) {
+    return 'filter';
+  }
+  return 'grid';
+};
+
+/** popup | panel | drawer | custom | none (Context::resolve_link_type()). */
+const resolveLinkType = (atts, theme, view) => {
+  if (!atts.nameIsLinked) {
+    return 'none';
+  }
+  let type = String(atts.linkType || '');
+  let forced = String(theme.forced_link || '');
+  if ('single_page' === forced) {
+    forced = 'popup';
+  }
+  if (forced && ('default' === type || ['panel', 'drawer'].includes(forced))) {
+    type = forced;
+  }
+  if ('default' === type || '' === type) {
+    type = 'popup';
+  }
+  if ('single_page' === type) {
+    type = 'custom';
+  }
+  if (!['popup', 'panel', 'drawer', 'custom', 'none'].includes(type)) {
+    type = 'popup';
+  }
+  if ('drawer' === type && ('carousel' === view || 'table' === theme.layout)) {
+    type = 'popup';
+  }
+  return type;
+};
+
+/** '' | normal-pagination | load-more-button | load-more-scroll (Query::pagination_mode()). */
+const paginationMode = (atts, theme, view) => {
+  if (!atts.paginationEnabled || 'carousel' === view || theme.grouped || false === theme.pagination) {
+    return '';
+  }
+  let type = String(atts.paginationType);
+  if (!ENUMS.paginationType.includes(type)) {
+    type = 'normal-pagination';
+  }
+  if ('filter' === view) {
+    if ('ajax-filter' !== atts.filterType) {
+      return '';
+    }
+  }
+  return type;
+};
+const normOrderBy = o => {
+  o = String(o);
+  if ('name' === o) {
+    return 'title';
+  }
+  return ['title', 'rand'].includes(o) ? o : 'default';
+};
+
+/* ------------------------------------------------------------------ */
+/* Visibility                                                          */
+/* ------------------------------------------------------------------ */
+
+/** Default visibility per group for a theme. */
+const visibilityDefaults = theme => {
+  const initial = {};
+  _registry__WEBPACK_IMPORTED_MODULE_1__.VIS_KEYS.forEach(k => {
+    initial[k] = _registry__WEBPACK_IMPORTED_MODULE_1__.CORE_FIELDS.includes(k);
+  });
+  const reg = theme.visibility || {};
+  if (Array.isArray(reg)) {
+    reg.forEach(k => {
+      if (k in initial) {
+        initial[k] = true;
+      }
+    });
+  } else {
+    Object.keys(reg).forEach(k => {
+      if (k in initial) {
+        initial[k] = !!reg[k];
+      }
+    });
+  }
+  const overlay = {};
+  _registry__WEBPACK_IMPORTED_MODULE_1__.VIS_KEYS.forEach(k => {
+    overlay[k] = 'read_more' !== k;
+  });
+  return {
+    initial,
+    popup: overlay,
+    panel: overlay,
+    drawer: overlay
+  };
+};
+const deviceMap = (value, fallback) => {
+  const out = {};
+  if (value && 'object' === typeof value && !Array.isArray(value)) {
+    const v = {
+      ...value
+    };
+    if (undefined !== v.mobile_landscape && undefined === v.mobilePortrait) {
+      v.mobilePortrait = v.mobile_landscape;
+    }
+    _registry__WEBPACK_IMPORTED_MODULE_1__.VIS_DEVICES.forEach(d => {
+      out[d] = undefined !== v[d] && null !== v[d] ? toBool(v[d]) : fallback;
+    });
+    return out;
+  }
+  _registry__WEBPACK_IMPORTED_MODULE_1__.VIS_DEVICES.forEach(d => {
+    out[d] = null === value || undefined === value ? !!fallback : toBool(value);
+  });
+  return out;
+};
+
+/** group => field => device => bool (Visibility::resolve()). */
+const resolveVisibility = (attr, theme) => {
+  const defs = visibilityDefaults(theme);
+  attr = attr && 'object' === typeof attr && !Array.isArray(attr) ? attr : {};
+  const grouped = {};
+  _registry__WEBPACK_IMPORTED_MODULE_1__.VIS_GROUPS.forEach(g => {
+    if (attr[g] && 'object' === typeof attr[g] && !Array.isArray(attr[g])) {
+      grouped[g] = {
+        ...attr[g]
+      };
+    }
+  });
+  Object.keys(attr).forEach(k => {
+    if (!_registry__WEBPACK_IMPORTED_MODULE_1__.VIS_GROUPS.includes(k)) {
+      grouped.initial = grouped.initial || {};
+      grouped.initial[k] = attr[k];
+    }
+  });
+  const out = {};
+  _registry__WEBPACK_IMPORTED_MODULE_1__.VIS_GROUPS.forEach(g => {
+    out[g] = {};
+    Object.keys(defs[g]).forEach(f => {
+      const rawV = grouped[g] ? grouped[g][f] : undefined;
+      out[g][f] = deviceMap(rawV, defs[g][f]);
+    });
+  });
+  return out;
+};
+const anyDevice = map => !!map && _registry__WEBPACK_IMPORTED_MODULE_1__.VIS_DEVICES.some(d => true === map[d]);
+const HIDE = {
+  desktop: 'bptm-hide-desktop',
+  tablet: 'bptm-hide-tablet',
+  mobilePortrait: 'bptm-hide-mobile-portrait',
+  mobile: 'bptm-hide-mobile'
+};
+const hideClasses = map => map ? _registry__WEBPACK_IMPORTED_MODULE_1__.VIS_DEVICES.filter(d => false === map[d]).map(d => HIDE[d]).join(' ') : '';
+
+/* ------------------------------------------------------------------ */
+/* Members                                                             */
+/* ------------------------------------------------------------------ */
+
+const TERM_FIELDS = {
+  group: 'group',
+  tags: 'tag',
+  language: 'language',
+  location: 'location',
+  gender: 'gender',
+  specialty: 'specialty',
+  extraOne: 'extra_one',
+  extraTwo: 'extra_two',
+  extraThree: 'extra_three',
+  extraFour: 'extra_four',
+  extraFive: 'extra_five'
+};
+const FILTER_TAX = ['group', 'location', 'language', 'gender', 'specialty', 'extra_one', 'extra_two', 'extra_three', 'extra_four', 'extra_five'];
+
+/** bptm_split_terms(). */
+const splitTerms = value => {
+  if (Array.isArray(value)) {
+    value = value.filter(x => 'string' === typeof x || 'number' === typeof x).join(',');
+  }
+  if ('string' !== typeof value && 'number' !== typeof value) {
+    return [];
+  }
+  const seen = new Map();
+  String(value).split(',').forEach(part => {
+    const name = _sanitize__WEBPACK_IMPORTED_MODULE_3__.text(part);
+    if ('' === name) {
+      return;
+    }
+    const slug = _sanitize__WEBPACK_IMPORTED_MODULE_3__.termSlug(name);
+    if (!seen.has(slug)) {
+      seen.set(slug, {
+        id: slug,
+        name,
+        slug,
+        parent: 0
+      });
+    }
+  });
+  return [...seen.values()];
+};
+
+/**
+ * Resolve an image value for a size: { id, url, alt } (+ optional sizes map stored by the editor).
+ * Relative URLs (no scheme, no leading "/") are relative to the plugin root.
+ *
+ * @param {Object} image Raw image.
+ * @param {string} size  Image size.
+ * @return {Object} { id, url, alt }.
+ */
+const resolveImage = (image, size) => {
+  image = image && 'object' === typeof image && !Array.isArray(image) ? image : {};
+  let id = isNumeric(image.id) ? Math.max(0, Math.trunc(Number(image.id))) : 0;
+  let u = 'string' === typeof image.url ? image.url.trim() : '';
+  const alt = 'string' === typeof image.alt || 'number' === typeof image.alt ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.text(image.alt) : '';
+  let sizes = image.sizes && 'object' === typeof image.sizes && !Array.isArray(image.sizes) ? image.sizes : null;
+  // Bundled sample photos (assets/img/team/name.jpg) ship -150x150 / -300x300 copies; blocks saved
+  // before the sizes map existed get it derived here.
+  if (!sizes && /^assets\/img\/team\/[a-z0-9-]+\.jpg$/i.test(u)) {
+    const base = u.replace(/\.jpg$/i, '');
+    sizes = {
+      thumbnail: {
+        url: base + '-150x150.jpg'
+      },
+      medium: {
+        url: base + '-300x300.jpg'
+      }
+    };
+  }
+  if (sizes) {
+    const s = sizes[size] || ('full' !== size ? null : sizes.full);
+    const su = s && 'object' === typeof s ? s.url : s;
+    if ('string' === typeof su && '' !== su.trim()) {
+      u = su.trim();
+    }
+  }
+  if ('' !== u && !/^(?:[a-z][a-z0-9+.-]*:|\/)/i.test(u)) {
+    const parts = u.replace(/\\/g, '/').split('/').filter(seg => '' !== seg && '.' !== seg && '..' !== seg).map(seg => {
+      let dec = seg;
+      try {
+        dec = decodeURIComponent(seg);
+      } catch (e) {
+        dec = seg;
+      }
+      return encodeURIComponent(dec).replace(/[!'()*]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase());
+    });
+    u = parts.length ? (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.pluginUrl)() + parts.join('/') : '';
+    id = 0;
+  }
+  u = '' !== u ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.url(u, _sanitize__WEBPACK_IMPORTED_MODULE_3__.WEB) : '';
+  if ('' === u) {
+    id = 0;
+  }
+  return {
+    id,
+    url: u,
+    alt
+  };
+};
+const placeholderUrl = () => (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.pluginUrl)() + 'assets/img/placeholder.svg';
+
+/**
+ * Member object used by every template (bptm_member_from_item()).
+ *
+ * @param {Object}  item      Raw item.
+ * @param {string}  size      Image size.
+ * @param {boolean} allowHtml Rich details.
+ * @param {number}  index     Position.
+ * @return {Object|null} Member.
+ */
+const memberFromItem = (item, size, allowHtml, index) => {
+  if (!item || 'object' !== typeof item || Array.isArray(item)) {
+    return null;
+  }
+  const txt = k => 'string' === typeof item[k] || 'number' === typeof item[k] ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.text(item[k]) : '';
+  const lnk = k => 'string' === typeof item[k] && '' !== item[k].trim() ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.url(item[k].trim()) : '';
+  let id = _sanitize__WEBPACK_IMPORTED_MODULE_3__.itemId(item.id);
+  if ('' === id) {
+    id = 'm' + (index + 1);
+  }
+  const name = txt('name');
+  const rawDetails = 'string' === typeof item.details ? item.details.replace(/\r\n?/g, '\n') : '';
+  let content = null; // Clean node list (paragraphs).
+  if (allowHtml) {
+    content = '' !== rawDetails.trim() ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.cleanHtml(rawDetails) : [];
+  } else {
+    const plain = _sanitize__WEBPACK_IMPORTED_MODULE_3__.decodeEntities(_sanitize__WEBPACK_IMPORTED_MODULE_3__.stripTags(rawDetails));
+    content = '' !== plain.trim() ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.textParagraphs(plain) : [];
+  }
+  const excerpt = _sanitize__WEBPACK_IMPORTED_MODULE_3__.decodeEntities(_sanitize__WEBPACK_IMPORTED_MODULE_3__.stripTags(rawDetails)).replace(/\s+/g, ' ').trim();
+  const image = resolveImage(item.image, size);
+  const flip = resolveImage(item.flipImage, size);
+  const terms = {};
+  Object.keys(TERM_FIELDS).forEach(f => {
+    terms[TERM_FIELDS[f]] = splitTerms(item[f]);
+  });
+  const social = [];
+  (Array.isArray(item.social) ? item.social : []).forEach(row => {
+    if (!row || 'object' !== typeof row) {
+      return;
+    }
+    const icon = _sanitize__WEBPACK_IMPORTED_MODULE_3__.iconClass(row.icon);
+    const link = socialLink('string' === typeof row.link || 'number' === typeof row.link ? String(row.link) : '', icon);
+    if (icon && link) {
+      social.push({
+        icon,
+        link
+      });
+    }
+  });
+  const skills = [];
+  (Array.isArray(item.skills) ? item.skills : []).forEach(row => {
+    if (!row || 'object' !== typeof row) {
+      return;
+    }
+    const skill = 'string' === typeof row.skill || 'number' === typeof row.skill ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.text(row.skill) : '';
+    if ('' === skill) {
+      return;
+    }
+    const pct = isNumeric(row.percent) ? Math.round(Number(row.percent)) : 0;
+    skills.push({
+      skill,
+      percent: Math.max(0, Math.min(100, pct))
+    });
+  });
+  return {
+    id,
+    name,
+    slug: _sanitize__WEBPACK_IMPORTED_MODULE_3__.termSlug(name),
+    content,
+    excerpt,
+    designation: txt('designation'),
+    company: txt('company'),
+    company_website: lnk('companyWebsite'),
+    land_phone: txt('landPhone'),
+    cell_phone: txt('cellPhone'),
+    email: _sanitize__WEBPACK_IMPORTED_MODULE_3__.email(item.email),
+    email_cc: _sanitize__WEBPACK_IMPORTED_MODULE_3__.emailList(item.emailCc),
+    email_bcc: _sanitize__WEBPACK_IMPORTED_MODULE_3__.emailList(item.emailBcc),
+    address: txt('address'),
+    ribbon: txt('ribbon'),
+    zip_code: txt('zipCode'),
+    vcard: lnk('vcard'),
+    custom_page: lnk('customUrl'),
+    featured: isOn(item.featured),
+    image_id: image.id,
+    image_url: '' !== image.url ? image.url : placeholderUrl(),
+    image_alt: '' !== image.alt ? image.alt : name,
+    flip_image_id: flip.id,
+    flip_image_url: flip.url,
+    social,
+    skills,
+    terms,
+    menu_order: index
+  };
+};
+const isPhoneIcon = icon => /(?:^|\s)fa-(?:phone(?:-[a-z0-9-]+)?|square-phone(?:-[a-z0-9-]+)?|mobile(?:-[a-z0-9-]+)?)(?:\s|$)/.test(String(icon).toLowerCase());
+
+/** bptm_sanitize_social_link(). */
+const socialLink = (link, icon) => {
+  link = String(link || '').trim();
+  if ('' === link) {
+    return '';
+  }
+  if (_sanitize__WEBPACK_IMPORTED_MODULE_3__.isEmail(link)) {
+    link = 'mailto:' + link;
+  } else if (/^\+?[0-9 ().-]{5,}$/.test(link) && isPhoneIcon(icon)) {
+    link = 'tel:' + link.replace(/[^0-9+]/g, '');
+  }
+  return _sanitize__WEBPACK_IMPORTED_MODULE_3__.url(link, ['http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'irc6', 'ircs', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'sms', 'svn', 'tel', 'fax', 'xmpp', 'webcal', 'urn', 'skype', 'whatsapp', 'viber', 'tg', 'callto']);
+};
+
+/** Href for a social entry (Context::social_href()). */
+const socialHref = s => {
+  const icon = s.icon || '';
+  let link = String(s.link || '').trim();
+  if ('' === link) {
+    return '';
+  }
+  if (-1 !== icon.indexOf('envelope') && _sanitize__WEBPACK_IMPORTED_MODULE_3__.isEmail(link)) {
+    return 'mailto:' + link;
+  }
+  if (/fa-(phone|mobile)/.test(icon) && /^[+\d][\d\s().-]+$/.test(link)) {
+    return 'tel:' + link.replace(/[^\d+]/g, '');
+  }
+  if (-1 !== icon.indexOf('whatsapp') && /^[+\d][\d\s().-]+$/.test(link)) {
+    return 'https://wa.me/' + link.replace(/\D/g, '');
+  }
+  if (-1 !== icon.indexOf('skype') && !/^[a-z]+:/i.test(link)) {
+    return 'skype:' + link + '?chat';
+  }
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(link)) {
+    link = 'https://' + link.replace(/^\/+/, '');
+  }
+  return link;
+};
+
+/** All member objects of the block (ids made unique). */
+const buildMembers = atts => {
+  const items = Array.isArray(atts.members) ? atts.members.slice(0, MAX_MEMBERS) : [];
+  const size = atts.thumbnailSize || 'large';
+  const html = !!atts.allowHtmlDetails;
+  const seen = new Set();
+  const out = [];
+  items.forEach((item, index) => {
+    const m = memberFromItem(item, size, html, index);
+    if (!m) {
+      return;
+    }
+    const base = m.id;
+    let id = base;
+    let n = 1;
+    while (seen.has(id)) {
+      n++;
+      id = base + '-' + n;
+    }
+    seen.add(id);
+    m.id = id;
+    out.push(m);
+  });
+  return out;
+};
+const termNames = (m, k, sep = ', ') => (m.terms[k] || []).map(t => t.name).join(sep);
+const termSlugs = (m, k) => (m.terms[k] || []).map(t => t.slug);
+
+/* ------------------------------------------------------------------ */
+/* Query                                                               */
+/* ------------------------------------------------------------------ */
+
+const INCLUDE_MAP = {
+  includeGroups: 'group',
+  includeTags: 'tag',
+  includeLocations: 'location',
+  includeLanguages: 'language',
+  includeSpecialties: 'specialty',
+  includeGenders: 'gender',
+  includeExtraOne: 'extra_one',
+  includeExtraTwo: 'extra_two',
+  includeExtraThree: 'extra_three',
+  includeExtraFour: 'extra_four',
+  includeExtraFive: 'extra_five'
+};
+
+/** Include / exclude list → term names (legacy numeric ids ignored). */
+const termValues = rawList => {
+  if ('string' === typeof rawList) {
+    rawList = rawList.split(',');
+  }
+  const out = [];
+  (Array.isArray(rawList) ? rawList : []).forEach(v => {
+    if (v && 'object' === typeof v) {
+      v = undefined !== v.value ? v.value : undefined !== v.name ? v.name : v.label;
+    }
+    if ('string' !== typeof v) {
+      return;
+    }
+    v = _sanitize__WEBPACK_IMPORTED_MODULE_3__.text(v);
+    if ('' !== v && !out.includes(v)) {
+      out.push(v);
+    }
+  });
+  return out;
+};
+const termMatches = (term, values) => {
+  const name = _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(term.name);
+  return values.some(v => _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(v) === name || _sanitize__WEBPACK_IMPORTED_MODULE_3__.termSlug(v) === term.slug);
+};
+const memberHas = (m, k, values) => (m.terms[k] || []).some(t => termMatches(t, values));
+const contains = (hay, needle) => '' === needle || -1 !== _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(hay).indexOf(needle);
+
+/** Text searched by "search in all fields". */
+const searchText = m => {
+  const hay = [m.designation, m.company, m.company_website, m.email, m.land_phone, m.cell_phone, m.address, m.zip_code, m.ribbon, m.excerpt];
+  Object.keys(m.terms).forEach(k => m.terms[k].forEach(t => hay.push(t.name)));
+  m.skills.forEach(s => hay.push(s.skill));
+  return hay.filter(x => '' !== String(x)).join(' ');
+};
+const applyIncludes = (atts, members) => {
+  Object.keys(INCLUDE_MAP).forEach(attr => {
+    const values = termValues(atts[attr]);
+    if (values.length) {
+      members = members.filter(m => memberHas(m, INCLUDE_MAP[attr], values));
+    }
+  });
+  const exclude = termValues(atts.excludeGroups);
+  if (exclude.length) {
+    members = members.filter(m => !memberHas(m, 'group', exclude));
+  }
+  return members;
+};
+
+/** Order + featured first (Query::order()). `seed` keeps the random order stable per instance. */
+const orderMembers = (atts, members, seed) => {
+  const orderby = normOrderBy(atts.orderBy);
+  let desc = 'DESC' === String(atts.order).toUpperCase();
+  let list = members.slice();
+  if ('title' === orderby) {
+    const coll = 'undefined' !== typeof Intl ? new Intl.Collator(undefined, {
+      numeric: true,
+      sensitivity: 'base'
+    }) : null;
+    list.sort((a, b) => {
+      const c = coll ? coll.compare(a.name, b.name) : a.name.localeCompare(b.name);
+      return 0 !== c ? c : a.menu_order - b.menu_order;
+    });
+  } else if ('rand' === orderby) {
+    const h = id => {
+      let x = 2166136261 ^ seed;
+      const s = String(seed) + '|' + id;
+      for (let i = 0; i < s.length; i++) {
+        x ^= s.charCodeAt(i);
+        x = Math.imul(x, 16777619) >>> 0;
+      }
+      return x;
+    };
+    list.sort((a, b) => h(a.id) - h(b.id));
+    desc = false;
+  }
+  if (desc) {
+    list.reverse();
+  }
+  if (atts.enableFeaturing) {
+    list = [...list.filter(m => m.featured), ...list.filter(m => !m.featured)];
+  }
+  return list;
+};
+
+/**
+ * Server-style filters (former "ajax filter" REST path): applied to the base list before pagination.
+ *
+ * @param {Object[]} members Members.
+ * @param {Object}   f       Filter state { group, designation, location…: string[], search, company, zip, tag }.
+ * @return {Object[]} Members.
+ */
+const applyRuntimeFilters = (members, f) => {
+  FILTER_TAX.forEach(k => {
+    const vals = (f[k] || []).map(v => _sanitize__WEBPACK_IMPORTED_MODULE_3__.termSlug(String(v))).filter(Boolean);
+    if (vals.length) {
+      members = members.filter(m => termSlugs(m, k).some(s => vals.includes(s)));
+    }
+  });
+  if (f.designation && f.designation.length) {
+    const want = f.designation.map(v => _sanitize__WEBPACK_IMPORTED_MODULE_3__.termSlug(String(v)));
+    members = members.filter(m => want.includes(_sanitize__WEBPACK_IMPORTED_MODULE_3__.termSlug(m.designation)));
+  }
+  const search = f.search ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(String(f.search).trim()) : '';
+  if (search) {
+    const all = (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.pref)('search_all_fields');
+    members = members.filter(m => contains(m.name, search) || all && contains(searchText(m), search));
+  }
+  [['company', 'company'], ['zip', 'zip_code']].forEach(([k, field]) => {
+    const v = f[k] ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(String(f[k]).trim()) : '';
+    if (v) {
+      members = members.filter(m => '' !== m[field] && contains(m[field], v));
+    }
+  });
+  const tag = f.tag ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(String(f.tag).trim()) : '';
+  if (tag) {
+    members = members.filter(m => (m.terms.tag || []).some(t => contains(t.name, tag)));
+  }
+  return members;
+};
+
+/**
+ * Client-side ("normal filter") match, same semantics as the former data-attribute matching.
+ *
+ * @param {Object} m Member.
+ * @param {Object} s State { group: slug, designation: [slug], <tax>: [slug], search, company, zip, tag }.
+ * @return {boolean} Match.
+ */
+const clientMatches = (m, s) => {
+  if (s.group && !termSlugs(m, 'group').map(_sanitize__WEBPACK_IMPORTED_MODULE_3__.lower).includes(s.group)) {
+    return false;
+  }
+  if (s.designation && s.designation.length && !s.designation.includes('' !== m.designation ? _sanitize__WEBPACK_IMPORTED_MODULE_3__.termSlug(m.designation) : '')) {
+    return false;
+  }
+  for (const k of FILTER_TAX) {
+    if ('group' === k || !s[k] || !s[k].length) {
+      continue;
+    }
+    const have = termSlugs(m, k).map(_sanitize__WEBPACK_IMPORTED_MODULE_3__.lower);
+    if (!s[k].some(v => have.includes(_sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(String(v))))) {
+      return false;
+    }
+  }
+  if (s.search) {
+    const q = _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(s.search);
+    const inName = -1 !== _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(m.name).indexOf(q);
+    const inAll = (0,_bridge__WEBPACK_IMPORTED_MODULE_2__.pref)('search_all_fields') && -1 !== _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(searchText(m)).indexOf(q);
+    if (!inName && !inAll) {
+      return false;
+    }
+  }
+  if (s.company && -1 === _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(m.company).indexOf(_sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(s.company))) {
+    return false;
+  }
+  if (s.zip && -1 === _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(m.zip_code).indexOf(_sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(s.zip))) {
+    return false;
+  }
+  if (s.tag) {
+    const q = _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(s.tag);
+    if (!(m.terms.tag || []).some(t => -1 !== _sanitize__WEBPACK_IMPORTED_MODULE_3__.lower(t.name).indexOf(q))) {
+      return false;
+    }
+  }
+  return true;
+};
+
+/**
+ * Members before frontend filters / pagination: includes applied, ordered, capped.
+ *
+ * @param {Object}   atts    Sanitized attributes.
+ * @param {Object[]} members All members.
+ * @param {number}   seed    Random seed.
+ * @return {Object} { base, pool }.
+ */
+const queryPool = (atts, members, seed) => {
+  const base = applyIncludes(atts, members);
+  let pool = orderMembers(atts, base, seed);
+  const num = Math.trunc(Number(atts.numberOfMembers)) || 0;
+  if (num > 0) {
+    pool = pool.slice(0, num);
+  }
+  return {
+    base,
+    pool
+  };
+};
+
+/** Distinct terms of a key across the pool (Filters::terms()). */
+const filterTerms = (key, atts, pool, includeAttr = '') => {
+  const include = includeAttr ? termValues(atts[includeAttr]) : [];
+  const exclude = 'group' === key ? termValues(atts.excludeGroups) : [];
+  const terms = new Map();
+  pool.forEach(m => {
+    (m.terms[key] || []).forEach(t => {
+      if (terms.has(t.slug)) {
+        terms.get(t.slug).count++;
+        return;
+      }
+      if (include.length && !termMatches(t, include) || exclude.length && termMatches(t, exclude)) {
+        return;
+      }
+      terms.set(t.slug, {
+        slug: t.slug,
+        name: t.name,
+        count: 1
+      });
+    });
+  });
+  let list = [...terms.values()];
+  if (['name', 'slug'].includes(atts.taxonomyOrderBy)) {
+    const coll = 'undefined' !== typeof Intl ? new Intl.Collator(undefined, {
+      numeric: true,
+      sensitivity: 'base'
+    }) : null;
+    list.sort((a, b) => coll ? coll.compare(a.name, b.name) : a.name.localeCompare(b.name));
+  }
+  if ('DESC' === atts.taxonomyOrder) {
+    list = list.reverse();
+  }
+  return list;
+};
+
+/** Distinct designations (slug => label), natural case-insensitive order. */
+const designations = pool => {
+  const vals = new Map();
+  pool.forEach(m => {
+    const d = m.designation.trim();
+    if ('' !== d) {
+      const slug = _sanitize__WEBPACK_IMPORTED_MODULE_3__.termSlug(d);
+      if (!vals.has(slug)) {
+        vals.set(slug, d);
+      }
+    }
+  });
+  const coll = 'undefined' !== typeof Intl ? new Intl.Collator(undefined, {
+    numeric: true,
+    sensitivity: 'base'
+  }) : null;
+  return [...vals.entries()].sort((a, b) => coll ? coll.compare(a[1], b[1]) : a[1].localeCompare(b[1]));
+};
+
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/registry.js":
+/*!************************************************!*\
+  !*** ./src/Components/Common/Team/registry.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CORE_FIELDS: () => (/* binding */ CORE_FIELDS),
+/* harmony export */   DEFAULT_THEME: () => (/* binding */ DEFAULT_THEME),
+/* harmony export */   DETAIL_STYLES: () => (/* binding */ DETAIL_STYLES),
+/* harmony export */   META_FIELDS: () => (/* binding */ META_FIELDS),
+/* harmony export */   NAV_ICONS: () => (/* binding */ NAV_ICONS),
+/* harmony export */   VIS_DEVICES: () => (/* binding */ VIS_DEVICES),
+/* harmony export */   VIS_GROUPS: () => (/* binding */ VIS_GROUPS),
+/* harmony export */   VIS_KEYS: () => (/* binding */ VIS_KEYS),
+/* harmony export */   getThemeDef: () => (/* binding */ getThemeDef),
+/* harmony export */   getThemeList: () => (/* binding */ getThemeList),
+/* harmony export */   themeFamily: () => (/* binding */ themeFamily)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * Theme registry, visibility fields and detail styles (single source for the editor and the front end).
+ *
+ * Ported from the former PHP registries (includes/render/themes/registry-{a,b,c}.php).
+ * Each theme: { id, label, group, layout: grid|table|list, carousel, filter, forced_link, forced_view,
+ * grouped, pagination, visibility: { field: bool } (card defaults) }.
+ */
+
+const DEFAULT_THEME = 'grid-5';
+const VIS_KEYS = ['thumbnail', 'name', 'designation', 'details', 'social', 'ribbon', 'featured_badge', 'skills', 'company', 'address', 'land_phone', 'cell_phone', 'email', 'location', 'language', 'specialty', 'gender', 'zip', 'extra_one', 'extra_two', 'extra_three', 'extra_four', 'extra_five', 'vcard', 'read_more'];
+
+/** Fields shown on cards by default when a registry entry does not list them. */
+const CORE_FIELDS = ['thumbnail', 'name', 'designation', 'details', 'social', 'ribbon', 'featured_badge', 'read_more'];
+const VIS_GROUPS = ['initial', 'popup', 'panel', 'drawer'];
+const VIS_DEVICES = ['desktop', 'tablet', 'mobilePortrait', 'mobile'];
+
+/** Meta / contact fields in display order. */
+const META_FIELDS = ['company', 'address', 'land_phone', 'cell_phone', 'email', 'location', 'language', 'specialty', 'gender', 'zip', 'extra_one', 'extra_two', 'extra_three', 'extra_four', 'extra_five'];
+const DETAIL_STYLES = {
+  popup: ['default', 'style-one', 'style-two', 'style-three', 'style-four', 'style-five', 'style-six'],
+  panel: ['default', 'style-one', 'style-two', 'style-three', 'style-four', 'style-five'],
+  drawer: ['default', 'style-one', 'style-two', 'style-three', 'style-four', 'style-five']
+};
+const visMap = on => {
+  const map = {};
+  VIS_KEYS.forEach(k => {
+    map[k] = on.includes(k);
+  });
+  return map;
+};
+const labels = () => ({
+  'grid-1': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 1', 'bp-team-member'),
+  'grid-2': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 2', 'bp-team-member'),
+  'grid-3': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 3', 'bp-team-member'),
+  'grid-4': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 4', 'bp-team-member'),
+  'grid-5': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 5', 'bp-team-member'),
+  'grid-6': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 6', 'bp-team-member'),
+  'circle-1': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Circle 1', 'bp-team-member'),
+  'circle-2': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Circle 2', 'bp-team-member'),
+  'circle-3': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Circle 3', 'bp-team-member'),
+  'circle-4': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Circle 4', 'bp-team-member'),
+  'circle-5': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Circle 5', 'bp-team-member'),
+  'circle-6': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Circle 6', 'bp-team-member'),
+  'horizontal-1': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Horizontal 1', 'bp-team-member'),
+  'horizontal-2': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Horizontal 2', 'bp-team-member'),
+  'horizontal-3': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Horizontal 3', 'bp-team-member'),
+  'horizontal-4': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Horizontal 4', 'bp-team-member'),
+  'horizontal-5': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Horizontal 5', 'bp-team-member'),
+  'horizontal-6': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Horizontal 6', 'bp-team-member'),
+  'horizontal-7': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Horizontal 7', 'bp-team-member'),
+  'horizontal-8': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Horizontal 8', 'bp-team-member'),
+  'horizontal-9': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Horizontal 9', 'bp-team-member'),
+  'flip-1': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Flip 1', 'bp-team-member'),
+  'flip-2': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Flip 2', 'bp-team-member'),
+  'flip-3': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Flip 3', 'bp-team-member'),
+  'flip-4': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Flip 4', 'bp-team-member'),
+  'flip-5': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Flip 5', 'bp-team-member'),
+  'flip-6': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Flip 6', 'bp-team-member'),
+  'table-1': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Table 1', 'bp-team-member'),
+  'table-2': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Table 2', 'bp-team-member'),
+  'table-3': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Table 3', 'bp-team-member'),
+  'table-4': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Table 4', 'bp-team-member'),
+  'table-5': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Table 5', 'bp-team-member'),
+  'list-1': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('List 1', 'bp-team-member'),
+  'list-2': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('List 2', 'bp-team-member'),
+  'list-3': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('List 3', 'bp-team-member'),
+  'list-4': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('List 4', 'bp-team-member'),
+  'list-5': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('List 5', 'bp-team-member'),
+  'grid-7': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 7', 'bp-team-member'),
+  'grid-8': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 8', 'bp-team-member'),
+  'grid-9': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 9', 'bp-team-member'),
+  'grid-10': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 10 (Greyscale)', 'bp-team-member'),
+  'grid-11': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 11', 'bp-team-member'),
+  'grid-12': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid 12', 'bp-team-member'),
+  'grid-popup': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid Popup', 'bp-team-member'),
+  'grid-single': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid Single', 'bp-team-member'),
+  'grid-filter-single': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid Filter Single', 'bp-team-member'),
+  'grid-filter-popup': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid Filter Popup', 'bp-team-member'),
+  'grid-slider': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid Slider', 'bp-team-member'),
+  'grid-filter-selected': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid Filter - Selected Groups', 'bp-team-member'),
+  'grid-filter-vcard': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid Filter with vCard', 'bp-team-member'),
+  'grid-panel': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid Panel Slide', 'bp-team-member'),
+  'grid-drawer-1': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid Drawer 1', 'bp-team-member'),
+  'grid-drawer-2': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid Drawer 2', 'bp-team-member'),
+  'table-6': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Table 6 - Underline', 'bp-team-member'),
+  'table-7': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Table 7 - Box Border', 'bp-team-member'),
+  'table-8': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Table 8 - Odd Even', 'bp-team-member'),
+  'table-9': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Table 9 - Filter', 'bp-team-member'),
+  'table-10': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Table 10 - Filter Dense', 'bp-team-member'),
+  'list-6': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('List 6', 'bp-team-member'),
+  'list-7': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('List 7', 'bp-team-member'),
+  'group-filter-1': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Group Filter 1', 'bp-team-member'),
+  'sidebar-1': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sidebar 1 - Framed Photo', 'bp-team-member'),
+  'sidebar-2': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sidebar 2 - Round Avatar', 'bp-team-member'),
+  'sidebar-3': (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sidebar 3 - Compact Rows', 'bp-team-member')
+});
+const B = ['thumbnail', 'name', 'designation'];
+const R = ['ribbon', 'featured_badge'];
+
+/** Raw definitions: id => [ group, layout, visible fields, overrides ]. */
+const DEFS = [
+// Registry A: grid / circle / horizontal / flip (layout grid, carousel + filter).
+['grid-1', 'grid', 'grid', [...B, 'social']], ['grid-2', 'grid', 'grid', [...B, 'details', 'social', 'ribbon', 'featured_badge', 'cell_phone']], ['grid-3', 'grid', 'grid', [...B, 'social', ...R]], ['grid-4', 'grid', 'grid', [...B, 'social', ...R]], ['grid-5', 'grid', 'grid', [...B, 'social', ...R]], ['grid-6', 'grid', 'grid', [...B, 'social', ...R]], ['circle-1', 'circle', 'grid', [...B, 'details', 'social']], ['circle-2', 'circle', 'grid', [...B, 'details', 'social', 'cell_phone']], ['circle-3', 'circle', 'grid', [...B, 'social']], ['circle-4', 'circle', 'grid', [...B, 'details', 'social', 'cell_phone']], ['circle-5', 'circle', 'grid', [...B, 'details', 'social']], ['circle-6', 'circle', 'grid', [...B, 'details', 'social', ...R]], ['horizontal-1', 'horizontal', 'grid', [...B, 'details', 'social']], ['horizontal-2', 'horizontal', 'grid', [...B, 'details', 'cell_phone']], ['horizontal-3', 'horizontal', 'grid', [...B, 'details', ...R, 'address']], ['horizontal-4', 'horizontal', 'grid', [...B, 'details', 'social']], ['horizontal-5', 'horizontal', 'grid', [...B, 'details', 'email']], ['horizontal-6', 'horizontal', 'grid', [...B, 'details', 'social', ...R]], ['horizontal-7', 'horizontal', 'grid', [...B, 'details', 'social', ...R]], ['horizontal-8', 'horizontal', 'grid', [...B, 'details', 'social', ...R]], ['horizontal-9', 'horizontal', 'grid', [...B, 'details', 'social', ...R]], ['flip-1', 'flip', 'grid', [...B, 'details', 'social', ...R, 'cell_phone']], ['flip-2', 'flip', 'grid', [...B, 'details', 'social', 'email']], ['flip-3', 'flip', 'grid', [...B, 'details', 'social', ...R, 'address']], ['flip-4', 'flip', 'grid', [...B, 'social', 'cell_phone', 'email']], ['flip-5', 'flip', 'grid', [...B, ...R]], ['flip-6', 'flip', 'grid', [...B, ...R, 'email', 'land_phone', 'cell_phone']],
+// Registry B: tables, lists, legacy grids.
+['table-1', 'table', 'table', [...B, 'details', 'social'], {
+  filter: false
+}], ['table-2', 'table', 'table', [...B, 'details', 'social'], {
+  filter: false
+}], ['table-3', 'table', 'table', [...B, 'details', 'social'], {
+  filter: false
+}], ['table-4', 'table', 'table', [...B, 'details', 'social'], {
+  filter: false
+}], ['table-5', 'table', 'table', [...B, 'details', 'social'], {
+  filter: false
+}], ['list-1', 'list', 'list', [...B, 'details', 'social']], ['list-2', 'list', 'list', [...B, 'details', 'cell_phone']], ['list-3', 'list', 'list', [...B, 'details', 'email']], ['list-4', 'list', 'list', [...B, 'details', 'email', 'address']], ['list-5', 'list', 'list', [...B, 'details', 'social']], ['grid-7', 'grid', 'grid', [...B, 'details', 'social', ...R]], ['grid-8', 'grid', 'grid', [...B]], ['grid-9', 'grid', 'grid', [...B, ...R]], ['grid-10', 'grid', 'grid', [...B, 'details', 'social', ...R]], ['grid-11', 'grid', 'grid', [...B]], ['grid-12', 'grid', 'grid', [...B, 'social', 'read_more', ...R]], ['grid-popup', 'legacy', 'grid', [...B, ...R], {
+  forced_link: 'popup'
+}], ['grid-single', 'legacy', 'grid', [...B, ...R], {
+  forced_link: 'popup'
+}], ['grid-filter-single', 'legacy', 'grid', [...B, ...R, 'cell_phone', 'email'], {
+  forced_link: 'popup',
+  forced_view: 'filter',
+  carousel: false,
+  pagination: false
+}], ['grid-filter-popup', 'legacy', 'grid', [...B, ...R], {
+  forced_link: 'popup',
+  forced_view: 'filter',
+  carousel: false,
+  pagination: false
+}], ['grid-slider', 'legacy', 'grid', [...B, 'details', 'social', ...R], {
+  forced_view: 'carousel',
+  filter: false,
+  pagination: false
+}], ['grid-filter-selected', 'legacy', 'grid', [...B, ...R], {
+  forced_link: 'popup',
+  forced_view: 'filter',
+  carousel: false,
+  pagination: false
+}], ['grid-filter-vcard', 'legacy', 'grid', [...B, 'cell_phone', 'email', 'vcard'], {
+  forced_view: 'filter',
+  carousel: false,
+  pagination: false
+}], ['grid-panel', 'legacy', 'grid', [...B, ...R], {
+  forced_link: 'panel',
+  pagination: false
+}], ['grid-drawer-1', 'legacy', 'grid', [...B, ...R], {
+  forced_link: 'drawer',
+  carousel: false,
+  pagination: false
+}], ['grid-drawer-2', 'legacy', 'grid', [...B, ...R], {
+  forced_link: 'drawer',
+  carousel: false,
+  pagination: false
+}], ['table-6', 'table', 'table', [...B, 'details', 'social'], {
+  pagination: false
+}], ['table-7', 'table', 'table', [...B, 'details', 'social'], {
+  pagination: false
+}], ['table-8', 'table', 'table', [...B, 'details', 'social'], {
+  pagination: false
+}], ['table-9', 'table', 'table', ['name', 'designation', 'cell_phone', 'email'], {
+  forced_view: 'filter',
+  pagination: false
+}], ['table-10', 'table', 'table', ['name', 'cell_phone', 'email'], {
+  forced_view: 'filter',
+  pagination: false
+}], ['list-6', 'list', 'list', [...B, 'details', 'social', ...R]], ['list-7', 'list', 'list', [...B, 'details', 'social', ...R]], ['group-filter-1', 'legacy', 'grid', [...B, 'cell_phone', 'email'], {
+  forced_view: 'filter',
+  grouped: true,
+  carousel: false,
+  pagination: false
+}],
+// Registry C: sidebar.
+['sidebar-1', 'sidebar', 'list', [...B, 'social'], {
+  carousel: false
+}], ['sidebar-2', 'sidebar', 'list', [...B, 'social'], {
+  carousel: false
+}], ['sidebar-3', 'sidebar', 'list', [...B, 'social'], {
+  carousel: false
+}]];
+
+/** Which item renderer family a theme uses: ta (registry A), tb (registry B) or sidebar. */
+const themeFamily = id => {
+  if (/^(grid-[1-6]|circle-\d|horizontal-\d|flip-\d)$/.test(id)) {
+    return 'ta';
+  }
+  if (/^sidebar-\d$/.test(id)) {
+    return 'sidebar';
+  }
+  return 'tb';
+};
+let cache = null;
+
+/**
+ * All themes, normalised (array, registry order).
+ *
+ * @return {Object[]} Themes.
+ */
+const getThemeList = () => {
+  if (cache) {
+    return cache;
+  }
+  const L = labels();
+  cache = DEFS.map(([id, group, layout, vis, over = {}]) => {
+    const flow = 'table' === layout || 'list' === layout;
+    return {
+      id,
+      value: id,
+      label: L[id] || id,
+      group,
+      layout,
+      carousel: !flow,
+      filter: true,
+      forced_link: null,
+      forced_view: null,
+      grouped: false,
+      pagination: true,
+      visibility: visMap(vis),
+      ...over
+    };
+  });
+  return cache;
+};
+
+/**
+ * One theme (falls back to the default theme).
+ *
+ * @param {string} id Theme id.
+ * @return {Object} Theme.
+ */
+const getThemeDef = id => {
+  const list = getThemeList();
+  const key = String(id || '').toLowerCase().replace(/[^a-z0-9_-]/g, '');
+  return list.find(t => t.id === key) || list.find(t => t.id === DEFAULT_THEME);
+};
+
+/** Carousel nav icons per style. */
+const NAV_ICONS = {
+  'style-one': ['fas fa-chevron-left', 'fas fa-chevron-right'],
+  'style-two': ['fas fa-arrow-left-long', 'fas fa-arrow-right-long'],
+  'style-three': ['fas fa-angles-left', 'fas fa-angles-right'],
+  default: ['fas fa-angle-left', 'fas fa-angle-right']
+};
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/sanitize.js":
+/*!************************************************!*\
+  !*** ./src/Components/Common/Team/sanitize.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Fragment: () => (/* reexport safe */ _wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment),
+/* harmony export */   LINK_PROTOCOLS: () => (/* binding */ LINK_PROTOCOLS),
+/* harmony export */   WEB: () => (/* binding */ WEB),
+/* harmony export */   cleanHtml: () => (/* binding */ cleanHtml),
+/* harmony export */   decodeEntities: () => (/* binding */ decodeEntities),
+/* harmony export */   email: () => (/* binding */ email),
+/* harmony export */   emailList: () => (/* binding */ emailList),
+/* harmony export */   htmlClass: () => (/* binding */ htmlClass),
+/* harmony export */   iconClass: () => (/* binding */ iconClass),
+/* harmony export */   isEmail: () => (/* binding */ isEmail),
+/* harmony export */   itemId: () => (/* binding */ itemId),
+/* harmony export */   key: () => (/* binding */ key),
+/* harmony export */   lower: () => (/* binding */ lower),
+/* harmony export */   nodesText: () => (/* binding */ nodesText),
+/* harmony export */   nodesToReact: () => (/* binding */ nodesToReact),
+/* harmony export */   stripTags: () => (/* binding */ stripTags),
+/* harmony export */   termSlug: () => (/* binding */ termSlug),
+/* harmony export */   text: () => (/* binding */ text),
+/* harmony export */   textParagraphs: () => (/* binding */ textParagraphs),
+/* harmony export */   url: () => (/* binding */ url)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * Sanitizers for untrusted block attributes (ports of the WordPress / BPTM PHP helpers the
+ * server renderer used). Text is rendered by React (always escaped); HTML details go through a
+ * DOMParser-based whitelist and are converted to React elements (never dangerouslySetInnerHTML).
+ */
+
+
+/* ------------------------------------------------------------------ */
+/* Text                                                                */
+/* ------------------------------------------------------------------ */
+
+let decoderDoc = null;
+
+/**
+ * Decode HTML entities (&amp; → &). Uses an inert DOMParser document (scripts never run there).
+ *
+ * @param {string} s String.
+ * @return {string} Decoded.
+ */
+const decodeEntities = s => {
+  s = String(s);
+  if (-1 === s.indexOf('&')) {
+    return s;
+  }
+  if ('undefined' === typeof window || 'function' !== typeof window.DOMParser) {
+    return s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#0?39;/g, "'");
+  }
+  if (!decoderDoc) {
+    decoderDoc = new window.DOMParser().parseFromString('<!doctype html><textarea></textarea>', 'text/html');
+  }
+  const ta = decoderDoc.querySelector('textarea');
+  ta.innerHTML = s.replace(/</g, '&lt;');
+  return ta.value;
+};
+
+/**
+ * wp_strip_all_tags(): removes script/style blocks and every tag.
+ *
+ * @param {string} s String.
+ * @return {string} Text.
+ */
+const stripTags = s => String(s).replace(/<(script|style)[^>]*?>[\s\S]*?<\/\1\s*>/gi, '').replace(/<\/?[a-zA-Z!?][^>]*(>|$)/g, '');
+
+/**
+ * sanitize_text_field() + entity decoding (PHP printed esc_html() of it, which shows entities decoded).
+ *
+ * @param {*} v Value.
+ * @return {string} Clean single-line text.
+ */
+const text = v => {
+  if (null === v || undefined === v || 'boolean' === typeof v || 'object' === typeof v) {
+    return '';
+  }
+  let s = stripTags(String(v));
+  s = s.replace(/[\r\n\t ]+/g, ' ');
+  let prev;
+  do {
+    prev = s;
+    s = s.replace(/%[a-f0-9]{2}/gi, '');
+  } while (prev !== s);
+  return decodeEntities(s.replace(/\s+/g, ' ').trim());
+};
+
+/** Lowercase helper (mb_strtolower). */
+const lower = s => String(s).toLowerCase();
+
+/* ------------------------------------------------------------------ */
+/* Slugs / ids / classes                                               */
+/* ------------------------------------------------------------------ */
+
+const hash8 = s => {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return ('0000000' + h.toString(16)).slice(-8);
+};
+
+/**
+ * sanitize_title() port ("Product Design" → "product-design"); values that sanitize to nothing get a hash slug.
+ *
+ * @param {string} name Name.
+ * @return {string} Slug.
+ */
+const termSlug = name => {
+  name = String(name || '');
+  let s = stripTags(name);
+  s = s.normalize ? s.normalize('NFD').replace(/\p{M}/gu, '') : s;
+  s = s.replace(/ß/g, 'ss').replace(/æ/gi, 'ae').replace(/ø/gi, 'o').replace(/đ/gi, 'd').replace(/ł/gi, 'l').replace(/œ/gi, 'oe');
+  s = s.toLowerCase();
+  s = s.replace(/&.+?;/g, '').replace(/\./g, '-');
+  s = Array.from(s).map(ch => ch.charCodeAt(0) > 127 ? encodeURIComponent(ch).toLowerCase() : ch).join('');
+  s = s.replace(/[^%a-z0-9 _-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');
+  if ('' === s && '' !== name.trim()) {
+    s = 'v-' + hash8(name);
+  }
+  return s;
+};
+
+/** bptm_sanitize_item_id(): [A-Za-z0-9_-], max 64. */
+const itemId = id => 'string' === typeof id || 'number' === typeof id ? String(id).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 64) : '';
+
+/** sanitize_html_class(). */
+const htmlClass = c => String(c || '').replace(/%[a-fA-F0-9][a-fA-F0-9]/g, '').replace(/[^A-Za-z0-9_-]/g, '');
+
+/** sanitize_key(). */
+const key = k => String(k || '').toLowerCase().replace(/[^a-z0-9_-]/g, '');
+const FA_STYLE = ['fa', 'fab', 'fas', 'far', 'fa-brands', 'fa-solid', 'fa-regular'];
+
+/**
+ * bptm_sanitize_icon_class(): only Font Awesome style classes and `fa-{name}` classes; anything else drops the value.
+ *
+ * @param {*} icon Raw.
+ * @return {string} Class string or ''.
+ */
+const iconClass = icon => {
+  if ('string' !== typeof icon) {
+    return '';
+  }
+  const parts = icon.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const out = [];
+  let hasIcon = false;
+  for (const c of parts) {
+    if (FA_STYLE.includes(c)) {
+      out.push(c);
+    } else if (/^fa-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(c)) {
+      out.push(c);
+      hasIcon = true;
+    } else {
+      return '';
+    }
+  }
+  return hasIcon ? [...new Set(out)].join(' ') : '';
+};
+
+/* ------------------------------------------------------------------ */
+/* Emails / URLs                                                       */
+/* ------------------------------------------------------------------ */
+
+const EMAIL_RE = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)+$/;
+
+/** is_email() (simplified, strict). */
+const isEmail = v => 'string' === typeof v && v.length >= 6 && v.length <= 254 && EMAIL_RE.test(v) && !/\.\./.test(v);
+
+/** sanitize_email() + is_email(): '' when invalid. */
+const email = v => {
+  const s = 'string' === typeof v ? v.trim() : '';
+  return isEmail(s) ? s : '';
+};
+
+/** bptm_sanitize_email_list(): comma-separated valid addresses. */
+const emailList = v => {
+  const parts = ('string' === typeof v || 'number' === typeof v ? String(v) : '').split(/[;,\s]+/).filter(Boolean);
+  return [...new Set(parts.filter(isEmail))].join(',');
+};
+const WEB = ['http', 'https'];
+const LINK_PROTOCOLS = ['http', 'https', 'mailto', 'tel', 'skype', 'callto', 'sms', 'viber', 'whatsapp'];
+const ALLOWED = ['http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'irc6', 'ircs', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'sms', 'svn', 'tel', 'fax', 'xmpp', 'webcal', 'urn'];
+
+/**
+ * esc_url_raw() port: '' for disallowed protocols (javascript:, data:, vbscript: …); scheme-less
+ * host-like values get http://; relative paths, queries and fragments pass.
+ *
+ * @param {*}        v         Raw URL.
+ * @param {string[]} protocols Allowed protocols.
+ * @return {string} URL.
+ */
+const url = (v, protocols = ALLOWED) => {
+  if ('string' !== typeof v) {
+    return '';
+  }
+  let u = v.trim().replace(/ /g, '%20');
+  u = Array.from(u).filter(ch => ch.charCodeAt(0) > 127 || /[a-z0-9\-~+_.?#=!&;,/:%@$|*'()[\]]/i.test(ch)).join('');
+  if ('' === u) {
+    return '';
+  }
+  if (-1 !== u.indexOf(':')) {
+    const m = /^([a-z][a-z0-9+.-]*):/i.exec(u);
+    // Anything before the first ":" must be an allowed protocol (blocks javascript:, data:, vbscript: …).
+    if (!m || !protocols.includes(m[1].toLowerCase())) {
+      return /^[/#?]/.test(u) && !/^\/\/[^/]*:/.test(u) ? u : '';
+    }
+    return u;
+  }
+  if (/^[/#?]/.test(u) || /^[a-z0-9-]+?\.php/i.test(u)) {
+    return u;
+  }
+  const http = protocols.includes('http') ? 'http://' : '';
+  return http ? http + u : '';
+};
+
+/* ------------------------------------------------------------------ */
+/* Rich details (allowHtmlDetails)                                     */
+/* ------------------------------------------------------------------ */
+
+const ALLOWED_TAGS = {
+  p: [],
+  br: [],
+  strong: [],
+  b: [],
+  em: [],
+  i: [],
+  u: [],
+  a: ['href', 'target', 'rel'],
+  ul: [],
+  ol: [],
+  li: [],
+  span: [],
+  h3: [],
+  h4: [],
+  h5: [],
+  h6: [],
+  blockquote: []
+};
+const BLOCK_TAGS = ['p', 'ul', 'ol', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'li'];
+const DROP_WITH_CONTENT = ['script', 'style', 'template', 'iframe', 'object', 'embed', 'noscript', 'svg', 'math', 'head', 'title', 'textarea', 'select'];
+let parser = null;
+
+/**
+ * Parse untrusted HTML into an inert document.
+ *
+ * @param {string} html HTML.
+ * @return {Element|null} Body.
+ */
+const parse = html => {
+  if ('undefined' === typeof window || 'function' !== typeof window.DOMParser) {
+    return null;
+  }
+  if (!parser) {
+    parser = new window.DOMParser();
+  }
+  return parser.parseFromString('<!doctype html><body>' + String(html) + '</body>', 'text/html').body;
+};
+
+/**
+ * Whitelisted node list (plain objects): { tag, attrs, children } | string.
+ *
+ * @param {Node} node DOM node.
+ * @return {Array} Clean nodes.
+ */
+const cleanNodes = node => {
+  const out = [];
+  node.childNodes.forEach(c => {
+    if (3 === c.nodeType) {
+      out.push(c.nodeValue);
+      return;
+    }
+    if (1 !== c.nodeType) {
+      return;
+    }
+    const tag = c.tagName.toLowerCase();
+    if (DROP_WITH_CONTENT.includes(tag)) {
+      return;
+    }
+    const children = cleanNodes(c);
+    if (!Object.prototype.hasOwnProperty.call(ALLOWED_TAGS, tag)) {
+      out.push(...children); // Unwrap unknown tags, keep their (clean) content.
+      return;
+    }
+    const attrs = {};
+    ALLOWED_TAGS[tag].forEach(name => {
+      const v = c.getAttribute(name);
+      if (null === v) {
+        return;
+      }
+      if ('href' === name) {
+        const h = url(v, LINK_PROTOCOLS);
+        if (h) {
+          attrs.href = h;
+        }
+      } else if ('target' === name) {
+        if (/^_(blank|self|parent|top)$/.test(v)) {
+          attrs.target = v;
+        }
+      } else if ('rel' === name) {
+        const rel = v.toLowerCase().split(/\s+/).filter(r => /^[a-z-]+$/.test(r)).join(' ');
+        if (rel) {
+          attrs.rel = rel;
+        }
+      }
+    });
+    if ('a' === tag && '_blank' === attrs.target) {
+      const rel = new Set((attrs.rel || '').split(' ').filter(Boolean));
+      rel.add('noopener');
+      attrs.rel = [...rel].join(' ');
+    }
+    out.push({
+      tag,
+      attrs,
+      children
+    });
+  });
+  return out;
+};
+const isBlock = n => n && 'object' === typeof n && BLOCK_TAGS.includes(n.tag);
+
+/**
+ * wpautop()-like grouping: runs of inline content become paragraphs (blank lines split them,
+ * single newlines become <br>); block elements stay as they are.
+ *
+ * @param {Array} nodes Clean nodes.
+ * @return {Array} Nodes.
+ */
+const autop = nodes => {
+  const out = [];
+  let run = [];
+  const flush = () => {
+    // Split the inline run on blank lines inside text nodes.
+    const paras = [[]];
+    run.forEach(n => {
+      if ('string' === typeof n) {
+        const parts = n.replace(/\r\n?/g, '\n').split(/\n[ \t]*\n+/);
+        parts.forEach((p, i) => {
+          if (i > 0) {
+            paras.push([]);
+          }
+          paras[paras.length - 1].push(p);
+        });
+      } else {
+        paras[paras.length - 1].push(n);
+      }
+    });
+    paras.forEach(p => {
+      // Trim leading/trailing whitespace of the paragraph.
+      while (p.length && 'string' === typeof p[0] && '' === p[0].trim()) {
+        p.shift();
+      }
+      while (p.length && 'string' === typeof p[p.length - 1] && '' === p[p.length - 1].trim()) {
+        p.pop();
+      }
+      if (!p.length) {
+        return;
+      }
+      if ('string' === typeof p[0]) {
+        p[0] = p[0].replace(/^\s+/, '');
+      }
+      if ('string' === typeof p[p.length - 1]) {
+        p[p.length - 1] = p[p.length - 1].replace(/\s+$/, '');
+      }
+      const children = [];
+      p.forEach(n => {
+        if ('string' === typeof n && /\n/.test(n)) {
+          n.split('\n').forEach((line, i) => {
+            if (i > 0) {
+              children.push({
+                tag: 'br',
+                attrs: {},
+                children: []
+              });
+            }
+            children.push(line);
+          });
+        } else {
+          children.push(n);
+        }
+      });
+      out.push({
+        tag: 'p',
+        attrs: {},
+        children
+      });
+    });
+    run = [];
+  };
+  nodes.forEach(n => {
+    if (isBlock(n)) {
+      flush();
+      // wpautop() also wraps the inline content of a blockquote in paragraphs.
+      out.push('blockquote' === n.tag ? {
+        ...n,
+        children: autop(n.children)
+      } : n);
+    } else {
+      run.push(n);
+    }
+  });
+  flush();
+  return out;
+};
+
+/**
+ * Clean node tree for rich details.
+ *
+ * @param {string} html Untrusted HTML.
+ * @return {Array} Clean nodes (paragraph-grouped).
+ */
+const cleanHtml = html => {
+  const body = parse(html);
+  if (!body) {
+    return autop([stripTags(html)]);
+  }
+  return autop(cleanNodes(body));
+};
+
+/** Plain text of clean nodes. */
+const nodesText = nodes => nodes.map(n => 'string' === typeof n ? n : nodesText(n.children)).join('');
+
+/**
+ * React elements from clean nodes.
+ *
+ * @param {Array}  nodes Clean nodes.
+ * @param {string} kp    Key prefix.
+ * @return {Array} Elements.
+ */
+const nodesToReact = (nodes, kp = 'n') => nodes.map((n, i) => {
+  if ('string' === typeof n) {
+    return n;
+  }
+  const props = {
+    key: kp + i,
+    ...n.attrs
+  };
+  if ('br' === n.tag) {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('br', props);
+  }
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(n.tag, props, ...nodesToReact(n.children, kp + i + '-'));
+});
+
+/**
+ * Plain text → paragraphs (wpautop(esc_html())): blank lines split paragraphs, single newlines become <br>.
+ *
+ * @param {string} plain Text.
+ * @return {Array} Clean nodes.
+ */
+const textParagraphs = plain => autop([String(plain)]);
+
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/themes.js":
+/*!**********************************************!*\
+  !*** ./src/Components/Common/Team/themes.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TableHead: () => (/* binding */ TableHead),
+/* harmony export */   itemRenderer: () => (/* binding */ itemRenderer),
+/* harmony export */   tbBadges: () => (/* binding */ tbBadges),
+/* harmony export */   tbContacts: () => (/* binding */ tbContacts),
+/* harmony export */   tbExtras: () => (/* binding */ tbExtras),
+/* harmony export */   tbImage: () => (/* binding */ tbImage),
+/* harmony export */   tbPart: () => (/* binding */ tbPart),
+/* harmony export */   tbPlainDesignation: () => (/* binding */ tbPlainDesignation),
+/* harmony export */   tbPlainName: () => (/* binding */ tbPlainName)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./context */ "./src/Components/Common/Team/context.js");
+/* harmony import */ var _registry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./registry */ "./src/Components/Common/Team/registry.js");
+/* harmony import */ var _bridge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./bridge */ "./src/Components/Common/Team/bridge.js");
+/* harmony import */ var _css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./css */ "./src/Components/Common/Team/css.js");
+/**
+ * Item templates of all themes (ports of templates/themes/*.php). Same markup and class names as the
+ * former PHP templates so the theme CSS applies unchanged.
+ */
+
+
+
+
+
+
+const div = (className, ...children) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+  className
+}, ...children);
+
+/* ================================================================== */
+/* Registry A helpers (grid / circle / horizontal / flip)              */
+/* ================================================================== */
+
+const taPart = (ctx, m, field, ...args) => {
+  if (!ctx.show(field)) {
+    return null;
+  }
+  switch (field) {
+    case 'name':
+      return ctx.name(m, ...args);
+    case 'designation':
+      return ctx.designation(m);
+    case 'details':
+      return ctx.details(m);
+    case 'social':
+      return ctx.social(m, ...args);
+    case 'ribbon':
+      return ctx.ribbon(m);
+    case 'featured_badge':
+      return ctx.featuredBadge(m);
+    case 'skills':
+      return ctx.skills(m);
+    case 'vcard':
+      return ctx.vcard(m);
+    case 'read_more':
+      return ctx.readMore(m);
+  }
+  return null;
+};
+const taImage = (ctx, m, link = true, flip = false) => {
+  if (!ctx.show('thumbnail')) {
+    return null;
+  }
+  let img = flip ? ctx.flipImage(m) : null;
+  if (!img) {
+    img = ctx.image(m, 'bptm-img', link);
+  }
+  return img;
+};
+const taExtras = (ctx, m, variant = 'icons') => {
+  const html = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(ctx.metaDetails(m, variant), taPart(ctx, m, 'skills'), taPart(ctx, m, 'vcard'), taPart(ctx, m, 'read_more'));
+  return html ? div('bptm-ta-extras', html) : null;
+};
+const taParts = (ctx, m, nameTag = 'h3') => ({
+  img: taImage(ctx, m),
+  name: taPart(ctx, m, 'name', nameTag),
+  role: taPart(ctx, m, 'designation'),
+  desc: taPart(ctx, m, 'details'),
+  social: taPart(ctx, m, 'social'),
+  badges: (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(taPart(ctx, m, 'ribbon'), taPart(ctx, m, 'featured_badge')),
+  extras: taExtras(ctx, m)
+});
+const taClasses = (ctx, id, family) => {
+  const c = ['bptm-ta', 'bptm-ta-' + family, 'bptm-ta-' + id];
+  if ('grid' === family || 'circle' === family) {
+    c.push('bptm-tap-reveal');
+  }
+  if (!ctx.show('thumbnail')) {
+    c.push('bptm-ta-no-thumb');
+  }
+  return c;
+};
+const overlay = () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+  className: 'bptm-ta-overlay',
+  'aria-hidden': 'true'
+});
+const badgesDiv = b => b ? div('bptm-ta-badges', b) : null;
+const taItem = (ctx, m, cls, ...children) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', ctx.itemProps(m, cls), div('bptm-ta-card', ...children));
+const gridTheme = id => (ctx, m) => {
+  const p = taParts(ctx, m);
+  const cls = taClasses(ctx, id, 'grid');
+  const wrap = (...c) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: ctx.vis_classes('thumbnail', 'bptm-img-wrap')
+  }, ...c);
+  switch (id) {
+    case 'grid-1':
+      return taItem(ctx, m, cls, p.img ? wrap(p.img, overlay(), p.social ? div('bptm-ta-hover', p.social) : null) : null, badgesDiv(p.badges), div('bptm-ta-info', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.desc), !p.img && p.social ? p.social : null, p.extras));
+    case 'grid-2':
+      return taItem(ctx, m, cls, p.img ? wrap(p.img, overlay(), p.social ? div('bptm-ta-hover', p.social) : null, badgesDiv(p.badges)) : badgesDiv(p.badges), div('bptm-ta-info', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.desc, p.extras), !p.img && p.social ? p.social : null));
+    case 'grid-3':
+      return taItem(ctx, m, cls, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+        className: ctx.vis_classes('thumbnail', 'bptm-ta-media')
+      }, p.img ? wrap(p.img, overlay()) : null, p.social ? div('bptm-ta-share', p.social, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+        className: 'bptm-ta-share-btn',
+        'aria-hidden': 'true'
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+        className: 'fas fa-share-alt'
+      }))) : null), badgesDiv(p.badges), div('bptm-ta-info', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.desc, p.extras)));
+    case 'grid-4':
+    case 'grid-5':
+      {
+        const hover = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.desc, p.extras, p.social);
+        // Grid 5 reveals the row with a grid-row (0fr → 1fr) animation: the inner wrapper clips while it
+        // grows, and the scroll box inside it keeps the 300px cap (so no scrollbar flashes mid-animation).
+        const hoverRow = hover && 'grid-5' === id ? div('bptm-ta-hover', div('bptm-ta-hover-inner', div('bptm-ta-hover-scroll', hover))) : hover && div('bptm-ta-hover', hover);
+        return taItem(ctx, m, cls, p.img ? wrap(p.img, overlay()) : null, badgesDiv(p.badges), div('bptm-ta-info', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role), hoverRow || null));
+      }
+    default:
+      // grid-6
+      return taItem(ctx, m, cls, p.img ? wrap(p.img) : null, badgesDiv(p.badges), div('bptm-ta-info', div('bptm-ta-info-inner', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.desc, p.extras, p.social))));
+  }
+};
+const circleTheme = id => (ctx, m) => {
+  const p = taParts(ctx, m);
+  const n = Number(id.slice(-1));
+  let hover = null;
+  if (n >= 2 && n <= 4) {
+    hover = p.social;
+  } else if (n >= 5) {
+    hover = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.desc, p.social);
+  }
+  let info;
+  if (1 === n) {
+    info = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.desc, p.extras, p.social);
+  } else if (n <= 4) {
+    info = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.desc, p.extras);
+  } else {
+    info = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.extras);
+  }
+  return taItem(ctx, m, taClasses(ctx, id, 'circle'), p.img ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: ctx.vis_classes('thumbnail', 'bptm-ta-media')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: ctx.vis_classes('thumbnail', 'bptm-img-wrap')
+  }, p.img, overlay(), hover ? div('bptm-ta-hover', hover) : null)) : null, badgesDiv(p.badges), div('bptm-ta-info', info, !p.img && hover ? div('bptm-ta-static', hover) : null));
+};
+const horizontalTheme = id => (ctx, m) => {
+  const p = taParts(ctx, m);
+  return taItem(ctx, m, taClasses(ctx, id, 'horizontal'), p.img ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: ctx.vis_classes('thumbnail', 'bptm-ta-media')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: ctx.vis_classes('thumbnail', 'bptm-img-wrap')
+  }, p.img)) : null, div('bptm-ta-info', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.desc, p.extras, p.social)), badgesDiv(p.badges));
+};
+const flipTheme = id => (ctx, m) => {
+  const p = taParts(ctx, m);
+  const cls = taClasses(ctx, id, 'flip');
+  const wrap = img => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: ctx.vis_classes('thumbnail', 'bptm-img-wrap')
+  }, img);
+  if ('flip-5' === id) {
+    const avatar = taImage(ctx, m, false);
+    const panel = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.desc, p.extras, p.social);
+    return taItem(ctx, m, cls, p.img ? wrap(p.img) : null, badgesDiv(p.badges), div('bptm-ta-info', div('bptm-ta-info-inner', avatar ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-ta-avatar',
+      'aria-hidden': 'true'
+    }, avatar) : null, panel)));
+  }
+  if ('flip-6' === id) {
+    const backImg = taImage(ctx, m, false, true);
+    const back = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.desc, p.extras, p.social);
+    if (p.img && back) {
+      cls.push('bptm-ta-has-flip');
+    }
+    const nameText = p.name ? m.name : '';
+    const roleText = p.role ? m.designation : '';
+    return taItem(ctx, m, cls, ...(p.img ? [div('bptm-ta-flipbox', div('bptm-ta-face bptm-ta-front', wrap(p.img), p.name || p.role ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-ta-caption',
+      'aria-hidden': 'true'
+    }, nameText ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: 'bptm-ta-caption-name'
+    }, nameText) : null, roleText ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: 'bptm-ta-caption-role'
+    }, roleText) : null) : null, badgesDiv(p.badges)), back ? div('bptm-ta-face bptm-ta-back', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+      className: 'bptm-ta-back-img',
+      'aria-hidden': 'true'
+    }, backImg), div('bptm-ta-back-inner', back)) : null)] : [badgesDiv(p.badges), div('bptm-ta-info', div('bptm-ta-static', back))]));
+  }
+  // flip-1 … flip-4.
+  const back = 'flip-4' === id ? (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role, p.desc, p.extras, p.social) : (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.desc, p.extras, p.social);
+  const info = 'flip-4' === id ? null : (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(p.name, p.role);
+  if (p.img && back) {
+    cls.push('bptm-ta-has-flip');
+  }
+  return taItem(ctx, m, cls, p.img ? div('bptm-ta-flipbox', div('bptm-ta-face bptm-ta-front', wrap(p.img), badgesDiv(p.badges)), back ? div('bptm-ta-face bptm-ta-back', div('bptm-ta-back-inner', back)) : null) : badgesDiv(p.badges), info || !p.img && back ? div('bptm-ta-info', info, !p.img ? div('bptm-ta-static', back) : null) : null);
+};
+
+/* ================================================================== */
+/* Registry B helpers (tables / lists / legacy)                        */
+/* ================================================================== */
+
+const tbPart = taPart;
+const tbBadges = (ctx, m) => (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(taPart(ctx, m, 'ribbon'), taPart(ctx, m, 'featured_badge'));
+const tbImage = (ctx, m, link = true, force = false) => {
+  if (!ctx.show('thumbnail')) {
+    return null;
+  }
+  if (force) {
+    const img = ctx.image(m, 'bptm-img', false);
+    return img ? ctx.wrapLink(m, img, 'bptm-img-link') : null;
+  }
+  return ctx.image(m, 'bptm-img', link);
+};
+const tbPlainName = (ctx, m, tag = 'h3', cls = '') => {
+  if (!ctx.show('name') || !m.name) {
+    return null;
+  }
+  tag = ['h2', 'h3', 'h4', 'div', 'span'].includes(tag) ? tag : 'h3';
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(tag, {
+    className: ctx.vis_classes('name', (0,_context__WEBPACK_IMPORTED_MODULE_2__.cx)('bptm-name', cls))
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', ctx.clone ? {} : {
+    itemProp: 'name'
+  }, m.name));
+};
+const tbPlainDesignation = (ctx, m, cls = '') => {
+  if (!ctx.show('designation') || !m.designation) {
+    return null;
+  }
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: ctx.vis_classes('designation', (0,_context__WEBPACK_IMPORTED_MODULE_2__.cx)('bptm-designation', cls)),
+    ...(ctx.clone ? {} : {
+      itemProp: 'jobTitle'
+    })
+  }, m.designation);
+};
+const metaRowMap = (ctx, m) => {
+  const map = {};
+  ctx.metaRows(m).forEach(r => {
+    map[r.field] = r;
+  });
+  return map;
+};
+const tbContact = (rows, field, withLabel) => {
+  const row = rows[field];
+  if (!row) {
+    return null;
+  }
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: 'bptm-contact bptm-contact--' + field.replace(/_/g, '-') + ' ' + row.classes,
+    key: field
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+    className: row.icon,
+    'aria-hidden': 'true'
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: 'bptm-contact-text'
+  }, withLabel ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: 'bptm-contact-label'
+  }, row.label + ':') : null, withLabel ? ' ' : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: 'bptm-contact-value'
+  }, row.value)));
+};
+const tbContacts = (ctx, m, fields = null, cls = 'bptm-contacts', withLabel = false) => {
+  const rows = metaRowMap(ctx, m);
+  const list = (fields || _registry__WEBPACK_IMPORTED_MODULE_3__.META_FIELDS).map(f => tbContact(rows, f, withLabel)).filter(Boolean);
+  return list.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: cls
+  }, ...list) : null;
+};
+const tbExtras = (ctx, m, exclude = []) => {
+  const html = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(tbContacts(ctx, m, _registry__WEBPACK_IMPORTED_MODULE_3__.META_FIELDS.filter(f => !exclude.includes(f)), 'bptm-contacts bptm-meta', true), exclude.includes('skills') ? null : taPart(ctx, m, 'skills'), exclude.includes('vcard') ? null : taPart(ctx, m, 'vcard'), exclude.includes('read_more') ? null : taPart(ctx, m, 'read_more'));
+  return html ? div('bptm-tb-extras', html) : null;
+};
+const tbClasses = (ctx, id, family, extra = []) => {
+  const c = ['bptm-tb', 'bptm-tb-' + family, 'bptm-tb-' + id, ...extra];
+  if (!ctx.show('thumbnail')) {
+    c.push('bptm-tb-no-thumb');
+  }
+  return c;
+};
+const tbItem = (ctx, m, cls, ...children) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', ctx.itemProps(m, cls), div('bptm-tb-card', ...children));
+const media = (...c) => div('bptm-img-wrap bptm-tb-media', ...c);
+
+/** grid-7 / grid-slider: hover card. */
+const tbHoverCard = id => (ctx, m) => {
+  const img = tbImage(ctx, m);
+  const hover = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(taPart(ctx, m, 'details'), taPart(ctx, m, 'social'));
+  return tbItem(ctx, m, tbClasses(ctx, id, 'legacy', ['bptm-tb-hovercard']), img ? media(img, tbBadges(ctx, m), hover ? div('bptm-tb-hover', div('bptm-tb-hover-inner', hover)) : null) : null, div('bptm-tb-info', img ? null : (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(tbBadges(ctx, m), hover), taPart(ctx, m, 'name', 'h3'), taPart(ctx, m, 'designation'), tbExtras(ctx, m)));
+};
+
+/** grid-popup / grid-single / grid-filter-popup / grid-filter-selected / grid-panel / grid-drawer-2: overlay card. */
+const OVERLAY_ICON = {
+  'grid-popup': 'fas fa-expand-alt',
+  'grid-single': 'fas fa-external-link-alt',
+  'grid-filter-popup': 'fas fa-expand-alt',
+  'grid-filter-selected': 'fas fa-expand-alt',
+  'grid-panel': 'fas fa-arrow-right',
+  'grid-drawer-2': 'fas fa-chevron-down'
+};
+const tbOverlayCard = id => (ctx, m) => {
+  const img = tbImage(ctx, m, false);
+  const caption = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(tbPlainName(ctx, m, 'h3'), tbPlainDesignation(ctx, m));
+  const lp = ctx.linkProps(m, 'bptm-tb-cover-link');
+  const inner = media(img, lp ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: 'bptm-tb-indicator',
+    'aria-hidden': 'true'
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+    className: OVERLAY_ICON[id]
+  })) : null, caption ? div('bptm-tb-caption', caption) : null);
+  return tbItem(ctx, m, tbClasses(ctx, id, 'legacy', ['bptm-tb-overlay-card']), lp ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', lp, inner) : inner, tbBadges(ctx, m), (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(taPart(ctx, m, 'details'), tbExtras(ctx, m), taPart(ctx, m, 'social')));
+};
+
+/** grid-filter-single / group-filter-1: banner card. */
+const tbBannerCard = id => (ctx, m) => {
+  const img = tbImage(ctx, m, true, true);
+  const caption = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(taPart(ctx, m, 'name', 'h3'), taPart(ctx, m, 'designation'));
+  const fields = ['cell_phone', 'email'];
+  return tbItem(ctx, m, tbClasses(ctx, id, 'legacy', ['bptm-tb-banner-card']), media(img, tbBadges(ctx, m), caption ? div('bptm-tb-caption', caption) : null), tbContacts(ctx, m, fields, 'bptm-contacts bptm-tb-contact-box'), taPart(ctx, m, 'details'), taPart(ctx, m, 'social'), tbExtras(ctx, m, fields));
+};
+
+/** grid-10 / grid-11 / grid-drawer-1: simple card. */
+const tbSimpleCard = (id, force = false) => (ctx, m) => {
+  const img = force ? tbImage(ctx, m, true, true) : tbImage(ctx, m);
+  return tbItem(ctx, m, tbClasses(ctx, id, 'legacy'), img ? media(img, tbBadges(ctx, m)) : null, div('bptm-tb-info', img ? null : tbBadges(ctx, m), taPart(ctx, m, 'name', 'h3'), taPart(ctx, m, 'designation'), taPart(ctx, m, 'details'), taPart(ctx, m, 'social'), tbExtras(ctx, m)));
+};
+const TB = {
+  'grid-7': tbHoverCard('grid-7'),
+  'grid-slider': tbHoverCard('grid-slider'),
+  'grid-8': (ctx, m) => {
+    const img = tbImage(ctx, m, true, true);
+    const tip = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(taPart(ctx, m, 'name', 'h3'), taPart(ctx, m, 'designation'));
+    return tbItem(ctx, m, tbClasses(ctx, 'grid-8', 'legacy'), img ? media(img, tbBadges(ctx, m)) : null, tip ? div('bptm-tb-tip', tip) : null, (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(taPart(ctx, m, 'details'), tbExtras(ctx, m), taPart(ctx, m, 'social')));
+  },
+  'grid-9': (ctx, m) => {
+    const img = tbImage(ctx, m, true, true);
+    const info = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(taPart(ctx, m, 'name', 'h3'), taPart(ctx, m, 'designation'));
+    return tbItem(ctx, m, tbClasses(ctx, 'grid-9', 'legacy'), media((0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(img, tbBadges(ctx, m)), info ? div('bptm-tb-infocard', info) : null), (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(taPart(ctx, m, 'details'), tbExtras(ctx, m), taPart(ctx, m, 'social')));
+  },
+  'grid-10': tbSimpleCard('grid-10'),
+  'grid-11': tbSimpleCard('grid-11'),
+  'grid-drawer-1': tbSimpleCard('grid-drawer-1', true),
+  'grid-12': (ctx, m) => {
+    const img = tbImage(ctx, m);
+    const more = taPart(ctx, m, 'read_more');
+    const social = taPart(ctx, m, 'social');
+    return tbItem(ctx, m, tbClasses(ctx, 'grid-12', 'legacy'), img ? media(img, tbBadges(ctx, m)) : null, div('bptm-tb-info', div('bptm-tb-info-top', img ? null : tbBadges(ctx, m), taPart(ctx, m, 'name', 'h3'), taPart(ctx, m, 'designation'), taPart(ctx, m, 'details'), tbExtras(ctx, m, ['read_more'])), more || social ? div('bptm-tb-foot', (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(more, social)) : null));
+  },
+  'grid-popup': tbOverlayCard('grid-popup'),
+  'grid-single': tbOverlayCard('grid-single'),
+  'grid-filter-popup': tbOverlayCard('grid-filter-popup'),
+  'grid-filter-selected': tbOverlayCard('grid-filter-selected'),
+  'grid-panel': tbOverlayCard('grid-panel'),
+  'grid-drawer-2': tbOverlayCard('grid-drawer-2'),
+  'grid-filter-single': tbBannerCard('grid-filter-single'),
+  'group-filter-1': tbBannerCard('group-filter-1'),
+  'grid-filter-vcard': (ctx, m) => {
+    const img = tbImage(ctx, m, true, true);
+    const fields = ['cell_phone', 'email'];
+    const vcard = taPart(ctx, m, 'vcard');
+    return tbItem(ctx, m, tbClasses(ctx, 'grid-filter-vcard', 'legacy'), img ? media(img, tbBadges(ctx, m)) : null, div('bptm-tb-info', img ? null : tbBadges(ctx, m), taPart(ctx, m, 'name', 'h3'), taPart(ctx, m, 'designation'), tbContacts(ctx, m, fields, 'bptm-contacts bptm-tb-contacts'), taPart(ctx, m, 'details'), taPart(ctx, m, 'social'), tbExtras(ctx, m, [...fields, 'vcard']), vcard ? div('bptm-tb-vcard', vcard) : null));
+  }
+};
+const LIST_CONTACTS = {
+  'list-2': ['cell_phone'],
+  'list-3': ['email'],
+  'list-4': ['email', 'address']
+};
+const listTheme = id => (ctx, m) => {
+  const fields = LIST_CONTACTS[id] || [];
+  const img = tbImage(ctx, m, true, true);
+  const badges = tbBadges(ctx, m);
+  return tbItem(ctx, m, tbClasses(ctx, id, 'list'), img ? media((0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(img, badges)) : null, div('bptm-tb-info', img ? null : badges, taPart(ctx, m, 'name', 'h3'), taPart(ctx, m, 'designation'), taPart(ctx, m, 'details'), tbContacts(ctx, m, fields, 'bptm-contacts bptm-tb-contacts'), taPart(ctx, m, 'social'), tbExtras(ctx, m, fields)));
+};
+
+/* ================================================================== */
+/* Tables                                                              */
+/* ================================================================== */
+
+const columnDefs = () => ({
+  thumbnail: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image', 'bp-team-member'), 'thumbnail'],
+  name: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Name', 'bp-team-member'), 'name'],
+  designation: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Position', 'bp-team-member'), 'designation'],
+  details: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description', 'bp-team-member'), 'details'],
+  company: [(0,_bridge__WEBPACK_IMPORTED_MODULE_4__.t)('company'), 'company'],
+  email: [(0,_bridge__WEBPACK_IMPORTED_MODULE_4__.t)('email'), 'email'],
+  cell_phone: [(0,_bridge__WEBPACK_IMPORTED_MODULE_4__.t)('cell_phone'), 'cell_phone'],
+  land_phone: [(0,_bridge__WEBPACK_IMPORTED_MODULE_4__.t)('land_phone'), 'land_phone'],
+  address: [(0,_bridge__WEBPACK_IMPORTED_MODULE_4__.t)('address'), 'address'],
+  location: [(0,_bridge__WEBPACK_IMPORTED_MODULE_4__.termLabel)('location'), 'location'],
+  social: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Social', 'bp-team-member'), 'social']
+});
+const tableColumns = id => ['table-9', 'table-10'].includes(id) ? ['thumbnail', 'name', 'designation', 'company', 'email', 'cell_phone', 'land_phone', 'address', 'location', 'social'] : ['thumbnail', 'name', 'designation', 'company', 'details', 'email', 'cell_phone', 'land_phone', 'address', 'location', 'social'];
+const visibleColumns = (ctx, id) => {
+  const defs = columnDefs();
+  const out = tableColumns(id).filter(c => defs[c] && ctx.show(defs[c][1]));
+  return out.length ? out : ['name'];
+};
+const colsClass = n => {
+  if (n >= 10) {
+    return 'bptm-tb-cols-xl';
+  }
+  if (n >= 8) {
+    return 'bptm-tb-cols-l';
+  }
+  if (n >= 6) {
+    return 'bptm-tb-cols-m';
+  }
+  return 'bptm-tb-cols-s';
+};
+
+/** Table head: optional border <style> + <thead>. */
+const TableHead = ({
+  ctx,
+  id
+}) => {
+  const defs = columnDefs();
+  const cols = visibleColumns(ctx, id);
+  const uid = String(ctx.uid || '').replace(/[^A-Za-z0-9_-]/g, '');
+  const bw = (0,_css__WEBPACK_IMPORTED_MODULE_5__.length)(ctx.attr('itemBorderWidth', ''));
+  const bc = (0,_css__WEBPACK_IMPORTED_MODULE_5__.color)(ctx.attr('itemBorderColor', ''));
+  let style = null;
+  if (uid && (bw || bc)) {
+    const br = (0,_css__WEBPACK_IMPORTED_MODULE_5__.length)(ctx.attr('itemBorderRadius', ''));
+    let vars = '--bptm-tb-bw:' + (bw || '1px') + ';--bptm-tb-bc:' + (bc || 'currentColor') + ';';
+    if (br) {
+      vars += '--bptm-tb-br:' + br + ';';
+    }
+    vars = vars.replace(/[<>{}]/g, '');
+    style = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('style', {
+      key: 's'
+    }, '.bptm-wrap:has(.bptm-thead[data-bptm-uid="' + uid + '"]){' + vars + '}');
+  }
+  return [style, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('thead', {
+    key: 'h',
+    className: 'bptm-thead',
+    'data-bptm-cols': String(cols.length),
+    ...(uid ? {
+      'data-bptm-uid': uid
+    } : {})
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('tr', null, cols.map(c => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('th', {
+    key: c,
+    scope: 'col',
+    className: ctx.vis_classes(defs[c][1], 'bptm-th bptm-col-' + c.replace(/_/g, '-'))
+  }, defs[c][0]))))];
+};
+const tableCell = (ctx, m, col, id, extra) => {
+  const defs = columnDefs();
+  const label = defs[col] ? defs[col][0] : '';
+  let inner = null;
+  let sort = '';
+  switch (col) {
+    case 'thumbnail':
+      {
+        const img = tbImage(ctx, m, true, true);
+        inner = img ? div('bptm-img-wrap', img) : null;
+        break;
+      }
+    case 'name':
+      inner = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(taPart(ctx, m, 'name', 'h3'), tbBadges(ctx, m), tbExtras(ctx, m, tableColumns(id)));
+      sort = m.name || '';
+      break;
+    case 'designation':
+      inner = taPart(ctx, m, 'designation');
+      sort = m.designation || '';
+      break;
+    case 'details':
+      inner = taPart(ctx, m, 'details');
+      break;
+    case 'social':
+      inner = taPart(ctx, m, 'social');
+      break;
+    default:
+      {
+        const row = ctx.metaRows(m).find(r => r.field === col);
+        if (row) {
+          inner = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+            className: 'bptm-contact bptm-contact--' + col.replace(/_/g, '-')
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('i', {
+            className: row.icon,
+            'aria-hidden': 'true'
+          }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+            className: 'bptm-contact-value'
+          }, row.value));
+          sort = row.text || '';
+        }
+      }
+  }
+  const content = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(inner, extra);
+  const field = defs[col] ? defs[col][1] : col;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('td', {
+    key: col,
+    className: ctx.vis_classes(field, 'bptm-td bptm-col-' + col.replace(/_/g, '-') + (inner ? '' : ' bptm-td-empty')),
+    'data-label': label,
+    ...('' !== sort ? {
+      'data-sort-value': sort
+    } : {})
+  }, content);
+};
+const tableRow = id => (ctx, m) => {
+  const cols = visibleColumns(ctx, id);
+  // Tables 9 / 10 have no Description column: the description goes at the end of the name cell (or the first cell).
+  let descCol = null;
+  let desc = null;
+  if (['table-9', 'table-10'].includes(id)) {
+    desc = taPart(ctx, m, 'details');
+    descCol = cols.includes('name') ? 'name' : cols[0];
+  }
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('tr', ctx.itemProps(m, tbClasses(ctx, id, 'table', ['bptm-trow', colsClass(cols.length)])), cols.map(c => tableCell(ctx, m, c, id, c === descCol ? desc : null)));
+};
+
+/* ================================================================== */
+/* Sidebar                                                             */
+/* ================================================================== */
+
+const sidebarTheme = id => (ctx, m) => {
+  const img = ctx.image(m, 'bptm-img');
+  const badges = (0,_context__WEBPACK_IMPORTED_MODULE_2__.join)(ctx.ribbon(m), ctx.featuredBadge(m));
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', ctx.itemProps(m, ['bptm-sb', 'bptm-sb-' + id, img ? 'bptm-sb-has-img' : 'bptm-sb-no-img']), div('bptm-sb-card bptm-tb-card', img ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', {
+    className: ctx.vis_classes('thumbnail', 'bptm-img-wrap bptm-sb-media')
+  }, img) : null, div('bptm-sb-info', badges, ctx.name(m, 'h4'), ctx.designation(m), ctx.details(m), ctx.metaDetails(m, 'icons'), ctx.skills(m), ctx.social(m, 'small'), ctx.vcard(m), ctx.readMore(m))));
+};
+
+/* ================================================================== */
+
+/**
+ * Item renderer of a theme: ( ctx, member ) => element.
+ *
+ * @param {Object} theme Theme.
+ * @return {Function} Renderer.
+ */
+const itemRenderer = theme => {
+  const id = theme.id;
+  if ('table' === theme.layout) {
+    return tableRow(id);
+  }
+  const fam = (0,_registry__WEBPACK_IMPORTED_MODULE_3__.themeFamily)(id);
+  if ('sidebar' === fam) {
+    return sidebarTheme(id);
+  }
+  if ('ta' === fam) {
+    if (/^grid-/.test(id)) {
+      return gridTheme(id);
+    }
+    if (/^circle-/.test(id)) {
+      return circleTheme(id);
+    }
+    if (/^horizontal-/.test(id)) {
+      return horizontalTheme(id);
+    }
+    return flipTheme(id);
+  }
+  if (/^list-/.test(id)) {
+    return listTheme(id);
+  }
+  return TB[id] || TB['grid-10'];
+};
+
+/***/ }),
+
+/***/ "./src/style.scss":
+/*!************************!*\
+  !*** ./src/style.scss ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "./src/Components/Common/Team/socialIcons.json":
+/*!*****************************************************!*\
+  !*** ./src/Components/Common/Team/socialIcons.json ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"fab fa-42-group":"42.group","fab fa-500px":"500px","fab fa-accessible-icon":"Accessible Icon","fab fa-accusoft":"Accusoft","fab fa-adn":"App.net","fab fa-adversal":"Adversal","fab fa-affiliatetheme":"affiliatetheme","fab fa-airbnb":"Airbnb","fab fa-algolia":"Algolia","fab fa-alipay":"Alipay","fab fa-amazon-pay":"Amazon Pay","fab fa-amazon":"Amazon","fab fa-amilia":"Amilia","fab fa-android":"Android","fab fa-angellist":"AngelList","fab fa-angrycreative":"Angry Creative","fab fa-angular":"Angular","fab fa-app-store-ios":"iOS App Store","fab fa-app-store":"App Store","fab fa-apper":"Apper Systems AB","fab fa-apple-pay":"Apple Pay","fab fa-apple":"Apple","fab fa-artstation":"Artstation","fab fa-asymmetrik":"Asymmetrik, Ltd.","fab fa-atlassian":"Atlassian","fab fa-audible":"Audible","fab fa-autoprefixer":"Autoprefixer","fab fa-avianex":"avianex","fab fa-aviato":"Aviato","fab fa-aws":"Amazon Web Services (AWS)","fab fa-bandcamp":"Bandcamp","fab fa-battle-net":"Battle.net","fab fa-behance":"Behance","fab fa-bilibili":"Bilibili","fab fa-bimobject":"BIMobject","fab fa-bitbucket":"Bitbucket","fab fa-bitcoin":"Bitcoin","fab fa-bity":"Bity","fab fa-black-tie":"Font Awesome Black Tie","fab fa-blackberry":"BlackBerry","fab fa-blogger-b":"Blogger B","fab fa-blogger":"Blogger","fab fa-bluesky":"Bluesky","fab fa-bluetooth-b":"Bluetooth","fab fa-bluetooth":"Bluetooth","fab fa-bootstrap":"Bootstrap","fab fa-bots":"Bots","fab fa-brave-reverse":"Brave Reverse","fab fa-brave":"Brave","fab fa-btc":"BTC","fab fa-buffer":"Buffer","fab fa-buromobelexperte":"Büromöbel-Experte GmbH & Co. KG.","fab fa-buy-n-large":"Buy n Large","fab fa-buysellads":"BuySellAds","fab fa-canadian-maple-leaf":"Canadian Maple Leaf","fab fa-cc-amazon-pay":"Amazon Pay Credit Card","fab fa-cc-amex":"Cc Amex","fab fa-cc-apple-pay":"Apple Pay Credit Card","fab fa-cc-diners-club":"Diner\'s Club Credit Card","fab fa-cc-discover":"Discover Credit Card","fab fa-cc-jcb":"JCB Credit Card","fab fa-cc-mastercard":"MasterCard Credit Card","fab fa-cc-paypal":"Paypal Credit Card","fab fa-cc-stripe":"Stripe Credit Card","fab fa-cc-visa":"Visa Credit Card","fab fa-centercode":"Centercode","fab fa-centos":"Centos","fab fa-chrome":"Chrome","fab fa-chromecast":"Chromecast","fab fa-cloudflare":"Cloudflare","fab fa-cloudscale":"cloudscale.ch","fab fa-cloudsmith":"Cloudsmith","fab fa-cloudversify":"cloudversify","fab fa-cmplid":"Cmplid","fab fa-codepen":"Codepen","fab fa-codiepie":"Codie Pie","fab fa-confluence":"Confluence","fab fa-connectdevelop":"Connect Develop","fab fa-contao":"Contao","fab fa-cotton-bureau":"Cotton Bureau","fab fa-cpanel":"cPanel","fab fa-creative-commons-by":"Creative Commons Attribution","fab fa-creative-commons-nc-eu":"Creative Commons Noncommercial (Euro Sign)","fab fa-creative-commons-nc-jp":"Creative Commons Noncommercial (Yen Sign)","fab fa-creative-commons-nc":"Creative Commons Noncommercial","fab fa-creative-commons-nd":"Creative Commons No Derivative Works","fab fa-creative-commons-pd-alt":"Alternate Creative Commons Public Domain","fab fa-creative-commons-pd":"Creative Commons Public Domain","fab fa-creative-commons-remix":"Creative Commons Remix","fab fa-creative-commons-sa":"Creative Commons Share Alike","fab fa-creative-commons-sampling-plus":"Creative Commons Sampling +","fab fa-creative-commons-sampling":"Creative Commons Sampling","fab fa-creative-commons-share":"Creative Commons Share","fab fa-creative-commons-zero":"Creative Commons CC0","fab fa-creative-commons":"Creative Commons","fab fa-critical-role":"Critical Role","fab fa-css3-alt":"Alternate CSS3 Logo","fab fa-css3":"CSS 3 Logo","fab fa-cuttlefish":"Cuttlefish","fab fa-d-and-d-beyond":"D&D Beyond","fab fa-d-and-d":"Dungeons & Dragons","fab fa-dailymotion":"dailymotion","fab fa-dashcube":"DashCube","fab fa-debian":"Debian","fab fa-deezer":"Deezer","fab fa-delicious":"Delicious","fab fa-deploydog":"deploy.dog","fab fa-deskpro":"Deskpro","fab fa-dev":"DEV","fab fa-deviantart":"deviantART","fab fa-dhl":"DHL","fab fa-diaspora":"Diaspora","fab fa-digg":"Digg Logo","fab fa-digital-ocean":"Digital Ocean","fab fa-discord":"Discord","fab fa-discourse":"Discourse","fab fa-dochub":"DocHub","fab fa-docker":"Docker","fab fa-draft2digital":"Draft2digital","fab fa-dribbble":"Dribbble","fab fa-dropbox":"Dropbox","fab fa-drupal":"Drupal Logo","fab fa-dyalog":"Dyalog","fab fa-earlybirds":"Earlybirds","fab fa-ebay":"eBay","fab fa-edge-legacy":"Edge Legacy Browser","fab fa-edge":"Edge Browser","fab fa-elementor":"Elementor","fab fa-ello":"Ello","fab fa-ember":"Ember","fab fa-empire":"Galactic Empire","fab fa-envira":"Envira Gallery","fab fa-erlang":"Erlang","fab fa-ethereum":"Ethereum","fab fa-etsy":"Etsy","fab fa-evernote":"Evernote","fab fa-expeditedssl":"ExpeditedSSL","fab fa-facebook-f":"Facebook F","fab fa-facebook-messenger":"Facebook Messenger","fab fa-facebook":"Facebook","fab fa-fantasy-flight-games":"Fantasy Flight-games","fab fa-fedex":"FedEx","fab fa-fedora":"Fedora","fab fa-figma":"Figma","fab fa-firefox-browser":"Firefox Browser","fab fa-firefox":"Firefox","fab fa-first-order-alt":"Alternate First Order","fab fa-first-order":"First Order","fab fa-firstdraft":"firstdraft","fab fa-flickr":"Flickr","fab fa-flipboard":"Flipboard","fab fa-fly":"Fly","fab fa-font-awesome":"Font Awesome","fab fa-fonticons-fi":"Fonticons Fi","fab fa-fonticons":"Fonticons","fab fa-fort-awesome-alt":"Alternate Fort Awesome","fab fa-fort-awesome":"Fort Awesome","fab fa-forumbee":"Forumbee","fab fa-foursquare":"Foursquare","fab fa-free-code-camp":"freeCodeCamp","fab fa-freebsd":"FreeBSD","fab fa-fulcrum":"Fulcrum","fab fa-galactic-republic":"Galactic Republic","fab fa-galactic-senate":"Galactic Senate","fab fa-get-pocket":"Get Pocket","fab fa-gg-circle":"GG Currency Circle","fab fa-gg":"GG Currency","fab fa-git-alt":"Git Alt","fab fa-git":"Git","fab fa-github-alt":"Alternate GitHub","fab fa-github":"GitHub","fab fa-gitkraken":"GitKraken","fab fa-gitlab":"GitLab","fab fa-gitter":"Gitter","fab fa-glide-g":"Glide G","fab fa-glide":"Glide","fab fa-gofore":"Gofore","fab fa-golang":"Go","fab fa-goodreads-g":"Goodreads G","fab fa-goodreads":"Goodreads","fab fa-google-drive":"Google Drive","fab fa-google-pay":"Google Pay","fab fa-google-play":"Google Play","fab fa-google-plus-g":"Google Plus G","fab fa-google-plus":"Google Plus","fab fa-google-scholar":"Google Scholar","fab fa-google-wallet":"Google Wallet","fab fa-google":"Google Logo","fab fa-gratipay":"Gratipay (Gittip)","fab fa-grav":"Grav","fab fa-gripfire":"Gripfire, Inc.","fab fa-grunt":"Grunt","fab fa-guilded":"Guilded","fab fa-gulp":"Gulp","fab fa-hacker-news":"Hacker News","fab fa-hackerrank":"Hackerrank","fab fa-hashnode":"Hashnode","fab fa-hips":"Hips","fab fa-hire-a-helper":"HireAHelper","fab fa-hive":"Hive Blockchain Network","fab fa-hooli":"Hooli","fab fa-hornbill":"Hornbill","fab fa-hotjar":"Hotjar","fab fa-houzz":"Houzz","fab fa-html5":"HTML 5 Logo","fab fa-hubspot":"HubSpot","fab fa-ideal":"iDeal","fab fa-imdb":"IMDB","fab fa-instagram":"Instagram","fab fa-instalod":"InstaLOD","fab fa-intercom":"Intercom","fab fa-internet-explorer":"Internet-explorer","fab fa-invision":"InVision","fab fa-ioxhost":"ioxhost","fab fa-itch-io":"itch.io","fab fa-itunes-note":"Itunes Note","fab fa-itunes":"iTunes","fab fa-java":"Java","fab fa-jedi-order":"Jedi Order","fab fa-jenkins":"Jenkis","fab fa-jira":"Jira","fab fa-joget":"Joget","fab fa-joomla":"Joomla Logo","fab fa-js":"JavaScript (JS)","fab fa-jsfiddle":"jsFiddle","fab fa-jxl":"Jxl","fab fa-kaggle":"Kaggle","fab fa-keybase":"Keybase","fab fa-keycdn":"KeyCDN","fab fa-kickstarter-k":"Kickstarter K","fab fa-kickstarter":"Kickstarter","fab fa-korvue":"KORVUE","fab fa-laravel":"Laravel","fab fa-lastfm":"last.fm","fab fa-leanpub":"Leanpub","fab fa-less":"Less","fab fa-letterboxd":"Letterboxd","fab fa-line":"Line","fab fa-linkedin-in":"LinkedIn In","fab fa-linkedin":"LinkedIn","fab fa-linode":"Linode","fab fa-linux":"Linux","fab fa-lyft":"lyft","fab fa-magento":"Magento","fab fa-mailchimp":"Mailchimp","fab fa-mandalorian":"Mandalorian","fab fa-markdown":"Markdown","fab fa-mastodon":"Mastodon","fab fa-maxcdn":"MaxCDN","fab fa-mdb":"Material Design for Bootstrap","fab fa-medapps":"MedApps","fab fa-medium":"Medium","fab fa-medrt":"MRT","fab fa-meetup":"Meetup","fab fa-megaport":"Megaport","fab fa-mendeley":"Mendeley","fab fa-meta":"Meta","fab fa-microblog":"Micro.blog","fab fa-microsoft":"Microsoft","fab fa-mintbit":"Mintbit","fab fa-mix":"Mix","fab fa-mixcloud":"Mixcloud","fab fa-mixer":"Mixer","fab fa-mizuni":"Mizuni","fab fa-modx":"MODX","fab fa-monero":"Monero","fab fa-napster":"Napster","fab fa-neos":"Neos","fab fa-nfc-directional":"NFC Directional","fab fa-nfc-symbol":"Nfc Symbol","fab fa-nimblr":"Nimblr","fab fa-node-js":"Node.js JS","fab fa-node":"Node.js","fab fa-npm":"npm","fab fa-ns8":"NS8","fab fa-nutritionix":"Nutritionix","fab fa-octopus-deploy":"Octopus Deploy","fab fa-odnoklassniki":"Odnoklassniki","fab fa-odysee":"Odysee","fab fa-old-republic":"Old Republic","fab fa-opencart":"OpenCart","fab fa-openid":"OpenID","fab fa-opensuse":"Opensuse","fab fa-opera":"Opera","fab fa-optin-monster":"Optin Monster","fab fa-orcid":"ORCID","fab fa-osi":"Open Source Initiative","fab fa-padlet":"Padlet","fab fa-page4":"page4 Corporation","fab fa-pagelines":"Pagelines","fab fa-palfed":"Palfed","fab fa-patreon":"Patreon","fab fa-paypal":"Paypal","fab fa-perbyte":"PerByte","fab fa-periscope":"Periscope","fab fa-phabricator":"Phabricator","fab fa-phoenix-framework":"Phoenix Framework","fab fa-phoenix-squadron":"Phoenix Squadron","fab fa-php":"PHP","fab fa-pied-piper-alt":"Alternate Pied Piper Logo (Old)","fab fa-pied-piper-hat":"Pied Piper Hat (Old)","fab fa-pied-piper-pp":"Pied Piper PP Logo (Old)","fab fa-pied-piper":"Pied Piper Logo","fab fa-pinterest-p":"Pinterest P","fab fa-pinterest":"Pinterest","fab fa-pix":"Pix","fab fa-pixiv":"Pixiv","fab fa-playstation":"PlayStation","fab fa-product-hunt":"Product Hunt","fab fa-pushed":"Pushed","fab fa-python":"Python","fab fa-qq":"QQ","fab fa-quinscape":"QuinScape","fab fa-quora":"Quora","fab fa-r-project":"R Project","fab fa-raspberry-pi":"Raspberry Pi","fab fa-ravelry":"Ravelry","fab fa-react":"React","fab fa-reacteurope":"ReactEurope","fab fa-readme":"ReadMe","fab fa-rebel":"Rebel Alliance","fab fa-red-river":"red river","fab fa-reddit-alien":"Reddit Alien","fab fa-reddit":"Reddit","fab fa-redhat":"Redhat","fab fa-renren":"Renren","fab fa-replyd":"replyd","fab fa-researchgate":"Researchgate","fab fa-resolving":"Resolving","fab fa-rev":"Rev.io","fab fa-rocketchat":"Rocket.Chat","fab fa-rockrms":"Rockrms","fab fa-rust":"Rust","fab fa-safari":"Safari","fab fa-salesforce":"Salesforce","fab fa-sass":"Sass","fab fa-schlix":"SCHLIX","fab fa-screenpal":"Screenpal","fab fa-scribd":"Scribd","fab fa-searchengin":"Searchengin","fab fa-sellcast":"Sellcast","fab fa-sellsy":"Sellsy","fab fa-servicestack":"Servicestack","fab fa-shirtsinbulk":"Shirts in Bulk","fab fa-shoelace":"Shoelace","fab fa-shopify":"Shopify","fab fa-shopware":"Shopware","fab fa-signal-messenger":"Signal Messenger","fab fa-simplybuilt":"SimplyBuilt","fab fa-sistrix":"SISTRIX","fab fa-sith":"Sith","fab fa-sitrox":"Sitrox","fab fa-sketch":"Sketch","fab fa-skyatlas":"skyatlas","fab fa-skype":"Skype","fab fa-slack":"Slack Logo","fab fa-slideshare":"Slideshare","fab fa-snapchat":"Snapchat","fab fa-soundcloud":"SoundCloud","fab fa-sourcetree":"Sourcetree","fab fa-space-awesome":"Space Awesome","fab fa-speakap":"Speakap","fab fa-speaker-deck":"Speaker Deck","fab fa-spotify":"Spotify","fab fa-square-behance":"Square Behance","fab fa-square-dribbble":"Square Dribbble","fab fa-square-facebook":"Square Facebook","fab fa-square-font-awesome-stroke":"Square Font Awesome Stroke","fab fa-square-font-awesome":"Square Font Awesome","fab fa-square-git":"Square Git","fab fa-square-github":"Square Github","fab fa-square-gitlab":"Square Gitlab","fab fa-square-google-plus":"Square Google Plus","fab fa-square-hacker-news":"Square Hacker News","fab fa-square-instagram":"Square Instagram","fab fa-square-js":"Square Js","fab fa-square-lastfm":"Square Lastfm","fab fa-square-letterboxd":"Square Letterboxd","fab fa-square-odnoklassniki":"Square Odnoklassniki","fab fa-square-pied-piper":"Pied Piper Square Logo (Old)","fab fa-square-pinterest":"Square Pinterest","fab fa-square-reddit":"Square Reddit","fab fa-square-snapchat":"Snapchat Square","fab fa-square-steam":"Square Steam","fab fa-square-threads":"Square Threads","fab fa-square-tumblr":"Square Tumblr","fab fa-square-twitter":"Square Twitter","fab fa-square-upwork":"Square Upwork","fab fa-square-viadeo":"Square Viadeo","fab fa-square-vimeo":"Square Vimeo","fab fa-square-web-awesome-stroke":"Square Web Awesome Stroke","fab fa-square-web-awesome":"Square Web Awesome","fab fa-square-whatsapp":"Square Whatsapp","fab fa-square-x-twitter":"Square X Twitter","fab fa-square-xing":"Square Xing","fab fa-square-youtube":"Square Youtube","fab fa-squarespace":"Squarespace","fab fa-stack-exchange":"Stack Exchange","fab fa-stack-overflow":"Stack Overflow","fab fa-stackpath":"Stackpath","fab fa-staylinked":"StayLinked","fab fa-steam-symbol":"Steam Symbol","fab fa-steam":"Steam","fab fa-sticker-mule":"Sticker Mule","fab fa-strava":"Strava","fab fa-stripe-s":"Stripe S","fab fa-stripe":"Stripe","fab fa-stubber":"Stubber","fab fa-studiovinari":"Studio Vinari","fab fa-stumbleupon-circle":"StumbleUpon Circle","fab fa-stumbleupon":"StumbleUpon Logo","fab fa-superpowers":"Superpowers","fab fa-supple":"Supple","fab fa-suse":"Suse","fab fa-swift":"Swift","fab fa-symfony":"Symfony","fab fa-teamspeak":"Teamspeak","fab fa-telegram":"Telegram","fab fa-tencent-weibo":"Tencent Weibo","fab fa-the-red-yeti":"The Red Yeti","fab fa-themeco":"Themeco","fab fa-themeisle":"ThemeIsle","fab fa-think-peaks":"Think Peaks","fab fa-threads":"Threads","fab fa-tiktok":"TikTok","fab fa-trade-federation":"Trade Federation","fab fa-trello":"Trello","fab fa-tumblr":"Tumblr","fab fa-twitch":"Twitch","fab fa-twitter":"Twitter","fab fa-typo3":"Typo3","fab fa-uber":"Uber","fab fa-ubuntu":"Ubuntu","fab fa-uikit":"UIkit","fab fa-umbraco":"Umbraco","fab fa-uncharted":"Uncharted Software","fab fa-uniregistry":"Uniregistry","fab fa-unity":"Unity 3D","fab fa-unsplash":"Unsplash","fab fa-untappd":"Untappd","fab fa-ups":"UPS","fab fa-upwork":"Upwork","fab fa-usb":"USB","fab fa-usps":"United States Postal Service","fab fa-ussunnah":"us-Sunnah Foundation","fab fa-vaadin":"Vaadin","fab fa-viacoin":"Viacoin","fab fa-viadeo":"Viadeo","fab fa-viber":"Viber","fab fa-vimeo-v":"Vimeo","fab fa-vimeo":"Vimeo","fab fa-vine":"Vine","fab fa-vk":"VK","fab fa-vnv":"VNV","fab fa-vuejs":"Vue.js","fab fa-watchman-monitoring":"Watchman Monitoring","fab fa-waze":"Waze","fab fa-web-awesome":"Web Awesome","fab fa-webflow":"Webflow","fab fa-weebly":"Weebly","fab fa-weibo":"Weibo","fab fa-weixin":"Weixin (WeChat)","fab fa-whatsapp":"What\'s App","fab fa-whmcs":"WHMCS","fab fa-wikipedia-w":"Wikipedia W","fab fa-windows":"Windows","fab fa-wirsindhandwerk":"wirsindhandwerk","fab fa-wix":"Wix","fab fa-wizards-of-the-coast":"Wizards of the Coast","fab fa-wodu":"Wodu","fab fa-wolf-pack-battalion":"Wolf Pack Battalion","fab fa-wordpress-simple":"Wordpress Simple","fab fa-wordpress":"WordPress Logo","fab fa-wpbeginner":"WPBeginner","fab fa-wpexplorer":"WPExplorer","fab fa-wpforms":"WPForms","fab fa-wpressr":"wpressr","fab fa-x-twitter":"X Twitter","fab fa-xbox":"Xbox","fab fa-xing":"Xing","fab fa-y-combinator":"Y Combinator","fab fa-yahoo":"Yahoo Logo","fab fa-yammer":"Yammer","fab fa-yandex-international":"Yandex International","fab fa-yandex":"Yandex","fab fa-yarn":"Yarn","fab fa-yelp":"Yelp","fab fa-yoast":"Yoast","fab fa-youtube":"YouTube","fab fa-zhihu":"Zhihu","fas fa-address-book":"Address Book","fas fa-address-card":"Address Card","fas fa-at":"At","fas fa-blog":"Blog","fas fa-book":"Book","fas fa-book-open":"Book Open","fas fa-briefcase":"Briefcase","fas fa-building":"Building","fas fa-building-user":"Building User","fas fa-bullhorn":"Bullhorn","fas fa-calendar":"Calendar","fas fa-calendar-days":"Calendar Days","fas fa-camera":"Camera","fas fa-certificate":"Certificate","fas fa-chalkboard-user":"Chalkboard User","fas fa-circle-user":"Circle User","fas fa-circle-info":"Circle Info","fas fa-comment":"Comment","fas fa-comments":"Comments","fas fa-comment-dots":"Comment Dots","fas fa-code":"Code","fas fa-compass":"Compass","fas fa-desktop":"Desktop","fas fa-download":"Download","fas fa-earth-americas":"Earth Americas","fas fa-earth-europe":"Earth Europe","fas fa-envelope":"Envelope","fas fa-envelope-open":"Envelope Open","fas fa-envelope-open-text":"Envelope Open Text","fas fa-fax":"Fax","fas fa-file":"File","fas fa-file-lines":"File Lines","fas fa-file-pdf":"File Pdf","fas fa-flag":"Flag","fas fa-gift":"Gift","fas fa-globe":"Globe","fas fa-graduation-cap":"Graduation Cap","fas fa-hashtag":"Hashtag","fas fa-headset":"Headset","fas fa-heart":"Heart","fas fa-house":"House","fas fa-id-badge":"Id Badge","fas fa-id-card":"Id Card","fas fa-image":"Image","fas fa-inbox":"Inbox","fas fa-info":"Info","fas fa-key":"Key","fas fa-laptop":"Laptop","fas fa-laptop-code":"Laptop Code","fas fa-language":"Language","fas fa-link":"Link","fas fa-location-arrow":"Location Arrow","fas fa-location-dot":"Location Dot","fas fa-lock":"Lock","fas fa-map":"Map","fas fa-map-location-dot":"Map Location Dot","fas fa-map-pin":"Map Pin","fas fa-message":"Message","fas fa-microphone":"Microphone","fas fa-mobile":"Mobile","fas fa-mobile-screen":"Mobile Screen","fas fa-mobile-screen-button":"Mobile Screen Button","fas fa-music":"Music","fas fa-newspaper":"Newspaper","fas fa-paper-plane":"Paper Plane","fas fa-paperclip":"Paperclip","fas fa-pen":"Pen","fas fa-pen-nib":"Pen Nib","fas fa-pencil":"Pencil","fas fa-phone":"Phone","fas fa-phone-flip":"Phone Flip","fas fa-phone-volume":"Phone Volume","fas fa-photo-film":"Photo Film","fas fa-podcast":"Podcast","fas fa-print":"Print","fas fa-quote-left":"Quote Left","fas fa-rss":"Rss","fas fa-school":"School","fas fa-share":"Share","fas fa-share-nodes":"Share Nodes","fas fa-square-envelope":"Square Envelope","fas fa-square-phone":"Square Phone","fas fa-square-phone-flip":"Square Phone Flip","fas fa-square-rss":"Square Rss","fas fa-square-share-nodes":"Square Share Nodes","fas fa-star":"Star","fas fa-store":"Store","fas fa-tag":"Tag","fas fa-tags":"Tags","fas fa-trophy":"Trophy","fas fa-tv":"Tv","fas fa-user":"User","fas fa-user-doctor":"User Doctor","fas fa-user-graduate":"User Graduate","fas fa-user-tie":"User Tie","fas fa-users":"Users","fas fa-video":"Video","fas fa-wifi":"Wifi","fas fa-award":"Award","fas fa-bolt":"Bolt","fas fa-bookmark":"Bookmark","fas fa-chart-line":"Chart Line","fas fa-cloud":"Cloud","fas fa-cube":"Cube","fas fa-database":"Database","fas fa-feather":"Feather","fas fa-gamepad":"Gamepad","fas fa-handshake":"Handshake","fas fa-lightbulb":"Lightbulb","fas fa-palette":"Palette","fas fa-puzzle-piece":"Puzzle Piece","fas fa-rocket":"Rocket","fas fa-shield":"Shield","fas fa-shop":"Shop","fas fa-signature":"Signature","fas fa-suitcase":"Suitcase","fas fa-ticket":"Ticket","fas fa-wrench":"Wrench"}');
+
+/***/ }),
+
+/***/ "./src/block.json":
+/*!************************!*\
+  !*** ./src/block.json ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"tsb/team-members","version":"1.0.0","title":"Team Builder – Grid, List, Carousel & Popup","category":"widgets","description":"Showcase your team beautifully with grid, list, carousel and popup layouts.","keywords":["Team Members","team","member","staff"],"textdomain":"bp-team-member","attributes":{"align":{"type":"string","default":"wide"},"alignment":{"type":"string","default":"center"},"purposeType":{"type":"string","default":"test"},"colors":{"type":"object","default":{"color":"black","bg":"#B1C5A4"}},"members":{"type":"array","default":[{"id":"m1","name":"Sophia Nguyen","designation":"Lead Product Designer","details":"Sophia has spent more than a decade working on product design and design systems. Colleagues know Sophia as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Sophia enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/sophia-nguyen.jpg","alt":"Sophia Nguyen","sizes":{"thumbnail":{"url":"assets/img/team/sophia-nguyen-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/sophia-nguyen-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/sophia-nguyen.jpg","width":600,"height":600},"full":{"url":"assets/img/team/sophia-nguyen.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0104","cellPhone":"+1 555 0205","email":"sophia.nguyen@example.com","emailCc":"","emailBcc":"","address":"24 Harbor Avenue, San Francisco","ribbon":"Top Rated","zipCode":"10084","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-dribbble","link":"https://dribbble.com/sophia.nguyen"},{"icon":"fab fa-behance","link":"https://www.behance.net/sophia.nguyen"},{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/sophia.nguyen"},{"icon":"fas fa-envelope","link":"mailto:sophia.nguyen@example.com"}],"skills":[{"skill":"UI Design","percent":96},{"skill":"Prototyping","percent":88},{"skill":"User Research","percent":82}],"group":"Design","tags":"Creative, UX","language":"English, Vietnamese","location":"San Francisco","gender":"Female","specialty":"Design","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m2","name":"Olivia Bennett","designation":"Chief Executive Officer","details":"Olivia has spent more than a decade working on company strategy and growth. Colleagues know Olivia as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Olivia enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/olivia-bennett.jpg","alt":"Olivia Bennett","sizes":{"thumbnail":{"url":"assets/img/team/olivia-bennett-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/olivia-bennett-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/olivia-bennett.jpg","width":600,"height":600},"full":{"url":"assets/img/team/olivia-bennett.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0100","cellPhone":"+1 555 0201","email":"olivia.bennett@example.com","emailCc":"","emailBcc":"","address":"10 Harbor Avenue, New York","ribbon":"CEO","zipCode":"10010","vcard":"","customUrl":"","featured":true,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/olivia.bennett"},{"icon":"fab fa-x-twitter","link":"https://x.com/olivia.bennett"},{"icon":"fab fa-facebook-f","link":"https://www.facebook.com/olivia.bennett"},{"icon":"fas fa-envelope","link":"mailto:olivia.bennett@example.com"}],"skills":[{"skill":"Leadership","percent":95},{"skill":"Strategy","percent":90},{"skill":"Public Speaking","percent":85}],"group":"Management","tags":"Leadership","language":"English, French","location":"New York","gender":"Female","specialty":"Strategy","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m3","name":"Liam Carter","designation":"Chief Technology Officer","details":"Liam has spent more than a decade working on scalable web platforms. Colleagues know Liam as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Liam enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/liam-carter.jpg","alt":"Liam Carter","sizes":{"thumbnail":{"url":"assets/img/team/liam-carter-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/liam-carter-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/liam-carter.jpg","width":600,"height":600},"full":{"url":"assets/img/team/liam-carter.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0102","cellPhone":"+1 555 0203","email":"liam.carter@example.com","emailCc":"","emailBcc":"","address":"17 Harbor Avenue, Berlin","ribbon":"CTO","zipCode":"10047","vcard":"","customUrl":"","featured":true,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/liam.carter"},{"icon":"fab fa-github","link":"https://github.com/liam.carter"},{"icon":"fab fa-x-twitter","link":"https://x.com/liam.carter"},{"icon":"fas fa-envelope","link":"mailto:liam.carter@example.com"}],"skills":[{"skill":"Architecture","percent":92},{"skill":"PHP","percent":88},{"skill":"Cloud","percent":80}],"group":"Engineering","tags":"Backend, Leadership","language":"English, German","location":"Berlin","gender":"Male","specialty":"Development","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m4","name":"Noah Williams","designation":"Senior Frontend Developer","details":"Noah has spent more than a decade working on frontend engineering and accessibility. Colleagues know Noah as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Noah enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/noah-williams.jpg","alt":"Noah Williams","sizes":{"thumbnail":{"url":"assets/img/team/noah-williams-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/noah-williams-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/noah-williams.jpg","width":600,"height":600},"full":{"url":"assets/img/team/noah-williams.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0106","cellPhone":"+1 555 0207","email":"noah.williams@example.com","emailCc":"","emailBcc":"","address":"31 Harbor Avenue, London","ribbon":"","zipCode":"10121","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-github","link":"https://github.com/noah.williams"},{"icon":"fab fa-x-twitter","link":"https://x.com/noah.williams"},{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/noah.williams"},{"icon":"fas fa-envelope","link":"mailto:noah.williams@example.com"}],"skills":[{"skill":"JavaScript","percent":94},{"skill":"React","percent":90},{"skill":"CSS","percent":86}],"group":"Engineering","tags":"Frontend, JavaScript","language":"English","location":"London","gender":"Male","specialty":"Development","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m5","name":"Emma Rodriguez","designation":"Marketing Manager","details":"Emma has spent more than a decade working on brand storytelling and digital marketing. Colleagues know Emma as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Emma enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/emma-rodriguez.jpg","alt":"Emma Rodriguez","sizes":{"thumbnail":{"url":"assets/img/team/emma-rodriguez-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/emma-rodriguez-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/emma-rodriguez.jpg","width":600,"height":600},"full":{"url":"assets/img/team/emma-rodriguez.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0108","cellPhone":"+1 555 0209","email":"emma.rodriguez@example.com","emailCc":"","emailBcc":"","address":"38 Harbor Avenue, Madrid","ribbon":"New","zipCode":"10158","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-instagram","link":"https://www.instagram.com/emma.rodriguez"},{"icon":"fab fa-facebook-f","link":"https://www.facebook.com/emma.rodriguez"},{"icon":"fab fa-x-twitter","link":"https://x.com/emma.rodriguez"},{"icon":"fas fa-envelope","link":"mailto:emma.rodriguez@example.com"}],"skills":[{"skill":"SEO","percent":85},{"skill":"Content Strategy","percent":90},{"skill":"Analytics","percent":78}],"group":"Marketing","tags":"Content, Social Media","language":"English, Spanish","location":"Madrid","gender":"Female","specialty":"Marketing","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m6","name":"James Okafor","designation":"Backend Engineer","details":"James has spent more than a decade working on APIs, databases and automation. Colleagues know James as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work James enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/james-okafor.jpg","alt":"James Okafor","sizes":{"thumbnail":{"url":"assets/img/team/james-okafor-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/james-okafor-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/james-okafor.jpg","width":600,"height":600},"full":{"url":"assets/img/team/james-okafor.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0110","cellPhone":"+1 555 0211","email":"james.okafor@example.com","emailCc":"","emailBcc":"","address":"45 Harbor Avenue, Lagos","ribbon":"","zipCode":"10195","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-github","link":"https://github.com/james.okafor"},{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/james.okafor"},{"icon":"fas fa-envelope","link":"mailto:james.okafor@example.com"}],"skills":[{"skill":"Node.js","percent":88},{"skill":"Databases","percent":84},{"skill":"DevOps","percent":75}],"group":"Engineering","tags":"API, Backend","language":"English, Yoruba","location":"Lagos","gender":"Male","specialty":"Development","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m7","name":"Ava Schmidt","designation":"HR Specialist","details":"Ava has spent more than a decade working on people operations and company culture. Colleagues know Ava as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Ava enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/ava-schmidt.jpg","alt":"Ava Schmidt","sizes":{"thumbnail":{"url":"assets/img/team/ava-schmidt-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/ava-schmidt-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/ava-schmidt.jpg","width":600,"height":600},"full":{"url":"assets/img/team/ava-schmidt.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0112","cellPhone":"+1 555 0213","email":"ava.schmidt@example.com","emailCc":"","emailBcc":"","address":"52 Harbor Avenue, Berlin","ribbon":"","zipCode":"10232","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/ava.schmidt"},{"icon":"fab fa-facebook-f","link":"https://www.facebook.com/ava.schmidt"},{"icon":"fas fa-envelope","link":"mailto:ava.schmidt@example.com"}],"skills":[{"skill":"Recruiting","percent":90},{"skill":"Communication","percent":95},{"skill":"Coaching","percent":80}],"group":"Operations","tags":"Culture, People","language":"English, German","location":"Berlin","gender":"Female","specialty":"Human Resources","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m8","name":"Lucas Martin","designation":"Customer Success Lead","details":"Lucas has spent more than a decade working on customer success and onboarding. Colleagues know Lucas as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Lucas enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/lucas-martin.jpg","alt":"Lucas Martin","sizes":{"thumbnail":{"url":"assets/img/team/lucas-martin-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/lucas-martin-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/lucas-martin.jpg","width":600,"height":600},"full":{"url":"assets/img/team/lucas-martin.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0114","cellPhone":"+1 555 0215","email":"lucas.martin@example.com","emailCc":"","emailBcc":"","address":"59 Harbor Avenue, Paris","ribbon":"Lead","zipCode":"10269","vcard":"","customUrl":"","featured":true,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/lucas.martin"},{"icon":"fab fa-x-twitter","link":"https://x.com/lucas.martin"},{"icon":"fab fa-youtube","link":"https://www.youtube.com/@lucas.martin"},{"icon":"fas fa-envelope","link":"mailto:lucas.martin@example.com"}],"skills":[{"skill":"Customer Care","percent":96},{"skill":"Training","percent":85},{"skill":"Product Knowledge","percent":88}],"group":"Support","tags":"Customer, Leadership","language":"English, French","location":"Paris","gender":"Male","specialty":"Support","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m9","name":"Mia Tanaka","designation":"UX Researcher","details":"Mia has spent more than a decade working on user research and usability testing. Colleagues know Mia as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Mia enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/mia-tanaka.jpg","alt":"Mia Tanaka","sizes":{"thumbnail":{"url":"assets/img/team/mia-tanaka-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/mia-tanaka-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/mia-tanaka.jpg","width":600,"height":600},"full":{"url":"assets/img/team/mia-tanaka.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0116","cellPhone":"+1 555 0217","email":"mia.tanaka@example.com","emailCc":"","emailBcc":"","address":"66 Harbor Avenue, Tokyo","ribbon":"","zipCode":"10306","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/mia.tanaka"},{"icon":"fab fa-dribbble","link":"https://dribbble.com/mia.tanaka"},{"icon":"fab fa-instagram","link":"https://www.instagram.com/mia.tanaka"},{"icon":"fas fa-envelope","link":"mailto:mia.tanaka@example.com"}],"skills":[{"skill":"Interviews","percent":92},{"skill":"Usability Testing","percent":89},{"skill":"Data Analysis","percent":76}],"group":"Design","tags":"Research, UX","language":"English, Japanese","location":"Tokyo","gender":"Female","specialty":"Design","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""},{"id":"m10","name":"Ethan Brooks","designation":"Sales Executive","details":"Ethan has spent more than a decade working on business development and partnerships. Colleagues know Ethan as a calm problem solver who enjoys mentoring new team members and sharing knowledge across departments.\\n\\nOutside of work Ethan enjoys hiking, photography and good coffee. Ask about the latest side project!","image":{"id":0,"url":"assets/img/team/ethan-brooks.jpg","alt":"Ethan Brooks","sizes":{"thumbnail":{"url":"assets/img/team/ethan-brooks-150x150.jpg","width":150,"height":150},"medium":{"url":"assets/img/team/ethan-brooks-300x300.jpg","width":300,"height":300},"large":{"url":"assets/img/team/ethan-brooks.jpg","width":600,"height":600},"full":{"url":"assets/img/team/ethan-brooks.jpg","width":600,"height":600}}},"flipImage":{"id":0,"url":"","alt":""},"company":"Northwind Collective","companyWebsite":"https://example.com","landPhone":"+1 555 0118","cellPhone":"+1 555 0219","email":"ethan.brooks@example.com","emailCc":"","emailBcc":"","address":"73 Harbor Avenue, Toronto","ribbon":"","zipCode":"10343","vcard":"","customUrl":"","featured":false,"social":[{"icon":"fab fa-linkedin-in","link":"https://www.linkedin.com/in/ethan.brooks"},{"icon":"fab fa-facebook-f","link":"https://www.facebook.com/ethan.brooks"},{"icon":"fab fa-x-twitter","link":"https://x.com/ethan.brooks"},{"icon":"fas fa-envelope","link":"mailto:ethan.brooks@example.com"}],"skills":[{"skill":"Negotiation","percent":91},{"skill":"CRM","percent":84},{"skill":"Presentations","percent":87}],"group":"Sales","tags":"Business, Customer","language":"English","location":"Toronto","gender":"Male","specialty":"Sales","extraOne":"","extraTwo":"","extraThree":"","extraFour":"","extraFive":""}]},"theme":{"type":"string","default":"grid-5"},"carouselEnabled":{"type":"boolean","default":false},"filterEnabled":{"type":"boolean","default":false},"filterType":{"type":"string","default":"normal-filter"},"columns":{"type":"object","default":{"desktop":4,"tablet":3,"mobilePortrait":2,"mobile":1}},"columnGap":{"type":"number","default":30},"rowGap":{"type":"number","default":30},"linkType":{"type":"string","default":"default"},"nameIsLinked":{"type":"boolean","default":true},"linkPreviewImage":{"type":"boolean","default":false},"linkTarget":{"type":"string","default":"_self"},"popupStyle":{"type":"string","default":"default"},"popupColumns":{"type":"string","default":"two"},"panelStyle":{"type":"string","default":"default"},"panelPosition":{"type":"string","default":"right"},"drawerStyle":{"type":"string","default":"default"},"thumbnailSize":{"type":"string","default":"large"},"imageFilter":{"type":"string","default":"none"},"hoverImageFilter":{"type":"string","default":"none"},"visibility":{"type":"object","default":{}},"detailsLength":{"type":"number","default":100},"allowHtmlDetails":{"type":"boolean","default":false},"descScrollControl":{"type":"boolean","default":true},"maxScrollHeight":{"type":"string","default":""},"detailsAreaHeight":{"type":"boolean","default":false},"enableScrollAnimation":{"type":"boolean","default":true},"enableFeaturing":{"type":"boolean","default":false},"showAcfFields":{"type":"boolean","default":false},"acfFieldsPosition":{"type":"string","default":"after_skills"},"numberOfMembers":{"type":"number","default":-1},"orderBy":{"type":"string","default":"default"},"order":{"type":"string","default":"ASC"},"taxonomyOrderBy":{"type":"string","default":"name"},"taxonomyOrder":{"type":"string","default":"ASC"},"taxonomyHideEmpty":{"type":"boolean","default":false},"includeGroups":{"type":"array","default":[]},"excludeGroups":{"type":"array","default":[]},"includeTags":{"type":"array","default":[]},"includeLocations":{"type":"array","default":[]},"includeLanguages":{"type":"array","default":[]},"includeSpecialties":{"type":"array","default":[]},"includeGenders":{"type":"array","default":[]},"includeExtraOne":{"type":"array","default":[]},"includeExtraTwo":{"type":"array","default":[]},"includeExtraThree":{"type":"array","default":[]},"includeExtraFour":{"type":"array","default":[]},"includeExtraFive":{"type":"array","default":[]},"searchByName":{"type":"boolean","default":true},"searchByZip":{"type":"boolean","default":true},"searchByTag":{"type":"boolean","default":false},"searchByCompany":{"type":"boolean","default":false},"filterByDesignation":{"type":"boolean","default":true},"filterByLocation":{"type":"boolean","default":true},"filterByLanguage":{"type":"boolean","default":true},"filterByGender":{"type":"boolean","default":true},"filterBySpecialty":{"type":"boolean","default":true},"filterByExtraOne":{"type":"boolean","default":false},"filterByExtraTwo":{"type":"boolean","default":false},"filterByExtraThree":{"type":"boolean","default":false},"filterByExtraFour":{"type":"boolean","default":false},"filterByExtraFive":{"type":"boolean","default":false},"enableClearFilters":{"type":"boolean","default":false},"enableMultiSelect":{"type":"boolean","default":false},"multiSelectEllipsis":{"type":"boolean","default":false},"filterAllEnabled":{"type":"boolean","default":true},"enableChildCats":{"type":"boolean","default":false},"filterAllText":{"type":"string","default":"All"},"filterColumns":{"type":"string","default":"two"},"filterCatPosition":{"type":"string","default":"center"},"filterStyle":{"type":"string","default":"default"},"paginationEnabled":{"type":"boolean","default":false},"paginationType":{"type":"string","default":"normal-pagination"},"initialItems":{"type":"number","default":6},"perPage":{"type":"number","default":6},"loadPerClick":{"type":"number","default":3},"perLoad":{"type":"number","default":3},"loadButtonText":{"type":"string","default":"Load More"},"carouselAutoplay":{"type":"boolean","default":true},"carouselAutoplayHoverPause":{"type":"boolean","default":true},"carouselLoop":{"type":"boolean","default":true},"carouselSpeed":{"type":"number","default":1000},"carouselAutoplayTimeout":{"type":"number","default":2500},"carouselItemsToScroll":{"type":"number","default":1},"carouselNavsEnabled":{"type":"boolean","default":true},"carouselDotsEnabled":{"type":"boolean","default":true},"carouselNavsStyle":{"type":"string","default":"default"},"carouselDotsStyle":{"type":"string","default":"default"},"nameColor":{"type":"string","default":""},"nameBg":{"type":"string","default":""},"roleColor":{"type":"string","default":""},"descriptionColor":{"type":"string","default":""},"descriptionLinkColor":{"type":"string","default":""},"infoColor":{"type":"string","default":""},"infoIconColor":{"type":"string","default":""},"infoLabelColor":{"type":"string","default":""},"infoBg":{"type":"string","default":""},"itemBg":{"type":"string","default":""},"itemBgHover":{"type":"string","default":""},"tooltipBg":{"type":"string","default":""},"hoverIconBg":{"type":"string","default":""},"ribbonBg":{"type":"string","default":""},"popupBg":{"type":"string","default":""},"popupCloseColor":{"type":"string","default":""},"popupCloseBg":{"type":"string","default":""},"popupCloseHoverColor":{"type":"string","default":""},"popupCloseHoverBg":{"type":"string","default":""},"popupCloseIconSize":{"type":"string","default":"20px"},"popupCloseSize":{"type":"string","default":"40px"},"popupCloseRadius":{"type":"string","default":"50%"},"popupArrowColor":{"type":"string","default":""},"popupNavBg":{"type":"string","default":""},"popupNavBorderColor":{"type":"string","default":""},"popupNavHoverColor":{"type":"string","default":""},"popupNavHoverBg":{"type":"string","default":""},"popupNavHoverBorderColor":{"type":"string","default":""},"popupNavRadius":{"type":"string","default":"50px"},"popupNavIconSize":{"type":"string","default":"14px"},"popupNavTypography":{"type":"object","default":{}},"accentColor":{"type":"string","default":""},"sliderNavColor":{"type":"string","default":""},"sliderNavBg":{"type":"string","default":""},"sliderNavHoverColor":{"type":"string","default":""},"sliderNavHoverBg":{"type":"string","default":""},"sliderDotColor":{"type":"string","default":""},"sliderDotHoverColor":{"type":"string","default":""},"filterTextColor":{"type":"string","default":""},"filterActiveTextColor":{"type":"string","default":""},"filterBgColor":{"type":"string","default":""},"filterActiveBgColor":{"type":"string","default":""},"filterBorderColor":{"type":"string","default":""},"filterActiveBorderColor":{"type":"string","default":""},"nameTypography":{"type":"object","default":{}},"roleTypography":{"type":"object","default":{}},"detailsTypography":{"type":"object","default":{}},"infoTypography":{"type":"object","default":{}},"ribbonTypography":{"type":"object","default":{}},"readmoreTypography":{"type":"object","default":{}},"itemPadding":{"type":"object","default":{}},"itemBorderRadius":{"type":"string","default":""},"itemShadow":{"type":"string","default":""},"itemShadowList":{"type":"array","default":[]},"itemBorderColor":{"type":"string","default":""},"itemBorderWidth":{"type":"string","default":""},"imageBorderRadius":{"type":"string","default":""},"pgColor":{"type":"string","default":""},"pgBg":{"type":"string","default":""},"pgBorderColor":{"type":"string","default":""},"pgHoverColor":{"type":"string","default":""},"pgHoverBg":{"type":"string","default":""},"pgHoverBorderColor":{"type":"string","default":""},"pgActiveColor":{"type":"string","default":""},"pgActiveBg":{"type":"string","default":""},"pgActiveBorderColor":{"type":"string","default":""},"pgBorderWidth":{"type":"string","default":""},"pgBorderRadius":{"type":"string","default":""},"lmColor":{"type":"string","default":""},"lmBg":{"type":"string","default":""},"lmBorderColor":{"type":"string","default":""},"lmHoverColor":{"type":"string","default":""},"lmHoverBg":{"type":"string","default":""},"lmBorderWidth":{"type":"string","default":""},"lmBorderRadius":{"type":"string","default":""},"pgLoaderColor":{"type":"string","default":""},"pgPadding":{"type":"object","default":{}},"lmPadding":{"type":"object","default":{}},"socialIconColor":{"type":"string","default":""},"socialIconHoverColor":{"type":"string","default":""},"socialBg":{"type":"string","default":""},"socialHoverBg":{"type":"string","default":""},"socialBorderColor":{"type":"string","default":""},"socialHoverBorderColor":{"type":"string","default":""},"socialIconSize":{"type":"string","default":""},"socialSize":{"type":"string","default":""},"socialBorderWidth":{"type":"string","default":""},"socialRadius":{"type":"string","default":""},"socialGap":{"type":"string","default":""},"featuredColor":{"type":"string","default":""},"featuredBg":{"type":"string","default":""},"featuredBorderColor":{"type":"string","default":""},"featuredBorderWidth":{"type":"string","default":""},"featuredSize":{"type":"string","default":""},"featuredIconSize":{"type":"string","default":""},"featuredRadius":{"type":"string","default":""}},"supports":{"align":["wide","full"],"html":false,"anchor":true,"customClassName":true},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+/*!*********************!*\
+  !*** ./src/view.js ***!
+  \*********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Components_Common_Team_TeamMembers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Common/Team/TeamMembers */ "./src/Components/Common/Team/TeamMembers.js");
+/**
+ * Team Builder – Grid, List, Carousel & Popup front end (block viewScript + style).
+ *
+ * src/render.php prints only a wrapper `<div class="wp-block-tsb-team-members …" data-bptm-uid data-attributes="{json}">`;
+ * this script renders the block in the browser from those attributes with React (the same component the editor uses).
+ *
+ * window.BPTM.init( root = document ) mounts every not-yet-mounted block inside root (page builders call it
+ * after injecting markup). window.BPTM.get( el ) returns { attributes } of a mounted block.
+ */
+
+
+
+const SELECTOR = '.wp-block-tsb-team-members[data-attributes]';
+const mounted = new Map();
+const randomUid = () => Math.random().toString(16).slice(2, 10);
+function mount(el) {
+  if (mounted.has(el)) {
+    return;
+  }
+  let attributes = {};
+  try {
+    attributes = JSON.parse(el.getAttribute('data-attributes') || '{}') || {};
+  } catch (e) {
+    attributes = {};
+  }
+  if (!attributes || 'object' !== typeof attributes || Array.isArray(attributes)) {
+    attributes = {};
+  }
+  const uid = String(el.getAttribute('data-bptm-uid') || randomUid()).replace(/[^a-z0-9-]/gi, '').toLowerCase() || randomUid();
+  const domId = el.id || 'bptm-' + uid;
+  const wrapperClass = el.className;
+  const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createRoot)(el);
+  mounted.set(el, {
+    root,
+    attributes
+  });
+  root.render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_Components_Common_Team_TeamMembers__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes,
+    uid,
+    domId,
+    host: el,
+    wrapperClass
+  }));
+}
+function init(scope) {
+  // Roots whose element left the document (builder previews re-render): unmount.
+  mounted.forEach((rec, el) => {
+    if (!el.isConnected) {
+      rec.root.unmount();
+      mounted.delete(el);
+    }
+  });
+  const ctx = scope && 'function' === typeof scope.querySelectorAll ? scope : document;
+  const els = Array.from(ctx.querySelectorAll(SELECTOR));
+  if (ctx.matches && ctx.matches(SELECTOR)) {
+    els.unshift(ctx);
+  }
+  els.forEach(el => {
+    try {
+      mount(el);
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error('Team Builder – Grid, List, Carousel & Popup:', e);
+    }
+  });
+  return els;
+}
+const api = window.BPTM && 'object' === typeof window.BPTM ? window.BPTM : {};
+api.init = init;
+api.get = el => {
+  const rec = mounted.get(el);
+  return rec ? {
+    attributes: rec.attributes
+  } : null;
+};
+window.BPTM = api;
+if ('loading' === document.readyState) {
+  document.addEventListener('DOMContentLoaded', () => init(document));
+} else {
+  init(document);
+}
+/******/ })()
+;
+//# sourceMappingURL=view.js.map
